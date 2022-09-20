@@ -5,10 +5,11 @@ import 'viewscreen/error_screen.dart';
 import 'viewscreen/signin_screen.dart';
 import 'viewscreen/signup_screen.dart';
 import 'viewscreen/userhome_screen.dart';
+import 'package:cap_project/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const Capstone());
 }
 
