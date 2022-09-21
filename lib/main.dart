@@ -1,3 +1,5 @@
+import 'package:cap_project/viewscreen/tools_screen.dart';
+import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'model/constant.dart';
@@ -41,6 +43,8 @@ class Capstone extends StatelessWidget {
           }
         },
         SignUpScreen.routeName: (context) => const SignUpScreen(),
+        ToolsScreen.routeName: (context) => const ToolsScreen(),
+        TipCalculatorScreen.routeName: (context) => const TipCalculatorScreen(),
       },
     );
   }

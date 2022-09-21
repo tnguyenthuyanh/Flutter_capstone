@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../controller/auth_controller.dart';
@@ -58,6 +59,11 @@ class _UserHomeState extends State<UserHomeScreen> {
                   accountEmail: Text(email),
                 ),
                 ListTile(
+                  leading: const Icon(Icons.build),
+                  title: const Text('Tools'),
+                  onTap: con.gotoToolsScreen,
+                ),
+                ListTile(
                   leading: const Icon(Icons.logout),
                   title: const Text('Sign Out'),
                   onTap: con.signOut,
@@ -93,6 +99,10 @@ class _Controller {
     }
     Navigator.of(state.context).pop(); // close drawer
     Navigator.of(state.context).pop(); // return to start screen
+  }
+
+  void gotoToolsScreen() {
+    Navigator.pushNamed(state.context, ToolsScreen.routeName);
   }
 
   void onTap(int index) async {}
