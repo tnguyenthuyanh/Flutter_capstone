@@ -1,15 +1,14 @@
+import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'model/constant.dart';
 import 'viewscreen/error_screen.dart';
-import 'viewscreen/signin_screen.dart';
 import 'viewscreen/signup_screen.dart';
 import 'viewscreen/userhome_screen.dart';
-import 'package:cap_project/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp();
   runApp(const Capstone());
 }
 
@@ -20,9 +19,6 @@ class Capstone extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: Constant.devMode,
-      theme: ThemeData(
-          brightness: Constant.DARKMODE ? Brightness.dark : Brightness.light,
-          primaryColor: Colors.cyan),
       initialRoute: SignInScreen.routeName,
       routes: {
         SignInScreen.routeName: (context) => const SignInScreen(),
