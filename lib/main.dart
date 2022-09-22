@@ -23,7 +23,7 @@ class Capstone extends StatelessWidget {
       theme: ThemeData(
           brightness: Constant.DARKMODE ? Brightness.dark : Brightness.light,
           primaryColor: Colors.cyan),
-      initialRoute: SignInScreen.routeName,
+      initialRoute: SignUpScreen.routeName,
       routes: {
         SignInScreen.routeName: (context) => const SignInScreen(),
         UserHomeScreen.routeName: (context) {

@@ -54,6 +54,15 @@ class _SignUpState extends State<SignUpScreen> {
                     validator: con.validateEmail,
                     onSaved: con.saveEmail,
                   ),
+                   TextFormField(
+                    decoration: const InputDecoration(
+                      hintText: 'Enter Phone Number',
+                    ),
+                    keyboardType: TextInputType.phone,
+                    autocorrect: false,
+                    validator: con.validatePhone,
+                    onSaved: con.savePhone,
+                  ),
                   TextFormField(
                     decoration: const InputDecoration(
                       hintText: 'Enter password',
@@ -95,6 +104,7 @@ class _Controller {
   String? email;
   String? password;
   String? confirmPassword;
+  String? phone;
 
   void signUp() async {
     FormState? currentState = state.formKey.currentState;
@@ -111,7 +121,8 @@ class _Controller {
 
     try {
       await AuthController.createAccountTest(
-          email: email!, password: password!, userProf: state.userProf);
+          email: email!, password: password!, userProf: state.userProf, phone: phone!
+          );
       showSnackBar(
         context: state.context,
         seconds: 20,
@@ -147,11 +158,28 @@ class _Controller {
     }
   }
 
-  void savePassword(String? vlaue) {
-    password = vlaue;
+  void savePassword(String? value) {
+    password = value;
   }
 
   void saveConfirmPassword(String? value) {
     confirmPassword = value;
   }
+
+
+
+String? validatePhone(String? value){
+    if (value == null || value.length < 10){
+      return 'Invalid Phone Number; 10 digits';
+    }else{
+      return null;
+    }
+  }
+
+  void savePhone (String? value) {
+
+    if (value != null) phone = value;
+  }
+
+
 }

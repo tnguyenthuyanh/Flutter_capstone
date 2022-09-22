@@ -19,7 +19,7 @@ class AuthController {
   static Future<void> createAccountTest({
     required String email,
     required String password,
-    required Userprof userProf,
+    required Userprof userProf, required String phone,
   }) async {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
