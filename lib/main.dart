@@ -1,4 +1,5 @@
 import 'package:cap_project/View_Model/auth_viewModel.dart';
+import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +51,7 @@ class Capstone extends StatelessWidget {
           }
         },
         SignUpScreen.routeName: (context) => const SignUpScreen(),
+        ForgotSignIn.routeName: (context) => const ForgotSignIn(),
       },
     );
   }

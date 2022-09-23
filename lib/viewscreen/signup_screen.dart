@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:cap_project/View_Model/auth_viewModel.dart';
+import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +11,7 @@ import '../model/user.dart';
 import 'view/view_util.dart';
 
 class SignUpScreen extends StatefulWidget {
-  static const routeName = '/signUpScreen';
+  static const routeName = '/SignUpScreen';
 
   const SignUpScreen({Key? key}) : super(key: key);
   @override
@@ -29,7 +30,7 @@ class _SignUpState extends State<SignUpScreen> {
   void initState() {
     super.initState();
     //con = _Controller(this);
-    
+
     userProf = Userprof();
   }
 
@@ -57,16 +58,18 @@ class _SignUpState extends State<SignUpScreen> {
                     ),
                     keyboardType: TextInputType.emailAddress,
                     autocorrect: false,
-                    validator: (value) =>  authViewModel.validateEmail(value),
+                    validator: (value) => authViewModel.validateEmail(value),
+                    controller: authViewModel.emailCon,
                     //onSaved: con.saveEmail,
                   ),
-                   TextFormField(
+                  TextFormField(
                     decoration: const InputDecoration(
                       hintText: 'Enter Phone Number',
                     ),
                     keyboardType: TextInputType.phone,
                     autocorrect: false,
-                    validator: (value) =>  authViewModel.validatePhone(value),
+                    validator: (value) => authViewModel.validatePhone(value),
+                    controller: authViewModel.phoneCon,
                     //validator: con.validatePhone,
                     //onSaved: con.savePhone,
                   ),
@@ -76,9 +79,10 @@ class _SignUpState extends State<SignUpScreen> {
                     ),
                     autocorrect: false,
                     obscureText: true,
-                    validator: (value) =>  authViewModel.validatePass(value),
-                   // validator: con.validatePassword,
-                  //  onSaved: con.savePassword,
+                    validator: (value) => authViewModel.validatePass(value),
+                    controller: authViewModel.passCon,
+                    // validator: con.validatePassword,
+                    //  onSaved: con.savePassword,
                   ),
                   TextFormField(
                     decoration: const InputDecoration(
@@ -86,8 +90,9 @@ class _SignUpState extends State<SignUpScreen> {
                     ),
                     autocorrect: false,
                     obscureText: true,
-                   // validator: con.validatePassword,
-                   // onSaved: con.saveConfirmPassword,
+                    controller: authViewModel.confPassCon,
+                    validator: (value) => authViewModel.confirmPassword(value),
+                    // onSaved: con.saveConfirmPassword,
                   ),
                   const SizedBox(
                     height: 10.0,
@@ -99,7 +104,17 @@ class _SignUpState extends State<SignUpScreen> {
                       child: Text(
                         'Sign Up',
                         style: Theme.of(context).textTheme.button,
-                      ))
+                      )),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, ForgotSignIn.routeName);
+                      //formKey.currentState?.validate();
+                    },
+                    child: Text(
+                      'Navigator dummy',
+                      style: Theme.of(context).textTheme.button,
+                    ),
+                  ),
                 ],
               ),
             ),
