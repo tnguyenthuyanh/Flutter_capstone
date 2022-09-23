@@ -1,16 +1,25 @@
+import 'package:cap_project/View_Model/auth_viewModel.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'model/constant.dart';
 import 'viewscreen/error_screen.dart';
 import 'viewscreen/signin_screen.dart';
 import 'viewscreen/signup_screen.dart';
 import 'viewscreen/userhome_screen.dart';
 import 'package:cap_project/firebase_options.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const Capstone());
+  runApp(
+      MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (_) => AuthViewModel()),
+          ],
+          child: const Capstone())
+  );
 }
 
 class Capstone extends StatelessWidget {
@@ -45,3 +54,5 @@ class Capstone extends StatelessWidget {
     );
   }
 }
+
+
