@@ -1,5 +1,6 @@
 // ignore_for_file: avoid_print
 
+import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:flutter/material.dart';
 import '../controller/auth_controller.dart';
 import '../model/constant.dart';
@@ -112,6 +113,7 @@ class _Controller {
     try {
       await AuthController.createAccountTest(
           email: email!, password: password!, userProf: state.userProf);
+      FirestoreController.addUser(userProf: state.userProf);
       showSnackBar(
         context: state.context,
         seconds: 20,
