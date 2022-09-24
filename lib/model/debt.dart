@@ -36,4 +36,10 @@ class Debt {
       category: doc[DocKeyDebt.category.name] ??= 'N/A',
     );
   }
+
+  static String? validateTitle(String? value) {
+    return (value == null || value.trim().length < 2)
+        ? "Title too short"
+        : null;
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:cap_project/viewscreen/addDebt_screen.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -37,6 +38,20 @@ class Capstone extends StatelessWidget {
             var user = argument[ArgKey.user];
             var userP = argument[ArgKey.userProfile];
             return DebtScreen(
+              user: user, userP: userP, debtList: [],
+              // profile: profile,
+            );
+          }
+        },
+        AddDebtScreen.routeName: (context) {
+          Object? args = ModalRoute.of(context)?.settings.arguments;
+          if (args == null) {
+            return const ErrorScreen('args is null for AddDebtScreen');
+          } else {
+            var argument = args as Map;
+            var user = argument[ArgKey.user];
+            var userP = argument[ArgKey.userProfile];
+            return AddDebtScreen(
               user: user, userP: userP, debtList: [],
               // profile: profile,
             );

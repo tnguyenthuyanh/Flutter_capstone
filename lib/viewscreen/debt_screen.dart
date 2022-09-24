@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../model/constant.dart';
+import 'addDebt_screen.dart';
 
 class DebtScreen extends StatefulWidget {
   const DebtScreen(
@@ -76,6 +77,10 @@ class _DebtState extends State<DebtScreen> {
                 );
               },
             ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: con.addButton,
+      ),
     );
   }
 }
@@ -86,6 +91,16 @@ class _Controller {
 
   _Controller(this.state) {
     debtList = state.widget.debtList;
+  }
+
+  void addButton() async {
+    await Navigator.pushNamed(state.context, AddDebtScreen.routeName,
+        arguments: {
+          ArgKey.debtList: debtList,
+          ArgKey.user: state.widget.user,
+          ArgKey.userProfile: state.widget.userP,
+        });
+    state.render(() {}); //rerender the screen
   }
 
   void onTap(int index) async {}
