@@ -99,12 +99,22 @@ class _SignUpState extends State<SignUpScreen> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        formKey.currentState?.validate();
+                        if (formKey.currentState!.validate()) {
+                          authViewModel.signupUser();
+                        }
                       },
-                      child: Text(
-                        'Sign Up',
-                        style: Theme.of(context).textTheme.button,
-                      )),
+                      child: authViewModel.load
+                          ? Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 10),
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            )
+                          : Text(
+                              'Sign Up',
+                              style: Theme.of(context).textTheme.button,
+                            )),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, ForgotSignIn.routeName);

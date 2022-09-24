@@ -16,14 +16,20 @@ class AuthController {
     await FirebaseAuth.instance.signOut();
   }
 
-  static Future<void> createAccountTest({
-    required String email,
-    required String password,
-    required Userprof userProf, required String phone,
-  }) async {
-    await FirebaseAuth.instance
-        .createUserWithEmailAndPassword(email: email, password: password);
-    await FirestoreController.addUser(userProf: userProf);
+  static Future<void> createAccountTest(
+      {required String password, required Userprof userProf}) async {
+    try {
+      UserCredential user = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: userProf.email, password: password);
+      if (user != null) {
+        userProf.uid = user.user?.uid;
+
+        await FirestoreController.addUser(userProf: userProf);
+      }
+    } catch (e) {
+      throw (e);
+    }
   }
 
   static Future<void> createAccount({

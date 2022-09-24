@@ -8,9 +8,13 @@ class FirestoreController {
   static addUser({
     required Userprof userProf,
   }) async {
-    DocumentReference ref = await FirebaseFirestore.instance
-        .collection(Constant.users)
-        .add(userProf.toFirestoreDoc());
-    return ref.id; // doc id auto-generated.
+    try {
+      DocumentReference ref = await FirebaseFirestore.instance
+          .collection(Constant.users)
+          .add(userProf.toFirestoreDoc());
+      return ref.id; // doc id auto-generated.
+    } catch (e) {
+      throw (e);
+    }
   }
 }
