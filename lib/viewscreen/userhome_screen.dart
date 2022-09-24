@@ -61,7 +61,11 @@ class _UserHomeState extends State<UserHomeScreen> {
                 ListTile(
                   leading: const Icon(Icons.build),
                   title: const Text('Tools'),
-                  onTap: con.gotoToolsScreen,
+                  onTap: () => {
+                    Navigator.pushNamed(context, ToolsScreen.routeName, arguments: {
+                      ArgKey.user: widget.user,
+                    })
+                  },
                 ),
                 ListTile(
                   leading: const Icon(Icons.logout),
@@ -99,10 +103,6 @@ class _Controller {
     }
     Navigator.of(state.context).pop(); // close drawer
     Navigator.of(state.context).pop(); // return to start screen
-  }
-
-  void gotoToolsScreen() {
-    Navigator.pushNamed(state.context, ToolsScreen.routeName);
   }
 
   void onTap(int index) async {}

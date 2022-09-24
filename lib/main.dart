@@ -43,8 +43,26 @@ class Capstone extends StatelessWidget {
           }
         },
         SignUpScreen.routeName: (context) => const SignUpScreen(),
-        ToolsScreen.routeName: (context) => const ToolsScreen(),
-        TipCalculatorScreen.routeName: (context) => const TipCalculatorScreen(),
+        ToolsScreen.routeName: (context) {
+          Object? args = ModalRoute.of(context)?.settings.arguments;
+          if (args == null) {
+            return const ErrorScreen('args is null for ToolsScreen');
+          } else {
+            var argument = args as Map;
+            var user = argument[ArgKey.user];
+            return ToolsScreen(user: user);
+          }
+        },
+        TipCalculatorScreen.routeName: (context) {
+          Object? args = ModalRoute.of(context)?.settings.arguments;
+          if (args == null) {
+            return const ErrorScreen('args is null for TipCalculatorScreen');
+          } else {
+            var argument = args as Map;
+            var user = argument[ArgKey.user];
+            return TipCalculatorScreen(user: user);
+          }
+        },
       },
     );
   }
