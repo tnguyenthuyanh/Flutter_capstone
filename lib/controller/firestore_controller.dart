@@ -35,7 +35,6 @@ class FirestoreController {
         .collection(Constant.users)
         .doc(user.docId)
         .collection(Constant.debts)
-        .where(DocKeyDebt.createdby.name, isEqualTo: user.email)
         .orderBy(DocKeyDebt.title.name, descending: true)
         .get();
 
