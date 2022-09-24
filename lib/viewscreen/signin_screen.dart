@@ -4,6 +4,8 @@ import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../controller/firestore_controller.dart';
+
 class SignInScreen extends StatefulWidget {
   static const routeName = '/signInScreen';
   const SignInScreen({Key? key}) : super(key: key);
@@ -113,6 +115,8 @@ class _Controller {
       }
       user = await FirebaseAuthController.signIn(
           email: email!, password: password!);
+
+      await FirestoreController.initProfile(user: user!);
 
       Navigator.pushNamed(
         state.context,

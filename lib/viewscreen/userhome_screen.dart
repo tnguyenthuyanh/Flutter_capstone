@@ -1,8 +1,12 @@
 // ignore_for_file: avoid_print
 
+import 'package:cap_project/model/user.dart' as usr;
+import 'package:cap_project/viewscreen/profile_screen.dart';
+import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../controller/auth_controller.dart';
+import '../controller/firestore_controller.dart';
 import '../model/constant.dart';
 import 'view/view_util.dart';
 
@@ -62,6 +66,16 @@ class _UserHomeState extends State<UserHomeScreen> {
                   title: const Text('Sign Out'),
                   onTap: con.signOut,
                 ),
+                ListTile(
+                  leading: Icon(Icons.account_box_outlined),
+                  title: Text('My Profile'),
+                  onTap: con.seeProfile,
+                ),
+                ListTile(
+                  leading: Icon(Icons.account_box_outlined),
+                  title: Text('Users List'),
+                  onTap: con.seeUserList,
+                ),
               ],
             ),
           ),
@@ -96,4 +110,42 @@ class _Controller {
   }
 
   void onTap(int index) async {}
+
+  void seeUserList() async {
+    try {
+      List<usr.UserInfo> userList = await FirestoreController.getUserList();
+      await Navigator.pushNamed(state.context, UserListScreen.routeName,
+          arguments: {
+            ArgKey.userList: userList,
+          });
+      // close the drawer
+      Navigator.of(state.context).pop();
+    } catch (e) {
+      if (Constant.devMode) print('====== userListScreen error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed to get userList: $e',
+      );
+    }
+  }
+
+  void seeProfile() async {
+    try {
+      Map profile =
+          await FirestoreController.getProfile(uid: state.widget.user.uid);
+      await Navigator.pushNamed(state.context, ProfileScreen.routeName,
+          arguments: {
+            ArgKey.profile: profile,
+            ArgKey.user: state.widget.user,
+          });
+      // close the drawer
+      Navigator.of(state.context).pop();
+    } catch (e) {
+      if (Constant.devMode) print('====== ProfileScreen error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed to get editProfile: $e',
+      );
+    }
+  }
 }

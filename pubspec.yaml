@@ -34,6 +34,7 @@ dependencies:
   cloud_firestore: ^3.4.7
   firebase_auth: ^3.4.2
   flutterfire_cli: ^0.2.6
+  flutter_animated_button: ^2.0.1
   uuid: ^3.0.6
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -82,6 +83,10 @@ flutter:
     - family: CarterOne
       fonts:
         - asset: fonts/CarterOne-Regular.ttf
+    - family: Satisfy-Regular     
+      fonts:
+        - asset: fonts/Satisfy-Regular.ttf
+
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

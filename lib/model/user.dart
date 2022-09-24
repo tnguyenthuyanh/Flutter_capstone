@@ -44,3 +44,40 @@ class Userprof {
     );
   }
 }
+
+class UserInfo {
+  static const UID = 'uid';
+  static const EMAIL = 'email';
+  static const NAME = 'name';
+  static const BIO = 'bio';
+
+  String? docId; //firestore auto generated id
+  late String email;
+  late String name;
+  late String bio;
+  late String uid;
+
+  UserInfo({
+    this.docId,
+    this.uid = '',
+    this.name = '',
+    this.bio = '',
+    this.email = '',
+  });
+
+  static UserInfo? fromFirestoreDoc({
+    required Map<String, dynamic> doc,
+    required String docId,
+  }) {
+    for (var key in doc.keys) {
+      if (doc[key] == null) return null;
+    }
+    return UserInfo(
+      docId: docId,
+      uid: doc[UID],
+      name: doc[NAME] ??= 'N/A', // if null give a value as 'N/A'
+      bio: doc[BIO] ??= 'N/A',
+      email: doc[EMAIL],
+    );
+  }
+}

@@ -1,4 +1,7 @@
+import 'package:cap_project/viewscreen/editprofile_screen.dart';
+import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
+import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'model/constant.dart';
@@ -37,6 +40,43 @@ class Capstone extends StatelessWidget {
           }
         },
         SignUpScreen.routeName: (context) => const SignUpScreen(),
+        ProfileScreen.routeName: (context) {
+          Object? args = ModalRoute.of(context)?.settings.arguments;
+          if (args == null) {
+            return const ErrorScreen('args is null at ProfileScreen');
+          } else {
+            var argument = args as Map;
+            var user = argument[ArgKey.user];
+            var profile = argument[ArgKey.profile];
+            return ProfileScreen(
+              user: user,
+              profile: profile,
+            );
+          }
+        },
+        EditProfileScreen.routeName: (context) {
+          Object? args = ModalRoute.of(context)?.settings.arguments;
+          if (args == null) {
+            return const ErrorScreen('args is null at EditProfileScreen');
+          } else {
+            var argument = args as Map;
+            var user = argument[ArgKey.user];
+            var profile = argument[ArgKey.profile];
+            return EditProfileScreen(user: user, profile: profile);
+          }
+        },
+        UserListScreen.routeName: (context) {
+          Object? args = ModalRoute.of(context)?.settings.arguments;
+          if (args == null) {
+            return const ErrorScreen('args is null at UserListScreen');
+          } else {
+            var argument = args as Map;
+            var userList = argument[ArgKey.userList];
+            return UserListScreen(
+              userList: userList,
+            );
+          }
+        },
       },
     );
   }
