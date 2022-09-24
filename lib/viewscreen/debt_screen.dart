@@ -1,3 +1,4 @@
+import 'package:cap_project/model/custom_icons_icons.dart';
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -62,14 +63,27 @@ class _DebtState extends State<DebtScreen> {
                     elevation: 8.0,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Row(
                         children: [
-                          Text(
-                            widget.userP.debts[index].title,
-                            style: Theme.of(context).textTheme.headline6,
+                          widget.userP.debts[index].category == 'Mortgage'
+                              ? const Icon(Icons.house)
+                              : widget.userP.debts[index].category == 'Car loan'
+                                  ? const Icon(CustomIcons.cab)
+                                  : widget.userP.debts[index].category ==
+                                          'Credit Card'
+                                      ? const Icon(CustomIcons.money_check)
+                                      : const Icon(Icons.medical_services),
+                          SizedBox(width: 20),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                widget.userP.debts[index].title,
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                              Text(widget.userP.debts[index].category),
+                            ],
                           ),
-                          Text(widget.userP.debts[index].category),
                         ],
                       ),
                     ),

@@ -32,6 +32,7 @@ class _AddDebtState extends State<AddDebtScreen> {
   late _Controller con;
   late String email;
   var formKey = GlobalKey<FormState>();
+  late String dropValue;
 
   @override
   void initState() {
@@ -67,10 +68,10 @@ class _AddDebtState extends State<AddDebtScreen> {
                   onSaved: con.saveTitle,
                 ),
                 DropdownButton(
-                  items: Constant.menuItems,
-                  onChanged: con.saveCategory,
-                  hint: Text('Select Category'),
-                )
+                    value: dropValue,
+                    items: Constant.menuItems,
+                    onChanged: con.saveCategory,
+                    hint: const Text('Select Category'))
               ],
             ),
           )),
@@ -97,6 +98,8 @@ class _Controller {
   void saveCategory(String? value) {
     if (value != null) {
       tempDebt.category = value;
+      state.dropValue = value;
+      state.render(() {});
     }
   }
 
