@@ -2,7 +2,7 @@ class Constant {
   static const devMode = true;
   static const users = 'Users';
   static const DARKMODE = true;
-  static const debtCollection = 'debt_collection';
+  static const debts = 'Debts';
 }
 
 enum ArgKey {
@@ -11,7 +11,7 @@ enum ArgKey {
   filename,
   debtList,
   onePhotoMemo,
-  userProf,
+  userProfile,
   replies,
   comments
 }

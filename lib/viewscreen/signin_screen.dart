@@ -1,5 +1,7 @@
 import 'package:cap_project/controller/firebaseauth_controller.dart';
+import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/constant.dart';
+import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -98,7 +100,7 @@ class _Controller {
 
   String? email;
   String? password;
-  //phone number
+  late UserProfile userP;
 
   void signIn() async {
     FormState? currentState = state.formKey.currentState;
@@ -106,6 +108,7 @@ class _Controller {
     currentState.save();
 
     User? user;
+    userP = await FirestoreController.getUser(email: email!);
 
     try {
       if (email == null || password == null) {
@@ -119,6 +122,7 @@ class _Controller {
         UserHomeScreen.routeName,
         arguments: {
           ArgKey.user: user,
+          ArgKey.userProfile: userP,
         },
       );
     } catch (e) {
@@ -146,5 +150,10 @@ class _Controller {
 
   void savePassword(String? value) {
     if (value != null) password = value;
+  }
+
+  Future<UserProfile> getUserProfile(String? email) async {
+    Future<UserProfile> temp = FirestoreController.getUser(email: email!);
+    return temp;
   }
 }

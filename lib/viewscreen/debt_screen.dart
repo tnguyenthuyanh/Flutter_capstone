@@ -1,15 +1,21 @@
 import 'package:cap_project/model/debt.dart';
+import 'package:cap_project/model/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../model/constant.dart';
 
 class DebtScreen extends StatefulWidget {
-  const DebtScreen({required this.debtList, required this.user, Key? key})
+  const DebtScreen(
+      {required this.debtList,
+      required this.userP,
+      required this.user,
+      Key? key})
       : super(key: key);
 
   final List<Debt> debtList;
   final User user;
+  final UserProfile userP;
 
   static const routeName = '/debtScreen';
 

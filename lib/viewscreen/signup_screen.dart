@@ -20,13 +20,13 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpState extends State<SignUpScreen> {
   late _Controller con;
   var formKey = GlobalKey<FormState>();
-  late Userprof userProf;
+  late UserProfile userProf;
 
   @override
   void initState() {
     super.initState();
     con = _Controller(this);
-    userProf = Userprof();
+    userProf = UserProfile();
   }
 
   @override

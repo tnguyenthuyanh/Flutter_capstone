@@ -2,6 +2,7 @@
 
 import 'package:cap_project/model/custom_icons_icons.dart';
 import 'package:cap_project/model/debt.dart';
+import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +12,11 @@ import '../model/constant.dart';
 import 'view/view_util.dart';
 
 class UserHomeScreen extends StatefulWidget {
-  const UserHomeScreen({required this.user, required this.debtList, Key? key})
+  const UserHomeScreen({required this.user, required this.userP, Key? key})
       : super(key: key);
 
   final User user;
-  final List<Debt> debtList;
+  final UserProfile userP;
 
   static const routeName = '/userHomeScreen';
 
@@ -27,6 +28,7 @@ class UserHomeScreen extends StatefulWidget {
 
 class _UserHomeState extends State<UserHomeScreen> {
   late _Controller con;
+  late UserProfile userP;
   late String email;
   var formKey = GlobalKey<FormState>();
 
@@ -34,6 +36,7 @@ class _UserHomeState extends State<UserHomeScreen> {
   void initState() {
     super.initState();
     con = _Controller(this);
+    userP = widget.userP;
     email = widget.user.email ?? 'No email';
   }
 
@@ -100,7 +103,7 @@ class _Controller {
   void debtPage() async {
     try {
       List<Debt> debtList = await FirestoreController.getDebtList(
-        email: state.email,
+        user: state.userP,
       );
       await Navigator.pushNamed(
         state.context,
@@ -108,15 +111,16 @@ class _Controller {
         arguments: {
           ArgKey.debtList: debtList,
           ArgKey.user: state.widget.user,
+          ArgKey.userProfile: state.widget.userP,
         },
       );
       Navigator.of(state.context).pop(); // push in drawer
     } catch (e) {
-      if (Constant.devMode) print('======== get SharedWith list error: $e');
+      if (Constant.devMode) print('======== get Debt list error: $e');
       showSnackBar(
         context: state.context,
         seconds: 20,
-        message: 'Failed to get SharedWith list: $e',
+        message: 'Failed to get Debt list: $e',
       );
     }
   }

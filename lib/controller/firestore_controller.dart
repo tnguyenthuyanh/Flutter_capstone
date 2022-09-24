@@ -1,5 +1,6 @@
 import 'package:cap_project/model/debt.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 // ignore: unused_import
 import 'package:firebase_storage/firebase_storage.dart';
 import '../model/constant.dart';
@@ -7,7 +8,7 @@ import '../model/user.dart';
 
 class FirestoreController {
   static addUser({
-    required Userprof userProf,
+    required UserProfile userProf,
   }) async {
     DocumentReference ref = await FirebaseFirestore.instance
         .collection(Constant.users)
@@ -16,20 +17,25 @@ class FirestoreController {
   }
 
   static addDebt({
+    required UserProfile user,
     required Debt debt,
   }) async {
     DocumentReference ref = await FirebaseFirestore.instance
         .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.debts)
         .add(debt.toFirestoreDoc());
     return ref.id; // doc id auto-generated.
   }
 
   static Future<List<Debt>> getDebtList({
-    required String email,
+    required UserProfile user,
   }) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection(Constant.debtCollection)
-        .where(DocKeyDebt.createdby.name, isEqualTo: email)
+        .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.debts)
+        .where(DocKeyDebt.createdby.name, isEqualTo: user.email)
         .orderBy(DocKeyDebt.title.name, descending: true)
         .get();
 
@@ -42,5 +48,23 @@ class FirestoreController {
       }
     }
     return result;
+  }
+
+  static Future<UserProfile> getUser({
+    required String email,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .where(DocKeyUserprof.email.name, isEqualTo: email)
+        .get();
+
+    for (var doc in querySnapshot.docs) {
+      if (doc.data() != null) {
+        var document = doc.data() as Map<String, dynamic>;
+        var u = UserProfile.fromFirestoreDoc(doc: document, docId: doc.id);
+        if (u != null) return u;
+      }
+    }
+    return UserProfile();
   }
 }
