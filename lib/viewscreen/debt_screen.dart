@@ -8,13 +8,13 @@ import 'addDebt_screen.dart';
 
 class DebtScreen extends StatefulWidget {
   const DebtScreen(
-      {required this.debtList,
+      { //required this.debtList,
       required this.userP,
       required this.user,
       Key? key})
       : super(key: key);
 
-  final List<Debt> debtList;
+  //final List<Debt> debtList;
   final User user;
   final UserProfile userP;
 
@@ -46,13 +46,13 @@ class _DebtState extends State<DebtScreen> {
       appBar: AppBar(
         title: Text("$email's Debt List"),
       ),
-      body: con.debtList.isEmpty
+      body: widget.userP.debts.isEmpty
           ? Text(
               'No Debts entered',
               style: Theme.of(context).textTheme.headline6,
             )
           : ListView.builder(
-              itemCount: con.debtList.length,
+              itemCount: widget.userP.debts.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () => con.onTap(index),
@@ -66,10 +66,10 @@ class _DebtState extends State<DebtScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            con.debtList[index].title,
+                            widget.userP.debts[index].title,
                             style: Theme.of(context).textTheme.headline6,
                           ),
-                          Text(con.debtList[index].category),
+                          Text(widget.userP.debts[index].category),
                         ],
                       ),
                     ),
@@ -87,16 +87,16 @@ class _DebtState extends State<DebtScreen> {
 
 class _Controller {
   _DebtState state;
-  late List<Debt> debtList;
+  // late List<dynamic> debtList;
 
   _Controller(this.state) {
-    debtList = state.widget.debtList;
+    List<dynamic> debtList = state.widget.userP.debts;
   }
 
   void addButton() async {
     await Navigator.pushNamed(state.context, AddDebtScreen.routeName,
         arguments: {
-          ArgKey.debtList: debtList,
+          ArgKey.debtList: state.widget.userP.debts,
           ArgKey.user: state.widget.user,
           ArgKey.userProfile: state.widget.userP,
         });

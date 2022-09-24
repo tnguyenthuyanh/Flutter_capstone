@@ -38,7 +38,7 @@ class Capstone extends StatelessWidget {
             var user = argument[ArgKey.user];
             var userP = argument[ArgKey.userProfile];
             return DebtScreen(
-              user: user, userP: userP, debtList: [],
+              user: user, userP: userP, // debtList: [],
               // profile: profile,
             );
           }

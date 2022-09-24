@@ -102,14 +102,14 @@ class _Controller {
 
   void debtPage() async {
     try {
-      List<Debt> debtList = await FirestoreController.getDebtList(
+      state.userP.debts = await FirestoreController.getDebtList(
         user: state.userP,
       );
       await Navigator.pushNamed(
         state.context,
         DebtScreen.routeName,
         arguments: {
-          ArgKey.debtList: debtList,
+          //ArgKey.debtList: debtList,
           ArgKey.user: state.widget.user,
           ArgKey.userProfile: state.widget.userP,
         },

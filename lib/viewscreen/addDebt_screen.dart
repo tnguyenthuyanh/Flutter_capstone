@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../model/constant.dart';
+import 'debt_screen.dart';
 
 class AddDebtScreen extends StatefulWidget {
   const AddDebtScreen(
@@ -66,7 +67,10 @@ class _AddDebtState extends State<AddDebtScreen> {
                   onSaved: con.saveTitle,
                 ),
                 DropdownButton(
-                    items: Constant.menuItems, onChanged: con.saveCategory)
+                  items: Constant.menuItems,
+                  onChanged: con.saveCategory,
+                  hint: Text('Select Category'),
+                )
               ],
             ),
           )),
@@ -111,12 +115,20 @@ class _Controller {
           user: state.widget.userP, debt: tempDebt);
       tempDebt.docId = docId;
 
-      state.widget.debtList.insert(0, tempDebt);
+      state.widget.userP.debts.insert(0, tempDebt);
 
       stopCircularProgress(state.context);
 
       // return to home
-      Navigator.of(state.context).pop();
+      await Navigator.pushNamed(
+        state.context,
+        DebtScreen.routeName,
+        arguments: {
+          //ArgKey.debtList: debtList,
+          ArgKey.user: state.widget.user,
+          ArgKey.userProfile: state.widget.userP,
+        },
+      );
     } catch (e) {
       stopCircularProgress(state.context);
       if (Constant.devMode) print('***************** uploadFile/Doc error: $e');
