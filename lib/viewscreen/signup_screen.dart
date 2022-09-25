@@ -24,13 +24,12 @@ class _SignUpState extends State<SignUpScreen> {
   //late _Controller con;
   late AuthViewModel authViewModel;
   var formKey = GlobalKey<FormState>();
- 
-
+  bool obsecureText = true;
+  bool obsecureText2 = true;
   @override
   void initState() {
     super.initState();
     //con = _Controller(this);
-
   }
 
   @override
@@ -73,22 +72,46 @@ class _SignUpState extends State<SignUpScreen> {
                     //onSaved: con.savePhone,
                   ),
                   TextFormField(
-                    decoration: const InputDecoration(
-                      hintText: 'Enter password(Must be at least 6 digits)',
+                    obscureText: obsecureText,
+                    decoration: InputDecoration(
+                      hintText: 'Enter password(At least 6 digits)',
+                      suffixIcon: IconButton(
+                        icon: Icon(obsecureText
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            obsecureText = !obsecureText;
+                          });
+                        },
+                      ),
                     ),
                     autocorrect: false,
-                    obscureText: true,
+                    //obscureText: true,
                     validator: (value) => authViewModel.validatePass(value),
                     controller: authViewModel.passCon,
                     // validator: con.validatePassword,
                     //  onSaved: con.savePassword,
                   ),
                   TextFormField(
-                    decoration: const InputDecoration(
+                    obscureText: obsecureText2,
+                    decoration:  InputDecoration(
                       hintText: 'Confirm password',
+                      suffixIcon: IconButton(
+                        icon: Icon(obsecureText2
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(
+                            () {
+                              obsecureText2 = !obsecureText2;
+                            },
+                          );
+                        },
+                      ),
                     ),
                     autocorrect: false,
-                    obscureText: true,
+
                     controller: authViewModel.confPassCon,
                     validator: (value) => authViewModel.confirmPassword(value),
                     // onSaved: con.saveConfirmPassword,
@@ -98,17 +121,22 @@ class _SignUpState extends State<SignUpScreen> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        if(formKey.currentState!.validate()){
+                        if (formKey.currentState!.validate()) {
                           authViewModel.signupUser();
                         }
                       },
-                      child: authViewModel.load?const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-                        child: CircularProgressIndicator(color: Colors.white,),
-                      ): Text(
-                        'Sign Up',
-                        style: Theme.of(context).textTheme.button,
-                      )),
+                      child: authViewModel.load
+                          ? const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 5, horizontal: 10),
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            )
+                          : Text(
+                              'Sign Up',
+                              style: Theme.of(context).textTheme.button,
+                            )),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, ForgotSignIn.routeName);
