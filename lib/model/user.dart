@@ -1,4 +1,10 @@
-enum DocKeyUserprof { email, likedSports, following, uid, number }
+enum DocKeyUserprof {
+  email,
+  likedSports,
+  following,
+  uid,
+  number
+}
 
 class Userprof {
   String? uid; //firestore auto generated id
@@ -10,7 +16,7 @@ class Userprof {
     this.email = '',
   }) {}
 
-  Userprof.set(String email, String number) {
+  Userprof.set(String email,String number) {
     this.email = email;
     this.number = number;
   }
@@ -34,6 +40,7 @@ class Userprof {
       DocKeyUserprof.email.name: email,
       DocKeyUserprof.number.name: number,
       DocKeyUserprof.uid.name: uid,
+
     };
   }
 

@@ -12,6 +12,14 @@ class AuthController {
     return userCredential.user;
   }
 
+  static Future<User?> resetPassword({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   static Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
   }
@@ -22,13 +30,13 @@ class AuthController {
       UserCredential user = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: userProf.email, password: password);
-      if (user != null) {
+      if (user.user != null) {
         userProf.uid = user.user?.uid;
 
         await FirestoreController.addUser(userProf: userProf);
       }
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 

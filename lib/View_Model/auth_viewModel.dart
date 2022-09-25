@@ -1,5 +1,6 @@
 import 'package:cap_project/controller/auth_controller.dart' as auth;
 import 'package:cap_project/model/user.dart';
+import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
@@ -10,6 +11,7 @@ class AuthViewModel extends ChangeNotifier {
   TextEditingController phoneCon = TextEditingController();
   var formKeySignup = GlobalKey<FormState>();
   bool load = false;
+  bool load_forget_password = false;
   late Userprof userprof;
   String? validateEmail(String? input) {
     print("in validate email");
@@ -37,7 +39,7 @@ class AuthViewModel extends ChangeNotifier {
     if (input == null || input.isEmpty) {
       return "No password provided";
     }
-    return input.length > 6 ? null : "Password Is not Valid";
+    return input.length >= 6 ? null : "Password Is not Valid";
   }
 
   String? confirmPassword(String? input) {
@@ -47,13 +49,14 @@ class AuthViewModel extends ChangeNotifier {
     return input == passCon.text ? null : "Passwords do not match";
   }
 
-  signupUser() async {
-    try {
+
+
+  signupUser()async{
+    try{
       userprof = Userprof.set(emailCon.text.trim(), passCon.text.trim());
       load = true;
       notifyListeners();
-      await auth.AuthController.createAccountTest(
-          password: passCon.text.trim(), userProf: userprof);
+      await auth.AuthController.createAccountTest(password: passCon.text.trim(), userProf: userprof);
       load = false;
       emailCon.clear();
       passCon.clear();
@@ -63,10 +66,29 @@ class AuthViewModel extends ChangeNotifier {
       notifyListeners();
 
       showToast("Sign up successfull");
-    } catch (e) {
+    }catch(e){
       load = false;
       notifyListeners();
       showToast(e.toString());
     }
+
   }
+
+  void resetPassword(context) async{
+    try{
+      load_forget_password = true;
+      notifyListeners();
+     await  auth.AuthController.resetPassword(email: emailCon.text.trim());
+      load_forget_password = false;
+      emailCon.clear();
+      notifyListeners();
+      showToast("Please check your email to reset the account");
+      Navigator.pushNamed(context, SignInScreen.routeName);
+    }catch(e){
+      load_forget_password = false;
+      notifyListeners();
+      showToast(e.toString());
+    }
+  }
+
 }

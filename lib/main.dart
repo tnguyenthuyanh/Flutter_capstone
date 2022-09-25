@@ -15,9 +15,13 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => AuthViewModel()),
-  ], child: const Capstone()));
+  runApp(
+      MultiProvider(
+          providers: [
+            ChangeNotifierProvider(create: (_) => AuthViewModel()),
+          ],
+          child: const Capstone())
+  );
 }
 
 class Capstone extends StatelessWidget {
@@ -55,3 +59,5 @@ class Capstone extends StatelessWidget {
     );
   }
 }
+
+

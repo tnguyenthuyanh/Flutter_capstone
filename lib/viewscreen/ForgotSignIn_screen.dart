@@ -25,23 +25,34 @@ class _ForgotName extends State<ForgotSignIn> {
       body: Padding(
         padding: const EdgeInsets.only(top: 50.0),
         child: Form(
+          key: formKey,
           child: Column(
             children: [
               const Text('Provide Email for Reset Password Link'),
-              TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Enter email',
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: 'Enter email',
+                  ),
+                   validator: (value) =>  authViewModel.validateEmail(value),
+                   controller: authViewModel.emailCon,
+                  //onSaved: con.saveEmail,
                 ),
-                 validator: (value) =>  authViewModel.validateEmail(value),
-                 controller: authViewModel.emailCon,
-                //onSaved: con.saveEmail,
               ),
+
+              SizedBox(height: 20,),
               ElevatedButton(
                 onPressed: () {
                   //Navigator.pushNamed(context, ForgotSignIn.routeName);
-                  formKey.currentState?.validate();
+                  if(formKey.currentState!.validate()){
+                    authViewModel.resetPassword(context);
+                  }
                 },
-                child: Text(
+                child: authViewModel.load_forget_password?Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                  child: CircularProgressIndicator(color: Colors.white,),
+                ): Text(
                   'Submit',
                   style: Theme.of(context).textTheme.button,
                 ),
