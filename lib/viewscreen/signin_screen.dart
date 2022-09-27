@@ -1,8 +1,12 @@
 import 'package:cap_project/controller/firebaseauth_controller.dart';
+import 'package:cap_project/controller/google_sign_in.dart';
 import 'package:cap_project/model/constant.dart';
 import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
 
 class SignInScreen extends StatefulWidget {
   static const routeName = '/signInScreen';
@@ -31,7 +35,7 @@ class _SignInState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign in please'),
+        title: const Text('Lets get started'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -78,11 +82,21 @@ class _SignInState extends State<SignInScreen> {
                 const SizedBox(
                   height: 20.0,
                 ),
-                // ElevatedButton(
-                //   onPressed: con.signUp,
-                //   child: Text('Create a new account',
-                //       style: Theme.of(context).textTheme.button),
-                // ),
+                ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      onPrimary: Colors.black,
+                      minimumSize: Size(50, 50),
+                    ),
+                    icon: FaIcon(FontAwesomeIcons.google),
+                    label: Text('Sign Up with Google'),
+                    onPressed: () {
+                      final provider = Provider.of<GoogleSignInProvider>(
+                          context,
+                          listen: false);
+                      provider.googleLogin();
+                      Navigator.of(context).pushNamed(UserHomeScreen.routeName);
+                    }),
               ],
             ),
           ),
