@@ -9,11 +9,11 @@ import 'editprofile_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const routeName = '/bioScreen';
-  final User user;
+  final String currentUID;
   final Map profile;
 
   ProfileScreen({
-    required this.user,
+    required this.currentUID,
     required this.profile,
   });
 
@@ -42,7 +42,7 @@ class _ProfileState extends State<ProfileScreen> {
           'Profile',
         ),
         backgroundColor: Color.fromARGB(255, 80, 123, 210),
-        actions: widget.profile['uid'] == widget.user.uid
+        actions: widget.profile['uid'] == widget.currentUID
             ? [IconButton(onPressed: con.edit, icon: Icon(Icons.edit))]
             : null,
       ),
@@ -104,25 +104,28 @@ class _ProfileState extends State<ProfileScreen> {
                   SizedBox(
                     height: 15.0,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: AnimatedButton(
-                      height: 40,
-                      width: 100,
-                      text: 'Add friend',
-                      textStyle: TextStyle(fontSize: 14, color: Colors.white),
-                      isReverse: true,
-                      selectedTextColor: Colors.black,
-                      transitionType: TransitionType.LEFT_TO_RIGHT,
-                      // textStyle: submitTextStyle,
-                      backgroundColor: Color.fromARGB(255, 52, 117, 98),
+                  widget.profile['uid'] != widget.currentUID
+                      ? Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: AnimatedButton(
+                            height: 40,
+                            width: 100,
+                            text: 'Add friend',
+                            textStyle:
+                                TextStyle(fontSize: 14, color: Colors.white),
+                            isReverse: true,
+                            selectedTextColor: Colors.black,
+                            transitionType: TransitionType.LEFT_TO_RIGHT,
+                            // textStyle: submitTextStyle,
+                            backgroundColor: Color.fromARGB(255, 52, 117, 98),
 
-                      borderColor: Colors.white,
-                      borderRadius: 50,
-                      borderWidth: 2,
-                      onPress: () {},
-                    ),
-                  ),
+                            borderColor: Colors.white,
+                            borderRadius: 50,
+                            borderWidth: 2,
+                            onPress: () {},
+                          ),
+                        )
+                      : SizedBox(),
                   Divider(
                     color: Colors.yellow,
                     height: 30.0, // space betwen top or bottom item
@@ -182,11 +185,10 @@ class _Controller {
   void edit() async {
     try {
       Map profile =
-          await FirestoreController.getProfile(uid: state.widget.user.uid);
+          await FirestoreController.getProfile(uid: state.widget.currentUID);
       await Navigator.pushNamed(state.context, EditProfileScreen.routeName,
           arguments: {
             ArgKey.profile: profile,
-            ArgKey.user: state.widget.user,
           });
     } catch (e) {
       if (Constant.devMode) print('====== editProfile error: $e');

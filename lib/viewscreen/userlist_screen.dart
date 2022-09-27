@@ -9,8 +9,10 @@ import 'view/view_util.dart';
 
 class UserListScreen extends StatefulWidget {
   final List<UserInfo> userList;
+  final String currentUID;
 
   UserListScreen({
+    required this.currentUID,
     required this.userList,
   });
 
@@ -24,7 +26,6 @@ class UserListScreen extends StatefulWidget {
 
 class _UserListState extends State<UserListScreen> {
   late _Controller con;
-  late String email;
   var formKey = GlobalKey<FormState>();
 
   @override
@@ -38,38 +39,87 @@ class _UserListState extends State<UserListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Users List'),
-        ),
-        body: Text(
-          'work to be done!',
-          style: Theme.of(context).textTheme.headline6,
-        ));
+      appBar: AppBar(
+        title: Text('Users List'),
+      ),
+      body: ListView.separated(
+        separatorBuilder: (context, index) => SizedBox(height: 10),
+        padding: EdgeInsets.all(10),
+        itemCount: con.userList.length,
+        itemBuilder: (context, index) {
+          return Material(
+            elevation: 17,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.pink[50],
+                border: Border.all(width: 4, color: Colors.pink[200]!),
+              ),
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.brown.shade100,
+                  child: Text(
+                    con.userList[index].name == ""
+                        ? "N/A"
+                        : con.userList[index].name[0].toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontFamily: 'Satisfy-Regular',
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                  radius: 50,
+                ),
+                title: Text(
+                  con.userList[index].name == ""
+                      ? "N/A"
+                      : con.userList[index].name[0].toUpperCase(),
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    color: Colors.amber[600],
+                  ),
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(con.userList[index].email),
+                  ],
+                ),
+                onTap: () => con.seeProfile(index),
+              ),
+            ),
+          );
+        },
+      ),
+    );
   }
 }
 
 class _Controller {
-  _UserListState state;
+  late _UserListState state;
+  late List<UserInfo> userList;
+  late String currentUID;
 
-  _Controller(this.state) {}
+  _Controller(this.state) {
+    userList = state.widget.userList;
+    currentUID = state.widget.currentUID;
+  }
 
-  void seeProfile() async {
-    // try {
-    //   Map profile =
-    //       await FirestoreController.getProfile(uid: state.widget.user.uid);
-    //   await Navigator.pushNamed(state.context, ProfileScreen.routeName,
-    //       arguments: {
-    //         ArgKey.profile: profile,
-    //         ArgKey.user: state.widget.user,
-    //       });
-    //   // close the drawer
-    //   Navigator.of(state.context).pop();
-    // } catch (e) {
-    //   if (Constant.devMode) print('====== ProfileScreen error: $e');
-    //   showSnackBar(
-    //     context: state.context,
-    //     message: 'Failed to get editProfile: $e',
-    //   );
-    // }
+  void seeProfile(int index) async {
+    try {
+      Map profile =
+          await FirestoreController.getProfile(uid: userList[index].uid);
+      await Navigator.pushNamed(state.context, ProfileScreen.routeName,
+          arguments: {
+            ArgKey.profile: profile,
+            ArgKey.currentUID: currentUID,
+          });
+      // Navigator.of(state.context).pop();
+    } catch (e) {
+      if (Constant.devMode) print('====== ProfileScreen error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed to get editProfile: $e',
+      );
+    }
   }
 }

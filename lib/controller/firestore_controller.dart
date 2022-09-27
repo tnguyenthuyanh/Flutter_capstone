@@ -51,13 +51,13 @@ class FirestoreController {
   }
 
   static Future<void> addUpdateProfile({
-    required User user,
+    required String uid,
     required String name,
     required String bio,
   }) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.USERPROFILE_COLLECTION)
-        .where('uid', isEqualTo: user.uid)
+        .where('uid', isEqualTo: uid)
         .get();
 
     await FirebaseFirestore.instance
@@ -66,7 +66,7 @@ class FirestoreController {
         .update({'name': name, 'bio': bio});
   }
 
-  static Future<List<usr.UserInfo>> getUserList() async {
+  static Future<List<usr.UserInfo>> getUserList({required User user}) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.USERPROFILE_COLLECTION)
         .orderBy(usr.UserInfo.EMAIL)
@@ -82,10 +82,27 @@ class FirestoreController {
           docId: doc.id,
         );
         if (p != null) {
-          result.add(p);
+          if (p.uid != user.uid) result.add(p);
         }
       }
     });
     return result;
+  }
+
+  static Future<void> deleteProfile({
+    required String uid,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERPROFILE_COLLECTION)
+        .where('uid', isEqualTo: uid)
+        .get();
+    for (int i = 0; i < querySnapshot.size; i++)
+      if (querySnapshot.docs[i]['uid'] == uid) {
+        String docId = querySnapshot.docs[i].id;
+        await FirebaseFirestore.instance
+            .collection(Constant.USERPROFILE_COLLECTION)
+            .doc(docId)
+            .delete();
+      }
   }
 }

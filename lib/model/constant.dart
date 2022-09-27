@@ -16,4 +16,5 @@ enum ArgKey {
   comments,
   profile,
   userList,
+  currentUID,
 }

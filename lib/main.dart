@@ -46,10 +46,10 @@ class Capstone extends StatelessWidget {
             return const ErrorScreen('args is null at ProfileScreen');
           } else {
             var argument = args as Map;
-            var user = argument[ArgKey.user];
+            var currentUID = argument[ArgKey.currentUID];
             var profile = argument[ArgKey.profile];
             return ProfileScreen(
-              user: user,
+              currentUID: currentUID,
               profile: profile,
             );
           }
@@ -60,9 +60,8 @@ class Capstone extends StatelessWidget {
             return const ErrorScreen('args is null at EditProfileScreen');
           } else {
             var argument = args as Map;
-            var user = argument[ArgKey.user];
             var profile = argument[ArgKey.profile];
-            return EditProfileScreen(user: user, profile: profile);
+            return EditProfileScreen(profile: profile);
           }
         },
         UserListScreen.routeName: (context) {
@@ -72,7 +71,9 @@ class Capstone extends StatelessWidget {
           } else {
             var argument = args as Map;
             var userList = argument[ArgKey.userList];
+            var currentUID = argument[ArgKey.currentUID];
             return UserListScreen(
+              currentUID: currentUID,
               userList: userList,
             );
           }

@@ -1,5 +1,5 @@
+import 'package:cap_project/controller/firebaseauth_controller.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/firestore_controller.dart';
@@ -7,10 +7,9 @@ import '../model/constant.dart';
 
 class EditProfileScreen extends StatefulWidget {
   static const routeName = '/editProfileScreen';
-  final User user;
   final Map profile;
 
-  EditProfileScreen({required this.user, required this.profile});
+  EditProfileScreen({required this.profile});
 
   @override
   State<StatefulWidget> createState() {
@@ -45,64 +44,96 @@ class _EditProfileState extends State<EditProfileScreen> {
                 )
         ],
       ),
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Form(
           key: formKey,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Text(
-                  'Username',
-                  style: TextStyle(
-                    fontFamily: 'RockSalt',
+          child: Column(
+            children: [
+              Text(
+                'Username',
+                style: TextStyle(
+                  fontFamily: 'RockSalt',
+                ),
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: '${widget.profile['email']}',
+                ),
+                enabled: false,
+              ),
+              Text(
+                'Name',
+                style: TextStyle(
+                  fontFamily: 'RockSalt',
+                ),
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Name',
+                ),
+                initialValue: con.orgName,
+                autocorrect: false,
+                onSaved: con.saveName,
+                maxLength: 70,
+                enabled: editMode,
+              ),
+              Text(
+                'Bio',
+                style: TextStyle(
+                  fontFamily: 'RockSalt',
+                ),
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  hintText: 'Introduce yourself...',
+                ),
+                initialValue: con.orgBio,
+                autocorrect: false,
+                onSaved: con.saveBio,
+                keyboardType: TextInputType.multiline,
+                maxLines: 4,
+                maxLength: 200,
+                enabled: editMode,
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Expanded(
+                flex: 1,
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: ElevatedButton(
+                    onPressed: () => showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text('Confirmation'),
+                        content: Text(
+                            'Are you sure you want to delete this account?'),
+                        actions: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text('Cancel'),
+                          ),
+                          ElevatedButton(
+                            onPressed: con.deleteAccount,
+                            child: Text('Yes'),
+                          ),
+                        ],
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(primary: Colors.redAccent),
+                    child: Text(
+                      'Delete Account',
+                      style: Theme.of(context).textTheme.button,
+                    ),
                   ),
                 ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: '${widget.user.email}',
-                  ),
-                  enabled: false,
-                ),
-                Text(
-                  'Name',
-                  style: TextStyle(
-                    fontFamily: 'RockSalt',
-                  ),
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Name',
-                  ),
-                  initialValue: con.orgName,
-                  autocorrect: false,
-                  onSaved: con.saveName,
-                  maxLength: 70,
-                  enabled: editMode,
-                ),
-                Text(
-                  'Bio',
-                  style: TextStyle(
-                    fontFamily: 'RockSalt',
-                  ),
-                ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: 'Introduce yourself...',
-                  ),
-                  initialValue: con.orgBio,
-                  autocorrect: false,
-                  onSaved: con.saveBio,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: 4,
-                  maxLength: 200,
-                  enabled: editMode,
-                ),
-                SizedBox(
-                  height: 20.0,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -114,10 +145,12 @@ class _Controller {
   late _EditProfileState state;
   late String orgName;
   late String orgBio;
+  late String uid;
 
   _Controller(this.state) {
     orgName = state.widget.profile['name'];
     orgBio = state.widget.profile['bio'];
+    uid = state.widget.profile['uid'];
   }
 
   String? name;
@@ -144,7 +177,7 @@ class _Controller {
 
     try {
       await FirestoreController.addUpdateProfile(
-          user: state.widget.user, name: name!, bio: bio!);
+          uid: state.widget.profile['uid'], name: name!, bio: bio!);
       stopCircularProgress(state.context);
       state.render(() => state.editMode = false);
       Navigator.of(state.context).pop();
@@ -157,5 +190,14 @@ class _Controller {
         message: 'Update bio error: $e',
       );
     }
+  }
+
+  void deleteAccount() async {
+    await FirestoreController.deleteProfile(uid: uid);
+    await FirebaseAuthController.deleteAccount();
+    Navigator.of(state.context).pop();
+    Navigator.of(state.context).pop();
+    Navigator.of(state.context).pop();
+    Navigator.of(state.context).pop();
   }
 }
