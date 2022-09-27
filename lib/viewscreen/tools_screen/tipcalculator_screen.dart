@@ -56,7 +56,7 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Purchase Amount (\$)"),
+                        const Text("Purchase Amount (\$)"),
                         TextFormField(
                           decoration: const InputDecoration(
                             hintText: "\$ 0.0",
@@ -194,8 +194,8 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
 class _Controller {
   _TipCalculatorState state;
   _Controller(this.state);
-  static const RATE_PER_STAR = 0.05;
-  static const ANIMATION_TRANSITION_DELAY = 500;
+  static const ratePerStar = 0.05;
+  static const animationTransitionDelay = 500;
 
   TipCalc tipcalc = TipCalc();
 
@@ -222,7 +222,7 @@ class _Controller {
     if (!state.formKey.currentState!.validate()) return;
     state.formKey.currentState!.save();
 
-    totalTip = star * RATE_PER_STAR * purchaseAmount;
+    totalTip = star * ratePerStar * purchaseAmount;
     totalPay = purchaseAmount + totalTip;
     tipPerPerson = totalTip / numOfPeople;
     amountPerPerson = totalPay / numOfPeople;
@@ -244,12 +244,12 @@ class _Controller {
       barrierLabel: "Barrier",
       barrierDismissible: true,
       barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: const Duration(milliseconds: ANIMATION_TRANSITION_DELAY),
+      transitionDuration: const Duration(milliseconds: animationTransitionDelay),
       pageBuilder: (_, __, ___) {
         return Center(
           child: Container(
             height: 300,
-            margin: EdgeInsets.symmetric(horizontal: 20),
+            margin: const EdgeInsets.symmetric(horizontal: 20),
             decoration: BoxDecoration(
               color: Colors.green.shade100,
               borderRadius: BorderRadius.circular(40),
@@ -260,23 +260,23 @@ class _Controller {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Total Pay: " + tc.totalPay!.toStringAsFixed(2).toString(),
-                    style: TextStyle(fontSize: 14),
+                    "Total Pay: \$" + tc.totalPay!.toStringAsFixed(2).toString(),
+                    style: const TextStyle(fontSize: 14, color: Colors.black),
                   ),
                   Text(
-                    "Total Tip: " + tc.totalTip!.toStringAsFixed(2).toString(),
-                    style: TextStyle(fontSize: 14),
+                    "Total Tip: \$" + tc.totalTip!.toStringAsFixed(2).toString(),
+                    style: const TextStyle(fontSize: 14, color: Colors.black),
                   ),
                   Text(
-                    "Tip Per Person: " + tc.tipPerPerson!.toStringAsFixed(2).toString(),
-                    style: TextStyle(fontSize: 14),
+                    "Tip Per Person: \$" + tc.tipPerPerson!.toStringAsFixed(2).toString(),
+                    style: const TextStyle(fontSize: 14, color: Colors.black),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 30, 0, 30),
                     child: Text(
-                      "Amount Per Person: " +
+                      "Amount Per Person: \$" +
                           tc.amountPerPerson!.toStringAsFixed(2).toString(),
-                      style: TextStyle(fontSize: 14),
+                      style: const TextStyle(fontSize: 14, color: Colors.black),
                     ),
                   ),
                 ],
@@ -288,9 +288,9 @@ class _Controller {
       transitionBuilder: (_, anim, __, child) {
         Tween<Offset> tween;
         if (anim.status == AnimationStatus.reverse) {
-          tween = Tween(begin: Offset(-1, 0), end: Offset.zero);
+          tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
         } else {
-          tween = Tween(begin: Offset(1, 0), end: Offset.zero);
+          tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
         }
 
         return SlideTransition(
