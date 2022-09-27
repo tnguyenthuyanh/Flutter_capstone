@@ -1,4 +1,6 @@
 enum DocKeyCalcTip {
+  createdBy,
+  timestamp,
   purchaseAmount,
   star,
   numOfPeople,
@@ -11,6 +13,8 @@ enum DocKeyCalcTip {
 
 class TipCalc {
   String? docId;
+  String? createBy;
+  DateTime? timestamp;
   double? purchaseAmount;
   double? star;
   int? numOfPeople;
@@ -22,6 +26,8 @@ class TipCalc {
 
   TipCalc({
     this.docId,
+    this.createBy,
+    this.timestamp,
     this.purchaseAmount,
     this.star,
     this.numOfPeople,
@@ -35,6 +41,8 @@ class TipCalc {
   // serialization
   Map<String, dynamic> toFirebaseDoc() {
     return {
+      DocKeyCalcTip.createdBy.name: createBy,
+      DocKeyCalcTip.timestamp.name: timestamp,
       DocKeyCalcTip.purchaseAmount.name: purchaseAmount,
       DocKeyCalcTip.star.name: star,
       DocKeyCalcTip.numOfPeople.name: numOfPeople,
@@ -51,6 +59,11 @@ class TipCalc {
       {required String docId, required Map<String, dynamic> doc}) {
     return TipCalc(
       docId: docId,
+      createBy: doc[DocKeyCalcTip.createdBy.name],
+      timestamp: doc[DocKeyCalcTip.timestamp.name] == null
+          ? null
+          : DateTime.fromMillisecondsSinceEpoch(
+              doc[DocKeyCalcTip.timestamp].millisecondsSinceEpoch),
       purchaseAmount: doc[DocKeyCalcTip.purchaseAmount.name],
       star: doc[DocKeyCalcTip.star.name],
       numOfPeople: doc[DocKeyCalcTip.numOfPeople.name],
