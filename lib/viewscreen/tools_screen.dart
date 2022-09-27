@@ -33,24 +33,45 @@ class _ToolsState extends State<ToolsScreen> {
     return WillPopScope(
       onWillPop: () => Future.value(true),
       child: Scaffold(
-          appBar: AppBar(
-            title: Text("Tools of $email"),
+        appBar: AppBar(
+          title: const Text("Tools"),
+        ),
+        body: Container(
+          padding: EdgeInsets.fromLTRB(
+            MediaQuery.of(context).size.width * 0.1,
+            5.0,
+            MediaQuery.of(context).size.width * 0.1,
+            5.0,
           ),
-          body: Container(
-            padding: const EdgeInsets.all(10),
+          child: Center(
             child: Column(
               children: [
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(elevation: 2),
-                  onPressed: () {
-                    Navigator.pushNamed(context, TipCalculatorScreen.routeName,
-                        arguments: {ArgKey.user: widget.user});
-                  },
-                  child: const Text('Tip Calculator'),
-                )
+                Card(
+                  color: Colors.green.shade900,
+                  child: InkWell(
+                    splashColor: Colors.green.shade500.withAlpha(50),
+                    onTap: () {
+                      Navigator.pushNamed(context, TipCalculatorScreen.routeName,
+                          arguments: {ArgKey.user: widget.user});
+                    },
+                    child: SizedBox(
+                      width: 300,
+                      height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.attach_money),
+                          Text('Tip Calculator'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }
