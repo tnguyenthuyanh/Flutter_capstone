@@ -1,7 +1,7 @@
-import 'package:cap_project/controller/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'controller/auth_controller.dart';
 import 'model/constant.dart';
 import 'viewscreen/error_screen.dart';
 import 'viewscreen/signin_screen.dart';
@@ -20,8 +20,14 @@ class Capstone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (BuildContext context) => GoogleSignInProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<GoogleSignInProvider>(
+          create: (BuildContext context) {
+            return GoogleSignInProvider();
+          },
+        ),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: Constant.devMode,
         theme: ThemeData(
