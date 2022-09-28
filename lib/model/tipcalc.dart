@@ -39,7 +39,7 @@ class TipCalc {
   }) {}
 
   // serialization
-  Map<String, dynamic> toFirebaseDoc() {
+  Map<String, dynamic> toFirestoreDoc() {
     return {
       DocKeyCalcTip.createdBy.name: createBy,
       DocKeyCalcTip.timestamp.name: timestamp,

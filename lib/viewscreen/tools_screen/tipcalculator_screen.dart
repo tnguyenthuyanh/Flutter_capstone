@@ -1,3 +1,4 @@
+import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/tipcalc.dart';
 import 'package:cap_project/viewscreen/tools_screen/view/star_rating.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -90,19 +91,32 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
                           ),
                         ),
                         con.star == 0
-                            ? const Text("No Tip")
+                            ? Container(
+                                padding: EdgeInsets.all(5),
+                                decoration: BoxDecoration(
+                                  color: Colors.black.withAlpha(90),
+                                ),
+                                child: const Text("No Tip"))
                             : Row(
                                 children: [
-                                  Text("Tip " + (con.star * 5).toString() + "%"),
+                                  Container(
+                                      padding: EdgeInsets.all(5),
+                                      decoration: BoxDecoration(
+                                        color: Colors.black.withAlpha(90),
+                                      ),
+                                      child: Text((con.star * 5).toString() + "%")),
                                   Card(
-                                    color: Colors.red.shade900,
+                                    // color: Colors.red.shade900,
                                     child: InkWell(
                                       splashColor: Colors.red.shade500.withAlpha(90),
                                       onTap: () => setState(() {
                                         con.star = 0;
                                       }),
                                       child: const SizedBox(
-                                        child: Icon(Icons.delete),
+                                        child: Icon(
+                                          Icons.delete_forever,
+                                          size: 18,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -228,6 +242,7 @@ class _Controller {
     tipPerPerson = totalTip / numOfPeople;
     amountPerPerson = totalPay / numOfPeople;
 
+    tipcalc.createBy = state.widget.user.email;
     tipcalc.timestamp = DateTime.now();
     tipcalc.purchaseAmount = purchaseAmount;
     tipcalc.star = star;
@@ -273,7 +288,7 @@ class _Controller {
                         Text(
                           "Total Pay: ",
                           style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 12,
                             color: Colors.white,
                             decoration: TextDecoration.none,
                           ),
@@ -308,7 +323,7 @@ class _Controller {
                             Text(
                               "Total Tip: ",
                               style: const TextStyle(
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: Colors.white,
                                 decoration: TextDecoration.none,
                               ),
@@ -335,7 +350,7 @@ class _Controller {
                             Text(
                               "Tip Per Person: ",
                               style: const TextStyle(
-                                fontSize: 14,
+                                fontSize: 12,
                                 color: Colors.white,
                                 decoration: TextDecoration.none,
                               ),
@@ -371,7 +386,7 @@ class _Controller {
                         Text(
                           "Amount Per Person: ",
                           style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 12,
                             color: Colors.white,
                             decoration: TextDecoration.none,
                           ),
@@ -391,6 +406,30 @@ class _Controller {
                             ),
                           ),
                         ),
+                        SizedBox(width: 20),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.green.withAlpha(90),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          padding: EdgeInsets.all(5),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.person,
+                                size: 14,
+                              ),
+                              Text(
+                                tc.numOfPeople!.toString(),
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.white,
+                                  decoration: TextDecoration.none,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -399,23 +438,17 @@ class _Controller {
                         20, MediaQuery.of(context).size.width * 0.3, 20),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0)),
-                      color: Colors.black,
+                      color: Colors.cyan.shade900,
                     ),
                     child: Card(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40.0),
                       ),
-                      color: Colors.cyan.shade900,
+                      color: Colors.cyan.shade900.withAlpha(90),
                       child: InkWell(
                         splashColor: Colors.red.shade500.withAlpha(50),
-                        onTap: () {
-                          state.setState(() {
-                            numOfPeople = 1;
-                            star = 0;
-                          });
-                          print("Saved!");
-                          state.formKey.currentState!.reset();
-                          Navigator.pop(context, true);
+                        onTap: () async {
+                          saveTipCalc(context, tc);
                         },
                         child: SizedBox(
                           child: Row(
@@ -453,5 +486,20 @@ class _Controller {
         );
       },
     );
+  }
+
+  void saveTipCalc(BuildContext context, TipCalc tc) async {
+    try {
+      String id = await FirestoreController.saveTipCalc(tc);
+      tc.docId = id;
+
+      state.setState(() {
+        numOfPeople = 1;
+        star = 0;
+      });
+
+      state.formKey.currentState!.reset();
+      Navigator.pop(context, true);
+    } catch (e) {}
   }
 }
