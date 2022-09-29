@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:flutter/material.dart';
-import '../controler/auth_controller.dart';
+import '../controller/auth_controller.dart';
 import '../model/constant.dart';
 import '../model/user.dart';
 import 'view/view_util.dart';
