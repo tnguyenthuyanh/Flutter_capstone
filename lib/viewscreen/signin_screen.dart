@@ -105,6 +105,26 @@ class _SignInState extends State<SignInScreen> {
           ),
         ),
       ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                'New User? Create Account',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 } //end signingState
