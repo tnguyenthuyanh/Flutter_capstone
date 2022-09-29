@@ -5,6 +5,8 @@ import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
+import 'package:cap_project/viewscreen/tools_screen.dart';
+import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -121,6 +123,26 @@ class Capstone extends StatelessWidget {
                 currentUID: currentUID,
                 userList: userList,
               );
+            }
+          },
+          ToolsScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for ToolsScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              return ToolsScreen(user: user);
+            }
+          },
+          TipCalculatorScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for TipCalculatorScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              return TipCalculatorScreen(user: user);
             }
           },
         },

@@ -12,6 +12,8 @@ class Constant {
     DropdownMenuItem(child: Text('Medical Bill'), value: 'Medical Bill'),
   ];
   static const USERPROFILE_COLLECTION = 'userProfile';
+
+  static const savedTipCalc = 'SavedTipCalc';
 }
 
 enum ArgKey {

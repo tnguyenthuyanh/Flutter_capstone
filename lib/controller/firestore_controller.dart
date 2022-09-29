@@ -1,5 +1,6 @@
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
+import 'package:cap_project/model/tipcalc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../model/constant.dart';
@@ -157,5 +158,28 @@ class FirestoreController {
             .doc(docId)
             .delete();
       }
+  }
+
+  // tools - save tip calc
+  static Future<String> saveTipCalc(TipCalc tc) async {
+    var ref = await FirebaseFirestore.instance
+        .collection(Constant.savedTipCalc)
+        .add(tc.toFirestoreDoc());
+    return ref.id;
+  }
+
+  // tools - get tipcalc list
+  static Future<List<TipCalc>> getTipCalcList({required String email}) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.savedTipCalc)
+        .where(TipCalc.CREATE_BY, isEqualTo: email)
+        .orderBy(TipCalc.TIMESTAMP, descending: true)
+        .get();
+    var result = <TipCalc>[];
+    querySnapshot.docs.forEach((m) {
+      var data = m.data() as Map<String, dynamic>;
+      result.add(TipCalc.fromFirestoreDoc(docId: m.id, doc: data));
+    });
+    return result;
   }
 }

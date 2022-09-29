@@ -5,6 +5,7 @@ import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/model/user.dart' as usr;
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
+import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../controller/auth_controller.dart';
@@ -68,9 +69,14 @@ class _UserHomeState extends State<UserHomeScreen> {
                   onTap: con.debtPage,
                 ),
                 ListTile(
-                  leading: const Icon(Icons.logout),
-                  title: const Text('Sign Out'),
-                  onTap: con.signOut,
+                  leading: const Icon(Icons.build),
+                  title: const Text('Tools'),
+                  onTap: () => {
+                    Navigator.pushNamed(context, ToolsScreen.routeName,
+                        arguments: {
+                          ArgKey.user: widget.user,
+                        })
+                  },
                 ),
                 ListTile(
                   leading: Icon(Icons.account_box_outlined),
@@ -81,6 +87,11 @@ class _UserHomeState extends State<UserHomeScreen> {
                   leading: Icon(Icons.people),
                   title: Text('Users List'),
                   onTap: con.seeUserList,
+                ),
+                ListTile(
+                  leading: const Icon(Icons.logout),
+                  title: const Text('Sign Out'),
+                  onTap: con.signOut,
                 ),
               ],
             ),
