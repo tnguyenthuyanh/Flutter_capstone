@@ -1,37 +1,31 @@
 enum DocKeyUserprof {
   email,
-  debts,
+  likedSports,
+  following,
 }
 
-class UserProfile {
+class Userprof {
   String? docId; //firestore auto generated id
   late String email;
-  late List<dynamic> debts;
 
-  UserProfile({
+  Userprof({
     this.docId,
     this.email = '',
-    List<dynamic>? debts,
-  }) {
-    this.debts = debts == null ? [] : [...debts];
-  }
+  }) {}
 
-  UserProfile.set(String mail) {
+  Userprof.set(String mail) {
     email = mail;
   }
 
-  UserProfile.clone(UserProfile p) {
+  Userprof.clone(Userprof p) {
     docId = p.docId;
     email = p.email;
-    debts = [...debts];
   }
 
   //a.copyFrom(b) ==> a = b
-  void copyFrom(UserProfile p) {
+  void copyFrom(Userprof p) {
     docId = p.docId;
     email = p.email;
-    debts.clear();
-    debts.addAll(p.debts);
   }
 
   //serialization
@@ -42,12 +36,11 @@ class UserProfile {
   }
 
   //deserialization
-  static UserProfile? fromFirestoreDoc(
+  static Userprof? fromFirestoreDoc(
       {required Map<String, dynamic> doc, required String docId}) {
-    return UserProfile(
+    return Userprof(
       docId: docId,
       email: doc[DocKeyUserprof.email.name] ??= 'N/A',
-      debts: doc[DocKeyUserprof.debts.name] ??= [],
     );
   }
 }

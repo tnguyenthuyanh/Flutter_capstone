@@ -21,7 +21,7 @@ class AuthController extends ChangeNotifier {
   static Future<void> createAccountTest({
     required String email,
     required String password,
-    required UserProfile userProf,
+    required Userprof userProf,
   }) async {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);

@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 
-import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:flutter/material.dart';
 import '../controller/auth_controller.dart';
 import '../model/constant.dart';
@@ -20,13 +19,13 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpState extends State<SignUpScreen> {
   late _Controller con;
   var formKey = GlobalKey<FormState>();
-  late UserProfile userProf;
+  late Userprof userProf;
 
   @override
   void initState() {
     super.initState();
     con = _Controller(this);
-    userProf = UserProfile();
+    userProf = Userprof();
   }
 
   @override
@@ -113,7 +112,6 @@ class _Controller {
     try {
       await AuthController.createAccountTest(
           email: email!, password: password!, userProf: state.userProf);
-      FirestoreController.addUser(userProf: state.userProf);
       showSnackBar(
         context: state.context,
         seconds: 20,
