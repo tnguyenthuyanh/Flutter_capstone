@@ -1,8 +1,10 @@
-import 'package:cap_project/controller/firebaseauth_controller.dart';
+import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/model/constant.dart';
 import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class SignInScreen extends StatefulWidget {
   static const routeName = '/signInScreen';
@@ -16,6 +18,7 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInState extends State<SignInScreen> {
   late _Controller con;
+  late User gUser;
   GlobalKey<FormState> formKey = GlobalKey<FormState>(); //key for form
 
   @override
@@ -31,7 +34,7 @@ class _SignInState extends State<SignInScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign in please'),
+        title: const Text('Lets get started'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -78,11 +81,20 @@ class _SignInState extends State<SignInScreen> {
                 const SizedBox(
                   height: 20.0,
                 ),
-                // ElevatedButton(
-                //   onPressed: con.signUp,
-                //   child: Text('Create a new account',
-                //       style: Theme.of(context).textTheme.button),
-                // ),
+                ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      minimumSize: const Size(50, 50),
+                    ),
+                    icon: const FaIcon(FontAwesomeIcons.google),
+                    label: const Text('Sign In with Google'),
+                    onPressed: () {
+                      final provider = Provider.of<GoogleSignInProvider>(
+                          context,
+                          listen: false);
+                      provider.googleLogin(
+                          context); //passed in context to google sign in provider file
+                    }),
               ],
             ),
           ),
@@ -111,8 +123,7 @@ class _Controller {
       if (email == null || password == null) {
         throw 'Email or password is null';
       }
-      user = await FirebaseAuthController.signIn(
-          email: email!, password: password!);
+      user = await AuthController.signIn(email: email!, password: password!);
 
       Navigator.pushNamed(
         state.context,
@@ -127,17 +138,19 @@ class _Controller {
   }
 
   String? validateEmail(String? value) {
-    if (value == null || !(value.contains('@') && value.contains('.')))
+    if (value == null || !(value.contains('@') && value.contains('.'))) {
       return 'Invalid email';
-    else
+    } else {
       return null;
+    }
   }
 
   String? validatePassword(String? value) {
-    if (value == null || value.length < 6)
+    if (value == null || value.length < 6) {
       return 'Invalid Password';
-    else
+    } else {
       return null;
+    }
   }
 
   void saveEmail(String? value) {
