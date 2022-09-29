@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
+import '../controller/firestore_controller.dart';
+import '../model/user.dart';
+
 class SignInScreen extends StatefulWidget {
   static const routeName = '/signInScreen';
   const SignInScreen({Key? key}) : super(key: key);
@@ -110,7 +113,7 @@ class _Controller {
 
   String? email;
   String? password;
-  //phone number
+  late UserProfile userP;
 
   void signIn() async {
     FormState? currentState = state.formKey.currentState;
@@ -118,6 +121,7 @@ class _Controller {
     currentState.save();
 
     User? user;
+    userP = await FirestoreController.getUser(email: email!);
 
     try {
       if (email == null || password == null) {
@@ -130,6 +134,7 @@ class _Controller {
         UserHomeScreen.routeName,
         arguments: {
           ArgKey.user: user,
+          ArgKey.userProfile: userP,
         },
       );
     } catch (e) {
@@ -138,19 +143,17 @@ class _Controller {
   }
 
   String? validateEmail(String? value) {
-    if (value == null || !(value.contains('@') && value.contains('.'))) {
+    if (value == null || !(value.contains('@') && value.contains('.')))
       return 'Invalid email';
-    } else {
+    else
       return null;
-    }
   }
 
   String? validatePassword(String? value) {
-    if (value == null || value.length < 6) {
+    if (value == null || value.length < 6)
       return 'Invalid Password';
-    } else {
+    else
       return null;
-    }
   }
 
   void saveEmail(String? value) {
@@ -159,5 +162,10 @@ class _Controller {
 
   void savePassword(String? value) {
     if (value != null) password = value;
+  }
+
+  Future<UserProfile> getUserProfile(String? email) async {
+    Future<UserProfile> temp = FirestoreController.getUser(email: email!);
+    return temp;
   }
 }
