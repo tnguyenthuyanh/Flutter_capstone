@@ -9,6 +9,8 @@ import 'package:provider/provider.dart';
 import '../controller/firestore_controller.dart';
 import '../model/user.dart';
 
+import '../controller/firestore_controller.dart';
+
 class SignInScreen extends StatefulWidget {
   static const routeName = '/signInScreen';
   const SignInScreen({Key? key}) : super(key: key);
@@ -128,6 +130,8 @@ class _Controller {
         throw 'Email or password is null';
       }
       user = await AuthController.signIn(email: email!, password: password!);
+
+      await FirestoreController.initProfile(user: user!);
 
       Navigator.pushNamed(
         state.context,

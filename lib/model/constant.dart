@@ -11,6 +11,7 @@ class Constant {
     DropdownMenuItem(child: Text('Credit Card'), value: 'Credit Card'),
     DropdownMenuItem(child: Text('Medical Bill'), value: 'Medical Bill'),
   ];
+  static const USERPROFILE_COLLECTION = 'userProfile';
 }
 
 enum ArgKey {
@@ -21,7 +22,10 @@ enum ArgKey {
   onePhotoMemo,
   userProfile,
   replies,
-  comments
+  comments,
+  profile,
+  userList,
+  currentUID,
 }
 
 List<DropdownMenuItem<String>> menuItems = [

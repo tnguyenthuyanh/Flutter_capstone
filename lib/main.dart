@@ -1,7 +1,10 @@
+import 'package:cap_project/viewscreen/editprofile_screen.dart';
+import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/addDebt_screen.dart';
 import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
+import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

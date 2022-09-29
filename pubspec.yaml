@@ -34,6 +34,7 @@ dependencies:
   cloud_firestore: ^3.4.7
   firebase_auth: ^3.4.2
   flutterfire_cli: ^0.2.6
+  flutter_animated_button: ^2.0.1
   uuid: ^3.0.6
   google_sign_in: ^5.4.2
   font_awesome_flutter: ^10.2.1
@@ -87,6 +88,10 @@ flutter:
     - family: CarterOne
       fonts:
         - asset: fonts/CarterOne-Regular.ttf
+    - family: Satisfy-Regular     
+      fonts:
+        - asset: fonts/Satisfy-Regular.ttf
+
     - family: CustomIcons
       fonts:
         - asset: fonts/CustomIcons.ttf
