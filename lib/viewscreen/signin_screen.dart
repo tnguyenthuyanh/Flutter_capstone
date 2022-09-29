@@ -1,15 +1,13 @@
 import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/model/constant.dart';
+import 'package:cap_project/viewscreen/signup_screen.dart';
 import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-
 import '../controller/firestore_controller.dart';
 import '../model/user.dart';
-
-import '../controller/firestore_controller.dart';
 
 class SignInScreen extends StatefulWidget {
   static const routeName = '/signInScreen';
@@ -110,6 +108,7 @@ class _SignInState extends State<SignInScreen> {
         child: GestureDetector(
           onTap: () {
             Navigator.pop(context);
+            Navigator.pushNamed(context, SignUpScreen.routeName);
           },
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -167,17 +166,19 @@ class _Controller {
   }
 
   String? validateEmail(String? value) {
-    if (value == null || !(value.contains('@') && value.contains('.')))
+    if (value == null || !(value.contains('@') && value.contains('.'))) {
       return 'Invalid email';
-    else
+    } else {
       return null;
+    }
   }
 
   String? validatePassword(String? value) {
-    if (value == null || value.length < 6)
+    if (value == null || value.length < 6) {
       return 'Invalid Password';
-    else
+    } else {
       return null;
+    }
   }
 
   void saveEmail(String? value) {

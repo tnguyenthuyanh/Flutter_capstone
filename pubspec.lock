@@ -105,7 +105,7 @@ packages:
       name: dart_console
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.2"
+    version: "1.1.1"
   deep_pick:
     dependency: transitive
     description:
@@ -337,7 +337,7 @@ packages:
       name: material_color_utilities
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.5"
+    version: "0.2.0"
   meta:
     dependency: transitive
     description:
@@ -352,6 +352,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  oktoast:
+    dependency: "direct main"
+    description:
+      name: oktoast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.3.1"
   path:
     dependency: transitive
     description:
@@ -433,7 +440,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.9.0"
+    version: "1.9.1"
   stack_trace:
     dependency: transitive
     description:
@@ -468,7 +475,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.12"
+    version: "0.4.14"
   tint:
     dependency: transitive
     description:
@@ -527,4 +534,4 @@ packages:
     version: "3.1.1"
 sdks:
   dart: ">=2.18.0 <3.0.0"
-  flutter: ">=2.10.0"
+  flutter: ">=3.0.0"

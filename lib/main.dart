@@ -7,11 +7,15 @@ import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
+import 'package:cap_project/View_Model/auth_viewModel.dart';
+import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'controller/auth_controller.dart';
+import 'package:oktoast/oktoast.dart';
+import 'package:provider/provider.dart';
 import 'model/constant.dart';
 import 'viewscreen/error_screen.dart';
 import 'viewscreen/signup_screen.dart';
@@ -35,6 +39,7 @@ class Capstone extends StatelessWidget {
             return GoogleSignInProvider();
           },
         ),
+        ChangeNotifierProvider(create: (_) => AuthViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: Constant.devMode,

@@ -18,6 +18,14 @@ class AuthController extends ChangeNotifier {
     await FirebaseAuth.instance.signOut();
   }
 
+  static Future<User?> resetPassword({required String email}) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   static Future<void> createAccountTest({
     required String email,
     required String password,
