@@ -1,4 +1,4 @@
-import 'package:cap_project/controller/firebaseauth_controller.dart';
+import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:flutter/material.dart';
 
@@ -186,7 +186,7 @@ class _Controller {
 
   void deleteAccount() async {
     await FirestoreController.deleteProfile(uid: uid);
-    await FirebaseAuthController.deleteAccount();
+    await AuthController.deleteAccount();
     Navigator.of(state.context).pop();
     Navigator.of(state.context).pop();
     Navigator.of(state.context).pop();

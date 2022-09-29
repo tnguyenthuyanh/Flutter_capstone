@@ -35,6 +35,10 @@ class AuthController extends ChangeNotifier {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
   }
+
+  static Future<void> deleteAccount() async {
+    await FirebaseAuth.instance.currentUser!.delete();
+  }
 }
 
 //Google Provider

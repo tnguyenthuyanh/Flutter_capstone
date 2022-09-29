@@ -1,8 +1,7 @@
 import 'package:cap_project/model/debt.dart';
+import 'package:cap_project/model/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// ignore: unused_import
-import 'package:firebase_storage/firebase_storage.dart';
 import '../model/constant.dart';
 import '../model/user.dart' as usr;
 
@@ -75,6 +74,7 @@ class FirestoreController {
         .where('uid', isEqualTo: user.uid)
         .get();
     if (querySnapshot.size == 0)
+      // ignore: curly_braces_in_flow_control_structures
       await FirebaseFirestore.instance
           .collection(Constant.USERPROFILE_COLLECTION)
           .add({
@@ -149,6 +149,7 @@ class FirestoreController {
         .where('uid', isEqualTo: uid)
         .get();
     for (int i = 0; i < querySnapshot.size; i++)
+      // ignore: curly_braces_in_flow_control_structures
       if (querySnapshot.docs[i]['uid'] == uid) {
         String docId = querySnapshot.docs[i].id;
         await FirebaseFirestore.instance

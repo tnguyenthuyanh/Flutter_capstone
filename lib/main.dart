@@ -42,6 +42,21 @@ class Capstone extends StatelessWidget {
         initialRoute: SignInScreen.routeName,
         routes: {
           SignInScreen.routeName: (context) => const SignInScreen(),
+          SignUpScreen.routeName: (context) => const SignUpScreen(),
+          UserHomeScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for UserHomeScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var userP = argument[ArgKey.userProfile];
+              return UserHomeScreen(
+                user: user, userP: userP,
+                // profile: profile,
+              );
+            }
+          },
           DebtScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
@@ -70,21 +85,44 @@ class Capstone extends StatelessWidget {
               );
             }
           },
-          UserHomeScreen.routeName: (context) {
+          ProfileScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
-              return const ErrorScreen('args is null for UserHomeScreen');
+              return const ErrorScreen('args is null at ProfileScreen');
             } else {
               var argument = args as Map;
-              var user = argument[ArgKey.user];
-              var userP = argument[ArgKey.userProfile];
-              return UserHomeScreen(
-                user: user, userP: userP,
-                // profile: profile,
+              var currentUID = argument[ArgKey.currentUID];
+              var profile = argument[ArgKey.profile];
+              return ProfileScreen(
+                currentUID: currentUID,
+                profile: profile,
               );
             }
           },
-          SignUpScreen.routeName: (context) => const SignUpScreen(),
+          EditProfileScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at EditProfileScreen');
+            } else {
+              var argument = args as Map;
+              var profile = argument[ArgKey.profile];
+              return EditProfileScreen(profile: profile);
+            }
+          },
+          UserListScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at UserListScreen');
+            } else {
+              var argument = args as Map;
+              var userList = argument[ArgKey.userList];
+              var currentUID = argument[ArgKey.currentUID];
+              return UserListScreen(
+                currentUID: currentUID,
+                userList: userList,
+              );
+            }
+          },
         },
       ),
     );

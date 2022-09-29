@@ -91,7 +91,6 @@ flutter:
     - family: Satisfy-Regular     
       fonts:
         - asset: fonts/Satisfy-Regular.ttf
-
     - family: CustomIcons
       fonts:
         - asset: fonts/CustomIcons.ttf
