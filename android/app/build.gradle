@@ -66,9 +66,6 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-<<<<<<< HEAD
-    implementation platform('com.google.firebase:firebase-bom:30.2.0')
-=======
     //google sign in below
     // Import the BoM for the Firebase platform
     implementation platform('com.google.firebase:firebase-bom:30.4.1')
@@ -79,6 +76,5 @@ dependencies {
 
     // Also add the dependency for the Google Play services library and specify its version
     implementation 'com.google.android.gms:play-services-auth:20.3.0'
->>>>>>> e4ca8aebbbb39e287e5a0cd3878d453ada617499
 }
 

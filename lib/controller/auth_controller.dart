@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-
 import '../model/constant.dart';
 import '../model/user.dart';
 import '../viewscreen/userhome_screen.dart';
