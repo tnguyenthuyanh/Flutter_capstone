@@ -32,7 +32,7 @@ class _AddDebtState extends State<AddDebtScreen> {
   late _Controller con;
   late String email;
   var formKey = GlobalKey<FormState>();
-  late String dropValue;
+  String? dropValue = null;
 
   @override
   void initState() {
