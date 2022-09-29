@@ -72,7 +72,7 @@ class _UserListState extends State<UserListScreen> {
                 title: Text(
                   con.userList[index].name == ""
                       ? "N/A"
-                      : con.userList[index].name[0].toUpperCase(),
+                      : con.userList[index].name,
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Colors.amber[600],

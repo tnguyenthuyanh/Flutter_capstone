@@ -51,23 +51,17 @@ class _EditProfileState extends State<EditProfileScreen> {
           key: formKey,
           child: Column(
             children: [
-              Text(
-                'Username',
-                style: TextStyle(
-                  fontFamily: 'RockSalt',
-                ),
-              ),
+              SizedBox(height: 5),
               TextFormField(
                 decoration: InputDecoration(
                   hintText: '${widget.profile['email']}',
                 ),
                 enabled: false,
               ),
+              SizedBox(height: 5),
               Text(
                 'Name',
-                style: TextStyle(
-                  fontFamily: 'RockSalt',
-                ),
+                style: TextStyle(color: Colors.green, fontSize: 20),
               ),
               TextFormField(
                 decoration: InputDecoration(
@@ -76,14 +70,12 @@ class _EditProfileState extends State<EditProfileScreen> {
                 initialValue: con.orgName,
                 autocorrect: false,
                 onSaved: con.saveName,
-                maxLength: 70,
+                maxLength: 20,
                 enabled: editMode,
               ),
               Text(
                 'Bio',
-                style: TextStyle(
-                  fontFamily: 'RockSalt',
-                ),
+                style: TextStyle(color: Colors.green, fontSize: 20),
               ),
               TextFormField(
                 decoration: InputDecoration(

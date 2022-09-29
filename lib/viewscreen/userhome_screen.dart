@@ -72,7 +72,7 @@ class _UserHomeState extends State<UserHomeScreen> {
                   onTap: con.seeProfile,
                 ),
                 ListTile(
-                  leading: Icon(Icons.account_box_outlined),
+                  leading: Icon(Icons.people),
                   title: Text('Users List'),
                   onTap: con.seeUserList,
                 ),
