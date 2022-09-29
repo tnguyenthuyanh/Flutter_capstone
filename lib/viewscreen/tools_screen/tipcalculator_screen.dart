@@ -1,5 +1,6 @@
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/tipcalc.dart';
+import 'package:cap_project/viewscreen/tools_screen/view/popup_dialog.dart';
 import 'package:cap_project/viewscreen/tools_screen/view/star_rating.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,12 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Tip Calculator"),
+          actions: [
+            // IconButton(
+            //   icon: Icon(Icons.list),
+            //   onPressed: () => con.getTipCalcList(),
+            // )
+          ],
         ),
         body: GestureDetector(
           onTap: () {
@@ -128,6 +135,26 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
                   Container(
                     color: Colors.green.shade900,
                     padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Text("Note"),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                            hintText: "Add a note",
+                          ),
+                          keyboardType: TextInputType.text,
+                          maxLines: 2,
+                          onSaved: (String? value) {
+                            con.saveNote(value);
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    color: Colors.green.shade800.withAlpha(90),
+                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width,
                       child: DropdownButtonHideUnderline(
@@ -156,26 +183,6 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
                     ),
                   ),
                   Container(
-                    color: Colors.green.shade800.withAlpha(90),
-                    padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        const Text("Note"),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            hintText: "Add a note",
-                          ),
-                          keyboardType: TextInputType.text,
-                          maxLines: 2,
-                          onSaved: (String? value) {
-                            con.saveNote(value);
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
                     padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.3,
                         20, MediaQuery.of(context).size.width * 0.3, 20),
                     child: Card(
@@ -189,7 +196,7 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text("Calculate "),
-                              const Icon(Icons.rotate_90_degrees_ccw),
+                              const Icon(Icons.sync),
                             ],
                           ),
                         ),
@@ -252,10 +259,10 @@ class _Controller {
     tipcalc.tipPerPerson = tipPerPerson;
     tipcalc.totalPay = totalPay;
     tipcalc.amountPerPerson = amountPerPerson;
-    showCustomDialog(state.context, tipcalc);
+    showCalculatedResult(state.context, tipcalc);
   }
 
-  void showCustomDialog(BuildContext context, TipCalc tc) {
+  void showCalculatedResult(BuildContext context, TipCalc tc) {
     showGeneralDialog(
       context: context,
       useRootNavigator: false,
@@ -447,9 +454,7 @@ class _Controller {
                       color: Colors.cyan.shade900.withAlpha(90),
                       child: InkWell(
                         splashColor: Colors.red.shade500.withAlpha(50),
-                        onTap: () async {
-                          saveTipCalc(context, tc);
-                        },
+                        onTap: () => saveTipCalc(context, tc),
                         child: SizedBox(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -469,18 +474,18 @@ class _Controller {
           ),
         );
       },
-      transitionBuilder: (_, anim, __, child) {
+      transitionBuilder: (_, animation, __, child) {
         Tween<Offset> tween;
-        if (anim.status == AnimationStatus.reverse) {
+        if (animation.status == AnimationStatus.reverse) {
           tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
         } else {
           tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
         }
 
         return SlideTransition(
-          position: tween.animate(anim),
+          position: tween.animate(animation),
           child: FadeTransition(
-            opacity: anim,
+            opacity: animation,
             child: child,
           ),
         );
@@ -489,17 +494,82 @@ class _Controller {
   }
 
   void saveTipCalc(BuildContext context, TipCalc tc) async {
+    PopupDialog.circularProgressStart(context);
     try {
       String id = await FirestoreController.saveTipCalc(tc);
       tc.docId = id;
-
       state.setState(() {
         numOfPeople = 1;
         star = 0;
       });
-
       state.formKey.currentState!.reset();
+      PopupDialog.circularProgressStop(context);
       Navigator.pop(context, true);
+      PopupDialog.info(context: context, title: "YAY!", content: 'Saved! =)');
+    } catch (e) {
+      PopupDialog.circularProgressStop(context);
+      PopupDialog.info(
+        context: context,
+        title: "Save Failed",
+        content: '$e',
+      );
+    }
+  }
+
+  void getTipCalcList() async {
+    try {
+      var tipCalcList = <TipCalc>[];
+      tipCalcList = await FirestoreController.getTipCalcList(
+          email: state.widget.user.email.toString());
+      tipCalcList.forEach((tc) {
+        print(tc.amountPerPerson);
+      });
     } catch (e) {}
+  }
+
+  void showSavedTipCalc(BuildContext context, TipCalc tc) {
+    showGeneralDialog(
+      context: context,
+      useRootNavigator: false,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: const Duration(milliseconds: animationTransitionDelay),
+      pageBuilder: (_, __, ___) {
+        return Center(
+          child: Container(
+            height: 300,
+            margin: const EdgeInsets.symmetric(horizontal: 20),
+            decoration: BoxDecoration(
+              color: Colors.black.withAlpha(100),
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [],
+              ),
+            ),
+          ),
+        );
+      },
+      transitionBuilder: (_, animation, __, child) {
+        Tween<Offset> tween;
+        if (animation.status == AnimationStatus.reverse) {
+          tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
+        } else {
+          tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
+        }
+
+        return SlideTransition(
+          position: tween.animate(animation),
+          child: FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+        );
+      },
+    );
   }
 }
