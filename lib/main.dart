@@ -1,4 +1,5 @@
 import 'package:cap_project/viewscreen/addDebt_screen.dart';
+import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
