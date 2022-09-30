@@ -151,6 +151,16 @@ class _SignUpState extends State<SignUpScreen> {
                       style: Theme.of(context).textTheme.button,
                     ),
                   ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, SignInScreen.routeName);
+                      //formKey.currentState?.validate();
+                    },
+                    child: Text(
+                      'Return to Sign In',
+                      style: Theme.of(context).textTheme.button,
+                    ),
+                  ),
                 ],
               ),
             ),
