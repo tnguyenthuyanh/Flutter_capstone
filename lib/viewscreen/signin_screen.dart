@@ -129,7 +129,6 @@ class _SignInState extends State<SignInScreen> {
         padding: const EdgeInsets.only(bottom: 20),
         child: GestureDetector(
           onTap: () {
-            Navigator.pop(context);
             Navigator.pushNamed(context, SignUpScreen.routeName);
           },
           child: Row(
