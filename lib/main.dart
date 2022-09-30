@@ -12,11 +12,16 @@ import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'View_Model/budget_data.dart';
+import 'View_Model/budgetlistmode_data.dart';
 import 'firebase_options.dart';
 import 'controller/auth_controller.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'model/constant.dart';
+import 'viewscreen/addbudget_screen.dart';
+import 'viewscreen/budgetdetail_screen.dart';
+import 'viewscreen/budgets_screen.dart';
 import 'viewscreen/error_screen.dart';
 import 'viewscreen/signup_screen.dart';
 import 'viewscreen/userhome_screen.dart';
@@ -31,6 +36,8 @@ void main() async {
       },
     ),
     ChangeNotifierProvider(create: (_) => AuthViewModel()),
+    ChangeNotifierProvider(create: (context) => BudgetData()),
+    ChangeNotifierProvider(create: (context) => BudgetListModeData()),
   ], child: const Capstone()));
 }
 
@@ -150,6 +157,9 @@ class Capstone extends StatelessWidget {
               return TipCalculatorScreen(user: user);
             }
           },
+          BudgetsScreen.routeName: (context) => const BudgetsScreen(),
+          AddBudgetScreen.routeName: (context) => const AddBudgetScreen(),
+          BudgetDetailScreen.routeName: (context) => const BudgetDetailScreen(),
         },
       ),
     );
