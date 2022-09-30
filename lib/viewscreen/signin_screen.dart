@@ -1,5 +1,6 @@
 import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/model/constant.dart';
+import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
 import 'package:cap_project/viewscreen/signup_screen.dart';
 import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -74,6 +75,27 @@ class _SignInState extends State<SignInScreen> {
                   validator: con.validatePassword,
                   onSaved: con.savePassword,
                 ),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamed(context, SignUpScreen.routeName);
+                    },
+                    child: const Text(
+                      "Forgot Password",
+                      style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(
+                  height: 10,
+                ),
                 ElevatedButton(
                   onPressed: con.signIn,
                   child: Text(
@@ -98,6 +120,7 @@ class _SignInState extends State<SignInScreen> {
                       provider.googleLogin(
                           context); //passed in context to google sign in provider file
                     }),
+               
               ],
             ),
           ),
