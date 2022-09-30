@@ -23,8 +23,15 @@ import 'viewscreen/userhome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const Capstone());
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<GoogleSignInProvider>(
+      create: (BuildContext context) {
+        return GoogleSignInProvider();
+      },
+    ),
+    ChangeNotifierProvider(create: (_) => AuthViewModel()),
+  ], child: const Capstone()));
 }
 
 class Capstone extends StatelessWidget {
@@ -32,15 +39,7 @@ class Capstone extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider<GoogleSignInProvider>(
-          create: (BuildContext context) {
-            return GoogleSignInProvider();
-          },
-        ),
-        ChangeNotifierProvider(create: (_) => AuthViewModel()),
-      ],
+    return OKToast(
       child: MaterialApp(
         debugShowCheckedModeBanner: Constant.devMode,
         theme: ThemeData(

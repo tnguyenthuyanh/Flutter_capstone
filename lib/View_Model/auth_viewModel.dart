@@ -54,8 +54,11 @@ class AuthViewModel extends ChangeNotifier {
       userprof = UserProfile.set(emailCon.text.trim(), phoneCon.text.trim());
       load = true;
       notifyListeners();
-      await auth.AuthController.createAccountTest(
-          password: passCon.text.trim(), userProf: userprof, email: '');
+      await auth.AuthController.createAccount(
+              //changed from createAccountTest to createAccount
+              password: passCon.text.trim(),
+              email: '')
+          .catchError((e) => print(e));
       load = false;
       emailCon.clear();
       passCon.clear();
