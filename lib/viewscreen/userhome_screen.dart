@@ -1,6 +1,7 @@
 import 'package:cap_project/model/custom_icons_icons.dart';
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
+import 'package:cap_project/viewscreen/budgets_screen.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/model/user.dart' as usr;
 import 'package:cap_project/viewscreen/profile_screen.dart';
@@ -64,6 +65,11 @@ class _UserHomeState extends State<UserHomeScreen> {
                   leading: const Icon(CustomIcons.money_check),
                   title: const Text('Debts'),
                   onTap: con.debtPage,
+                ),
+                ListTile(
+                  leading: const Icon(Icons.local_atm),
+                  title: const Text('Budgets'),
+                  onTap: con.budgetsPage,
                 ),
                 ListTile(
                   leading: const Icon(Icons.build),
@@ -142,6 +148,23 @@ class _Controller {
         context: state.context,
         seconds: 20,
         message: 'Failed to get Debt list: $e',
+      );
+    }
+  }
+
+  void budgetsPage() async {
+    try {
+      await Navigator.pushNamed(
+        state.context,
+        BudgetsScreen.routeName,
+      );
+      Navigator.of(state.context).pop(); // push in drawer
+    } catch (e) {
+      if (Constant.devMode) print('======== get Budgets error: $e');
+      showSnackBar(
+        context: state.context,
+        seconds: 20,
+        message: 'Failed to get Budgets list: $e',
       );
     }
   }
