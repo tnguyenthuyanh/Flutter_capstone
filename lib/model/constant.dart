@@ -5,6 +5,7 @@ class Constant {
   static const users = 'Users';
   static const DARKMODE = true;
   static const debts = 'Debts';
+  static const purchases = 'Purchases';
   static const List<DropdownMenuItem<String>> menuItems = [
     DropdownMenuItem(child: Text('Mortgage'), value: 'Mortgage'),
     DropdownMenuItem(child: Text('Car loan'), value: 'Car loan'),
@@ -18,6 +19,7 @@ enum ArgKey {
   downloadURL,
   filename,
   debtList,
+  purchaseList,
   onePhotoMemo,
   userProfile,
   replies,
