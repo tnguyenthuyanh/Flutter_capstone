@@ -3,6 +3,7 @@ import 'package:cap_project/model/user.dart';
 import 'package:cap_project/model/tipcalc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../model/budget.dart';
 import '../model/constant.dart';
 import '../model/user.dart' as usr;
 
@@ -20,7 +21,37 @@ class FirestoreController {
     }
   }
 
-  
+  static addBudget({required Budget budget}) async {
+    try {
+      DocumentReference ref = await FirebaseFirestore.instance
+          .collection(Constant.budgets)
+          .add(budget.serialize());
+      return ref.id;
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  static Future<List<Debt>> getDebtList({
+    required UserProfile user,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.debts)
+        .orderBy(DocKeyDebt.title.name, descending: true)
+        .get();
+
+    var result = <Debt>[];
+    for (var doc in querySnapshot.docs) {
+      if (doc.data() != null) {
+        var document = doc.data() as Map<String, dynamic>;
+        var p = Debt.fromFirestoreDoc(doc: document, docId: doc.id);
+        if (p != null) result.add(p);
+      }
+    }
+    return result;
+  }
 
   static addDebt({
     required UserProfile user,

@@ -21,9 +21,21 @@ class BudgetData extends ChangeNotifier {
   void loadBudgets() async {
     // mock data
     final _tempBudgets = <Budget>[
-      Budget(ownerUID: 'eetdgasdg3443t43tdasg', docID: 'eetdgasdg3443t43tdasg1', title: 'May', isCurrent: false),
-      Budget(ownerUID: 'eetdgasdg3443t43tdasg', docID: 'eetdgasdg3443t43tdasg2', title: 'June', isCurrent: false),
-      Budget(ownerUID: 'eetdgasdg3443t43tdasg', docID: 'eetdgasdg3443t43tdasg4', title: 'July', isCurrent: true),
+      Budget(
+          ownerUID: 'eetdgasdg3443t43tdasg',
+          docID: 'eetdgasdg3443t43tdasg1',
+          title: 'May',
+          isCurrent: false),
+      Budget(
+          ownerUID: 'eetdgasdg3443t43tdasg',
+          docID: 'eetdgasdg3443t43tdasg2',
+          title: 'June',
+          isCurrent: false),
+      Budget(
+          ownerUID: 'eetdgasdg3443t43tdasg',
+          docID: 'eetdgasdg3443t43tdasg4',
+          title: 'July',
+          isCurrent: true),
     ];
 
     // List<Budget> _tempBudgets = await FirestoreController.getBudgetList();
@@ -73,7 +85,7 @@ class BudgetData extends ChangeNotifier {
 
   // store adds the budget to Firebase without notifying listeners
   void storeBudget(Budget budget) async {
-    // budget.docID = await FirestoreController.addBudget(budget.serialize());
+    budget.docID = await FirestoreController.addBudget(budget: budget);
   }
 
   void addAll(List<Budget> budgetList) {
