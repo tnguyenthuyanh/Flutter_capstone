@@ -14,11 +14,9 @@ import '../model/constant.dart';
 import 'view/view_util.dart';
 
 class UserHomeScreen extends StatefulWidget {
-  const UserHomeScreen({required this.user, required this.userP, Key? key})
-      : super(key: key);
+  const UserHomeScreen({required this.user, Key? key}) : super(key: key);
 
   final User user;
-  final UserProfile userP;
 
   static const routeName = '/userHomeScreen';
 
@@ -38,7 +36,6 @@ class _UserHomeState extends State<UserHomeScreen> {
   void initState() {
     super.initState();
     con = _Controller(this);
-    userP = widget.userP;
     email = widget.user.email ?? 'No email';
   }
 
@@ -105,9 +102,9 @@ class _UserHomeState extends State<UserHomeScreen> {
 }
 
 class _Controller {
-  _UserHomeState state;
-
-  _Controller(this.state) {}
+  late _UserHomeState state;
+  _Controller(this.state);
+  late UserProfile userP;
 
   //void addButton() async {}
 
@@ -124,16 +121,18 @@ class _Controller {
 
   void debtPage() async {
     try {
-      state.userP.debts = await FirestoreController.getDebtList(
-        user: state.userP,
+      userP = await FirestoreController.getUser(email: state.email);
+
+      userP.debts = await FirestoreController.getDebtList(
+        user: userP,
       );
       await Navigator.pushNamed(
         state.context,
         DebtScreen.routeName,
         arguments: {
-          //ArgKey.debtList: debtList,
+          ArgKey.debtList: userP.debts,
           ArgKey.user: state.widget.user,
-          ArgKey.userProfile: state.widget.userP,
+          ArgKey.userProfile: userP,
         },
       );
       Navigator.of(state.context).pop(); // push in drawer

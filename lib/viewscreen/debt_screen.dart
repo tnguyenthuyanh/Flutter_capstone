@@ -9,13 +9,13 @@ import 'addDebt_screen.dart';
 
 class DebtScreen extends StatefulWidget {
   const DebtScreen(
-      { //required this.debtList,
+      {required this.debtList,
       required this.userP,
       required this.user,
       Key? key})
       : super(key: key);
 
-  //final List<Debt> debtList;
+  final List<Debt> debtList;
   final User user;
   final UserProfile userP;
 
