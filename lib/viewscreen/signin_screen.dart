@@ -86,7 +86,7 @@ class _SignInState extends State<SignInScreen> {
                 ),
                 ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.black,
+                      //foregroundColor: Colors.black,
                       minimumSize: const Size(50, 50),
                     ),
                     icon: const FaIcon(FontAwesomeIcons.google),

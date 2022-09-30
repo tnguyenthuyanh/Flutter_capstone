@@ -126,7 +126,7 @@ class _SignUpState extends State<SignUpScreen> {
                   ElevatedButton(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          authViewModel.signupUser();
+                          authViewModel.signupUser(context);
                         }
                       },
                       child: authViewModel.load

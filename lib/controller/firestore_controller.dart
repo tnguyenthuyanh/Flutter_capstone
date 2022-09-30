@@ -20,6 +20,8 @@ class FirestoreController {
     }
   }
 
+  
+
   static addDebt({
     required UserProfile user,
     required Debt debt,

@@ -49,16 +49,16 @@ class AuthViewModel extends ChangeNotifier {
     return input == passCon.text ? null : "Passwords do not match";
   }
 
-  signupUser() async {
+  signupUser(context) async {
     try {
       userprof = UserProfile.set(emailCon.text.trim(), phoneCon.text.trim());
       load = true;
       notifyListeners();
-      await auth.AuthController.createAccount(
+      await auth.AuthController.createAccountTest(
               //changed from createAccountTest to createAccount
               password: passCon.text.trim(),
-              email: '')
-          .catchError((e) => print(e));
+              userProf: userprof);
+         
       load = false;
       emailCon.clear();
       passCon.clear();
@@ -68,6 +68,7 @@ class AuthViewModel extends ChangeNotifier {
       notifyListeners();
 
       showToast("Sign up successfull");
+      Navigator.pushNamed(context, SignInScreen.routeName);
     } catch (e) {
       load = false;
       notifyListeners();

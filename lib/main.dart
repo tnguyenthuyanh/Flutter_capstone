@@ -49,6 +49,7 @@ class Capstone extends StatelessWidget {
         routes: {
           SignInScreen.routeName: (context) => const SignInScreen(),
           SignUpScreen.routeName: (context) => const SignUpScreen(),
+          ForgotSignIn.routeName: (context) => const ForgotSignIn(),
           UserHomeScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
