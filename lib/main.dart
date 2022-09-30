@@ -38,8 +38,9 @@ class Capstone extends StatelessWidget {
             var user = argument[ArgKey.user];
             var userP = argument[ArgKey.userProfile];
             return DebtScreen(
-              user: user, userP: userP, // debtList: [],
-              // profile: profile,
+              user: user,
+              userP: userP,
+              debtList: [],
             );
           }
         },
@@ -52,8 +53,9 @@ class Capstone extends StatelessWidget {
             var user = argument[ArgKey.user];
             var userP = argument[ArgKey.userProfile];
             return AddDebtScreen(
-              user: user, userP: userP, debtList: [],
-              // profile: profile,
+              user: user,
+              userP: userP,
+              debtList: [],
             );
           }
         },
@@ -66,7 +68,7 @@ class Capstone extends StatelessWidget {
             var user = argument[ArgKey.user];
             var userP = argument[ArgKey.userProfile];
             return UserHomeScreen(
-              user: user, userP: userP,
+              user: user,
               // profile: profile,
             );
           }
