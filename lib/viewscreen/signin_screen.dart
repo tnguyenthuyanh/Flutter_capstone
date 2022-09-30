@@ -81,7 +81,7 @@ class _SignInState extends State<SignInScreen> {
                   child: GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
-                      Navigator.pushNamed(context, SignUpScreen.routeName);
+                      Navigator.pushNamed(context, ForgotSignIn.routeName);
                     },
                     child: const Text(
                       "Forgot Password",
