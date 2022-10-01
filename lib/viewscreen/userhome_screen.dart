@@ -3,6 +3,7 @@ import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/budgets_screen.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
+import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/model/user.dart' as usr;
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
@@ -15,9 +16,11 @@ import '../model/constant.dart';
 import 'view/view_util.dart';
 
 class UserHomeScreen extends StatefulWidget {
-  const UserHomeScreen({required this.user, Key? key}) : super(key: key);
+  const UserHomeScreen({required this.user, required this.userP, Key? key})
+      : super(key: key);
 
   final User user;
+  final UserProfile userP;
 
   static const routeName = '/userHomeScreen';
 
@@ -37,6 +40,7 @@ class _UserHomeState extends State<UserHomeScreen> {
   void initState() {
     super.initState();
     con = _Controller(this);
+    userP = widget.userP;
     email = widget.user.email ?? 'No email';
   }
 
@@ -60,6 +64,11 @@ class _UserHomeState extends State<UserHomeScreen> {
                   ),
                   accountName: const Text('no profile'),
                   accountEmail: Text(email),
+                ),
+                ListTile(
+                  leading: const Icon(Icons.payments),
+                  title: const Text('Transactions'),
+                  onTap: con.purchasePage,
                 ),
                 ListTile(
                   leading: const Icon(CustomIcons.money_check),
@@ -108,9 +117,9 @@ class _UserHomeState extends State<UserHomeScreen> {
 }
 
 class _Controller {
-  late _UserHomeState state;
-  _Controller(this.state);
-  late UserProfile userP;
+  _UserHomeState state;
+
+  _Controller(this.state) {}
 
   //void addButton() async {}
 
@@ -127,18 +136,16 @@ class _Controller {
 
   void debtPage() async {
     try {
-      userP = await FirestoreController.getUser(email: state.email);
-
-      userP.debts = await FirestoreController.getDebtList(
-        user: userP,
+      state.userP.debts = await FirestoreController.getDebtList(
+        user: state.userP,
       );
       await Navigator.pushNamed(
         state.context,
         DebtScreen.routeName,
         arguments: {
-          ArgKey.debtList: userP.debts,
+          //ArgKey.debtList: debtList,
           ArgKey.user: state.widget.user,
-          ArgKey.userProfile: userP,
+          ArgKey.userProfile: state.widget.userP,
         },
       );
       Navigator.of(state.context).pop(); // push in drawer
@@ -152,6 +159,28 @@ class _Controller {
     }
   }
 
+  void purchasePage() async {
+    try {
+      state.userP.purchases = await FirestoreController.getPurchaseList(
+        user: state.userP,
+      );
+      await Navigator.pushNamed(
+        state.context,
+        PurchasesScreen.routeName,
+        arguments: {
+          //ArgKey.transactionList: transactionList,
+          ArgKey.user: state.widget.user,
+          ArgKey.userProfile: state.widget.userP,
+        },
+      );
+      Navigator.of(state.context).pop(); // close drawer
+    } catch (e) {
+      if (Constant.devMode) print('get Purchase List Error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed: get Purchase List $e',
+        seconds: 20,
+        
   void budgetsPage() async {
     try {
       await Navigator.pushNamed(

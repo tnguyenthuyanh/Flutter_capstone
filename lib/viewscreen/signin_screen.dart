@@ -163,8 +163,9 @@ class _Controller {
     currentState.save();
 
     User? user;
-    //userP = await FirestoreController.getUser(email: email!);
-
+    print('SIGNIN_getUserCall++++++++++++IN');
+    userP = await FirestoreController.getUser(email: email!);
+    print('SIGNIN_getUserCall++++++++++++OUT');
     try {
       if (email == null || password == null) {
         throw 'Email or password is null';
@@ -178,7 +179,7 @@ class _Controller {
         UserHomeScreen.routeName,
         arguments: {
           ArgKey.user: user,
-          //ArgKey.userProfile: userP,
+          ArgKey.userProfile: userP,
         },
       );
     } catch (e) {

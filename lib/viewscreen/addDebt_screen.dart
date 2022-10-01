@@ -127,7 +127,6 @@ class _Controller {
         state.context,
         DebtScreen.routeName,
         arguments: {
-          //ArgKey.debtList: debtList,
           ArgKey.user: state.widget.user,
           ArgKey.userProfile: state.widget.userP,
         },

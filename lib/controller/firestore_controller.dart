@@ -1,4 +1,5 @@
 import 'package:cap_project/model/debt.dart';
+import 'package:cap_project/model/purchase.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/model/tipcalc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,7 +21,38 @@ class FirestoreController {
     }
   }
 
-  
+  static addPurchase({
+    required UserProfile user,
+    required Purchase purchase,
+  }) async {
+    DocumentReference ref = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.purchases)
+        .add(purchase.toFirestoreDoc());
+    return ref.id; // doc is auto-generated.
+  }
+
+  static Future<List<Purchase>> getPurchaseList({
+    required UserProfile user,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.purchases)
+        .orderBy(DocKeyPurchase.amount.name, descending: true)
+        .get();
+
+    var result = <Purchase>[];
+    for (var doc in querySnapshot.docs) {
+      if (doc.data() != null) {
+        var document = doc.data() as Map<String, dynamic>;
+        var p = Purchase.fromFirestoreDoc(doc: document, docId: doc.id);
+        if (p != null) result.add(p);
+      }
+    }
+    return result;
+  }
 
   static addDebt({
     required UserProfile user,
@@ -58,11 +90,12 @@ class FirestoreController {
   static Future<UserProfile> getUser({
     required String email,
   }) async {
+    print('FIRESTORE INSTANCE+++++++++++++++++IN');
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.users)
         .where(DocKeyUserprof.email.name, isEqualTo: email)
         .get();
-
+    print('FIRESTORE INSTANCE+++++++++++++++++OUT');
     for (var doc in querySnapshot.docs) {
       if (doc.data() != null) {
         var document = doc.data() as Map<String, dynamic>;

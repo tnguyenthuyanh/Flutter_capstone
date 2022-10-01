@@ -1,9 +1,13 @@
 import 'package:cap_project/viewscreen/editprofile_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/addDebt_screen.dart';
+import 'package:cap_project/viewscreen/addPurchase_screen.dart';
 import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
+import 'package:cap_project/viewscreen/error_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
+import 'package:cap_project/viewscreen/purchases_screen.dart';
+import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
@@ -24,7 +28,6 @@ import 'viewscreen/budgetdetail_screen.dart';
 import 'viewscreen/budgets_screen.dart';
 import 'viewscreen/error_screen.dart';
 import 'viewscreen/signup_screen.dart';
-import 'viewscreen/userhome_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -84,6 +87,34 @@ class Capstone extends StatelessWidget {
               );
             }
           },
+          PurchasesScreen.routeName: (context) {
+          Object? args = ModalRoute.of(context)?.settings.arguments;
+          if (args == null) {
+            return const ErrorScreen('args is null for PurchasesScreen');
+          } else {
+            var argument = args as Map;
+            var user = argument[ArgKey.user];
+            var userP = argument[ArgKey.userProfile];
+            return PurchasesScreen(
+              user: user, userP: userP, // purchaseList: [],
+              // profile: profile,
+            );
+          }
+        },
+          AddPurchaseScreen.routeName: (context) {
+          Object? args = ModalRoute.of(context)?.settings.arguments;
+          if (args == null) {
+            return const ErrorScreen('args is null for AddPurchaseScreen');
+          } else {
+            var argument = args as Map;
+            var user = argument[ArgKey.user];
+            var userP = argument[ArgKey.userProfile];
+            return AddPurchaseScreen(
+              user: user, userP: userP, purchaseList: [],
+              // profile: profile,
+            );
+          }
+        },
           AddDebtScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
