@@ -2,6 +2,7 @@ import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/purchase.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
+import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,26 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
           )
         ],
       ),
-      body: Text('to come'),
+      body: Form(
+        key: formKey,
+        child: SingleChildScrollView(
+            child: Center(
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: const InputDecoration(hintText: 'Amount'),
+                autocorrect: false,
+                onSaved: con.saveAmount,
+              ),
+              TextFormField(
+                decoration: const InputDecoration(hintText: 'Note'),
+                autocorrect: false,
+                onSaved: con.saveNote,
+              ),
+            ],
+          ),
+        )),
+      ),
     );
   }
 }
@@ -68,18 +88,17 @@ class _Controller {
     purchaseList = state.widget.purchaseList;
   }
 
-  void saveamount(String? value) {
+  void saveAmount(String? value) {
     if (value != null) {
       tempPurchase.amount = value;
       tempPurchase.createdBy = state.email;
     }
   }
 
-  void savenote(String? value) {
+  void saveNote(String? value) {
     if (value != null) {
       tempPurchase.note = value;
-      state.dropValue = value;
-      state.render(() {});
+      tempPurchase.createdBy = state.email;
     }
   }
 
@@ -107,9 +126,9 @@ class _Controller {
       // return to home
       await Navigator.pushNamed(
         state.context,
-        PurchasesScreen.routeName,
+        UserHomeScreen.routeName,
         arguments: {
-          ArgKey.purchaseList: purchaseList,
+          //ArgKey.purchaseList: purchaseList,
           ArgKey.user: state.widget.user,
           ArgKey.userProfile: state.widget.userP,
         },
