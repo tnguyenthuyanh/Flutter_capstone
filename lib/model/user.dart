@@ -12,7 +12,7 @@ class UserProfile {
 
   UserProfile({
     this.docId,
-    this.email = '',
+    this.email = 'David@Test.com',
     List<dynamic>? debts,
     List<dynamic>? purchases,
   }) {

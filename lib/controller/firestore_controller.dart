@@ -86,11 +86,12 @@ class FirestoreController {
   static Future<UserProfile> getUser({
     required String email,
   }) async {
+    print('FIRESTORE INSTANCE+++++++++++++++++IN');
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.users)
         .where(DocKeyUserprof.email.name, isEqualTo: email)
         .get();
-
+    print('FIRESTORE INSTANCE+++++++++++++++++OUT');
     for (var doc in querySnapshot.docs) {
       if (doc.data() != null) {
         var document = doc.data() as Map<String, dynamic>;

@@ -1,18 +1,17 @@
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/purchase.dart';
 import 'package:cap_project/model/user.dart';
+import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../model/constant.dart';
-import 'debt_screen.dart';
 
 class AddPurchaseScreen extends StatefulWidget {
   const AddPurchaseScreen(
-      {required this.purchaseList,
-      required this.userP,
+      {required this.userP,
       required this.user,
+      required this.purchaseList,
       Key? key})
       : super(key: key);
 
@@ -127,9 +126,9 @@ class _Controller {
       // return to home
       await Navigator.pushNamed(
         state.context,
-        DebtScreen.routeName,
+        PurchasesScreen.routeName,
         arguments: {
-          //ArgKey.PurchaseList: PurchaseList,
+          ArgKey.purchaseList: purchaseList,
           ArgKey.user: state.widget.user,
           ArgKey.userProfile: state.widget.userP,
         },

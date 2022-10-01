@@ -108,8 +108,9 @@ class _Controller {
     currentState.save();
 
     User? user;
+    print('SIGNIN_getUserCall++++++++++++IN');
     userP = await FirestoreController.getUser(email: email!);
-
+    print('SIGNIN_getUserCall++++++++++++OUT');
     try {
       if (email == null || password == null) {
         throw 'Email or password is null';
