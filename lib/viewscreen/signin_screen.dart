@@ -117,7 +117,6 @@ class _Controller {
       user = await FirebaseAuthController.signIn(
           email: email!, password: password!);
 
-      print('+++++++++++++++++++++++++TESTING');
       Navigator.pushNamed(
         state.context,
         UserHomeScreen.routeName,
