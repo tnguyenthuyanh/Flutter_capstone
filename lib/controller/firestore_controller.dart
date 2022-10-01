@@ -36,7 +36,7 @@ class FirestoreController {
         .collection(Constant.users)
         .doc(user.docId)
         .collection(Constant.purchases)
-        .orderBy(DocKeyPurchase.title.name, descending: true)
+        .orderBy(DocKeyPurchase.amount.name, descending: true)
         .get();
 
     var result = <Purchase>[];

@@ -31,7 +31,7 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
   late _Controller con;
   late String email;
   var formKey = GlobalKey<FormState>();
-  late String dropValue;
+  String? dropValue = null;
 
   @override
   void initState() {
@@ -45,36 +45,17 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Add A Purchase'),
-          actions: [
-            IconButton(
-              onPressed: con.save,
-              icon: const Icon(Icons.check),
-            )
-          ],
-        ),
-        body: Form(
-          key: formKey,
-          child: SingleChildScrollView(
-              child: Center(
-            child: Column(
-              children: [
-                TextFormField(
-                  decoration: const InputDecoration(hintText: 'Title'),
-                  autocorrect: true,
-                  validator: Purchase.validateTitle,
-                  onSaved: con.saveTitle,
-                ),
-                DropdownButton(
-                    value: dropValue,
-                    items: Constant.menuItems,
-                    onChanged: con.saveCategory,
-                    hint: const Text('Select Category'))
-              ],
-            ),
-          )),
-        ));
+      appBar: AppBar(
+        title: const Text('Add A Purchase'),
+        actions: [
+          IconButton(
+            onPressed: con.save,
+            icon: const Icon(Icons.check),
+          )
+        ],
+      ),
+      body: Text('to come'),
+    );
   }
 }
 
@@ -87,16 +68,16 @@ class _Controller {
     purchaseList = state.widget.purchaseList;
   }
 
-  void saveTitle(String? value) {
+  void saveamount(String? value) {
     if (value != null) {
-      tempPurchase.title = value;
+      tempPurchase.amount = value;
       tempPurchase.createdBy = state.email;
     }
   }
 
-  void saveCategory(String? value) {
+  void savenote(String? value) {
     if (value != null) {
-      tempPurchase.category = value;
+      tempPurchase.note = value;
       state.dropValue = value;
       state.render(() {});
     }

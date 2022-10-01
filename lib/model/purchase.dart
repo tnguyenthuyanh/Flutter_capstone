@@ -1,28 +1,28 @@
 enum DocKeyPurchase {
   createdby,
-  title,
-  category,
+  amount,
+  note,
 }
 
 class Purchase {
   String? docId;
   late String createdBy;
-  late String title;
-  late String category;
+  late String amount;
+  late String note;
 
   Purchase({
     this.docId,
     this.createdBy = '',
-    this.title = '',
-    this.category = '',
+    this.amount = '',
+    this.note = '',
   });
 
   //serialization
   Map<String, dynamic> toFirestoreDoc() {
     return {
-      DocKeyPurchase.title.name: title,
+      DocKeyPurchase.amount.name: amount,
       DocKeyPurchase.createdby.name: createdBy,
-      DocKeyPurchase.category.name: category,
+      DocKeyPurchase.note.name: note,
     };
   }
 
@@ -32,8 +32,8 @@ class Purchase {
     return Purchase(
       docId: docId,
       createdBy: doc[DocKeyPurchase.createdby.name] ??= 'N/A',
-      title: doc[DocKeyPurchase.title.name] ??= 'N/A',
-      category: doc[DocKeyPurchase.category.name] ??= 'N/A',
+      amount: doc[DocKeyPurchase.amount.name] ??= 'N/A',
+      note: doc[DocKeyPurchase.note.name] ??= 'N/A',
     );
   }
 
