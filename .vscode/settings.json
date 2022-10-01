@@ -1,3 +1,7 @@
 {
+<<<<<<< Updated upstream
     "java.configuration.updateBuildConfiguration": "automatic",
+=======
+	"java.configuration.updateBuildConfiguration": "interactive"
+>>>>>>> Stashed changes
 }
