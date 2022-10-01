@@ -16,11 +16,9 @@ import '../model/constant.dart';
 import 'view/view_util.dart';
 
 class UserHomeScreen extends StatefulWidget {
-  const UserHomeScreen({required this.user, required this.userP, Key? key})
-      : super(key: key);
+  const UserHomeScreen({required this.user, Key? key}) : super(key: key);
 
   final User user;
-  final UserProfile userP;
 
   static const routeName = '/userHomeScreen';
 
@@ -40,7 +38,6 @@ class _UserHomeState extends State<UserHomeScreen> {
   void initState() {
     super.initState();
     con = _Controller(this);
-    userP = widget.userP;
     email = widget.user.email ?? 'No email';
   }
 
@@ -119,7 +116,8 @@ class _UserHomeState extends State<UserHomeScreen> {
 class _Controller {
   _UserHomeState state;
 
-  _Controller(this.state) {}
+  _Controller(this.state);
+  late UserProfile userP;
 
   //void addButton() async {}
 
@@ -136,6 +134,8 @@ class _Controller {
 
   void debtPage() async {
     try {
+      userP = await FirestoreController.getUser(email: state.email);
+
       state.userP.debts = await FirestoreController.getDebtList(
         user: state.userP,
       );
@@ -143,9 +143,9 @@ class _Controller {
         state.context,
         DebtScreen.routeName,
         arguments: {
-          //ArgKey.debtList: debtList,
+          ArgKey.debtList: userP.debts,
           ArgKey.user: state.widget.user,
-          ArgKey.userProfile: state.widget.userP,
+          ArgKey.userProfile: userP,
         },
       );
       Navigator.of(state.context).pop(); // push in drawer
@@ -161,16 +161,18 @@ class _Controller {
 
   void purchasePage() async {
     try {
-      state.userP.purchases = await FirestoreController.getPurchaseList(
-        user: state.userP,
+      userP = await FirestoreController.getUser(email: state.email);
+
+      userP.purchases = await FirestoreController.getPurchaseList(
+        user: userP,
       );
       await Navigator.pushNamed(
         state.context,
         PurchasesScreen.routeName,
         arguments: {
-          //ArgKey.transactionList: transactionList,
+          //ArgKey.purchaseList: userP.purchases,
           ArgKey.user: state.widget.user,
-          ArgKey.userProfile: state.widget.userP,
+          ArgKey.userProfile: userP,
         },
       );
       Navigator.of(state.context).pop(); // close drawer
@@ -180,7 +182,10 @@ class _Controller {
         context: state.context,
         message: 'Failed: get Purchase List $e',
         seconds: 20,
-        
+      );
+    }
+  }
+
   void budgetsPage() async {
     try {
       await Navigator.pushNamed(
