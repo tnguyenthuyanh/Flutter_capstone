@@ -108,7 +108,7 @@ class _Controller {
     currentState.save();
 
     User? user;
-    //userP = await FirestoreController.getUser(email: email!);
+    userP = await FirestoreController.getUser(email: email!);
 
     try {
       if (email == null || password == null) {
@@ -117,12 +117,13 @@ class _Controller {
       user = await FirebaseAuthController.signIn(
           email: email!, password: password!);
 
+      print('+++++++++++++++++++++++++TESTING');
       Navigator.pushNamed(
         state.context,
         UserHomeScreen.routeName,
         arguments: {
           ArgKey.user: user,
-          //ArgKey.userProfile: userP,
+          ArgKey.userProfile: userP,
         },
       );
     } catch (e) {
