@@ -1,10 +1,13 @@
-// ignore_for_file: avoid_print
-
 import 'package:cap_project/model/custom_icons_icons.dart';
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
+import 'package:cap_project/viewscreen/budgets_screen.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
+import 'package:cap_project/model/user.dart' as usr;
+import 'package:cap_project/viewscreen/profile_screen.dart';
+import 'package:cap_project/viewscreen/userlist_screen.dart';
+import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../controller/auth_controller.dart';
@@ -71,6 +74,31 @@ class _UserHomeState extends State<UserHomeScreen> {
                   leading: const Icon(CustomIcons.money_check),
                   title: const Text('Debts'),
                   onTap: con.debtPage,
+                ),
+                ListTile(
+                  leading: const Icon(Icons.local_atm),
+                  title: const Text('Budgets'),
+                  onTap: con.budgetsPage,
+                ),
+                ListTile(
+                  leading: const Icon(Icons.build),
+                  title: const Text('Tools'),
+                  onTap: () => {
+                    Navigator.pushNamed(context, ToolsScreen.routeName,
+                        arguments: {
+                          ArgKey.user: widget.user,
+                        })
+                  },
+                ),
+                ListTile(
+                  leading: Icon(Icons.account_box_outlined),
+                  title: Text('My Profile'),
+                  onTap: con.seeProfile,
+                ),
+                ListTile(
+                  leading: Icon(Icons.people),
+                  title: Text('Users List'),
+                  onTap: con.seeUserList,
                 ),
                 ListTile(
                   leading: const Icon(Icons.logout),
@@ -152,9 +180,63 @@ class _Controller {
         context: state.context,
         message: 'Failed: get Purchase List $e',
         seconds: 20,
+        
+  void budgetsPage() async {
+    try {
+      await Navigator.pushNamed(
+        state.context,
+        BudgetsScreen.routeName,
+      );
+      Navigator.of(state.context).pop(); // push in drawer
+    } catch (e) {
+      if (Constant.devMode) print('======== get Budgets error: $e');
+      showSnackBar(
+        context: state.context,
+        seconds: 20,
+        message: 'Failed to get Budgets list: $e',
       );
     }
   }
 
   void onTap(int index) async {}
+
+  void seeUserList() async {
+    try {
+      List<usr.UserInfo> userList =
+          await FirestoreController.getUserList(user: state.widget.user);
+      await Navigator.pushNamed(state.context, UserListScreen.routeName,
+          arguments: {
+            ArgKey.currentUID: state.widget.user.uid,
+            ArgKey.userList: userList,
+          });
+      // close the drawer
+      Navigator.of(state.context).pop();
+    } catch (e) {
+      if (Constant.devMode) print('====== userListScreen error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed to get userList: $e',
+      );
+    }
+  }
+
+  void seeProfile() async {
+    try {
+      Map profile =
+          await FirestoreController.getProfile(uid: state.widget.user.uid);
+      await Navigator.pushNamed(state.context, ProfileScreen.routeName,
+          arguments: {
+            ArgKey.profile: profile,
+            ArgKey.currentUID: state.widget.user.uid,
+          });
+      // close the drawer
+      Navigator.of(state.context).pop();
+    } catch (e) {
+      if (Constant.devMode) print('====== ProfileScreen error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed to get editProfile: $e',
+      );
+    }
+  }
 }
