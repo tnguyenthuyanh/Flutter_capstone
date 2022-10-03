@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../model/budget.dart';
 import '../model/constant.dart';
 import '../model/user.dart' as usr;
+import 'auth_controller.dart';
 
 class FirestoreController {
   static addUser({
@@ -30,6 +31,23 @@ class FirestoreController {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  static Future<List<Budget>> getBudgetList() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.budgets)
+        .where('ownerUID', isEqualTo: AuthController.currentUser!.uid)
+        .get();
+
+    var result = <Budget>[];
+    for (var doc in querySnapshot.docs) {
+      if (doc.data() != null) {
+        var document = doc.data() as Map<String, dynamic>;
+        Budget? temp = Budget.deserialize(doc: document, docId: doc.id);
+        if (temp != null) result.add(temp);
+      }
+    }
+    return result;
   }
 
   static Future<List<Debt>> getDebtList({
@@ -64,27 +82,6 @@ class FirestoreController {
         .add(debt.toFirestoreDoc());
     return ref.id; // doc id auto-generated.
   }
-
-  // static Future<List<Debt>> getDebtList({
-  //   required UserProfile user,
-  // }) async {
-  //   QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-  //       .collection(Constant.users)
-  //       .doc(user.docId)
-  //       .collection(Constant.debts)
-  //       .orderBy(DocKeyDebt.title.name, descending: true)
-  //       .get();
-
-  //   var result = <Debt>[];
-  //   for (var doc in querySnapshot.docs) {
-  //     if (doc.data() != null) {
-  //       var document = doc.data() as Map<String, dynamic>;
-  //       var p = Debt.fromFirestoreDoc(doc: document, docId: doc.id);
-  //       if (p != null) result.add(p);
-  //     }
-  //   }
-  //   return result;
-  // }
 
   static Future<UserProfile> getUser({
     required String email,

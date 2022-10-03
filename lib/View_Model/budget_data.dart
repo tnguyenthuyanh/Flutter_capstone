@@ -2,6 +2,7 @@ import 'dart:collection';
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/constant.dart';
 import 'package:flutter/material.dart';
+import '../controller/auth_controller.dart';
 import '../model/budgetlist.dart';
 import '/model/budget.dart';
 
@@ -20,25 +21,25 @@ class BudgetData extends ChangeNotifier {
 
   void loadBudgets() async {
     // mock data
-    final _tempBudgets = <Budget>[
-      Budget(
-          ownerUID: 'eetdgasdg3443t43tdasg',
-          docID: 'eetdgasdg3443t43tdasg1',
-          title: 'May',
-          isCurrent: false),
-      Budget(
-          ownerUID: 'eetdgasdg3443t43tdasg',
-          docID: 'eetdgasdg3443t43tdasg2',
-          title: 'June',
-          isCurrent: false),
-      Budget(
-          ownerUID: 'eetdgasdg3443t43tdasg',
-          docID: 'eetdgasdg3443t43tdasg4',
-          title: 'July',
-          isCurrent: true),
-    ];
+    // final _tempBudgets = <Budget>[
+    //   Budget(
+    //       ownerUID: 'eetdgasdg3443t43tdasg',
+    //       docID: 'eetdgasdg3443t43tdasg1',
+    //       title: 'May',
+    //       isCurrent: false),
+    //   Budget(
+    //       ownerUID: 'eetdgasdg3443t43tdasg',
+    //       docID: 'eetdgasdg3443t43tdasg2',
+    //       title: 'June',
+    //       isCurrent: false),
+    //   Budget(
+    //       ownerUID: 'eetdgasdg3443t43tdasg',
+    //       docID: 'eetdgasdg3443t43tdasg4',
+    //       title: 'July',
+    //       isCurrent: true),
+    // ];
 
-    // List<Budget> _tempBudgets = await FirestoreController.getBudgetList();
+    List<Budget> _tempBudgets = await FirestoreController.getBudgetList();
 
     // load all the budgets into the provider's budget list
     for (Budget budget in _tempBudgets) {
