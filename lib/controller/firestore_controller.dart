@@ -50,6 +50,17 @@ class FirestoreController {
     return result;
   }
 
+  static Future<void> updateBudget({required Budget budget}) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.budgets)
+        .doc(budget.docID!)
+        .update({
+      'isCurrent': budget.isCurrent,
+      'ownerUID': budget.ownerUID,
+      'title': budget.title
+    });
+  }
+
   static Future<List<Debt>> getDebtList({
     required UserProfile user,
   }) async {

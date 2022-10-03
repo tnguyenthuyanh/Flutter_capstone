@@ -11,7 +11,7 @@ class BudgetListViewTile extends StatelessWidget {
   final Budget budget;
   final BudgetListMode currentMode;
   final Color _normalColor = Colors.grey[400]!;
-  final Color _selectedForDeleteColor = Colors.red[900]!;
+  final Color _selectedForDeleteColor = Colors.red[400]!;
 
   BudgetListViewTile({required this.budget, required this.currentMode});
 

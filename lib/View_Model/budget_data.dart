@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/constant.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import '../controller/auth_controller.dart';
 import '../model/budgetlist.dart';
@@ -19,26 +20,9 @@ class BudgetData extends ChangeNotifier {
   Budget? get selectedBudget => _selectedBudget;
   List<int> get selectedIndices => _budgetList.selectedIndices;
 
-  void loadBudgets() async {
-    // mock data
-    // final _tempBudgets = <Budget>[
-    //   Budget(
-    //       ownerUID: 'eetdgasdg3443t43tdasg',
-    //       docID: 'eetdgasdg3443t43tdasg1',
-    //       title: 'May',
-    //       isCurrent: false),
-    //   Budget(
-    //       ownerUID: 'eetdgasdg3443t43tdasg',
-    //       docID: 'eetdgasdg3443t43tdasg2',
-    //       title: 'June',
-    //       isCurrent: false),
-    //   Budget(
-    //       ownerUID: 'eetdgasdg3443t43tdasg',
-    //       docID: 'eetdgasdg3443t43tdasg4',
-    //       title: 'July',
-    //       isCurrent: true),
-    // ];
+  int get numberOfBudgets => _budgetList.size;
 
+  void loadBudgets() async {
     List<Budget> _tempBudgets = await FirestoreController.getBudgetList();
 
     // load all the budgets into the provider's budget list
@@ -53,13 +37,11 @@ class BudgetData extends ChangeNotifier {
   }
 
   void setSelectedBudget(Budget budget) {
-    // TODO: implement firebase selected budget?
-    // set selected budget to budget
     _selectedBudget = budget;
 
-    // if the budget isn't in the budget list, add it
-    if (!_budgetList.containsBudget(budget)) {
-      add(budget);
+    _budgetList.setNewSelectedBudget(budget);
+    for (Budget dirtyBoi in _budgetList.getDirtyList()) {
+      FirestoreController.updateBudget(budget: dirtyBoi);
     }
 
     notifyListeners();
@@ -71,6 +53,9 @@ class BudgetData extends ChangeNotifier {
     // add to the budget list
     _budgetList.add(budget);
 
+    if (budget.isCurrent!) {
+      setSelectedBudget(budget);
+    }
     // store in firebase
     storeBudget(budget);
 

@@ -24,26 +24,12 @@ class MyListViewTile extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: backgroundColor,
-        gradient: LinearGradient(
-          colors: [Colors.white, backgroundColor],
-          begin: Alignment.centerRight,
-          end: Alignment.center,
-        ),
         border: Border.all(style: BorderStyle.solid),
         borderRadius: BorderRadius.circular(8),
       ),
       // List Tile
       child: ListTile(
         onTap: onTapCallback,
-        // day Text
-        // leading: Text(
-        //   leftValue,
-        //   style: TextStyle(
-        //     fontSize: _leftSize,
-        //     fontWeight: FontWeight.bold,
-        //     color: _textColor,
-        //   ),
-        // ),
         // title text
         title: Text(
           middleValue,

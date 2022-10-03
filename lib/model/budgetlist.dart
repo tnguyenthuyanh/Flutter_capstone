@@ -8,6 +8,8 @@ class BudgetList {
   late List<Budget> _deletionList;
   late List<int> _selectedIndices;
 
+  int get size => _budgets.length;
+
   BudgetList() {
     _budgets = <Budget>[];
     _deletionList = <Budget>[];
@@ -17,6 +19,30 @@ class BudgetList {
       UnmodifiableListView(_budgets);
 
   List<int> get selectedIndices => _selectedIndices;
+
+  void setNewSelectedBudget(Budget newSelected) {
+    if (_budgets.length > 1) {
+      for (Budget budget in _budgets) {
+        if (budget != newSelected) {
+          if (budget.isCurrent!) {
+            budget.dirty = true;
+          }
+          budget.isCurrent = false;
+        }
+      }
+    }
+  }
+
+  List<Budget> getDirtyList() {
+    List<Budget> temp = [];
+    for (Budget budget in _budgets) {
+      if (budget.dirty) {
+        temp.add(budget);
+        budget.dirty = false;
+      }
+    }
+    return temp;
+  }
 
   void add(Budget budget) {
     _budgets.add(budget);
