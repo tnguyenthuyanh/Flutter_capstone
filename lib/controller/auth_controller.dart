@@ -7,15 +7,31 @@ import '../viewscreen/userhome_screen.dart';
 import 'firestore_controller.dart';
 
 class AuthController extends ChangeNotifier {
+  // keeps track of the currently logged in user
+  static late User? _currentUser;
+
+  // current user getter
+  static User? get currentUser => _currentUser;
+
+  // a convenience method that sets current user and notifies listeners - or will
+  static void _setCurrentUser(User? user) {
+    _currentUser = user;
+    // TODO: uncomment notify after sign in screen has been refactored for provider
+    // notifyListeners();
+  }
+
   static Future<User?> signIn(
       {required String email, required String password}) async {
     UserCredential userCredential = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
-    return userCredential.user;
+    _setCurrentUser(userCredential.user);
+
+    return _currentUser;
   }
 
   static Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
+    _setCurrentUser(null);
   }
 
   static Future<User?> resetPassword({required String email}) async {
@@ -57,13 +73,12 @@ class AuthController extends ChangeNotifier {
 
 //Google Provider
 class GoogleSignInProvider extends ChangeNotifier {
-  String? email = FirebaseAuth.instance.currentUser?.email;
+  String? email = AuthController.currentUser?.email;
   GoogleSignIn googleAuth = GoogleSignIn(scopes: ['email]']);
 
   final googleSignIn = GoogleSignIn();
 
   GoogleSignInAccount? _user;
-
   GoogleSignInAccount get user => _user!;
 
   Future googleLogin(context) async {
@@ -90,4 +105,4 @@ class GoogleSignInProvider extends ChangeNotifier {
       ArgKey.user: user,
     });
   }
-}//End GoogleProvider
+} //End GoogleProvider
