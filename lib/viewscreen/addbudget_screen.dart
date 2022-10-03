@@ -6,7 +6,6 @@ import '../View_Model/budget_data.dart';
 import '../View_Model/validator.dart';
 import '../model/budget.dart';
 
-// TODO: add budget added toast
 class AddBudgetScreen extends StatefulWidget {
   static const routeName = '/addBudgetScreen';
 
@@ -24,6 +23,7 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
   // state vars
   late _Controller _con;
   String? _title;
+  bool _current = false;
 
   @override
   void initState() {
@@ -59,7 +59,19 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
                     onSaved: _con.onSaveTitle,
                   ),
                 ),
-
+                // is current switch
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      Text("Use this budget"),
+                      Switch(
+                        value: _current,
+                        onChanged: _con.onCurrentChanged,
+                      ),
+                    ],
+                  ),
+                ),
                 // save button
                 IconButton(
                   icon: const Icon(Icons.save),
@@ -98,12 +110,17 @@ class _Controller {
       Budget(
         title: _state._title!,
         ownerUID: uid,
+        isCurrent: _state._current,
       ),
     );
 
     showToast("Budget created!");
 
     Navigator.pop(_state.context);
+  }
+
+  void onCurrentChanged(bool? value) {
+    _state.render(() => _state._current = !_state._current);
   }
 
   // save functions
