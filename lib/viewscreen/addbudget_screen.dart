@@ -1,3 +1,5 @@
+import 'package:cap_project/controller/auth_controller.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import '../View_Model/budget_data.dart';
@@ -78,15 +80,28 @@ class _Controller {
 
   void save() {
     FormState? currentState = _state._formKey.currentState;
+    // return if not validated
     if (currentState == null || !currentState.validate()) return;
     currentState.save();
 
+    // check the current user id. If null or empty, slap some toast on the screen
+    // and return
+    String? uid = getCurrentUserID();
+    if (uid == null || uid.isEmpty) {
+      showToast("I'm sorry, but I've made a mistake. Your Id is borked");
+      return;
+    }
+
+    // if uid is ok, save the budget, slap some good toast on the screen
+    // and navigate to the budgets list
     Provider.of<BudgetData>(_state.context, listen: false).add(
       Budget(
         title: _state._title!,
-        ownerUID: getCurrentUserID(),
+        ownerUID: uid,
       ),
     );
+
+    showToast("Budget created!");
 
     Navigator.pop(_state.context);
   }
@@ -98,9 +113,8 @@ class _Controller {
     });
   }
 
-  String getCurrentUserID() {
+  String? getCurrentUserID() {
     // get information from user manager
-    // TODO: link to user manager
-    return "f657847387cjfjff";
+    return AuthController.currentUser?.uid;
   }
 }
