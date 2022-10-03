@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class MyListViewTile extends StatelessWidget {
-  // final String leftValue;
   final String middleValue;
   final String rightValue;
   final Color backgroundColor;
@@ -13,12 +12,11 @@ class MyListViewTile extends StatelessWidget {
   final double _rightSize = 24.0;
 
   const MyListViewTile({
-    // required this.leftValue,
     required this.middleValue,
     required this.rightValue,
     required this.backgroundColor,
     this.isSelected = false,
-    this.onTapCallback
+    this.onTapCallback,
   });
 
   @override
@@ -37,7 +35,6 @@ class MyListViewTile extends StatelessWidget {
       // List Tile
       child: ListTile(
         onTap: onTapCallback,
-        // onTap: () {print('not implemented yet');},
         // day Text
         // leading: Text(
         //   leftValue,
