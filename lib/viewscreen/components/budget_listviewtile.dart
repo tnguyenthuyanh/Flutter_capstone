@@ -22,7 +22,7 @@ class BudgetListViewTile extends StatelessWidget {
 
     return MyListViewTile(
       middleValue: budget.title,
-      rightValue: "Nope",
+      rightValue: budget.isCurrent! ? "Current" : "",
       backgroundColor:
           _stagedForDeletion ? _selectedForDeleteColor : _normalColor,
       onTapCallback: () {

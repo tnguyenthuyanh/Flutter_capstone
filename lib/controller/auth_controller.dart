@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -73,7 +74,7 @@ class AuthController extends ChangeNotifier {
 
 //Google Provider
 class GoogleSignInProvider extends ChangeNotifier {
-  String? email = AuthController.currentUser?.email;
+  String? email = FirebaseAuth.instance.currentUser?.email;
   GoogleSignIn googleAuth = GoogleSignIn(scopes: ['email]']);
 
   final googleSignIn = GoogleSignIn();

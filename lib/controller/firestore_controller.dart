@@ -1,3 +1,4 @@
+import 'package:cap_project/controller/storagecontrollers/budgetstoragecontroller.dart';
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/model/tipcalc.dart';
@@ -23,31 +24,15 @@ class FirestoreController {
   }
 
   static addBudget({required Budget budget}) async {
-    try {
-      DocumentReference ref = await FirebaseFirestore.instance
-          .collection(Constant.budgets)
-          .add(budget.serialize());
-      return ref.id;
-    } catch (e) {
-      print(e.toString());
-    }
+    await BudgetStorageController.addBudget(budget: budget);
+  }
+
+  static deleteBudget({required Budget budget}) async {
+    await BudgetStorageController.deleteBudget(budget: budget);
   }
 
   static Future<List<Budget>> getBudgetList() async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection(Constant.budgets)
-        .where('ownerUID', isEqualTo: AuthController.currentUser!.uid)
-        .get();
-
-    var result = <Budget>[];
-    for (var doc in querySnapshot.docs) {
-      if (doc.data() != null) {
-        var document = doc.data() as Map<String, dynamic>;
-        Budget? temp = Budget.deserialize(doc: document, docId: doc.id);
-        if (temp != null) result.add(temp);
-      }
-    }
-    return result;
+    return await BudgetStorageController.getBudgetList();
   }
 
   static Future<void> updateBudget({required Budget budget}) async {

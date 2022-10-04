@@ -19,11 +19,12 @@ class BudgetList {
       UnmodifiableListView(_budgets);
 
   List<int> get selectedIndices => _selectedIndices;
+  List<Budget> get deletionList => _deletionList;
 
-  void setNewSelectedBudget(Budget newSelected) {
+  void setNewCurrentBudget(Budget newCurrent) {
     if (_budgets.length > 1) {
       for (Budget budget in _budgets) {
-        if (budget != newSelected) {
+        if (budget != newCurrent) {
           if (budget.isCurrent!) {
             budget.dirty = true;
           }
@@ -90,12 +91,10 @@ class BudgetList {
   // perform the deletion
   void commitDeletion() {
     // iterate through the deletionlist and remove budgets from
-    // the provider's budget list and firebase
+    // the provider's budget list
     for (Budget budget in _deletionList) {
       if (_budgets.contains(budget)) {
         _budgets.remove(budget);
-        // TODO: Implement Firebase
-
       }
     }
     _deletionList.clear();

@@ -22,6 +22,7 @@ class BudgetDetailScreen extends StatefulWidget {
 
 class _BudgetDetailState extends State<BudgetDetailScreen> {
   late _Controller _con;
+  Budget? _selected;
 
   // state vars
 
@@ -37,33 +38,48 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Budget? _current = Provider.of<BudgetData>(context).selectedBudget;
+    _selected = Provider.of<BudgetData>(context).selectedBudget;
 
     return WillPopScope(
-      onWillPop: _con.onPopScope,
-      child: Scaffold(
-        //        APPBAR     --------------------------------------------------
-        appBar: AppBar(
-          title: const Text(BudgetDetailScreen._screenName),
-        ),
-        //        BODY      --------------------------------------------------
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: _current == null
-                ? const Text('There has been a mistake. Selected Budget is null')
-                : Column(
-                    children: [
-                      BudgetDetailField(titleText: "Title", fieldText: _current.title),
-                      BudgetDetailField(titleText: "OwnerUID", fieldText: _current.ownerUID),
-                      BudgetDetailField(titleText: "Docid", fieldText: _current.docID!),
-                      BudgetDetailField(titleText: "isCurrent", fieldText: _current.isCurrent.toString()),
-                    ],
-                  ),
-              ),
-        ),
-        )
-    ); 
+        onWillPop: _con.onPopScope,
+        child: Scaffold(
+          //        APPBAR     --------------------------------------------------
+          appBar: AppBar(
+            title: const Text(BudgetDetailScreen._screenName),
+          ),
+          //        BODY      --------------------------------------------------
+          body: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: _selected == null
+                  ? const Text(
+                      'There has been a mistake. Selected Budget is null')
+                  : Column(
+                      children: [
+                        BudgetDetailField(
+                            titleText: "Title", fieldText: _selected!.title),
+                        BudgetDetailField(
+                            titleText: "OwnerUID",
+                            fieldText: _selected!.ownerUID),
+                        BudgetDetailField(
+                            titleText: "Docid", fieldText: _selected!.docID!),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            children: [
+                              Text("Use this budget"),
+                              Switch(
+                                value: _selected!.isCurrent!,
+                                onChanged: _con.onCurrentChanged,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+            ),
+          ),
+        ));
   }
 }
 
@@ -78,6 +94,14 @@ class _Controller {
     Navigator.pop(_state.context);
     // TODO: fix this
     throw "I don't know what happened";
+  }
+
+  void onCurrentChanged(bool? value) {
+    _state._selected!.isCurrent = value;
+
+    Provider.of<BudgetData>(_state.context, listen: false)
+        .setCurrentBudget(_state._selected!);
+    _state.render(() {});
   }
 
   //---------------------------------------------------------------------------
