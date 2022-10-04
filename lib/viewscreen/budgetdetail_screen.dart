@@ -48,35 +48,37 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
             title: const Text(BudgetDetailScreen._screenName),
           ),
           //        BODY      --------------------------------------------------
-          body: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: _selected == null
-                  ? const Text(
-                      'There has been a mistake. Selected Budget is null')
-                  : Column(
-                      children: [
-                        BudgetDetailField(
-                            titleText: "Title", fieldText: _selected!.title),
-                        BudgetDetailField(
-                            titleText: "OwnerUID",
-                            fieldText: _selected!.ownerUID),
-                        BudgetDetailField(
-                            titleText: "Docid", fieldText: _selected!.docID!),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: Row(
-                            children: [
-                              Text("Use this budget"),
-                              Switch(
-                                value: _selected!.isCurrent!,
-                                onChanged: _con.onCurrentChanged,
-                              ),
-                            ],
+          body: SingleChildScrollView(
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: _selected == null
+                    ? const Text(
+                        'There has been a mistake. Selected Budget is null')
+                    : Column(
+                        children: [
+                          BudgetDetailField(
+                              titleText: "Title", fieldText: _selected!.title),
+                          BudgetDetailField(
+                              titleText: "OwnerUID",
+                              fieldText: _selected!.ownerUID),
+                          BudgetDetailField(
+                              titleText: "Docid", fieldText: _selected!.docID!),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            child: Row(
+                              children: [
+                                Text("Use this budget"),
+                                Switch(
+                                  value: _selected!.isCurrent!,
+                                  onChanged: _con.onCurrentChanged,
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
+              ),
             ),
           ),
         ));
