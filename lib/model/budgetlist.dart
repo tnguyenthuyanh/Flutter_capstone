@@ -46,7 +46,7 @@ class BudgetList {
 
   void stageForDeletion(Budget budget) {
     // if the deletionList is null, instantiate it
-    _deletionList ??= <Budget>[];
+   // _deletionList ??= <Budget>[];
 
     // if the budget isn't in the deletionlist already, add it
     if (!(_deletionList.contains(budget))) {

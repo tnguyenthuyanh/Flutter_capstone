@@ -1,3 +1,4 @@
+import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
 import 'package:cap_project/viewscreen/editprofile_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/addDebt_screen.dart';
@@ -9,6 +10,7 @@ import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
 import 'package:cap_project/View_Model/auth_viewModel.dart';
 import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
+import 'package:cap_project/viewscreen/view/budgetCategory.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,6 +40,7 @@ void main() async {
     ChangeNotifierProvider(create: (_) => AuthViewModel()),
     ChangeNotifierProvider(create: (context) => BudgetData()),
     ChangeNotifierProvider(create: (context) => BudgetListModeData()),
+    ChangeNotifierProvider(create: (context) => BudgetCategoryViewModel()),
   ], child: const Capstone()));
 }
 
@@ -160,6 +163,7 @@ class Capstone extends StatelessWidget {
           BudgetsScreen.routeName: (context) => const BudgetsScreen(),
           AddBudgetScreen.routeName: (context) => const AddBudgetScreen(),
           BudgetDetailScreen.routeName: (context) => const BudgetDetailScreen(),
+          AddCategory.routeName: (context) => const AddCategory(),
         },
       ),
     );
