@@ -1,8 +1,10 @@
+import 'package:cap_project/viewscreen/addPurchase_screen.dart';
 import 'package:cap_project/viewscreen/editprofile_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/addDebt_screen.dart';
 import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
+import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
@@ -15,9 +17,7 @@ import 'package:provider/provider.dart';
 import 'View_Model/budget_data.dart';
 import 'View_Model/budgetlistmode_data.dart';
 import 'firebase_options.dart';
-import 'controller/auth_controller.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:provider/provider.dart';
 import 'model/constant.dart';
 import 'viewscreen/addbudget_screen.dart';
 import 'viewscreen/budgetdetail_screen.dart';
@@ -160,6 +160,36 @@ class Capstone extends StatelessWidget {
           BudgetsScreen.routeName: (context) => const BudgetsScreen(),
           AddBudgetScreen.routeName: (context) => const AddBudgetScreen(),
           BudgetDetailScreen.routeName: (context) => const BudgetDetailScreen(),
+          PurchasesScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for PurchasesScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var userP = argument[ArgKey.userProfile];
+              return PurchasesScreen(
+                user: user,
+                userP: userP,
+                purchaseList: [],
+              );
+            }
+          },
+          AddPurchaseScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for AddPurchaseScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var userP = argument[ArgKey.userProfile];
+              return AddPurchaseScreen(
+                user: user,
+                userP: userP,
+                purchaseList: [],
+              );
+            }
+          },
         },
       ),
     );

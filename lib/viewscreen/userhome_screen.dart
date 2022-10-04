@@ -5,6 +5,7 @@ import 'package:cap_project/viewscreen/budgets_screen.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/model/user.dart' as usr;
 import 'package:cap_project/viewscreen/profile_screen.dart';
+import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -65,6 +66,11 @@ class _UserHomeState extends State<UserHomeScreen> {
                   leading: const Icon(CustomIcons.money_check),
                   title: const Text('Debts'),
                   onTap: con.debtPage,
+                ),
+                ListTile(
+                  leading: const Icon(Icons.payments),
+                  title: const Text('Transactions'),
+                  onTap: con.purchasePage,
                 ),
                 ListTile(
                   leading: const Icon(Icons.local_atm),
@@ -207,6 +213,36 @@ class _Controller {
       showSnackBar(
         context: state.context,
         message: 'Failed to get editProfile: $e',
+      );
+    }
+  }
+
+  void purchasePage() async {
+    try {
+      userP = await FirestoreController.getUser(email: state.email);
+
+      userP.debts = await FirestoreController.getPurchaseList(user: userP);
+
+      // state.userP.purchases = await FirestoreController.getPurchaseList(
+      //   user: state.userP,
+      // );
+      await Navigator.pushNamed(
+        state.context,
+        PurchasesScreen.routeName,
+        arguments: {
+          //ArgKey.transactionList: transactionList,
+          ArgKey.purchaseList: userP.purchases,
+          ArgKey.user: state.widget.user,
+          ArgKey.userProfile: userP,
+        },
+      );
+      Navigator.of(state.context).pop(); // close drawer
+    } catch (e) {
+      if (Constant.devMode) print('get Purchase List Error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed: get Purchase List $e',
+        seconds: 20,
       );
     }
   }

@@ -4,6 +4,7 @@ import 'package:cap_project/model/tipcalc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../model/constant.dart';
+import '../model/purchase.dart';
 import '../model/user.dart' as usr;
 
 class FirestoreController {
@@ -19,8 +20,6 @@ class FirestoreController {
       rethrow;
     }
   }
-
-  
 
   static addDebt({
     required UserProfile user,
@@ -186,6 +185,39 @@ class FirestoreController {
       var data = m.data() as Map<String, dynamic>;
       result.add(TipCalc.fromFirestoreDoc(docId: m.id, doc: data));
     });
+    return result;
+  }
+
+  static addPurchase({
+    required UserProfile user,
+    required Purchase purchase,
+  }) async {
+    DocumentReference ref = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.purchases)
+        .add(purchase.toFirestoreDoc());
+    return ref.id; // doc is auto-generated.
+  }
+
+  static Future<List<Purchase>> getPurchaseList({
+    required UserProfile user,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.purchases)
+        .orderBy(DocKeyPurchase.amount.name, descending: true)
+        .get();
+
+    var result = <Purchase>[];
+    for (var doc in querySnapshot.docs) {
+      if (doc.data() != null) {
+        var document = doc.data() as Map<String, dynamic>;
+        var p = Purchase.fromFirestoreDoc(doc: document, docId: doc.id);
+        if (p != null) result.add(p);
+      }
+    }
     return result;
   }
 }
