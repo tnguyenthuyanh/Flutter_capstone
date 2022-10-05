@@ -29,13 +29,25 @@ class _AddCategoryState extends State<AddCategory> {
             padding: const EdgeInsets.all(8.0),
             child: Wrap(
               spacing: 12.0,
-              children: List<InkWell>.generate(
+              children: List<GestureDetector>.generate(
                 budgetCategory.categories.length,
-                (counter) => InkWell(
-                  onTap: () {print('hello');
+                (counter) => GestureDetector(
+                  onTap: () {
+                    budgetCategory.updateCategories(counter);
                   },
                   child: Chip(
-                    label: Text(budgetCategory.categories[counter])    
+                    backgroundColor:
+                        budgetCategory.selectedCategoryIndex == counter
+                            ? Colors.white
+                            : Colors.blue,
+                    label: Text(
+                      budgetCategory.categories[counter],
+                      style: TextStyle(
+                        color: budgetCategory.selectedCategoryIndex == counter
+                            ? Colors.black
+                            : Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
