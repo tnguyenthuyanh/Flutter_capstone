@@ -49,29 +49,7 @@ class _BudgetsState extends State<BudgetsScreen> {
         appBar: AppBar(
           title: const Text(BudgetsScreen._screenName),
           actions: [
-            DropdownButton<String>(
-      value: "placerholder2",
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String? value) {
-        // This is called when the user selects an item.
-        if (value == "Add Budget") Navigator.pushNamed(context, AddCategory.routeName);
-        setState(() {
-          //dropdownValue = value!;
-        });
-      },
-      items: ["Add Budget", "placeholder1", "placerholder2"].map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    ),
+            
             // delete/cancel button
             IconButton(
               icon: _currentMode == BudgetListMode.delete
