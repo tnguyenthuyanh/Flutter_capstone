@@ -24,11 +24,8 @@ class _BudgetsState extends State<BudgetsScreen> {
 
   // state vars
   // TODO: Fix this- change current mode to a provider consumer
-  // TODO: add listviewtile click functionality -> view budget detail
   // TODO: separate viewing from isCurrent. isCurrent is global- don't need to set
   // the budget, just need to view it
-  // TODO: add a Use This budget dialog to AddBudgetScreen
-  // TODO: add Use this budget button to BudgetDetailScreen
   BudgetListMode _currentMode = BudgetListMode.view;
 
   @override
@@ -120,7 +117,6 @@ class _BudgetsState extends State<BudgetsScreen> {
                           return BudgetListViewTile(
                             currentMode: _currentMode,
                             budget: _temp,
-                            
                           );
                         },
                       ),

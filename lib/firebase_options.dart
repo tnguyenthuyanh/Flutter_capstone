@@ -17,7 +17,10 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -46,16 +49,6 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAfEtOOBaS4xPztgUazzQZOCADGFp4B3k4',
-    appId: '1:953111851263:web:37470c2615f3f03a5c5cca',
-    messagingSenderId: '953111851263',
-    projectId: 'cmsc4513-bmw-capstone',
-    authDomain: 'cmsc4513-bmw-capstone.firebaseapp.com',
-    storageBucket: 'cmsc4513-bmw-capstone.appspot.com',
-    measurementId: 'G-4577JPEND4',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAIMgESV-ase_ZEpGON1K0xHWQAtS4r3RQ',
     appId: '1:953111851263:android:72de749517ceb2085c5cca',
@@ -70,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '953111851263',
     projectId: 'cmsc4513-bmw-capstone',
     storageBucket: 'cmsc4513-bmw-capstone.appspot.com',
+    androidClientId: '953111851263-olt8mu995t9cvscbrt0ani24a43d8c44.apps.googleusercontent.com',
     iosClientId: '953111851263-3mamha7f61fmf70sb765pq873b0ge220.apps.googleusercontent.com',
     iosBundleId: 'com.example.capProject',
   );

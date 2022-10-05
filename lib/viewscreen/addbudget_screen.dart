@@ -1,10 +1,11 @@
+import 'package:cap_project/controller/auth_controller.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import '../View_Model/budget_data.dart';
 import '../View_Model/validator.dart';
 import '../model/budget.dart';
 
-// TODO: add budget added toast
 class AddBudgetScreen extends StatefulWidget {
   static const routeName = '/addBudgetScreen';
 
@@ -22,6 +23,7 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
   // state vars
   late _Controller _con;
   String? _title;
+  bool _current = false;
 
   @override
   void initState() {
@@ -57,7 +59,19 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
                     onSaved: _con.onSaveTitle,
                   ),
                 ),
-
+                // is current switch
+                SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      Text("Use this budget"),
+                      Switch(
+                        value: _current,
+                        onChanged: _con.onCurrentChanged,
+                      ),
+                    ],
+                  ),
+                ),
                 // save button
                 IconButton(
                   icon: const Icon(Icons.save),
@@ -78,17 +92,35 @@ class _Controller {
 
   void save() {
     FormState? currentState = _state._formKey.currentState;
+    // return if not validated
     if (currentState == null || !currentState.validate()) return;
     currentState.save();
 
+    // check the current user id. If null or empty, slap some toast on the screen
+    // and return
+    String? uid = getCurrentUserID();
+    if (uid == null || uid.isEmpty) {
+      showToast("I'm sorry, but I've made a mistake. Your Id is borked");
+      return;
+    }
+
+    // if uid is ok, save the budget, slap some good toast on the screen
+    // and navigate to the budgets list
     Provider.of<BudgetData>(_state.context, listen: false).add(
       Budget(
         title: _state._title!,
-        ownerUID: getCurrentUserID(),
+        ownerUID: uid,
+        isCurrent: _state._current,
       ),
     );
 
+    showToast("Budget created!");
+
     Navigator.pop(_state.context);
+  }
+
+  void onCurrentChanged(bool? value) {
+    _state.render(() => _state._current = !_state._current);
   }
 
   // save functions
@@ -98,9 +130,8 @@ class _Controller {
     });
   }
 
-  String getCurrentUserID() {
+  String? getCurrentUserID() {
     // get information from user manager
-    // TODO: link to user manager
-    return "f657847387cjfjff";
+    return AuthController.currentUser?.uid;
   }
 }

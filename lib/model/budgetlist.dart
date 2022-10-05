@@ -8,6 +8,8 @@ class BudgetList {
   late List<Budget> _deletionList;
   late List<int> _selectedIndices;
 
+  int get size => _budgets.length;
+
   BudgetList() {
     _budgets = <Budget>[];
     _deletionList = <Budget>[];
@@ -17,6 +19,31 @@ class BudgetList {
       UnmodifiableListView(_budgets);
 
   List<int> get selectedIndices => _selectedIndices;
+  List<Budget> get deletionList => _deletionList;
+
+  void setNewCurrentBudget(Budget newCurrent) {
+    if (_budgets.length > 1) {
+      for (Budget budget in _budgets) {
+        if (budget != newCurrent) {
+          if (budget.isCurrent!) {
+            budget.dirty = true;
+          }
+          budget.isCurrent = false;
+        }
+      }
+    }
+  }
+
+  List<Budget> getDirtyList() {
+    List<Budget> temp = [];
+    for (Budget budget in _budgets) {
+      if (budget.dirty) {
+        temp.add(budget);
+        budget.dirty = false;
+      }
+    }
+    return temp;
+  }
 
   void add(Budget budget) {
     _budgets.add(budget);
@@ -64,12 +91,10 @@ class BudgetList {
   // perform the deletion
   void commitDeletion() {
     // iterate through the deletionlist and remove budgets from
-    // the provider's budget list and firebase
+    // the provider's budget list
     for (Budget budget in _deletionList) {
       if (_budgets.contains(budget)) {
         _budgets.remove(budget);
-        // TODO: Implement Firebase
-
       }
     }
     _deletionList.clear();

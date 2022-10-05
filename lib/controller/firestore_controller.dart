@@ -1,10 +1,13 @@
+import 'package:cap_project/controller/storagecontrollers/budgetstoragecontroller.dart';
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/model/tipcalc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../model/budget.dart';
 import '../model/constant.dart';
 import '../model/user.dart' as usr;
+import 'auth_controller.dart';
 
 class FirestoreController {
   static addUser({
@@ -20,18 +23,27 @@ class FirestoreController {
     }
   }
 
-  
+  static addBudget({required Budget budget}) async {
+    await BudgetStorageController.addBudget(budget: budget);
+  }
 
-  static addDebt({
-    required UserProfile user,
-    required Debt debt,
-  }) async {
-    DocumentReference ref = await FirebaseFirestore.instance
-        .collection(Constant.users)
-        .doc(user.docId)
-        .collection(Constant.debts)
-        .add(debt.toFirestoreDoc());
-    return ref.id; // doc id auto-generated.
+  static deleteBudget({required Budget budget}) async {
+    await BudgetStorageController.deleteBudget(budget: budget);
+  }
+
+  static Future<List<Budget>> getBudgetList() async {
+    return await BudgetStorageController.getBudgetList();
+  }
+
+  static Future<void> updateBudget({required Budget budget}) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.budgets)
+        .doc(budget.docID!)
+        .update({
+      'isCurrent': budget.isCurrent,
+      'ownerUID': budget.ownerUID,
+      'title': budget.title
+    });
   }
 
   static Future<List<Debt>> getDebtList({
@@ -53,6 +65,18 @@ class FirestoreController {
       }
     }
     return result;
+  }
+
+  static addDebt({
+    required UserProfile user,
+    required Debt debt,
+  }) async {
+    DocumentReference ref = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.debts)
+        .add(debt.toFirestoreDoc());
+    return ref.id; // doc id auto-generated.
   }
 
   static Future<UserProfile> getUser({
