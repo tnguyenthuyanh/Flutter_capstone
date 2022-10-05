@@ -26,10 +26,12 @@ class _AddCategoryState extends State<AddCategory> {
         children: [
           Text("Select a Category"),
           Column(
+            
             children: List<Chip>.generate(
               budgetCategory.categories.length,
               (counter) => Chip(
-                label: const Text('Aaron Burr'),
+                //for (int i = 0; i < budgetCategory.categories.length; i++)
+                label: Text(budgetCategory.categories[counter])    
               ),
             ),
           ),
