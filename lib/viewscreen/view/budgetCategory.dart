@@ -25,13 +25,19 @@ class _AddCategoryState extends State<AddCategory> {
       body: Column(
         children: [
           Text("Select a Category"),
-          Column(
-            
-            children: List<Chip>.generate(
-              budgetCategory.categories.length,
-              (counter) => Chip(
-                //for (int i = 0; i < budgetCategory.categories.length; i++)
-                label: Text(budgetCategory.categories[counter])    
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Wrap(
+              spacing: 12.0,
+              children: List<InkWell>.generate(
+                budgetCategory.categories.length,
+                (counter) => InkWell(
+                  onTap: () {print('hello');
+                  },
+                  child: Chip(
+                    label: Text(budgetCategory.categories[counter])    
+                  ),
+                ),
               ),
             ),
           ),
