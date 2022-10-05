@@ -42,10 +42,10 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
         appBar: AppBar(
           title: const Text("Tip Calculator"),
           actions: [
-            // IconButton(
-            //   icon: Icon(Icons.list),
-            //   onPressed: () => con.getTipCalcList(),
-            // )
+            IconButton(
+              icon: Icon(Icons.list),
+              onPressed: () => con.getTipCalcList(),
+            )
           ],
         ),
         body: GestureDetector(
