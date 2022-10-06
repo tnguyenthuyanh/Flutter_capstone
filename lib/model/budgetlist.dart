@@ -2,51 +2,60 @@ import 'dart:collection';
 import '/model/budget.dart';
 
 class BudgetList {
-  late List<Budget> _budgets;
+  late List<Budget> _budgets; // all budgets
+  late List<Budget> _deletionList; // budgets staged for deletion
+  late List<int> _selectedIndices; // and their indices
 
-  // budgets staged for deletion and their indices
-  late List<Budget> _deletionList;
-  late List<int> _selectedIndices;
-
-  int get size => _budgets.length;
+  int get size => _budgets.length; // how many budgets
 
   BudgetList() {
     _budgets = <Budget>[];
     _deletionList = <Budget>[];
   }
 
+  // ---- GETTERS ----
+  List<int> get selectedIndices => _selectedIndices;
+  List<Budget> get deletionList => _deletionList;
   UnmodifiableListView<Budget> get budgetsListView =>
       UnmodifiableListView(_budgets);
 
-  List<int> get selectedIndices => _selectedIndices;
-  List<Budget> get deletionList => _deletionList;
+  void add(Budget budget) {
+    _budgets.add(budget);
+  }
 
   void setNewCurrentBudget(Budget newCurrent) {
+    // if there is more than one budget
     if (_budgets.length > 1) {
+      // set all active budgets but newCurrent to inactive
+      // and set their dirty flag
       for (Budget budget in _budgets) {
         if (budget != newCurrent) {
           if (budget.isCurrent!) {
+            budget.isCurrent = false;
             budget.dirty = true;
+            print("BudgetList: budget " + budget.title + " set dirty");
           }
-          budget.isCurrent = false;
         }
       }
     }
   }
 
+  // Get a list of all budgets that need to be updated in firestore
   List<Budget> getDirtyList() {
     List<Budget> temp = [];
+
     for (Budget budget in _budgets) {
       if (budget.dirty) {
         temp.add(budget);
-        budget.dirty = false;
       }
     }
     return temp;
   }
 
-  void add(Budget budget) {
-    _budgets.add(budget);
+  void clearDirtyFlags() {
+    for (Budget budget in _budgets) {
+      budget.dirty = false;
+    }
   }
 
   void addAll(List<Budget> budgets) {

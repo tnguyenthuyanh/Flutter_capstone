@@ -23,6 +23,7 @@ class BudgetDetailScreen extends StatefulWidget {
 class _BudgetDetailState extends State<BudgetDetailScreen> {
   late _Controller _con;
   Budget? _selected;
+  Budget? _current;
 
   // state vars
 
@@ -39,6 +40,7 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
   @override
   Widget build(BuildContext context) {
     _selected = Provider.of<BudgetData>(context).selectedBudget;
+    _current = Provider.of<BudgetData>(context).currentBudget;
 
     return WillPopScope(
         onWillPop: _con.onPopScope,
@@ -68,10 +70,11 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
                             width: MediaQuery.of(context).size.width,
                             child: Row(
                               children: [
-                                Text("Use this budget"),
-                                Switch(
-                                  value: _selected!.isCurrent!,
-                                  onChanged: _con.onCurrentChanged,
+                                ElevatedButton(
+                                  child: Text("Use"),
+                                  onPressed: _selected! == _current
+                                      ? null
+                                      : _con.onUseButtonPressed,
                                 ),
                               ],
                             ),
@@ -98,12 +101,9 @@ class _Controller {
     throw "I don't know what happened";
   }
 
-  void onCurrentChanged(bool? value) {
-    _state._selected!.isCurrent = value;
-
+  void onUseButtonPressed() {
     Provider.of<BudgetData>(_state.context, listen: false)
         .setCurrentBudget(_state._selected!);
-    _state.render(() {});
   }
 
   //---------------------------------------------------------------------------

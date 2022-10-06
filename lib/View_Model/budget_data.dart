@@ -7,46 +7,58 @@ import '../controller/auth_controller.dart';
 import '../model/budgetlist.dart';
 import '/model/budget.dart';
 
+// Instance variables
+// Constructor
+// Getters
+//
+//
+// Deletion Related
+// Firebase Related
+
 class BudgetData extends ChangeNotifier {
   BudgetList _budgetList = BudgetList();
-  Budget? _selectedBudget =
-      null; // which budget is being viewed in budgetdetail
-  Budget? _currentBudget =
-      null; // which budget is being used by the rest of the app
+  // which budget is being viewed in budgetdetail
+  Budget? _selectedBudget = null;
+  // which budget is being used by the rest of the app
+  Budget? _currentBudget = null;
 
   BudgetData() {
-    loadBudgets();
+    fsLoadBudgets();
   }
 
-  // getters for encapsulated member variables
+// ---- getters for encapsulated member variables ------------------------------
   UnmodifiableListView<Budget> get budgets => _budgetList.budgetsListView;
   Budget? get selectedBudget => _selectedBudget;
   Budget? get currentBudget => _currentBudget;
   List<int> get selectedIndices => _budgetList.selectedIndices;
-
   int get numberOfBudgets => _budgetList.size;
 
-  void loadBudgets() async {
-    List<Budget> _tempBudgets = await FirestoreController.getBudgetList();
+  /// add the budget to the local budget list and store in firebase
+  /// then notify listeners
+  void add(Budget budget) {
+    fsAddBudget(budget);
+    _budgetList.add(budget);
 
-    // load all the budgets into the provider's budget list
-    for (Budget budget in _tempBudgets) {
-      _budgetList.add(budget);
-
-      // if the budget is set as current, set the provider's selected budget
-      if (budget.isCurrent!) {
-        setCurrentBudget(budget);
-      }
+    // if the new budget is set to current, set update other budgets, if any
+    if (budget.isCurrent!) {
+      setCurrentBudget(budget);
     }
+
+    notifyListeners();
   }
 
   void setCurrentBudget(Budget budget) {
     _currentBudget = budget;
+    print('BudgetData: current updated to: ' + budget.title);
 
-    _budgetList.setNewCurrentBudget(budget);
-    for (Budget dirtyBoi in _budgetList.getDirtyList()) {
-      FirestoreController.updateBudget(budget: dirtyBoi);
+    // if there is more than one budget, set others to inactive
+    if (_budgetList.size > 1) {
+      _budgetList.setNewCurrentBudget(budget);
     }
+
+    // update firestore, if needed
+    fsUpdateAllDirty();
+    _budgetList.clearDirtyFlags();
 
     notifyListeners();
   }
@@ -56,36 +68,7 @@ class BudgetData extends ChangeNotifier {
     notifyListeners();
   }
 
-  // add the budget to the local budget list and store in firebase
-  // then notify listeners
-  void add(Budget budget) {
-    // add to the budget list
-    _budgetList.add(budget);
-
-    if (budget.isCurrent!) {
-      setCurrentBudget(budget);
-    }
-    // store in firebase
-    storeBudget(budget);
-
-    notifyListeners();
-  }
-
-  void updateBudget(Budget budget) async {
-    FirestoreController.updateBudget(budget: budget);
-    notifyListeners();
-  }
-
-  // store adds the budget to Firebase without notifying listeners
-  void storeBudget(Budget budget) async {
-    budget.docID = await FirestoreController.addBudget(budget: budget);
-  }
-
-  // void addAll(List<Budget> budgetList) {
-  //   _budgetList.addAll(budgetList);
-  //   notifyListeners();
-  // }
-
+// ---- Deletion Related Methods -----------------------------------------------
   void stageForDeletion(Budget budget) {
     _budgetList.stageForDeletion(budget);
     notifyListeners();
@@ -98,7 +81,7 @@ class BudgetData extends ChangeNotifier {
 
   void confirmDeletion() {
     for (Budget budget in _budgetList.deletionList) {
-      FirestoreController.deleteBudget(budget: budget);
+      fsDeleteBudget(budget);
     }
 
     _budgetList.commitDeletion();
@@ -113,5 +96,40 @@ class BudgetData extends ChangeNotifier {
 
   bool isStagedForDeletion(Budget budget) {
     return _budgetList.isStagedForDeletion(budget);
+  }
+
+// ---- Firestore Related Methods ----------------------------------------------
+  void fsLoadBudgets() async {
+    List<Budget> _tempBudgets = await FirestoreController.getBudgetList();
+
+    // load all the budgets into the provider's budget list
+    for (Budget budget in _tempBudgets) {
+      _budgetList.add(budget);
+
+      // if the budget is set as current, set the provider's selected budget
+      if (budget.isCurrent!) {
+        setCurrentBudget(budget);
+      }
+    }
+  }
+
+  // add the budget to firestore and set the budget's docid
+  void fsAddBudget(Budget budget) async {
+    budget.docID = await FirestoreController.addBudget(budget: budget);
+  }
+
+  void fsUpdateAllDirty() {
+    for (Budget dirtyBoi in _budgetList.getDirtyList()) {
+      FirestoreController.updateBudget(budget: dirtyBoi);
+    }
+  }
+
+  void fsUpdateBudget(Budget budget) async {
+    FirestoreController.updateBudget(budget: budget);
+    notifyListeners();
+  }
+
+  void fsDeleteBudget(Budget budget) {
+    FirestoreController.deleteBudget(budget: budget);
   }
 }
