@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:cap_project/View_Model/auth_viewModel.dart';
+import 'package:cap_project/viewscreen/components/my_textfield.dart';
 
 class AddPlanScreen extends StatefulWidget {
   static const routeName = 'addPlanScreen';
@@ -35,12 +37,11 @@ class _AddPlanState extends State<AddPlanScreen> {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.deepPurpleAccent,
-                ),
+            Container(
+              width: MediaQuery.of(context).size.width * .7,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.black,
               ),
             ),
             const VerticalDivider(
@@ -51,13 +52,43 @@ class _AddPlanState extends State<AddPlanScreen> {
               width: 20,
             ),
             Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.deepOrangeAccent,
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Fill in the below items for your plan',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                  Center(
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: 'What are you saving for?'),
+                    ),
+                  ),
+                  Center(
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: 'Average cost of your goal item'),
+                    ),
+                  ),
+                  Center(
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          hintText:
+                              'What are you going to reduce from your budget?'),
+                    ),
+                  ),
+                  Center(
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          hintText: 'Reducing budget item for how long?'),
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
