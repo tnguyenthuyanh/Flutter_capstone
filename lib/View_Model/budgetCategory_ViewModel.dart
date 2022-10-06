@@ -6,7 +6,7 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
   int selectedCategoryIndex = 0;
 
   List<String> categories = ["Shopping", "Food", "Clothing", 
-                            "Housing", "Transportion", "Bill"];
+                            "Housing", "Transportion", "Bills"];
 
   updateCategories (int value) {
       selectedCategoryIndex = value;
