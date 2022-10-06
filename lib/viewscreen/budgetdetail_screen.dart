@@ -67,7 +67,7 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
                               titleText: "Title", fieldText: _selected!.title),
                           MySizedButton(
                             buttonText: "Use",
-                            onTapCallback: _selected! == _current
+                            onPressedCallback: _selected! == _current
                                 ? null
                                 : _con.onUseButtonPressed,
                           ),

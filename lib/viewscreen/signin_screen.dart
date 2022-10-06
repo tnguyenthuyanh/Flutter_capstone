@@ -97,7 +97,7 @@ class _SignInState extends State<SignInScreen> {
                 ),
                 MySizedButton(
                   buttonText: "Sign in",
-                  onTapCallback: con.signIn,
+                  onPressedCallback: con.signIn,
                 ),
                 const SizedBox(
                   height: 20.0,

@@ -3,12 +3,12 @@ import 'package:flutter/widgets.dart';
 
 class MySizedButton extends StatelessWidget {
   final String buttonText;
-  final Function()? onTapCallback;
+  final Function()? onPressedCallback;
   double? size;
 
   MySizedButton(
       {required this.buttonText,
-      required this.onTapCallback,
+      required this.onPressedCallback,
       double this.size = 180});
 
   @override
@@ -16,7 +16,7 @@ class MySizedButton extends StatelessWidget {
     return SizedBox(
       width: size,
       child: MyElevatedButton(
-          buttonText: buttonText, onTapCallback: onTapCallback),
+          buttonText: buttonText, onPressedCallback: onPressedCallback),
     );
   }
 }
