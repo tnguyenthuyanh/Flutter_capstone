@@ -1,4 +1,6 @@
 import 'dart:collection';
+import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
+import 'package:cap_project/viewscreen/components/texts/ohnoeserrortext.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../View_Model/budget_data.dart';
@@ -6,6 +8,7 @@ import '../model/budget.dart';
 import '../model/constant.dart';
 import 'addbudget_screen.dart';
 import 'components/budgetdetailfield.dart';
+import 'components/buttons/mysizedbutton.dart';
 
 // TODO: add edit functionality
 // TODO: add copy to functionality
@@ -55,29 +58,18 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: _selected == null
-                    ? const Text(
-                        'There has been a mistake. Selected Budget is null')
+                    ? OhNoesErrorText(
+                        message:
+                            'There has been a mistake. Selected Budget is null')
                     : Column(
                         children: [
                           BudgetDetailField(
                               titleText: "Title", fieldText: _selected!.title),
-                          BudgetDetailField(
-                              titleText: "OwnerUID",
-                              fieldText: _selected!.ownerUID),
-                          BudgetDetailField(
-                              titleText: "Docid", fieldText: _selected!.docID!),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            child: Row(
-                              children: [
-                                ElevatedButton(
-                                  child: Text("Use"),
-                                  onPressed: _selected! == _current
-                                      ? null
-                                      : _con.onUseButtonPressed,
-                                ),
-                              ],
-                            ),
+                          MySizedButton(
+                            buttonText: "Use",
+                            onTapCallback: _selected! == _current
+                                ? null
+                                : _con.onUseButtonPressed,
                           ),
                         ],
                       ),
