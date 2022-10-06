@@ -1,9 +1,9 @@
 import 'package:cap_project/model/custom_icons_icons.dart';
-import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/budgets_screen.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/model/user.dart' as usr;
+import 'package:cap_project/viewscreen/plan_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
@@ -96,6 +96,16 @@ class _UserHomeState extends State<UserHomeScreen> {
                   leading: Icon(Icons.people),
                   title: Text('Users List'),
                   onTap: con.seeUserList,
+                ),
+                ListTile(
+                  leading: const Icon(Icons.book),
+                  title: const Text('Plans'),
+                  onTap: () => {
+                    Navigator.pushNamed(context, PlanScreen.routeName,
+                        arguments: {
+                          ArgKey.user: widget.user,
+                        }),
+                  },
                 ),
                 ListTile(
                   leading: const Icon(Icons.logout),
@@ -246,4 +256,4 @@ class _Controller {
       );
     }
   }
-}
+}//end of controller
