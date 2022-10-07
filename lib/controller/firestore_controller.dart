@@ -4,6 +4,7 @@ import 'package:cap_project/model/tipcalc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../model/constant.dart';
+import '../model/plan.dart';
 import '../model/purchase.dart';
 import '../model/user.dart' as usr;
 
@@ -21,7 +22,45 @@ class FirestoreController {
     }
   }
 
-  //add plan section
+  static addPlan({
+    required Plan plan,
+  }) async {
+    DocumentReference ref = await FirebaseFirestore.instance
+        .collection(Constant.plans)
+        .add(plan.toFirestoreDoc());
+    return ref.id;
+  }
+
+  static Future<void> updatePlan({
+    required String docId,
+    required Map<String, dynamic> updateInfo,
+  }) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.plans)
+        .doc(docId)
+        .update(updateInfo);
+  }
+
+  static Future<List<Plan>> getPlanList({
+    required String email,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.plans)
+        .where(DocKeyPlan.createdBy, isEqualTo: email)
+        .orderBy(DocKeyPlan.timeStamp, descending: true)
+        .get();
+    var result = <Plan>[];
+    querySnapshot.docs.forEach((doc) {
+      if (doc.data() != null) {
+        var document = doc.data() as Map<String, dynamic>;
+        var p = Plan.fromFirestoreDoc(doc: document, docId: doc.id);
+        if (p != null) {
+          result.add(p);
+        }
+      }
+    });
+    return result;
+  }
 
   static addDebt({
     required UserProfile user,

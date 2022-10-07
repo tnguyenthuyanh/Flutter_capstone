@@ -1,4 +1,5 @@
 import 'package:cap_project/model/constant.dart';
+import 'package:cap_project/model/plan.dart';
 import 'package:cap_project/viewscreen/addPlan_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,11 @@ import 'package:flutter/material.dart';
 class PlanScreen extends StatefulWidget {
   static const routeName = '/planScreen';
 
-  const PlanScreen({required this.user, Key? key}) : super(key: key);
   final User user;
+  late List<Plan> planList;
+
+  PlanScreen({required this.user, required this.planList, Key? key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -17,13 +21,11 @@ class PlanScreen extends StatefulWidget {
 
 class _PlanState extends State<PlanScreen> {
   late _Controller con;
-  late String email;
 
   @override
   void initState() {
     super.initState();
     con = _Controller(this);
-    email = widget.user.email ?? 'No email found';
   }
 
   void render(fn) => setState(fn);
@@ -50,7 +52,9 @@ class _PlanState extends State<PlanScreen> {
 
 class _Controller {
   _PlanState state;
-  _Controller(this.state);
+  late List<Plan> planList;
 
-  Future<void> addPlan() async {}
+  _Controller(this.state) {
+    planList = state.widget.planList;
+  }
 }

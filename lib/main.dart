@@ -199,7 +199,11 @@ class Capstone extends StatelessWidget {
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
-              return PlanScreen(user: user);
+              var planList = argument[ArgKey.planList];
+              return PlanScreen(
+                user: user,
+                planList: [],
+              );
             }
           },
           AddPlanScreen.routeName: (context) {
@@ -209,7 +213,11 @@ class Capstone extends StatelessWidget {
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
-              return AddPlanScreen(user: user);
+              var planList = argument[ArgKey.planList];
+              return AddPlanScreen(
+                user: user,
+                planList: [],
+              );
             }
           },
         }, //end of routes

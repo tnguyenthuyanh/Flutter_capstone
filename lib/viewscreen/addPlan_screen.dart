@@ -5,11 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:cap_project/View_Model/auth_viewModel.dart';
 import 'package:cap_project/viewscreen/components/my_textfield.dart';
 
+import '../model/constant.dart';
+import '../model/plan.dart';
+import '../model/user.dart';
+
 class AddPlanScreen extends StatefulWidget {
   static const routeName = 'addPlanScreen';
-
-  const AddPlanScreen({required this.user, Key? key}) : super(key: key);
   final User user;
+  late List<Plan> planList;
+
+  AddPlanScreen({required this.user, required this.planList, Key? key})
+      : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
@@ -54,45 +60,48 @@ class _AddPlanState extends State<AddPlanScreen> {
               width: 20,
             ),
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    'Fill in the below items for your plan',
-                    style: TextStyle(
-                      fontSize: 20,
+              child: Form(
+                key: formKey,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Fill in the below items for your plan',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
                     ),
-                  ),
-                  Center(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                          hintText: 'What are you saving for?'),
+                    Center(
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                            hintText: 'What are you saving for?'),
+                      ),
                     ),
-                  ),
-                  Center(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                          hintText: 'Average cost of your goal item'),
+                    Center(
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                            hintText: 'Average cost of your goal item'),
+                      ),
                     ),
-                  ),
-                  Center(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                          hintText:
-                              'What are you going to reduce from your budget?'),
+                    Center(
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                            hintText:
+                                'What are you going to reduce from your budget?'),
+                      ),
                     ),
-                  ),
-                  Center(
-                    child: TextFormField(
-                      decoration: const InputDecoration(
-                          hintText: 'Reducing budget item for how long?'),
+                    Center(
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                            hintText: 'Reducing budget item for how long?'),
+                      ),
                     ),
-                  ),
-                  ElevatedButton(
-                    onPressed: con.save,
-                    child: const Text('Save'),
-                  )
-                ],
+                    ElevatedButton(
+                      onPressed: con.save,
+                      child: const Text('Save'),
+                    )
+                  ],
+                ),
               ),
             ),
           ],
@@ -100,14 +109,16 @@ class _AddPlanState extends State<AddPlanScreen> {
       ),
     );
   }
-} //end_AddPlanState
+} //end _AddPlanState
 
 class _Controller {
-  _AddPlanState state;
+  late _AddPlanState state;
+  Plan tempPlan = Plan();
   _Controller(this.state);
 
   void save() async {
     FormState? currentState = state.formKey.currentState;
+
     if (currentState == null || !currentState.validate()) {
       return;
     }
@@ -116,7 +127,20 @@ class _Controller {
     startCircularProgress(state.context);
 
     try {
-      String docId = await FirestoreController.addPlan()
-    } catch (e) {}
+      tempPlan.createdBy = state.widget.user.uid;
+      tempPlan.timeStamp = DateTime.now();
+
+      String docId = await FirestoreController.addPlan(plan: tempPlan);
+
+      tempPlan.docId = docId;
+      state.widget.planList.insert(0, tempPlan);
+
+      stopCircularProgress(state.context);
+
+      Navigator.pop(state.context);
+    } catch (e) {
+      stopCircularProgress(state.context);
+      if (Constant.devMode) print('Error uploading Plan doc to Firestore: $e');
+    }
   }
-}
+}//End controller
