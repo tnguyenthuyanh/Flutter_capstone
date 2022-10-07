@@ -15,7 +15,7 @@ class AddCategory extends StatefulWidget {
 
 class _AddCategoryState extends State<AddCategory> {
   late BudgetCategoryViewModel budgetCategory;
-  
+
   @override
   Widget build(BuildContext context) {
     budgetCategory = Provider.of<BudgetCategoryViewModel>(context);
@@ -51,6 +51,12 @@ class _AddCategoryState extends State<AddCategory> {
                           child: Icon(Icons.add),
                         )
                       : Chip(
+                          deleteIcon: IconButton(
+                            onPressed: () {
+                              
+                            },
+                            icon: const Icon(Icons.remove),
+                          ),
                           backgroundColor:
                               budgetCategory.selectedCategoryIndex == counter
                                   ? Colors.white
@@ -78,47 +84,61 @@ class _AddCategoryState extends State<AddCategory> {
 class MyDialog extends StatelessWidget {
   //create a text editing controller, pass it to right place and validate the text
   //late Controller con;
-  final TextEditingController _controller = TextEditingController();
-   MyDialog({
+  late BudgetCategoryViewModel budgetCategory;
+
+  var formKey = GlobalKey<FormState>();
+  MyDialog({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    budgetCategory = Provider.of<BudgetCategoryViewModel>(context);
+    return StatefulBuilder(builder: (context, setState) {
+      return AlertDialog(
+        title: Stack(
+          children: [
+            Positioned(
+              right: -10,
+              top: -15,
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: const Icon(Icons.close),
+              ),
+            ),
+            Text('Add a Category'),
+          ],
+        ),
+        content: Form(
+          key: formKey,
+          child: TextFormField(
+            validator: (value) => budgetCategory.validateText(value),
+            controller: budgetCategory.textFormValidator,
+            decoration: const InputDecoration(labelText: "New Category"),
+          ),
+        ),
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              if (formKey.currentState!.validate()) {
+                budgetCategory.addCategory();
+                Navigator.pop(context);
+              }
 
-    return AlertDialog(
-      
-      title: Stack(
-        
-        children: [
-          Positioned(
-            right: -10,
-            top: -15,
-          
-            child: IconButton(onPressed: (){Navigator.pop(context);}, icon: const Icon(Icons.close))),
-          Text('Add a Category'),
+              //Navigator.pop(context);
+            },
+            child: const Text('Submit'),
+          ),
         ],
-      ),
-    
-      content: TextField(
-        controller: _controller,
-        decoration: const InputDecoration(
-          labelText: "New Category"
-        ),
-      ),
-      actions: [
-        ElevatedButton(
-          onPressed: () {Navigator.pop(context);},
-          child: const Text('Submit'),
-        ),
-      ],
-
-      
-    );
-
-
-    
+      );
+    });
   }
+
+  // if (passController.text.isEmpty) {
+  //   showToast('Please provide a password');
+  // } else {
+  //   showToast("Success!!");
+  // }
 }
-
-
