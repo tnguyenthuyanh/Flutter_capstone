@@ -1,3 +1,4 @@
+import 'package:cap_project/viewscreen/debtDetail_screen.dart';
 import 'package:cap_project/viewscreen/editprofile_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/addDebt_screen.dart';
@@ -81,6 +82,22 @@ class Capstone extends StatelessWidget {
                 user: user,
                 userP: userP,
                 debtList: [],
+              );
+            }
+          },
+          DebtDetailScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for DebtScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var userP = argument[ArgKey.userProfile];
+              var debt = argument[ArgKey.singleDebt];
+              return DebtDetailScreen(
+                user: user,
+                userP: userP,
+                debt: debt,
               );
             }
           },

@@ -20,8 +20,6 @@ class FirestoreController {
     }
   }
 
-  
-
   static addDebt({
     required UserProfile user,
     required Debt debt,
@@ -187,5 +185,18 @@ class FirestoreController {
       result.add(TipCalc.fromFirestoreDoc(docId: m.id, doc: data));
     });
     return result;
+  }
+
+  static Future<void> updateDebt({
+    required UserProfile userP,
+    required String docId,
+    required Map<String, dynamic> update,
+  }) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(userP.docId)
+        .collection(Constant.debts)
+        .doc(docId)
+        .update(update);
   }
 }

@@ -18,7 +18,6 @@ class Constant {
 
 enum ArgKey {
   user,
-  downloadURL,
   filename,
   debtList,
   onePhotoMemo,
@@ -28,6 +27,7 @@ enum ArgKey {
   profile,
   userList,
   currentUID,
+  singleDebt
 }
 
 List<DropdownMenuItem<String>> menuItems = [
