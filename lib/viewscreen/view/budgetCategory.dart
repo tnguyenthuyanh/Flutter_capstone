@@ -46,8 +46,8 @@ class _AddCategoryState extends State<AddCategory> {
                     }
                   },
                   child: counter == budgetCategory.categories.length
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 12.0),
+                      ? const Padding(
+                          padding: EdgeInsets.only(top: 12.0),
                           child: Icon(Icons.add),
                         )
                       : Chip(
@@ -78,7 +78,8 @@ class _AddCategoryState extends State<AddCategory> {
 class MyDialog extends StatelessWidget {
   //create a text editing controller, pass it to right place and validate the text
   //late Controller con;
-  const MyDialog({
+  final TextEditingController _controller = TextEditingController();
+   MyDialog({
     Key? key,
   }) : super(key: key);
 
@@ -99,13 +100,25 @@ class MyDialog extends StatelessWidget {
         ],
       ),
     
-      content: TextField(),
+      content: TextField(
+        controller: _controller,
+        decoration: const InputDecoration(
+          labelText: "New Category"
+        ),
+      ),
       actions: [
         ElevatedButton(
           onPressed: () {Navigator.pop(context);},
           child: const Text('Submit'),
         ),
       ],
+
+      
     );
+
+
+    
   }
 }
+
+
