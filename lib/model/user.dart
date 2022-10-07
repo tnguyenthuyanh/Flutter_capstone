@@ -1,4 +1,11 @@
-enum DocKeyUserprof { email, debts, uid, number, purchases }
+enum DocKeyUserprof {
+  uid,
+  email,
+  debts,
+  purchases,
+  plans,
+  number,
+}
 
 class UserProfile {
   String? uid; //firestore auto generated id
@@ -7,6 +14,7 @@ class UserProfile {
   late String number;
   late List<dynamic> debts;
   late List<dynamic> purchases;
+  late List<dynamic> plans;
 
   UserProfile({
     this.uid,
@@ -14,9 +22,11 @@ class UserProfile {
     this.email = '',
     List<dynamic>? debts,
     List<dynamic>? purchases,
+    List<dynamic>? plans,
   }) {
     this.debts = debts == null ? [] : [...debts];
     this.purchases = purchases == null ? [] : [...purchases];
+    this.plans = plans == null ? [] : [...plans];
   }
 
   UserProfile.set(String email, String number) {
@@ -31,6 +41,7 @@ class UserProfile {
     number = p.number;
     debts = [...debts];
     purchases = [...purchases];
+    plans = [...plans];
   }
 
   //a.copyFrom(b) ==> a = b
@@ -42,6 +53,7 @@ class UserProfile {
     debts.clear();
     debts.addAll(p.debts);
     purchases.addAll(p.purchases);
+    plans.addAll(p.plans);
   }
 
   //serialization
@@ -62,6 +74,7 @@ class UserProfile {
       email: doc[DocKeyUserprof.email.name] ??= 'N/A',
       debts: doc[DocKeyUserprof.debts.name] ??= [],
       purchases: doc[DocKeyUserprof.purchases.name] ??= [],
+      plans: doc[DocKeyUserprof.plans.name] ??= [],
     );
   }
 }

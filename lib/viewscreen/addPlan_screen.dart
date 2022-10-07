@@ -1,3 +1,5 @@
+import 'package:cap_project/controller/firestore_controller.dart';
+import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cap_project/View_Model/auth_viewModel.dart';
@@ -17,7 +19,7 @@ class AddPlanScreen extends StatefulWidget {
 
 class _AddPlanState extends State<AddPlanScreen> {
   late _Controller con;
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -86,6 +88,10 @@ class _AddPlanState extends State<AddPlanScreen> {
                           hintText: 'Reducing budget item for how long?'),
                     ),
                   ),
+                  ElevatedButton(
+                    onPressed: con.save,
+                    child: const Text('Save'),
+                  )
                 ],
               ),
             ),
@@ -99,4 +105,18 @@ class _AddPlanState extends State<AddPlanScreen> {
 class _Controller {
   _AddPlanState state;
   _Controller(this.state);
+
+  void save() async {
+    FormState? currentState = state.formKey.currentState;
+    if (currentState == null || !currentState.validate()) {
+      return;
+    }
+
+    currentState.save();
+    startCircularProgress(state.context);
+
+    try {
+      String docId = await FirestoreController.addPlan()
+    } catch (e) {}
+  }
 }

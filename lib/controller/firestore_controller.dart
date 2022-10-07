@@ -21,6 +21,8 @@ class FirestoreController {
     }
   }
 
+  //add plan section
+
   static addDebt({
     required UserProfile user,
     required Debt debt,

@@ -3,18 +3,19 @@ import 'package:flutter/material.dart';
 class Constant {
   static const devMode = true;
   static const users = 'Users';
+  static const USERPROFILE_COLLECTION = 'userProfile';
   static const DARKMODE = true;
   static const debts = 'Debts';
   static const purchases = 'Purchases';
+  static const plans = 'Plans';
+  static const savedTipCalc = 'SavedTipCalc';
+
   static const List<DropdownMenuItem<String>> menuItems = [
     DropdownMenuItem(child: Text('Mortgage'), value: 'Mortgage'),
     DropdownMenuItem(child: Text('Car loan'), value: 'Car loan'),
     DropdownMenuItem(child: Text('Credit Card'), value: 'Credit Card'),
     DropdownMenuItem(child: Text('Medical Bill'), value: 'Medical Bill'),
   ];
-  static const USERPROFILE_COLLECTION = 'userProfile';
-
-  static const savedTipCalc = 'SavedTipCalc';
 }
 
 enum ArgKey {
@@ -23,6 +24,7 @@ enum ArgKey {
   filename,
   debtList,
   purchaseList,
+  planList,
   onePhotoMemo,
   userProfile,
   replies,
