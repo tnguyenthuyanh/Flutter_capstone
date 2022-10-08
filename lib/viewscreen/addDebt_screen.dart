@@ -71,14 +71,14 @@ class _AddDebtState extends State<AddDebtScreen> {
                   decoration: const InputDecoration(hintText: 'Balance'),
                   autocorrect: true,
                   keyboardType: TextInputType.numberWithOptions(),
-                  validator: Debt.validateTitle,
+                  validator: Debt.validateBalance,
                   onSaved: con.saveBalance,
                 ),
                 TextFormField(
                   decoration: const InputDecoration(hintText: 'Interest'),
                   autocorrect: true,
                   keyboardType: TextInputType.numberWithOptions(),
-                  validator: Debt.validateTitle,
+                  validator: Debt.validateInterest,
                   onSaved: con.saveInterest,
                 ),
                 DropdownButton(
@@ -149,12 +149,13 @@ class _Controller {
 
       stopCircularProgress(state.context);
 
-      // return to home
+      // return to debts screen
       await Navigator.pushNamed(
         state.context,
         DebtScreen.routeName,
         arguments: {
-          ArgKey.debtList: debtList,
+          ArgKey.debtList:
+              FirestoreController.getDebtList(user: state.widget.userP),
           ArgKey.user: state.widget.user,
           ArgKey.userProfile: state.widget.userP,
         },

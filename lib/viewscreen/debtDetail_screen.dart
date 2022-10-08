@@ -1,11 +1,13 @@
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
+import 'package:cap_project/viewscreen/payoffSchedule_screen.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../controller/firestore_controller.dart';
 import '../model/constant.dart';
+import 'debt_screen.dart';
 
 class DebtDetailScreen extends StatefulWidget {
   const DebtDetailScreen({
@@ -101,6 +103,8 @@ class _DebtDetailState extends State<DebtDetailScreen> {
                         hint: const Text('Select Category'),
                       )
                     : Text('Debt Category \n' + con.tempDebt.category),
+                ElevatedButton(
+                    onPressed: con.payOff, child: Text('Payoff Schedule'))
               ],
             ),
           ),
@@ -151,6 +155,17 @@ class _Controller {
         state.widget.debt.copyFrom(tempDebt);
       }
 
+      await Navigator.pushNamed(
+        state.context,
+        DebtScreen.routeName,
+        arguments: {
+          ArgKey.debtList:
+              FirestoreController.getDebtList(user: state.widget.userP),
+          ArgKey.user: state.widget.user,
+          ArgKey.userProfile: state.widget.userP,
+        },
+      );
+
       stopCircularProgress(state.context);
       state.render(() => state.editmode = false);
     } catch (e) {
@@ -189,5 +204,11 @@ class _Controller {
       state.dropValue = value;
       state.render(() {});
     }
+  }
+
+  void payOff() async {
+    await Navigator.pushNamed(state.context, PayoffScreen.routeName,
+        arguments: {ArgKey.singleDebt: state.widget.debt});
+    state.render(() {}); //rerender the screen
   }
 }

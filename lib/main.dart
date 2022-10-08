@@ -24,6 +24,7 @@ import 'viewscreen/addbudget_screen.dart';
 import 'viewscreen/budgetdetail_screen.dart';
 import 'viewscreen/budgets_screen.dart';
 import 'viewscreen/error_screen.dart';
+import 'viewscreen/payoffSchedule_screen.dart';
 import 'viewscreen/signup_screen.dart';
 import 'viewscreen/userhome_screen.dart';
 
@@ -113,6 +114,18 @@ class Capstone extends StatelessWidget {
                 user: user,
                 userP: userP,
                 debtList: [],
+              );
+            }
+          },
+          PayoffScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for PayoffScreen');
+            } else {
+              var argument = args as Map;
+              var debt = argument[ArgKey.singleDebt];
+              return PayoffScreen(
+                debt: debt,
               );
             }
           },
