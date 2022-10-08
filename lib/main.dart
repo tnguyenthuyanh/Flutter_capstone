@@ -10,7 +10,7 @@ import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
 import 'package:cap_project/View_Model/auth_viewModel.dart';
 import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
-import 'package:cap_project/viewscreen/view/budgetCategory.dart';
+import 'package:cap_project/viewscreen/budgetCategory.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

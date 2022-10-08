@@ -1,5 +1,5 @@
 import 'dart:collection';
-import 'package:cap_project/viewscreen/view/budgetCategory.dart';
+import 'package:cap_project/viewscreen/budgetCategory.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../View_Model/budget_data.dart';
