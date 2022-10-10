@@ -1,6 +1,6 @@
 import 'package:cap_project/model/constant.dart';
+import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 
@@ -10,11 +10,13 @@ import 'editprofile_screen.dart';
 class ProfileScreen extends StatefulWidget {
   static const routeName = '/bioScreen';
   final String currentUID;
-  final Map profile;
+  final UserInfo profile;
+  final String isFriendAdded;
 
   ProfileScreen({
     required this.currentUID,
     required this.profile,
+    required this.isFriendAdded,
   });
 
   @override
@@ -26,6 +28,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileState extends State<ProfileScreen> {
   late _Controller con;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  bool added = false;
 
   @override
   void initState() {
@@ -42,7 +45,7 @@ class _ProfileState extends State<ProfileScreen> {
           'Profile',
         ),
         backgroundColor: Color.fromARGB(255, 80, 123, 210),
-        actions: widget.profile['uid'] == widget.currentUID
+        actions: widget.profile.uid == widget.currentUID
             ? [IconButton(onPressed: con.edit, icon: Icon(Icons.edit))]
             : null,
       ),
@@ -70,9 +73,9 @@ class _ProfileState extends State<ProfileScreen> {
                   CircleAvatar(
                     backgroundColor: Colors.brown.shade100,
                     child: Text(
-                      widget.profile['name'] == ""
+                      widget.profile.name == ""
                           ? "N/A"
-                          : widget.profile['name'][0].toUpperCase(),
+                          : widget.profile.name[0].toUpperCase(),
                       style: TextStyle(
                         fontSize: 20.0,
                         fontFamily: 'Satisfy-Regular',
@@ -85,9 +88,7 @@ class _ProfileState extends State<ProfileScreen> {
                     height: 10.0,
                   ),
                   Text(
-                    widget.profile['name'] == ""
-                        ? "N/A"
-                        : widget.profile['name'],
+                    widget.profile.name == "" ? "N/A" : widget.profile.name,
                     style: TextStyle(
                       fontSize: 25.0,
                     ),
@@ -96,7 +97,7 @@ class _ProfileState extends State<ProfileScreen> {
                     height: 10.0,
                   ),
                   Text(
-                    widget.profile['email'],
+                    widget.profile.email,
                     style: TextStyle(
                       fontSize: 15.0,
                     ),
@@ -104,28 +105,118 @@ class _ProfileState extends State<ProfileScreen> {
                   SizedBox(
                     height: 15.0,
                   ),
-                  widget.profile['uid'] != widget.currentUID
-                      ? Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: AnimatedButton(
-                            height: 40,
-                            width: 100,
-                            text: 'Add friend',
-                            textStyle:
-                                TextStyle(fontSize: 14, color: Colors.white),
-                            isReverse: true,
-                            selectedTextColor: Colors.black,
-                            transitionType: TransitionType.LEFT_TO_RIGHT,
-                            // textStyle: submitTextStyle,
-                            backgroundColor: Color.fromARGB(255, 52, 117, 98),
-
-                            borderColor: Colors.white,
-                            borderRadius: 50,
-                            borderWidth: 2,
-                            onPress: () {},
-                          ),
-                        )
-                      : SizedBox(),
+                  widget.profile.uid == widget.currentUID
+                      ? SizedBox()
+                      : con.isFriendAdded == 'canAdd'
+                          ? Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Container(
+                                height: 40,
+                                width: 110,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.white),
+                                  gradient: LinearGradient(colors: [
+                                    Color.fromARGB(255, 205, 91, 129),
+                                    Color.fromARGB(255, 102, 192, 94)
+                                  ]),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(50.0)),
+                                ),
+                                child: ElevatedButton(
+                                  onPressed: con.addFriend,
+                                  child: Text('Add Friend',
+                                      style: TextStyle(
+                                          fontSize: 14, color: Colors.white)),
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Colors.transparent,
+                                      shadowColor: Colors.transparent),
+                                ),
+                              ),
+                            )
+                          : con.isFriendAdded == 'Pending'
+                              ? Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: SizedBox(
+                                    height: 40,
+                                    width: 110,
+                                    child: ElevatedButton(
+                                      onPressed: null,
+                                      child: Text('Pending',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white)),
+                                      style: ButtonStyle(
+                                        shape: MaterialStateProperty.all<
+                                            RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(50.0),
+                                              side: BorderSide(
+                                                  color: Colors.white)),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : con.isFriendAdded == 'Accept'
+                                  ? Padding(
+                                      padding: const EdgeInsets.all(12.0),
+                                      child: SizedBox(
+                                        height: 40,
+                                        width: 110,
+                                        child: ElevatedButton(
+                                          onPressed: con.acceptFriend,
+                                          child: Text('Accept',
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: Colors.white)),
+                                          style: ButtonStyle(
+                                            shape: MaterialStateProperty.all<
+                                                RoundedRectangleBorder>(
+                                              RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50.0),
+                                                  side: BorderSide(
+                                                      color: Colors.green)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : con.isFriendAdded == 'isFriend'
+                                      ? Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: SizedBox(
+                                            height: 40,
+                                            width: 110,
+                                            child: ElevatedButton.icon(
+                                              onPressed: null,
+                                              label: Text('Friend',
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: Colors.black)),
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(
+                                                        Colors.lightGreen),
+                                                shape:
+                                                    MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                  RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50.0),
+                                                      side: BorderSide(
+                                                          color: Colors.white)),
+                                                ),
+                                              ),
+                                              icon: Icon(
+                                                  Icons.people_alt_outlined),
+                                            ),
+                                          ),
+                                        )
+                                      : SizedBox(),
                   Divider(
                     color: Colors.yellow,
                     height: 30.0, // space betwen top or bottom item
@@ -149,7 +240,7 @@ class _ProfileState extends State<ProfileScreen> {
                                   Align(
                                     alignment: Alignment.topLeft,
                                     child: Text(
-                                      widget.profile['bio'],
+                                      widget.profile.bio,
                                       style: TextStyle(
                                         color: Color.fromARGB(255, 60, 98, 169),
                                         fontSize: 15.0,
@@ -180,11 +271,15 @@ class _ProfileState extends State<ProfileScreen> {
 
 class _Controller {
   late _ProfileState state;
-  _Controller(this.state);
+  late String isFriendAdded;
+
+  _Controller(this.state) {
+    isFriendAdded = state.widget.isFriendAdded;
+  }
 
   void edit() async {
     try {
-      Map profile =
+      UserInfo profile =
           await FirestoreController.getProfile(uid: state.widget.currentUID);
       await Navigator.pushNamed(state.context, EditProfileScreen.routeName,
           arguments: {
@@ -197,5 +292,31 @@ class _Controller {
         message: 'Failed to get editProfile: $e',
       );
     }
+  }
+
+  void addFriend() async {
+    UserFriends userFriends = UserFriends(
+      uid_send: state.widget.currentUID,
+      uid_receive: state.widget.profile.uid,
+      accept: 0,
+    );
+
+    startCircularProgress(state.context);
+    await FirestoreController.addFriend(userFriends: userFriends);
+    stopCircularProgress(state.context);
+
+    state.render(() {
+      isFriendAdded = 'Pending';
+    });
+  }
+
+  void acceptFriend() async {
+    await FirestoreController.acceptFriend(
+        friendUID: state.widget.profile.uid,
+        currentUID: state.widget.currentUID);
+
+    state.render(() {
+      isFriendAdded = 'isFriend';
+    });
   }
 }

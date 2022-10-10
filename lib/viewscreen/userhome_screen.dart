@@ -179,8 +179,8 @@ class _Controller {
 
   void seeUserList() async {
     try {
-      List<usr.UserInfo> userList =
-          await FirestoreController.getUserList(user: state.widget.user);
+      List<usr.UserInfo> userList = await FirestoreController.getUserList(
+          currentUID: state.widget.user.uid);
       await Navigator.pushNamed(state.context, UserListScreen.routeName,
           arguments: {
             ArgKey.currentUID: state.widget.user.uid,
@@ -199,12 +199,13 @@ class _Controller {
 
   void seeProfile() async {
     try {
-      Map profile =
+      usr.UserInfo profile =
           await FirestoreController.getProfile(uid: state.widget.user.uid);
       await Navigator.pushNamed(state.context, ProfileScreen.routeName,
           arguments: {
             ArgKey.profile: profile,
             ArgKey.currentUID: state.widget.user.uid,
+            ArgKey.isFriendAdded: 'N/A',
           });
       // close the drawer
       Navigator.of(state.context).pop();

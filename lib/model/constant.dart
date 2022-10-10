@@ -13,6 +13,7 @@ class Constant {
     DropdownMenuItem(child: Text('Medical Bill'), value: 'Medical Bill'),
   ];
   static const USERPROFILE_COLLECTION = 'userProfile';
+  static const USERFRIENDS_COLLECTION = 'UserFriends';
 
   static const savedTipCalc = 'SavedTipCalc';
 }
@@ -30,6 +31,13 @@ enum ArgKey {
   profile,
   userList,
   currentUID,
+  isFriendAdded,
+}
+
+enum Filter {
+  MyFriends,
+  AllUsers,
+  FriendRequest,
 }
 
 List<DropdownMenuItem<String>> menuItems = [

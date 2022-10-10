@@ -102,3 +102,44 @@ class UserInfo {
     );
   }
 }
+
+class UserFriends {
+  static const UID_SEND = 'uid_send';
+  static const UID_RECEIVE = 'uid_receive';
+  static const ACCEPT = 'accept';
+
+  String? docId; //firestore auto generated id
+  late String uid_send;
+  late String uid_receive;
+  late int accept;
+
+  UserFriends({
+    this.docId,
+    this.uid_send = '',
+    this.uid_receive = '',
+    this.accept = 0,
+  });
+
+  Map<String, dynamic> toFirestoreDoc() {
+    return {
+      UID_SEND: this.uid_send,
+      UID_RECEIVE: this.uid_receive,
+      ACCEPT: this.accept,
+    };
+  }
+
+  static UserFriends? fromFirestoreDoc({
+    required Map<String, dynamic> doc,
+    required String docId,
+  }) {
+    for (var key in doc.keys) {
+      if (doc[key] == null) return null;
+    }
+    return UserFriends(
+      docId: docId,
+      uid_send: doc[UID_SEND],
+      uid_receive: doc[UID_RECEIVE],
+      accept: doc[ACCEPT],
+    );
+  }
+}

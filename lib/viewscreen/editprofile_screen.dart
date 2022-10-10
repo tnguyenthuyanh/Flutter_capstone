@@ -1,4 +1,5 @@
 import 'package:cap_project/controller/auth_controller.dart';
+import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ import '../model/constant.dart';
 
 class EditProfileScreen extends StatefulWidget {
   static const routeName = '/editProfileScreen';
-  final Map profile;
+  final UserInfo profile;
 
   EditProfileScreen({required this.profile});
 
@@ -54,7 +55,7 @@ class _EditProfileState extends State<EditProfileScreen> {
               SizedBox(height: 5),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: '${widget.profile['email']}',
+                  hintText: '${widget.profile.email}',
                 ),
                 enabled: false,
               ),
@@ -140,9 +141,9 @@ class _Controller {
   late String uid;
 
   _Controller(this.state) {
-    orgName = state.widget.profile['name'];
-    orgBio = state.widget.profile['bio'];
-    uid = state.widget.profile['uid'];
+    orgName = state.widget.profile.name;
+    orgBio = state.widget.profile.bio;
+    uid = state.widget.profile.uid;
   }
 
   String? name;
@@ -169,7 +170,7 @@ class _Controller {
 
     try {
       await FirestoreController.addUpdateProfile(
-          uid: state.widget.profile['uid'], name: name!, bio: bio!);
+          uid: state.widget.profile.uid, name: name!, bio: bio!);
       stopCircularProgress(state.context);
       state.render(() => state.editMode = false);
       Navigator.of(state.context).pop();

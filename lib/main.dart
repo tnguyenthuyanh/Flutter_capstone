@@ -107,9 +107,11 @@ class Capstone extends StatelessWidget {
               var argument = args as Map;
               var currentUID = argument[ArgKey.currentUID];
               var profile = argument[ArgKey.profile];
+              var isFriendAdded = argument[ArgKey.isFriendAdded];
               return ProfileScreen(
                 currentUID: currentUID,
                 profile: profile,
+                isFriendAdded: isFriendAdded,
               );
             }
           },
