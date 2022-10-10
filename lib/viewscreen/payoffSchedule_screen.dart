@@ -106,12 +106,27 @@ class _Controller {
   }
 
   String minPayment() {
-    double balance = double.parse(state.widget.debt.balance);
-    double intrest = double.parse(state.widget.debt.interest) / 100;
-    double minPayment = balance * intrest / 12.0;
-    String minPay = minPayment.toStringAsFixed(2);
-    return minPay;
+    if (tempDebt.category == 'Credit Card') {
+      double minPayment = double.parse(tempDebt.balance) * .0255;
+      String minPay = minPayment.toStringAsFixed(2);
+      return minPay;
+    } else {
+      double balance = double.parse(state.widget.debt.balance);
+      double intrest = double.parse(state.widget.debt.interest) / 100;
+      double minPayment = balance *
+          intrest /
+          12 *
+          (pow((1 + intrest / 12), (30 * 12))) /
+          (pow((1 + intrest / 12), (30 * 12)) - 1);
+      String minPay = minPayment.toStringAsFixed(2);
+      return minPay;
+    }
   }
 
   void generateSchedule() {}
+  /*double balance = double.parse(state.widget.debt.balance);
+    double intrest = double.parse(state.widget.debt.interest) / 100;
+    double minPayment = balance * intrest / 12.0;
+    String minPay = minPayment.toStringAsFixed(2);
+  }*/
 }
