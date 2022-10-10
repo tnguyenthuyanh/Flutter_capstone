@@ -1,6 +1,11 @@
 import 'package:cap_project/viewscreen/budgetCategory.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:oktoast/oktoast.dart';
+
+import '../controller/storagecontrollers/budgetstoragecontroller.dart';
+import '../model/catergories.dart';
 
 class BudgetCategoryViewModel extends ChangeNotifier  {
   final TextEditingController textFormValidator = TextEditingController();
@@ -10,15 +15,50 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
   int selectedSubCategoryIndex = 0;
 
 
-  List<String> categories = ["Shopping", "Food", "Clothing", 
+  List<String> categories = ["Shopping", "Food", "Clothing",
                             "Housing", "Transportion", "Bills"];
+  List<Category> categoriess = [];
+
+
+  bool isCategoriesLoading = false;
+  bool isCategoriesAdding = false;
 
   updateCategories (int value) {
-      selectedCategoryIndex = value;
-      notifyListeners();
+    for(Category i in categoriess){
+      i.isSelected = false;
+    }
+    print(value);
+    categoriess[value].isSelected = true;
+    notifyListeners();
   }
+
+
+  Future<void> getCategories()async{
+    try{
+      isCategoriesLoading = true;
+      notifyListeners();
+      categoriess = await BudgetStorageController.getCategories();
+      isCategoriesLoading = false;
+      notifyListeners();
+
+
+    }catch(e){
+      showToast("Something went wrong in fetching the categories");
+
+      isCategoriesLoading = false;
+      notifyListeners();
+
+    }
+  }
+
+
+
   updateSubCategories (int value) {
-    selectedSubCategoryIndex = value;
+    for(Category i in categoriess){
+      i.isSelected = false;
+    }
+    print(value);
+    categoriess[value].isSelected = true;
     notifyListeners();
   }
   getSelectedCategory(){
@@ -60,7 +100,7 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
   }
 
   validateText (String? value) {
-    
+    print('at validated text');
     if (value == null) {
       return "Input can not be empty";
     } 
@@ -76,9 +116,25 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
 
 
 
-  addCategory () {
-    categories.add(textFormValidator.text);
+  addCategory ()async {
+
+    Category category = Category(type: "user", label: textFormValidator.text.trim(), categoryid: "");
+    category.userid = FirebaseAuth.instance.currentUser?.uid;
     textFormValidator.clear();
+
+    try{
+      isCategoriesAdding = true;
+      notifyListeners();
+      await BudgetStorageController.addCategory(category);
+      isCategoriesAdding = false;
+      notifyListeners();
+
+
+
+    }catch(e){
+      showToast(e.toString());
+    }
+
     notifyListeners();
   }
   addSubCategory () {
@@ -87,12 +143,27 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
     textFormValidator.clear();
     notifyListeners();
   }
-  deleteCategory(int index){
-    categories.removeAt(index);
+  deleteCategory(int index)async{
+    try{
+      await BudgetStorageController.deleteCategory(categoriess[index].categoryid);
+      showToast("Category deleted successfully");
+
+      await getCategories();
+
+    }catch(e){
+      showToast(e.toString());
+    }
+
     notifyListeners();
   }
   deleteSubCategory(int index){
-    subcategories[getSelectedCategory()].removeAt(index);
+    if(categoriess[index].type.toLowerCase() == "global"){
+      showToast("Global category can't be deleted");
+    }
+    else{
+      subcategories[getSelectedCategory()].removeAt(index);
+
+    }
     notifyListeners();
   }
   validateBudget(String? value){

@@ -15,62 +15,144 @@ class AddCategory extends StatefulWidget {
 
 class _AddCategoryState extends State<AddCategory> {
   late BudgetCategoryViewModel budgetCategory;
+
   var formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    // ignore: unnecessary_new
+    new Future.delayed(Duration.zero, () {
+      budgetCategory =
+          Provider.of<BudgetCategoryViewModel>(context, listen: false);
+      budgetCategory.getCategories();
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     budgetCategory = Provider.of<BudgetCategoryViewModel>(context);
+
     return Scaffold(
-      resizeToAvoidBottomInset : false, 
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text('Add Budget Categories'),
       ),
       body: Column(
         children: [
-          Text("Select a Category"),
+          const Text("Select a Category"),
+          budgetCategory.isCategoriesLoading
+              ? const CircularProgressIndicator()
+              : Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Wrap(
+                    spacing: 12.0,
+                    children: List<GestureDetector>.generate(
+                      budgetCategory.categoriess.length + 1,
+                      (counter) => GestureDetector(
+                        onTap: () {
+                          if (counter == budgetCategory.categoriess.length) {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  // ignore: prefer_const_constructors
+                                  return MyDialog(isFromSubCategory: true);
+                                });
+                          } else {
+                            budgetCategory.updateSubCategories(counter);
+                          }
+                        },
+                        child: counter == budgetCategory.categoriess.length
+                            ? const Padding(
+                                padding: EdgeInsets.only(top: 12.0),
+                                child: Icon(Icons.add),
+                              )
+                            : Chip(
+                                deleteIcon: Icon(Icons.clear,
+                                    color: budgetCategory
+                                            .categoriess[counter].isSelected
+                                        ? Colors.black
+                                        : Colors.white),
+                                onDeleted: budgetCategory
+                                            .categoriess[counter].type
+                                            .toLowerCase() ==
+                                        "global"
+                                    ? null
+                                    : () {
+                                        budgetCategory.deleteCategory(counter);
+                                      },
+                                backgroundColor: budgetCategory
+                                        .categoriess[counter].isSelected
+                                    ? Colors.white
+                                    : Colors.blue,
+                                label: Text(
+                                  budgetCategory.categoriess[counter].label,
+                                  style: TextStyle(
+                                    color: budgetCategory
+                                            .categoriess[counter].isSelected
+                                        ? Colors.black
+                                        : Colors.white,
+                                  ),
+                                ),
+                              ),
+                      ),
+                    ),
+                  ),
+                ),
+          const Text("Select a Sub Category"),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Wrap(
               spacing: 12.0,
               children: List<GestureDetector>.generate(
-                budgetCategory.categories.length + 1,
+                budgetCategory.subcategories[
+                            budgetCategory.getSelectedCategory()] ==
+                        null
+                    ? 1
+                    : budgetCategory
+                            .subcategories[budgetCategory.getSelectedCategory()]
+                            .length +
+                        1,
                 (counter) => GestureDetector(
                   onTap: () {
-                    if (counter == budgetCategory.categories.length) {
+                    if (budgetCategory.isLastSubcategory(counter)) {
                       showDialog(
                           context: context,
                           builder: (context) {
                             // ignore: prefer_const_constructors
-                            return MyDialog();
+                            return MyDialog(isFromSubCategory: true);
                           });
                     } else {
-                      budgetCategory.updateCategories(counter);
+                      budgetCategory.updateSubCategories(counter);
                     }
                   },
-                  child: counter == budgetCategory.categories.length
+                  child: budgetCategory.isLastSubcategory(counter)
                       ? const Padding(
                           padding: EdgeInsets.only(top: 12.0),
                           child: Icon(Icons.add),
                         )
                       : Chip(
-                          deleteIcon:  Icon(
-                            Icons.clear,
-                            color:
-                            budgetCategory.selectedCategoryIndex == counter ?
-                            Colors.black:Colors.white
-                          ),
-                          onDeleted: (){
-                            budgetCategory.deleteCategory(counter);
-
+                          deleteIcon: Icon(Icons.clear,
+                              color: budgetCategory.selectedSubCategoryIndex ==
+                                      counter
+                                  ? Colors.black
+                                  : Colors.white),
+                          onDeleted: () {
+                            budgetCategory.deleteSubCategory(counter);
                           },
                           backgroundColor:
-                              budgetCategory.selectedCategoryIndex == counter
+                              budgetCategory.selectedSubCategoryIndex == counter
                                   ? Colors.white
                                   : Colors.blue,
                           label: Text(
-                            budgetCategory.categories[counter],
+                            budgetCategory.subcategories[budgetCategory
+                                    .getSelectedCategory()][counter]
+                                .toString(),
                             style: TextStyle(
-                              color: budgetCategory.selectedCategoryIndex ==
+                              color: budgetCategory.selectedSubCategoryIndex ==
                                       counter
                                   ? Colors.black
                                   : Colors.white,
@@ -81,100 +163,41 @@ class _AddCategoryState extends State<AddCategory> {
               ),
             ),
           ),
-          Text("Select a Sub Category"),
-
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Wrap(
-              spacing: 12.0,
-              children: List<GestureDetector>.generate(
-                budgetCategory.subcategories[budgetCategory.getSelectedCategory()] == null ?1: budgetCategory.subcategories[budgetCategory.getSelectedCategory()].length+1,
-                    (counter) => GestureDetector(
-                  onTap: () {
-                    if (budgetCategory.isLastSubcategory(counter)) {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            // ignore: prefer_const_constructors
-                            return MyDialog(isFromSubCategory:true);
-                          });
-                    } else {
-                      budgetCategory.updateSubCategories(counter);
-                    }
-                  },
-                  child: budgetCategory.isLastSubcategory(counter)
-                      ? const Padding(
-                    padding: EdgeInsets.only(top: 12.0),
-                    child: Icon(Icons.add),
-                  )
-                      : Chip(
-                    deleteIcon:  Icon(
-                        Icons.clear,
-                        color:
-                        budgetCategory.selectedSubCategoryIndex == counter ?
-                        Colors.black:Colors.white
-                    ),
-                    onDeleted: (){
-                      budgetCategory.deleteSubCategory(counter);
-
-
-                    },
-                    backgroundColor:
-                    budgetCategory.selectedSubCategoryIndex == counter
-                        ? Colors.white
-                        : Colors.blue,
-                    label: Text(
-                      budgetCategory.subcategories[budgetCategory.getSelectedCategory()][counter].toString(),
-                      style: TextStyle(
-                        color: budgetCategory.selectedSubCategoryIndex ==
-                            counter
-                            ? Colors.black
-                            : Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Form(
               key: formKey,
               child: TextFormField(
-                
                 keyboardType: TextInputType.number,
                 validator: (value) => budgetCategory.validateBudget(value),
                 controller: budgetCategory.budgetController,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(Icons.attach_money),
-                    labelText: "Budget",
+                  labelText: "Budget",
                   border: OutlineInputBorder(),
-
-
-              ),
+                ),
               ),
             ),
           ),
-          ElevatedButton(onPressed: (){
-            if(formKey.currentState!.validate()){}
-          }, child: Text("Submit"))
+          ElevatedButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {}
+              },
+              child: const Text("Submit"))
         ],
       ),
     );
   }
 }
 
+// ignore: must_be_immutable
 class MyDialog extends StatelessWidget {
   //create a text editing controller, pass it to right place and validate the text
   //late Controller con;
   late BudgetCategoryViewModel budgetCategory;
 
   var formKey = GlobalKey<FormState>();
-  MyDialog({
-    Key? key,
-    this.isFromSubCategory = false
-  }) : super(key: key);
+  MyDialog({Key? key, this.isFromSubCategory = false}) : super(key: key);
   final bool isFromSubCategory;
   @override
   Widget build(BuildContext context) {
@@ -193,7 +216,7 @@ class MyDialog extends StatelessWidget {
                 icon: const Icon(Icons.close),
               ),
             ),
-            Text('Add a Category'),
+            const Text('Add a Category'),
           ],
         ),
         content: Form(
@@ -205,22 +228,30 @@ class MyDialog extends StatelessWidget {
           ),
         ),
         actions: [
-          ElevatedButton(
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
-                if(isFromSubCategory){
-                  budgetCategory.addSubCategory();
-                }
-                else{
-                  budgetCategory.addCategory();
-                }
-                Navigator.pop(context);
-              }
+          budgetCategory.isCategoriesAdding
+              ? const CircularProgressIndicator(
+                  backgroundColor: Colors.white,
+                )
+              : ElevatedButton(
+                  onPressed: () async {
+                    if (formKey.currentState!.validate()) {
+                      // if(isFromSubCategory){
+                      //   // budgetCategory.addSubCategory();
+                      //   budgetCategory.addCategory();
+                      //
+                      // }
+                      // else{
+                      //   budgetCategory.addCategory();
+                      // }
+                      await budgetCategory.addCategory();
+                      budgetCategory.getCategories();
+                      Navigator.pop(context);
+                    }
 
-              //Navigator.pop(context);
-            },
-            child: const Text('Submit'),
-          ),
+                    //Navigator.pop(context);
+                  },
+                  child: const Text('Submit'),
+                ),
         ],
       );
     });

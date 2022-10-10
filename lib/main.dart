@@ -163,7 +163,8 @@ class Capstone extends StatelessWidget {
           BudgetsScreen.routeName: (context) => const BudgetsScreen(),
           AddBudgetScreen.routeName: (context) => const AddBudgetScreen(),
           BudgetDetailScreen.routeName: (context) => const BudgetDetailScreen(),
-          AddCategory.routeName: (context) => const AddCategory(),
+          // ignore: prefer_const_constructors
+          AddCategory.routeName: (context) =>  AddCategory(),
         },
       ),
     );
