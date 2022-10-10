@@ -86,35 +86,41 @@ class _UserListState extends State<UserListScreen> {
             children: [
               Expanded(
                 flex: 1,
-                child: Transform.scale(
-                  scale: 0.7,
-                  child: RadioListTile<SearchOption>(
-                    title: Text("email"),
-                    value: SearchOption.email,
-                    groupValue: searchOption,
-                    onChanged: (value) {
-                      setState(() {
-                        searchOption = value!;
-                        con.searchOption = searchOption;
-                      });
-                    },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 75),
+                  child: Transform.scale(
+                    scale: 0.7,
+                    child: RadioListTile<SearchOption>(
+                      title: Text("email"),
+                      value: SearchOption.email,
+                      groupValue: searchOption,
+                      onChanged: (value) {
+                        setState(() {
+                          searchOption = value!;
+                          con.searchOption = searchOption;
+                        });
+                      },
+                    ),
                   ),
                 ),
               ),
               Expanded(
                 flex: 1,
-                child: Transform.scale(
-                  scale: 0.7,
-                  child: RadioListTile<SearchOption>(
-                    title: Text("name"),
-                    value: SearchOption.name,
-                    groupValue: searchOption,
-                    onChanged: (value) {
-                      setState(() {
-                        searchOption = value!;
-                        con.searchOption = searchOption;
-                      });
-                    },
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 75),
+                  child: Transform.scale(
+                    scale: 0.7,
+                    child: RadioListTile<SearchOption>(
+                      title: Text("name"),
+                      value: SearchOption.name,
+                      groupValue: searchOption,
+                      onChanged: (value) {
+                        setState(() {
+                          searchOption = value!;
+                          con.searchOption = searchOption;
+                        });
+                      },
+                    ),
                   ),
                 ),
               ),
@@ -158,54 +164,59 @@ class _UserListState extends State<UserListScreen> {
             ),
           ),
           Expanded(
-            child: ListView.separated(
-              separatorBuilder: (context, index) => SizedBox(height: 10),
-              padding: EdgeInsets.all(10),
-              itemCount: con.userList.length,
-              itemBuilder: (context, index) {
-                return Material(
-                  elevation: 17,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.brown[400],
-                      border: Border.all(width: 4, color: Colors.green),
-                    ),
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.brown.shade100,
-                        child: Text(
-                          con.userList[index].name == ""
-                              ? "N/A"
-                              : con.userList[index].name[0].toUpperCase(),
-                          style: TextStyle(
-                            fontSize: 20.0,
-                            fontFamily: 'Satisfy-Regular',
-                            color: Colors.blueAccent,
+            child: con.userList.isEmpty
+                ? Text(
+                    'No User found!',
+                    style: Theme.of(context).textTheme.headline6,
+                  )
+                : ListView.separated(
+                    separatorBuilder: (context, index) => SizedBox(height: 10),
+                    padding: EdgeInsets.all(10),
+                    itemCount: con.userList.length,
+                    itemBuilder: (context, index) {
+                      return Material(
+                        elevation: 17,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.brown[400],
+                            border: Border.all(width: 4, color: Colors.green),
+                          ),
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor: Colors.brown.shade100,
+                              child: Text(
+                                con.userList[index].name == ""
+                                    ? "N/A"
+                                    : con.userList[index].name[0].toUpperCase(),
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontFamily: 'Satisfy-Regular',
+                                  color: Colors.blueAccent,
+                                ),
+                              ),
+                              radius: 50,
+                            ),
+                            title: Text(
+                              con.userList[index].name == ""
+                                  ? "N/A"
+                                  : con.userList[index].name,
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                color: Colors.amber[600],
+                              ),
+                            ),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(con.userList[index].email),
+                              ],
+                            ),
+                            onTap: () => con.seeProfile(index),
                           ),
                         ),
-                        radius: 50,
-                      ),
-                      title: Text(
-                        con.userList[index].name == ""
-                            ? "N/A"
-                            : con.userList[index].name,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          color: Colors.amber[600],
-                        ),
-                      ),
-                      subtitle: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(con.userList[index].email),
-                        ],
-                      ),
-                      onTap: () => con.seeProfile(index),
-                    ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           ),
         ],
       ),
@@ -274,7 +285,7 @@ class _Controller {
   }
 
   void saveSearchKey(String? value) {
-    searchKeyString = value;
+    searchKeyString = value!.toLowerCase();
   }
 
   Future<void> search() async {
@@ -287,7 +298,6 @@ class _Controller {
       newUserList = await FirestoreController.searchUsersByEmail(
           searchKey: searchKeyString!);
     } else {
-      print("true");
       newUserList = await FirestoreController.searchUsersByName(
           searchKey: searchKeyString!);
     }

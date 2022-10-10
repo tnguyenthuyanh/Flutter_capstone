@@ -405,7 +405,7 @@ class FirestoreController {
         .collection(Constant.USERPROFILE_COLLECTION)
         .where(usr.UserInfo.SEARCH_NAME, arrayContains: searchKey)
         .get();
-    print(querySnapshot.size);
+
     querySnapshot.docs.forEach((doc) {
       var p = usr.UserInfo.fromFirestoreDoc(
         doc: doc.data() as Map<String, dynamic>,

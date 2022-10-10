@@ -72,7 +72,7 @@ class UserInfo {
   static const NAME = 'name';
   static const BIO = 'bio';
   static const SEARCH_EMAIL = 'search_email';
-  static const SEARCH_NAME = 'search_email';
+  static const SEARCH_NAME = 'search_name';
 
   String? docId; //firestore auto generated id
   late String email;
