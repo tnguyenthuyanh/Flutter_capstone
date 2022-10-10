@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -56,13 +57,21 @@ class _PayoffState extends State<PayoffScreen> {
               validator: Debt.validateInterest,
             ),
             TextFormField(
+              //enabled: false,
+              style: Theme.of(context).textTheme.bodyText1,
+              decoration: const InputDecoration(),
+              initialValue: "Minimum payment: " + con.minPayment(),
+              keyboardType: TextInputType.number,
+              maxLines: 1,
+            ),
+            TextFormField(
               style: Theme.of(context).textTheme.bodyText1,
               decoration: const InputDecoration(
                 hintText: 'Enter payment amount',
               ),
               keyboardType: TextInputType.number,
               maxLines: 1,
-              validator: _Controller.validatePayment,
+              //validator: _Controller.validatePayment,
               onSaved: con.savePayment,
             ),
             ElevatedButton(
@@ -76,23 +85,32 @@ class _PayoffState extends State<PayoffScreen> {
 
 class _Controller {
   _PayoffState state;
-  // late List<dynamic> debtList;
+  late Debt tempDebt;
 
   _Controller(this.state) {
-    Debt debt = state.widget.debt;
+    tempDebt = Debt.clone(state.widget.debt);
     double payment = 0.0;
   }
 
-  static String? validatePayment(String? value) {
-    return (value == null || value.trim().length < 2)
+  /*static String? validatePayment(String? value) {
+    return (value == null ||
+            value.trim().compareTo(minPayment().toString()) < 0)
         ? "Title too short"
         : null;
-  }
+  }*/
 
   void savePayment(String? value) {
     if (value != null) {
       double payment = double.parse(value);
     }
+  }
+
+  String minPayment() {
+    double balance = double.parse(state.widget.debt.balance);
+    double intrest = double.parse(state.widget.debt.interest) / 100;
+    double minPayment = balance * intrest / 12.0;
+    String minPay = minPayment.toStringAsFixed(2);
+    return minPay;
   }
 
   void generateSchedule() {}
