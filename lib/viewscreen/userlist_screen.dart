@@ -28,6 +28,7 @@ class _UserListState extends State<UserListScreen> {
   late _Controller con;
   var formKey = GlobalKey<FormState>();
   Filter filterValue = Filter.AllUsers;
+  SearchOption searchOption = SearchOption.email;
 
   @override
   void initState() {
@@ -45,6 +46,80 @@ class _UserListState extends State<UserListScreen> {
       ),
       body: Column(
         children: [
+          Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Form(
+                  key: formKey,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(15, 7, 0, 0),
+                    child: Container(
+                      height: 30,
+                      child: TextFormField(
+                        style: TextStyle(fontSize: 12.0, height: 1.35),
+                        decoration: InputDecoration(
+                          hintText: 'Search',
+                          fillColor: Theme.of(context).backgroundColor,
+                          filled: true,
+                        ),
+                        autocorrect: true,
+                        onSaved: con.saveSearchKey,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: IconButton(
+                  onPressed: con.search,
+                  icon: Icon(
+                    Icons.search,
+                    size: 20,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: Transform.scale(
+                  scale: 0.7,
+                  child: RadioListTile<SearchOption>(
+                    title: Text("email"),
+                    value: SearchOption.email,
+                    groupValue: searchOption,
+                    onChanged: (value) {
+                      setState(() {
+                        searchOption = value!;
+                        con.searchOption = searchOption;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Transform.scale(
+                  scale: 0.7,
+                  child: RadioListTile<SearchOption>(
+                    title: Text("name"),
+                    value: SearchOption.name,
+                    groupValue: searchOption,
+                    onChanged: (value) {
+                      setState(() {
+                        searchOption = value!;
+                        con.searchOption = searchOption;
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
           Align(
             alignment: Alignment.centerRight,
             child: Padding(
@@ -143,11 +218,14 @@ class _Controller {
   late List<UserInfo> userList;
   late String currentUID;
   late Filter filterValue;
+  String? searchKeyString;
+  late SearchOption searchOption;
 
   _Controller(this.state) {
     userList = state.widget.userList;
     currentUID = state.widget.currentUID;
     filterValue = state.filterValue;
+    searchOption = state.searchOption;
   }
 
   void seeProfile(int index) async {
@@ -192,6 +270,29 @@ class _Controller {
     state.render(() {
       filterValue = value!;
       userList = filteredUserList;
+    });
+  }
+
+  void saveSearchKey(String? value) {
+    searchKeyString = value;
+  }
+
+  Future<void> search() async {
+    FormState? currentState = state.formKey.currentState;
+    if (currentState == null) return;
+    currentState.save();
+
+    List<UserInfo> newUserList;
+    if (searchOption == SearchOption.email) {
+      newUserList = await FirestoreController.searchUsersByEmail(
+          searchKey: searchKeyString!);
+    } else {
+      print("true");
+      newUserList = await FirestoreController.searchUsersByName(
+          searchKey: searchKeyString!);
+    }
+    state.render(() {
+      userList = newUserList;
     });
   }
 }

@@ -79,8 +79,13 @@ class FirestoreController {
         .collection(Constant.USERPROFILE_COLLECTION)
         .where('uid', isEqualTo: user.uid)
         .get();
-    if (querySnapshot.size == 0)
-      // ignore: curly_braces_in_flow_control_structures
+    if (querySnapshot.size == 0) {
+      List<String> searchOptions = [];
+      String temp = "";
+      for (int i = 0; i < user.email!.length; i++) {
+        temp = temp + user.email![i].toLowerCase();
+        searchOptions.add(temp);
+      }
       await FirebaseFirestore.instance
           .collection(Constant.USERPROFILE_COLLECTION)
           .add({
@@ -88,7 +93,10 @@ class FirestoreController {
         'bio': "",
         'email': user.email,
         'uid': user.uid,
+        'search_name': [],
+        'search_email': searchOptions,
       });
+    }
   }
 
   static Future<usr.UserInfo> getProfile({
@@ -127,10 +135,17 @@ class FirestoreController {
         .where('uid', isEqualTo: uid)
         .get();
 
+    List<String> searchOptions = [];
+    String temp = "";
+    for (int i = 0; i < name.length; i++) {
+      temp = temp + name[i].toLowerCase();
+      searchOptions.add(temp);
+    }
+
     await FirebaseFirestore.instance
         .collection(Constant.USERPROFILE_COLLECTION)
         .doc(querySnapshot.docs[0].id)
-        .update({'name': name, 'bio': bio});
+        .update({'name': name, 'bio': bio, 'search_name': searchOptions});
   }
 
   static Future<List<usr.UserInfo>> getUserList(
@@ -358,5 +373,47 @@ class FirestoreController {
       }
     }
     return result;
+  }
+
+  static Future<List<usr.UserInfo>> searchUsersByEmail({
+    required String searchKey,
+  }) async {
+    var results = <usr.UserInfo>[];
+
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERPROFILE_COLLECTION)
+        .where(usr.UserInfo.SEARCH_EMAIL, arrayContains: searchKey)
+        .get();
+
+    querySnapshot.docs.forEach((doc) {
+      var p = usr.UserInfo.fromFirestoreDoc(
+        doc: doc.data() as Map<String, dynamic>,
+        docId: doc.id,
+      );
+      if (p != null) results.add(p);
+    });
+
+    return results;
+  }
+
+  static Future<List<usr.UserInfo>> searchUsersByName({
+    required String searchKey,
+  }) async {
+    var results = <usr.UserInfo>[];
+
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERPROFILE_COLLECTION)
+        .where(usr.UserInfo.SEARCH_NAME, arrayContains: searchKey)
+        .get();
+    print(querySnapshot.size);
+    querySnapshot.docs.forEach((doc) {
+      var p = usr.UserInfo.fromFirestoreDoc(
+        doc: doc.data() as Map<String, dynamic>,
+        docId: doc.id,
+      );
+      if (p != null) results.add(p);
+    });
+
+    return results;
   }
 }

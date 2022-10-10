@@ -71,12 +71,16 @@ class UserInfo {
   static const EMAIL = 'email';
   static const NAME = 'name';
   static const BIO = 'bio';
+  static const SEARCH_EMAIL = 'search_email';
+  static const SEARCH_NAME = 'search_email';
 
   String? docId; //firestore auto generated id
   late String email;
   late String name;
   late String bio;
   late String uid;
+  late List<dynamic> search_email;
+  late List<dynamic> search_name;
 
   UserInfo({
     this.docId,
@@ -84,7 +88,23 @@ class UserInfo {
     this.name = '',
     this.bio = '',
     this.email = '',
-  });
+    List<dynamic>? search_email,
+    List<dynamic>? search_name,
+  }) {
+    this.search_email = search_email == null ? [] : [...search_email];
+    this.search_name = search_name == null ? [] : [...search_name];
+  }
+
+  Map<String, dynamic> toFirestoreDoc() {
+    return {
+      UID: this.uid,
+      EMAIL: this.email,
+      NAME: this.name,
+      BIO: this.bio,
+      SEARCH_EMAIL: this.search_email,
+      SEARCH_NAME: this.search_name,
+    };
+  }
 
   static UserInfo? fromFirestoreDoc({
     required Map<String, dynamic> doc,
@@ -99,6 +119,8 @@ class UserInfo {
       name: doc[NAME] ??= 'N/A', // if null give a value as 'N/A'
       bio: doc[BIO] ??= 'N/A',
       email: doc[EMAIL],
+      search_email: doc[SEARCH_EMAIL] ??= [],
+      search_name: doc[SEARCH_NAME] ??= [],
     );
   }
 }
