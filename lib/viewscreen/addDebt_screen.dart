@@ -46,19 +46,19 @@ class _AddDebtState extends State<AddDebtScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Add A Debt'),
-          actions: [
-            IconButton(
-              onPressed: con.save,
-              icon: const Icon(Icons.check),
-            )
-          ],
-        ),
-        body: Form(
-          key: formKey,
-          child: SingleChildScrollView(
-              child: Center(
+      appBar: AppBar(
+        title: const Text('Add A Debt'),
+        actions: [
+          IconButton(
+            onPressed: con.save,
+            icon: const Icon(Icons.check),
+          )
+        ],
+      ),
+      body: Form(
+        key: formKey,
+        child: SingleChildScrollView(
+          child: Center(
             child: Column(
               children: [
                 TextFormField(
@@ -89,8 +89,10 @@ class _AddDebtState extends State<AddDebtScreen> {
                 ),
               ],
             ),
-          )),
-        ));
+          ),
+        ),
+      ),
+    );
   }
 }
 

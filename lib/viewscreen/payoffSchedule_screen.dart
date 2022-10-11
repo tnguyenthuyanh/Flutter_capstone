@@ -1,14 +1,17 @@
-import 'dart:ffi';
 import 'dart:math';
 
+import 'package:cap_project/viewscreen/view/view_util.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../model/debt.dart';
 
 class PayoffScreen extends StatefulWidget {
-  const PayoffScreen({required this.debt, Key? key}) : super(key: key);
+  const PayoffScreen({required this.debt, required this.user, Key? key})
+      : super(key: key);
 
   final Debt debt;
+  final User user;
 
   static const routeName = '/payOffScreen';
 
@@ -20,6 +23,7 @@ class PayoffScreen extends StatefulWidget {
 
 class _PayoffState extends State<PayoffScreen> {
   late _Controller con;
+  late String email;
   var formKey = GlobalKey<FormState>();
   bool showSchedule = false;
 
@@ -27,6 +31,7 @@ class _PayoffState extends State<PayoffScreen> {
   void initState() {
     super.initState();
     con = _Controller(this);
+    email = widget.user.email ?? 'No email';
   }
 
   void render(fn) => setState(fn);
@@ -35,48 +40,75 @@ class _PayoffState extends State<PayoffScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.debt.title + "Pay off schedule"),
+        title: Text(widget.debt.title + ' Pay off schedule'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            TextFormField(
-              enabled: false,
-              style: Theme.of(context).textTheme.bodyText1,
-              decoration: const InputDecoration(),
-              initialValue: "Balance: \$" + widget.debt.balance,
-            ),
-            TextFormField(
-              enabled: false,
-              style: Theme.of(context).textTheme.bodyText1,
-              decoration: const InputDecoration(),
-              initialValue: "Interest Rate: " + widget.debt.interest + '%',
-              keyboardType: TextInputType.number,
-              maxLines: 1,
-              validator: Debt.validateInterest,
-            ),
-            TextFormField(
-              //enabled: false,
-              style: Theme.of(context).textTheme.bodyText1,
-              decoration: const InputDecoration(),
-              initialValue: "Minimum payment: " + con.minPayment(),
-              keyboardType: TextInputType.number,
-              maxLines: 1,
-            ),
-            TextFormField(
-              style: Theme.of(context).textTheme.bodyText1,
-              decoration: const InputDecoration(
-                hintText: 'Enter payment amount',
+      body: Form(
+        key: formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TextFormField(
+                enabled: false,
+                style: Theme.of(context).textTheme.bodyText1,
+                initialValue: 'Balance: \$' + widget.debt.balance,
               ),
-              keyboardType: TextInputType.number,
-              maxLines: 1,
-              //validator: _Controller.validatePayment,
-              onSaved: con.savePayment,
-            ),
-            ElevatedButton(
-                onPressed: con.generateSchedule, child: Text('Submit'))
-          ],
+              TextFormField(
+                enabled: false,
+                style: Theme.of(context).textTheme.bodyText1,
+                initialValue: 'Interest Rate: \$' + widget.debt.interest,
+              ),
+              TextFormField(
+                enabled: false,
+                style: Theme.of(context).textTheme.bodyText1,
+                initialValue: 'Minimum payment: \$' + con.setMinPayment(),
+              ),
+              !showSchedule
+                  ? Column(
+                      children: [
+                        TextFormField(
+                          style: Theme.of(context).textTheme.bodyText1,
+                          decoration: const InputDecoration(
+                              hintText: 'Enter payment amount'),
+                          keyboardType: TextInputType.number,
+                          validator: Debt.validatePayment,
+                          onSaved: con.savePayment,
+                        ),
+                        ElevatedButton(
+                          onPressed: con.generateSchedule,
+                          child: const Text('Submit'),
+                        ),
+                      ],
+                    )
+                  : Column(
+                      children: [
+                        TextFormField(
+                          enabled: false,
+                          style: Theme.of(context).textTheme.bodyText1,
+                          initialValue: 'Months to pay off: ' +
+                              con.payments.toStringAsFixed(0),
+                        ),
+                        TextFormField(
+                          enabled: false,
+                          style: Theme.of(context).textTheme.bodyText1,
+                          initialValue: 'Total interest paid: \$' +
+                              con.interestPaid.toStringAsFixed(0),
+                        ),
+                        TextFormField(
+                          style: Theme.of(context).textTheme.bodyText1,
+                          decoration: const InputDecoration(
+                              hintText: 'Enter payment amount'),
+                          keyboardType: TextInputType.number,
+                          validator: Debt.validatePayment,
+                          onSaved: con.savePayment,
+                        ),
+                        ElevatedButton(
+                            onPressed: con.generateSchedule,
+                            child: const Text('Submit'))
+                      ],
+                    )
+            ],
+          ),
         ),
       ),
     );
@@ -86,34 +118,36 @@ class _PayoffState extends State<PayoffScreen> {
 class _Controller {
   _PayoffState state;
   late Debt tempDebt;
+  late double payments;
+  late double interestPaid;
+  late double paymentAmount;
+  late double minPayment;
+  late String payAmt;
 
   _Controller(this.state) {
     tempDebt = Debt.clone(state.widget.debt);
-    double payment = 0.0;
+    payments = 0;
+    interestPaid = 0.0;
+    paymentAmount = 0.0;
+    minPayment = 0.0;
+    payAmt = '';
   }
-
-  /*static String? validatePayment(String? value) {
-    return (value == null ||
-            value.trim().compareTo(minPayment().toString()) < 0)
-        ? "Title too short"
-        : null;
-  }*/
 
   void savePayment(String? value) {
     if (value != null) {
-      double payment = double.parse(value);
+      tempDebt.payment = value;
     }
   }
 
-  String minPayment() {
+  String setMinPayment() {
     if (tempDebt.category == 'Credit Card') {
-      double minPayment = double.parse(tempDebt.balance) * .0255;
+      minPayment = double.parse(tempDebt.balance) * .0255;
       String minPay = minPayment.toStringAsFixed(2);
       return minPay;
     } else {
       double balance = double.parse(state.widget.debt.balance);
       double intrest = double.parse(state.widget.debt.interest) / 100;
-      double minPayment = balance *
+      minPayment = balance *
           intrest /
           12 *
           (pow((1 + intrest / 12), (30 * 12))) /
@@ -123,7 +157,29 @@ class _Controller {
     }
   }
 
-  void generateSchedule() {}
+  void generateSchedule() {
+    paymentAmount = double.parse(tempDebt.payment);
+    if (paymentAmount < minPayment) {
+      showSnackBar(
+        context: state.context,
+        seconds: 10,
+        message: 'Payment amount is too small \n payment  = ' +
+            paymentAmount.toStringAsFixed(2) +
+            '\n minimum = ' +
+            minPayment.toStringAsFixed(2),
+      );
+      return;
+    } else {
+      double balance = double.parse(state.widget.debt.balance);
+      double intrest = double.parse(state.widget.debt.interest) / 100;
+      payments = ((log(paymentAmount / intrest)) /
+          (paymentAmount / intrest + balance) /
+          log(1 + intrest));
+      interestPaid = payments * paymentAmount - balance;
+      state.showSchedule = true;
+      state.render(() {});
+    }
+  }
   /*double balance = double.parse(state.widget.debt.balance);
     double intrest = double.parse(state.widget.debt.interest) / 100;
     double minPayment = balance * intrest / 12.0;

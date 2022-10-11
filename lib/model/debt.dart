@@ -1,10 +1,4 @@
-enum DocKeyDebt {
-  createdby,
-  title,
-  category,
-  balance,
-  interest,
-}
+enum DocKeyDebt { createdby, title, category, balance, interest, payment }
 
 class Debt {
   String? docId;
@@ -13,6 +7,7 @@ class Debt {
   late String category;
   late String balance;
   late String interest;
+  late String payment;
 
   Debt({
     this.docId,
@@ -21,6 +16,7 @@ class Debt {
     this.category = '',
     this.balance = '',
     this.interest = '',
+    this.payment = '',
   });
 
   Debt.clone(Debt d) {
@@ -30,6 +26,7 @@ class Debt {
     category = d.category;
     balance = d.balance;
     interest = d.interest;
+    payment = d.payment;
   }
 
   void copyFrom(Debt d) {
@@ -39,6 +36,7 @@ class Debt {
     category = d.category;
     balance = d.balance;
     interest = d.interest;
+    payment = d.payment;
   }
 
   //serialization
@@ -49,6 +47,7 @@ class Debt {
       DocKeyDebt.category.name: category,
       DocKeyDebt.balance.name: balance,
       DocKeyDebt.interest.name: interest,
+      DocKeyDebt.payment.name: payment
     };
   }
 
@@ -62,6 +61,7 @@ class Debt {
       category: doc[DocKeyDebt.category.name] ??= 'N/A',
       balance: doc[DocKeyDebt.balance.name] ??= 'N/A',
       interest: doc[DocKeyDebt.interest.name] ??= 'N/A',
+      payment: doc[DocKeyDebt.payment.name] ??= 'N/A',
     );
   }
 
@@ -71,13 +71,19 @@ class Debt {
         : null;
   }
 
+  static String? validatePayment(String? value) {
+    return (value == null || value.trim().length < 2)
+        ? "Payment too small"
+        : null;
+  }
+
   static String? validateBalance(String? value) {
     var bal = double.parse(value!);
-    return (value == null || bal < 1) ? "Balance too small" : null;
+    return (bal < 1) ? "Balance too small" : null;
   }
 
   static String? validateInterest(String? value) {
     var bal = double.parse(value!);
-    return (value == null || bal < .1) ? "Balance too small" : null;
+    return (bal < .1) ? "Balance too small" : null;
   }
 }

@@ -16,9 +16,7 @@ import 'package:provider/provider.dart';
 import 'View_Model/budget_data.dart';
 import 'View_Model/budgetlistmode_data.dart';
 import 'firebase_options.dart';
-import 'controller/auth_controller.dart';
 import 'package:oktoast/oktoast.dart';
-import 'package:provider/provider.dart';
 import 'model/constant.dart';
 import 'viewscreen/addbudget_screen.dart';
 import 'viewscreen/budgetdetail_screen.dart';
@@ -123,8 +121,10 @@ class Capstone extends StatelessWidget {
               return const ErrorScreen('args is null for PayoffScreen');
             } else {
               var argument = args as Map;
+              var user = argument[ArgKey.user];
               var debt = argument[ArgKey.singleDebt];
               return PayoffScreen(
+                user: user,
                 debt: debt,
               );
             }

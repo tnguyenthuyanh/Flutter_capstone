@@ -208,7 +208,10 @@ class _Controller {
 
   void payOff() async {
     await Navigator.pushNamed(state.context, PayoffScreen.routeName,
-        arguments: {ArgKey.singleDebt: state.widget.debt});
+        arguments: {
+          ArgKey.user: state.widget.user,
+          ArgKey.singleDebt: state.widget.debt
+        });
     state.render(() {}); //rerender the screen
   }
 }
