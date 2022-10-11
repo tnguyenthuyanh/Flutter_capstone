@@ -1,6 +1,8 @@
+import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/addPurchase_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import '../model/constant.dart';
 import '../model/purchase.dart';
@@ -74,7 +76,7 @@ class _PurchasesState extends State<PurchasesScreen> {
                     title: Text(widget.userP.purchases[index].amount),
                     subtitle: Text(widget.userP.purchases[index].note),
                     onLongPress: () => con.onLongPress(index),
-                    onTap: () => con.onTap(index),
+                    onTap: () => con.delete(index),
                   ),
                 );
               },
@@ -133,6 +135,11 @@ class _Controller {
     state.render(() {
       selected.clear();
     });
+  }
+
+  void delete(int index) async {
+    Purchase purchase = state.widget.userP.purchases[index];
+    await FirestoreController.deleteTransaction(purchase);
   }
 
   void cancelDelete() {
