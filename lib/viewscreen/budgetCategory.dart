@@ -39,6 +39,7 @@ class _AddCategoryState extends State<AddCategory> {
     budgetCategory = Provider.of<BudgetCategoryViewModel>(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       appBar: AppBar(
         title: const Text('Add Budget Categories'),
       ),

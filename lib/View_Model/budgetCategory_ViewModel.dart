@@ -134,7 +134,6 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
   }
 
   validateText (String? value) {
-    print('at validated text');
     if (value == null) {
       return "Input can not be empty";
     } 
@@ -238,11 +237,12 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
   }
   validateBudget(String? value){
     if(value == null) return "Number is not valid";
+    // ignore: unnecessary_null_comparison
     if(value.isEmpty == null) return "Number is not valid";
 
     try{
       double.parse(value!);
-      return "";
+      return null;
 
     }catch(e){
       return "Number is not valid";
