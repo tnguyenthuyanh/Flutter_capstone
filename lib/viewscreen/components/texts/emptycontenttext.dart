@@ -7,9 +7,11 @@ class EmptyContentText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'No Budgets to show',
-      style: Theme.of(context).textTheme.headline5,
+    return Center(
+      child: Text(
+        'No Budgets to show',
+        style: Theme.of(context).textTheme.headline5,
+      ),
     );
   }
 }

@@ -40,7 +40,7 @@ class BudgetData extends ChangeNotifier {
     _budgetList.add(budget);
 
     // if the new budget is set to current, set update other budgets, if any
-    if (budget.isCurrent!) {
+    if (budget.isCurrent! || _currentBudget == null) {
       setCurrentBudget(budget);
     }
 
@@ -80,11 +80,24 @@ class BudgetData extends ChangeNotifier {
   }
 
   void confirmDeletion() {
+    print("Before deletion:");
+    printAllBudgets();
+
     for (Budget budget in _budgetList.deletionList) {
       fsDeleteBudget(budget);
+
+      if (budget == _currentBudget) {
+        _currentBudget = null;
+      }
+      if (budget == selectedBudget) {
+        _selectedBudget = null;
+      }
     }
 
     _budgetList.commitDeletion();
+
+    print("After deletion: ");
+    printAllBudgets();
 
     notifyListeners();
   }
@@ -131,5 +144,27 @@ class BudgetData extends ChangeNotifier {
 
   void fsDeleteBudget(Budget budget) {
     FirestoreController.deleteBudget(budget: budget);
+  }
+
+  // ---- Debug Methods ----------------------------------------------
+  void printAllBudgets() {
+    for (Budget budget in budgets) {
+      print("Budget: ");
+      print(budget.serialize());
+    }
+
+    if (_currentBudget != null) {
+      print("Current: ");
+      print(currentBudget!.serialize());
+    } else {
+      print("Current budget is null");
+    }
+
+    if (_selectedBudget != null) {
+      print("Selected Budget: ");
+      print(selectedBudget!.serialize());
+    } else {
+      print("Selected Budget is null");
+    }
   }
 }

@@ -5,12 +5,14 @@ import 'package:flutter/material.dart';
 import '../View_Model/budget_data.dart';
 import '../View_Model/validator.dart';
 import '../model/budget.dart';
+import 'components/buttons/savebutton.dart';
+import 'components/sizedboxes/fullwidth_sizedbox.dart';
+import 'components/textfields/budgettitle_textfield.dart';
+import 'components/texts/titletext.dart';
 
 class AddBudgetScreen extends StatefulWidget {
   static const routeName = '/addBudgetScreen';
-
   const AddBudgetScreen({Key? key}) : super(key: key);
-
   @override
   State<StatefulWidget> createState() => _AddBudgetScreenState();
 }
@@ -19,11 +21,15 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
   // UI String values
   final String _screenTitle = 'Add Budget';
   final String _titleFieldHint = 'Title';
+  final String _useBudgetText =
+      "We'll use this template to create your monthly budgets";
+  final String _currentSwitchLabel = "Set as default";
 
   // state vars
   late _Controller _con;
   String? _title;
   bool _current = false;
+  var _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -35,53 +41,62 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
     setState(fn);
   }
 
-  var _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
+    // _current = Provider.of<BudgetData>(context).numberOfBudgets == 0;
+
     return Scaffold(
+      //        APPBAR      ----------------------------------------------------
       appBar: AppBar(
-        title: Text(_screenTitle),
+        title: TitleText(title: _screenTitle),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: SingleChildScrollView(
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                // title field
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: TextFormField(
-                    decoration: InputDecoration(hintText: _titleFieldHint),
-                    validator: Validator.validateBudgetTitle,
-                    onSaved: _con.onSaveTitle,
+      //        BODY      ------------------------------------------------------
+      body: Consumer<BudgetData>(builder: (context, budgets, child) {
+        return Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  //        BUDGET TITLE      ----------------------------------
+                  FullWidthSizedBox(
+                    child: BudgetTitleTextField(
+                      onSaved: _con.onSaveTitle,
+                    ),
                   ),
-                ),
-                // is current switch
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    children: [
-                      Text("Use this budget"),
-                      Switch(
-                        value: _current,
-                        onChanged: _con.onCurrentChanged,
-                      ),
-                    ],
+                  //        IS CURRENT      ------------------------------------
+                  // if this is the first budget added for the user, it should
+                  // be set to current
+                  budgets.numberOfBudgets == 0
+                      ? Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            _useBudgetText,
+                            textAlign: TextAlign.center,
+                          ),
+                        )
+                      : FullWidthSizedBox(
+                          child: Row(
+                            children: [
+                              Text(_currentSwitchLabel),
+                              Switch(
+                                value: _current,
+                                onChanged: _con.onCurrentChanged,
+                              ),
+                            ],
+                          ),
+                        ),
+                  //        SAVE BUTTON     ------------------------------------
+                  SaveButton(
+                    onPressedCallback: _con.save,
                   ),
-                ),
-                // save button
-                IconButton(
-                  icon: const Icon(Icons.save),
-                  onPressed: _con.save,
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
