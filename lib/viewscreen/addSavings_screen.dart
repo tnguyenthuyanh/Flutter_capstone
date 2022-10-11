@@ -83,7 +83,7 @@ class _Controller {
 
   void saveAmount(String? value) {
     if (value != null) {
-      tempSavings.amount = value;
+      tempSavings.amount = double.parse(value);
     }
   }
 

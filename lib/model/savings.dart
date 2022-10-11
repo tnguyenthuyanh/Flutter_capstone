@@ -4,11 +4,11 @@ enum DocKeySavings {
 
 class Savings {
   String? docId;
-  late String amount;
+  late double amount;
 
   Savings({
     this.docId,
-    this.amount = '',
+    this.amount = 0.0,
   });
 
   //serialization
@@ -23,13 +23,13 @@ class Savings {
       {required Map<String, dynamic> doc, required String docId}) {
     return Savings(
       docId: docId,
-      amount: doc[DocKeySavings.amount.name] ??= 'N/A',
+      amount: doc[DocKeySavings.amount.name] ??= 0.00,
     );
   }
 
-  static String? validateTitle(String? value) {
-    return (value == null || value.trim().length < 2)
-        ? "Title too short"
-        : null;
-  }
+  // static String? validateTitle(String? value) {
+  //   return (value == null || value.trim().length < 2)
+  //       ? "Title too short"
+  //       : null;
+  // }
 }

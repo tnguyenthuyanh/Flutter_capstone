@@ -44,24 +44,25 @@ class _SavingsState extends State<SavingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Savings \$${widget.userP.savings.first.amount} '),
-      ),
+          title: widget.userP.savings.isEmpty
+              ? const Text('No Savings :(')
+              : Text('Savings \$ ${widget.userP.savings.first.amount}')),
       body: SingleChildScrollView(
         child: Column(
           children: [
             for (var badge in badgeList)
-              //if (badge.amount < con.savings.first)
-              Card(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 100.0,
-                      child: Image.network(badge.badgeUrl),
-                    ),
-                  ],
-                ),
-              )
+              if (badge.amount <= widget.userP.savings.first.amount)
+                Card(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 100.0,
+                        child: Image.network(badge.badgeUrl),
+                      ),
+                    ],
+                  ),
+                )
           ],
         ),
       ),
