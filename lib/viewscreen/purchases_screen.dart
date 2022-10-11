@@ -138,8 +138,14 @@ class _Controller {
   }
 
   void delete(int index) async {
-    Purchase purchase = state.widget.userP.purchases[index];
-    await FirestoreController.deleteTransaction(purchase);
+    Purchase test = state.widget.userP.purchases[index];
+    print(test.docId);
+    UserProfile testing = state.widget.userP;
+    print(testing.docId);
+    await FirestoreController.deleteTransaction(test, testing);
+
+    state.render(() {});
+    Navigator.of(state.context).pop();
   }
 
   void cancelDelete() {
