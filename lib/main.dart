@@ -1,10 +1,13 @@
+import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/viewscreen/addPurchase_screen.dart';
+import 'package:cap_project/viewscreen/addSavings_screen.dart';
 import 'package:cap_project/viewscreen/editprofile_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/addDebt_screen.dart';
 import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
+import 'package:cap_project/viewscreen/savings_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
@@ -187,6 +190,36 @@ class Capstone extends StatelessWidget {
                 user: user,
                 userP: userP,
                 purchaseList: [],
+              );
+            }
+          },
+          SavingsScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for Savings Screen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var userP = argument[ArgKey.userProfile];
+              return SavingsScreen(
+                user: user,
+                userP: userP,
+                savings: [],
+              );
+            }
+          },
+          AddSavingsScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for AddSavingsScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var userP = argument[ArgKey.userProfile];
+              return AddSavingsScreen(
+                user: user,
+                userP: userP,
+                savings: [],
               );
             }
           },

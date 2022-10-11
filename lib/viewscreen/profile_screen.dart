@@ -38,7 +38,7 @@ class _ProfileState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Profile',
         ),
         backgroundColor: Color.fromARGB(255, 80, 123, 210),

@@ -1,4 +1,5 @@
 import 'package:cap_project/model/debt.dart';
+import 'package:cap_project/model/savings.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/model/tipcalc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -219,5 +220,38 @@ class FirestoreController {
       }
     }
     return result;
+  }
+
+  static Future<List<Savings>> getSavings({
+    required UserProfile user,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.savings)
+        .orderBy(DocKeySavings.amount.name, descending: true)
+        .get();
+
+    var result = <Savings>[];
+    for (var doc in querySnapshot.docs) {
+      if (doc.data() != null) {
+        var document = doc.data() as Map<String, dynamic>;
+        var p = Savings.fromFirestoreDoc(doc: document, docId: doc.id);
+        if (p != null) result.add(p);
+      }
+    }
+    return result;
+  }
+
+  static addSavings({
+    required UserProfile user,
+    required Savings savings,
+  }) async {
+    DocumentReference ref = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.savings)
+        .add(savings.toFirestoreDoc());
+    return ref.id; // doc id auto-generated.
   }
 }

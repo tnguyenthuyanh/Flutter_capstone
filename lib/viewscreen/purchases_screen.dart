@@ -44,21 +44,37 @@ class _PurchasesState extends State<PurchasesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("$email's Transaction List"),
+        actions: con.selected.isEmpty
+            ? null
+            : [
+                IconButton(
+                  onPressed: con.deleteTransactions,
+                  icon: const Icon(Icons.delete),
+                ),
+                IconButton(
+                  onPressed: con.cancelDelete,
+                  icon: const Icon(Icons.cancel),
+                ),
+              ],
       ),
       body: widget.userP.purchases.isEmpty
           ? Text(
-              'No Transactions entered',
+              'test: ${widget.userP.purchases.length}',
               style: Theme.of(context).textTheme.headline6,
             )
           : ListView.builder(
               itemCount: widget.userP.purchases.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
-                  color: Colors.black26,
-                  margin: const EdgeInsets.all(10.0),
+                  color: con.selected.contains(index)
+                      ? con.selectedColor
+                      : con.unselectedColor,
+                  margin: const EdgeInsets.all(17.0),
                   child: ListTile(
                     title: Text(widget.userP.purchases[index].amount),
                     subtitle: Text(widget.userP.purchases[index].note),
+                    onLongPress: () => con.onLongPress(index),
+                    onTap: () => con.onTap(index),
                   ),
                 );
               },
@@ -74,6 +90,10 @@ class _PurchasesState extends State<PurchasesScreen> {
 class _Controller {
   _PurchasesState state;
   late List<dynamic> purchaseList;
+  List<int> selected = [];
+
+  final selectedColor = Colors.black12;
+  final unselectedColor = Colors.black87;
 
   _Controller(this.state) {
     List<dynamic> purchaseList = state.widget.userP.purchases;
@@ -89,12 +109,33 @@ class _Controller {
     state.render(() {}); //rerender the screen
   }
 
-  void onTap(int index) async {}
-  /*await Navigator.pushNamed(state.context, FollowerViewScreen.routeName,
-        arguments: {
-          ArgKey.user: state.widget.user,
-          ArgKey.onePhotoMemo: photoMemoList[index],
-        });
-    state.render(() {});
-  }*/
+  void onTap(int index) {
+    if (selected.isNotEmpty) {
+      onLongPress(index);
+    } else {}
+  }
+
+  void onLongPress(int index) {
+    state.render(() {
+      if (selected.contains(index)) {
+        selected.remove(index);
+      } else {
+        selected.add(index);
+      }
+    });
+  }
+
+  void deleteTransactions() {
+    selected.sort();
+    for (int i = selected.length - 1; i >= 0; i--) {
+      state.widget.userP.purchases.removeAt(selected[i]);
+    }
+    state.render(() {
+      selected.clear();
+    });
+  }
+
+  void cancelDelete() {
+    state.render(() => selected.clear());
+  }
 }

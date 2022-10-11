@@ -1,34 +1,32 @@
 import 'package:cap_project/controller/firestore_controller.dart';
-import 'package:cap_project/model/purchase.dart';
+import 'package:cap_project/model/constant.dart';
+import 'package:cap_project/model/savings.dart';
 import 'package:cap_project/model/user.dart';
-import 'package:cap_project/viewscreen/purchases_screen.dart';
-import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../model/constant.dart';
 
-class AddPurchaseScreen extends StatefulWidget {
-  const AddPurchaseScreen(
+class AddSavingsScreen extends StatefulWidget {
+  const AddSavingsScreen(
       {required this.userP,
       required this.user,
-      required this.purchaseList,
+      required this.savings,
       Key? key})
       : super(key: key);
 
-  final List<Purchase> purchaseList;
+  final List<Savings> savings;
   final User user;
   final UserProfile userP;
 
-  static const routeName = '/addPurchaseScreen';
+  static const routeName = '/addSavingsScreen';
 
   @override
   State<StatefulWidget> createState() {
-    return _AddPurchaseState();
+    return _AddSavingsState();
   }
 }
 
-class _AddPurchaseState extends State<AddPurchaseScreen> {
+class _AddSavingsState extends State<AddSavingsScreen> {
   late _Controller con;
   late String email;
   var formKey = GlobalKey<FormState>();
@@ -47,7 +45,7 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add A Purchase'),
+        title: const Text('Edit Savings Amount'),
         actions: [
           IconButton(
             onPressed: con.save,
@@ -66,11 +64,6 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
                 autocorrect: false,
                 onSaved: con.saveAmount,
               ),
-              TextFormField(
-                decoration: const InputDecoration(hintText: 'Note'),
-                autocorrect: false,
-                onSaved: con.saveNote,
-              ),
             ],
           ),
         )),
@@ -80,25 +73,17 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
 }
 
 class _Controller {
-  _AddPurchaseState state;
-  late List<Purchase> purchaseList;
-  Purchase tempPurchase = Purchase();
+  _AddSavingsState state;
+  late List<Savings> savings;
+  Savings tempSavings = Savings();
 
   _Controller(this.state) {
-    purchaseList = state.widget.purchaseList;
+    savings = state.widget.savings;
   }
 
   void saveAmount(String? value) {
     if (value != null) {
-      tempPurchase.amount = value;
-      tempPurchase.createdBy = state.email;
-    }
-  }
-
-  void saveNote(String? value) {
-    if (value != null) {
-      tempPurchase.note = value;
-      tempPurchase.createdBy = state.email;
+      tempSavings.amount = value;
     }
   }
 
@@ -113,13 +98,15 @@ class _Controller {
     startCircularProgress(state.context);
 
     try {
-      String docId = await FirestoreController.addPurchase(
-        user: state.widget.userP,
-        purchase: tempPurchase,
-      );
-      tempPurchase.docId = docId;
+      String docID = state.widget.userP.email;
 
-      state.widget.userP.purchases.insert(0, tempPurchase);
+      String docId = await FirestoreController.addSavings(
+        user: state.widget.userP,
+        savings: tempSavings,
+      );
+      tempSavings.docId = docId;
+
+      state.widget.userP.savings.insert(0, tempSavings);
 
       stopCircularProgress(state.context);
       Navigator.of(state.context).pop();
