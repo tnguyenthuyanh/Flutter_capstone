@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../model/budget.dart';
 import '../../model/catergories.dart';
 import '../../model/constant.dart';
+import '../../model/subcategories.dart';
 import '../auth_controller.dart';
 
 class BudgetStorageController {
@@ -88,39 +89,67 @@ class BudgetStorageController {
     }
   }
 
-  static Future<List<Category>> getSubCategories()  async{
+  static Future<List<SubCategory>> getSubCategories(String categoryid)  async{
     try{
+      print("error1");
+
       QuerySnapshot<Map<String,dynamic>> data = await FirebaseFirestore.instance
           .collection(Constant.categories)
-          .doc("categoryid")
-          .collection("user_id").get();
+          .doc(categoryid)
+          .collection(FirebaseAuth.instance.currentUser!.uid).get();
   // /categories/121389128391/userid
-      List<Category> categories = [];
+      List<SubCategory> subcategories = [];
 
-      categories = data.docs.map((
+      subcategories = data.docs.map((
           DocumentSnapshot document) {
         Map<String, dynamic> data = document.data()! as Map<
             String,
             dynamic>;
-        return Category.fromJson(data);
+        return SubCategory.fromJson(data);
       }).toList();
 
-      data = await FirebaseFirestore.instance
-          .collection(Constant.categories)
-          .where("type",isEqualTo:"global")
-          .get();
-      categories.addAll(data.docs.map((
-          DocumentSnapshot document) {
-        Map<String, dynamic> data = document.data()! as Map<
-            String,
-            dynamic>;
-        return Category.fromJson(data);
-      }).toList());
-      return categories;
+
+      return subcategories;
     }catch(e){
+      print("error");
+      print(e);
+
       throw (e);
     }
   }
+
+
+
+  static Future<bool> addSubCategory(SubCategory subCategory)  async{
+    try{
+      QuerySnapshot<Map<String,dynamic>> data = await  FirebaseFirestore.instance
+          .collection(Constant.categories)
+          .doc(subCategory.categoryid)
+          .collection(subCategory.userid!)
+          .where("label",isEqualTo: subCategory.label).get();
+      if(data.docs.isNotEmpty){
+        throw ("sub category already exist with this name");
+
+      }
+
+      DocumentReference documentReference = FirebaseFirestore.instance
+          .collection(Constant.categories)
+          .doc(subCategory.categoryid)
+          .collection(subCategory.userid!)
+          .doc();
+
+      await documentReference.set(subCategory.toJson());
+
+
+      return true;
+
+    }catch(e){
+
+      throw (e);
+    }
+  }
+
+
 
 
   static Future<bool> addCategory(Category category)  async{

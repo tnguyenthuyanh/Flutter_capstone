@@ -1,10 +1,11 @@
-import 'package:cap_project/viewscreen/budgetCategory.dart';
+import 'package:cap_project/controller/storagecontrollers/budgetstoragecontroller.dart';
+import 'package:cap_project/model/subcategories.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:oktoast/oktoast.dart';
+import 'package:provider/provider.dart';
 
-import '../controller/storagecontrollers/budgetstoragecontroller.dart';
 import '../model/catergories.dart';
 
 class BudgetCategoryViewModel extends ChangeNotifier  {
@@ -18,10 +19,15 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
   List<String> categories = ["Shopping", "Food", "Clothing",
                             "Housing", "Transportion", "Bills"];
   List<Category> categoriess = [];
+  List<SubCategory> subCategoriess = [];
+
 
 
   bool isCategoriesLoading = false;
+  bool isSubCategoriesLoading = false;
+
   bool isCategoriesAdding = false;
+  bool isSubCategoriesAdding = false;
 
   updateCategories (int value) {
     for(Category i in categoriess){
@@ -52,13 +58,41 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
   }
 
 
+  Future<void> getSubCategories()async{
+    try{
 
+      Iterable<Category> subcategorytemp = categoriess.where((element) => element.isSelected == true);
+
+      if(subcategorytemp.isNotEmpty){
+        isSubCategoriesLoading = true;
+        notifyListeners();
+
+        subCategoriess = await BudgetStorageController.getSubCategories(subcategorytemp.first.categoryid);
+        isSubCategoriesLoading = false;
+        notifyListeners();
+
+      }
+
+
+
+
+    }catch(e){
+      showToast("Something went wrong in fetching the sub categories");
+      print("in error");
+
+      print(e);
+      isSubCategoriesLoading = false;
+      notifyListeners();
+
+    }
+  }
   updateSubCategories (int value) {
     for(Category i in categoriess){
       i.isSelected = false;
     }
     print(value);
     categoriess[value].isSelected = true;
+    getSubCategories();
     notifyListeners();
   }
   getSelectedCategory(){
@@ -132,11 +166,47 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
 
 
     }catch(e){
+      isCategoriesAdding = false;
+
       showToast(e.toString());
     }
 
     notifyListeners();
   }
+
+
+  addSubCategoryy ()async {
+
+
+
+    try{
+      Iterable<Category> subcategorytemp = categoriess.where((element) => element.isSelected == true);
+      if(subcategorytemp.isNotEmpty){
+        SubCategory subCategory = SubCategory(subcategoryid: "", label: textFormValidator.text.trim(), categoryid: subcategorytemp.first.categoryid,userid: FirebaseAuth.instance.currentUser?.uid);
+        textFormValidator.clear();
+        isSubCategoriesAdding = true;
+        notifyListeners();
+        await BudgetStorageController.addSubCategory(subCategory);
+        isSubCategoriesAdding = false;
+        notifyListeners();
+
+
+      }
+      else{
+        showToast("Please select category to add subcategory");
+      }
+
+
+
+    }catch(e){
+      isSubCategoriesAdding = false;
+      showToast(e.toString());
+    }
+
+    notifyListeners();
+  }
+
+
   addSubCategory () {
     var subCat = <String>{textFormValidator.text};
     subcategories[getSelectedCategory()].add(subCat);
@@ -172,7 +242,7 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
 
     try{
       double.parse(value!);
-      return null;
+      return "";
 
     }catch(e){
       return "Number is not valid";
