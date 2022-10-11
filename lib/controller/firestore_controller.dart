@@ -1,4 +1,5 @@
 import 'package:cap_project/model/debt.dart';
+import 'package:cap_project/model/fuelcostcalc.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/model/tipcalc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -81,9 +82,7 @@ class FirestoreController {
         .get();
     if (querySnapshot.size == 0)
       // ignore: curly_braces_in_flow_control_structures
-      await FirebaseFirestore.instance
-          .collection(Constant.USERPROFILE_COLLECTION)
-          .add({
+      await FirebaseFirestore.instance.collection(Constant.USERPROFILE_COLLECTION).add({
         'name': "",
         'bio': "",
         'email': user.email,
@@ -100,12 +99,7 @@ class FirestoreController {
         .get();
 
     var i = querySnapshot.docs[0];
-    return {
-      'name': i['name'],
-      'bio': i['bio'],
-      'email': i['email'],
-      "uid": i['uid']
-    };
+    return {'name': i['name'], 'bio': i['bio'], 'email': i['email'], "uid": i['uid']};
   }
 
   static Future<void> addUpdateProfile({
@@ -174,7 +168,7 @@ class FirestoreController {
   }
 
   // tools - get tipcalc list
-  static Future<List<TipCalc>> getTipCalcList({required String email}) async {
+  static Future<List<TipCalc>> getSavedTipCalcList({required String email}) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.savedTipCalc)
         .where(TipCalc.CREATE_BY, isEqualTo: email)
@@ -186,6 +180,22 @@ class FirestoreController {
       result.add(TipCalc.fromFirestoreDoc(docId: m.id, doc: data));
     });
     return result;
+  }
+
+  // delete saved tip calc
+  static Future<void> deleteSavedTipCalcItem(String docId) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.savedTipCalc)
+        .doc(docId)
+        .delete();
+  }
+
+  // tools - save fuel cost calc. result
+  static Future<String> saveFuelCostCalc(FuelCostCalc fcc) async {
+    var ref = await FirebaseFirestore.instance
+        .collection(Constant.savedFuelCostCalc)
+        .add(fcc.toFirestoreDoc());
+    return ref.id;
   }
 
   static addPurchase({

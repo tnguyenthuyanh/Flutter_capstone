@@ -41,7 +41,7 @@ class StarRating extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text("Tip: "),
+        const Text("Rate: "),
         Row(
           children: List.generate(
             starCount,

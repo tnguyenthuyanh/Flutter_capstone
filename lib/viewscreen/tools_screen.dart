@@ -1,3 +1,4 @@
+import 'package:cap_project/viewscreen/tools_screen/fuelcostestimator_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +62,30 @@ class _ToolsState extends State<ToolsScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: const [
                           Icon(Icons.attach_money),
+                          SizedBox(width: 50),
                           Text('Tip Calculator'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Card(
+                  color: Colors.green.shade900,
+                  child: InkWell(
+                    splashColor: Colors.green.shade500.withAlpha(50),
+                    onTap: () {
+                      Navigator.pushNamed(context, FuelCostEstimatorScreen.routeName,
+                          arguments: {ArgKey.user: widget.user});
+                    },
+                    child: SizedBox(
+                      width: 300,
+                      height: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(Icons.local_gas_station),
+                          SizedBox(width: 20),
+                          Text('Fuel Cost Estimator'),
                         ],
                       ),
                     ),

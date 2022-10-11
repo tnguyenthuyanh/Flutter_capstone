@@ -6,6 +6,7 @@ import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
+import 'package:cap_project/viewscreen/tools_screen/fuelcostestimator_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
@@ -155,6 +156,16 @@ class Capstone extends StatelessWidget {
               var argument = args as Map;
               var user = argument[ArgKey.user];
               return TipCalculatorScreen(user: user);
+            }
+          },
+          FuelCostEstimatorScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for FuelCostEstimatorScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              return FuelCostEstimatorScreen(user: user);
             }
           },
           BudgetsScreen.routeName: (context) => const BudgetsScreen(),
