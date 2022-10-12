@@ -41,6 +41,15 @@ class FirestoreController {
         .update(updateInfo);
   }
 
+  static Future<void> deletePlan({
+    required Plan plan,
+  }) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.plans)
+        .doc(plan.docId)
+        .delete();
+  } //end food stuff
+
   static Future<List<Plan>> getPlanList({
     required String email,
   }) async {

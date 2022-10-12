@@ -11,18 +11,18 @@ class Plan {
   String? docId;
   late String createdBy;
   late String title;
-  late double costs;
+  late String costs;
   late String reduction;
-  late double length;
+  late String length;
   DateTime? timeStamp;
 
   Plan({
     this.docId,
     this.createdBy = '',
     this.title = '',
-    this.costs = 0,
+    this.costs = '',
     this.reduction = '',
-    this.length = 0,
+    this.length = '',
     this.timeStamp,
   });
 

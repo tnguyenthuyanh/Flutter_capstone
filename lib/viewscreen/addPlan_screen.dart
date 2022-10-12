@@ -75,12 +75,14 @@ class _AddPlanState extends State<AddPlanScreen> {
                       child: TextFormField(
                         decoration: const InputDecoration(
                             hintText: 'What are you saving for?'),
+                        onSaved: con.saveTitle,
                       ),
                     ),
                     Center(
                       child: TextFormField(
                         decoration: const InputDecoration(
                             hintText: 'Average cost of your goal item'),
+                        onSaved: con.saveCost,
                       ),
                     ),
                     Center(
@@ -88,12 +90,14 @@ class _AddPlanState extends State<AddPlanScreen> {
                         decoration: const InputDecoration(
                             hintText:
                                 'What are you going to reduce from your budget?'),
+                        onSaved: con.saveReduction,
                       ),
                     ),
                     Center(
                       child: TextFormField(
                         decoration: const InputDecoration(
                             hintText: 'Reducing budget item for how long?'),
+                        onSaved: con.reductionLength,
                       ),
                     ),
                     ElevatedButton(
@@ -127,7 +131,7 @@ class _Controller {
     startCircularProgress(state.context);
 
     try {
-      tempPlan.createdBy = state.widget.user.uid;
+      tempPlan.createdBy = state.widget.user.email!;
       tempPlan.timeStamp = DateTime.now();
 
       String docId = await FirestoreController.addPlan(plan: tempPlan);
@@ -142,5 +146,21 @@ class _Controller {
       stopCircularProgress(state.context);
       if (Constant.devMode) print('Error uploading Plan doc to Firestore: $e');
     }
+  }
+
+  void saveTitle(String? value) {
+    if (value != null) tempPlan.title = value;
+  }
+
+  void saveReduction(String? value) {
+    if (value != null) tempPlan.reduction = value;
+  }
+
+  void saveCost(String? value) {
+    if (value != null) tempPlan.costs = value;
+  }
+
+  void reductionLength(String? value) {
+    if (value != null) tempPlan.length = value;
   }
 }//End controller
