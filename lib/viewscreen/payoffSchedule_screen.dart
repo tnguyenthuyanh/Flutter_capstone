@@ -1,27 +1,25 @@
 import 'dart:math';
-
-import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import '../model/debt.dart';
+import 'view/view_util.dart';
 
-class PayoffScreen extends StatefulWidget {
-  const PayoffScreen({required this.debt, required this.user, Key? key})
+class PayoffScheduleScreen extends StatefulWidget {
+  const PayoffScheduleScreen({required this.debt, required this.user, Key? key})
       : super(key: key);
 
   final Debt debt;
   final User user;
 
-  static const routeName = '/payOffScreen';
+  static const routeName = '/PayoffScheduleScreen';
 
   @override
   State<StatefulWidget> createState() {
-    return _PayoffState();
+    return _PayoffScheduleState();
   }
 }
 
-class _PayoffState extends State<PayoffScreen> {
+class _PayoffScheduleState extends State<PayoffScheduleScreen> {
   late _Controller con;
   late String email;
   var formKey = GlobalKey<FormState>();
@@ -40,74 +38,78 @@ class _PayoffState extends State<PayoffScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.debt.title + ' Pay off schedule'),
+        title: Text(widget.debt.title + ' Payoff schedule'),
       ),
       body: Form(
         key: formKey,
         child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              TextFormField(
-                enabled: false,
-                style: Theme.of(context).textTheme.bodyText1,
-                initialValue: 'Balance: \$' + widget.debt.balance,
-              ),
-              TextFormField(
-                enabled: false,
-                style: Theme.of(context).textTheme.bodyText1,
-                initialValue: 'Interest Rate: \$' + widget.debt.interest,
-              ),
-              TextFormField(
-                enabled: false,
-                style: Theme.of(context).textTheme.bodyText1,
-                initialValue: 'Minimum payment: \$' + con.setMinPayment(),
-              ),
-              !showSchedule
-                  ? Column(
-                      children: [
-                        TextFormField(
-                          style: Theme.of(context).textTheme.bodyText1,
-                          decoration: const InputDecoration(
-                              hintText: 'Enter payment amount'),
-                          keyboardType: TextInputType.number,
-                          validator: Debt.validatePayment,
-                          onSaved: con.savePayment,
-                        ),
-                        ElevatedButton(
-                          onPressed: con.generateSchedule,
-                          child: const Text('Submit'),
-                        ),
-                      ],
-                    )
-                  : Column(
-                      children: [
-                        TextFormField(
-                          enabled: false,
-                          style: Theme.of(context).textTheme.bodyText1,
-                          initialValue: 'Months to pay off: ' +
-                              con.payments.toStringAsFixed(0),
-                        ),
-                        TextFormField(
-                          enabled: false,
-                          style: Theme.of(context).textTheme.bodyText1,
-                          initialValue: 'Total interest paid: \$' +
-                              con.interestPaid.toStringAsFixed(0),
-                        ),
-                        TextFormField(
-                          style: Theme.of(context).textTheme.bodyText1,
-                          decoration: const InputDecoration(
-                              hintText: 'Enter payment amount'),
-                          keyboardType: TextInputType.number,
-                          validator: Debt.validatePayment,
-                          onSaved: con.savePayment,
-                        ),
-                        ElevatedButton(
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                TextFormField(
+                  enabled: false,
+                  style: Theme.of(context).textTheme.bodyText1,
+                  initialValue: 'Balance: \$' + widget.debt.balance,
+                ),
+                TextFormField(
+                  enabled: false,
+                  style: Theme.of(context).textTheme.bodyText1,
+                  initialValue: 'Interest Rate: \$' + widget.debt.interest,
+                ),
+                TextFormField(
+                  enabled: false,
+                  style: Theme.of(context).textTheme.bodyText1,
+                  initialValue: 'Minimum payment: \$' + con.setMinPayment(),
+                ),
+                !showSchedule
+                    ? Column(
+                        children: [
+                          TextFormField(
+                            style: Theme.of(context).textTheme.bodyText1,
+                            decoration: const InputDecoration(
+                                hintText: 'Enter payment amount',
+                                labelText: 'Payment amount'),
+                            keyboardType: TextInputType.number,
+                            validator: Debt.validatePayment,
+                            onSaved: con.savePayment,
+                          ),
+                          ElevatedButton(
                             onPressed: con.generateSchedule,
-                            child: const Text('Submit'))
-                      ],
-                    )
-            ],
+                            child: const Text("Submit"),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          TextFormField(
+                            style: Theme.of(context).textTheme.bodyText1,
+                            decoration: const InputDecoration(
+                                hintText: 'Enter payment amount',
+                                labelText: 'Payment amount'),
+                            keyboardType: TextInputType.number,
+                            validator: Debt.validatePayment,
+                            onSaved: con.savePayment,
+                          ),
+                          TextFormField(
+                              enabled: false,
+                              style: Theme.of(context).textTheme.bodyText1,
+                              initialValue: 'Months to pay off: ' +
+                                  con.payments.toString()),
+                          TextFormField(
+                            enabled: false,
+                            style: Theme.of(context).textTheme.bodyText1,
+                            initialValue: 'Total interest paid: \$' +
+                                con.interestPaid.toStringAsFixed(2),
+                          ),
+                          ElevatedButton(
+                            onPressed: con.generateSchedule,
+                            child: const Text("Submit"),
+                          ),
+                        ],
+                      )
+              ],
+            ),
           ),
         ),
       ),
@@ -116,9 +118,9 @@ class _PayoffState extends State<PayoffScreen> {
 }
 
 class _Controller {
-  _PayoffState state;
-  late Debt tempDebt;
-  late double payments;
+  _PayoffScheduleState state;
+  Debt tempDebt = Debt();
+  late int payments;
   late double interestPaid;
   late double paymentAmount;
   late double minPayment;
@@ -126,16 +128,13 @@ class _Controller {
 
   _Controller(this.state) {
     tempDebt = Debt.clone(state.widget.debt);
+    interestPaid = 0;
     payments = 0;
-    interestPaid = 0.0;
-    paymentAmount = 0.0;
-    minPayment = 0.0;
-    payAmt = '';
   }
 
   void savePayment(String? value) {
     if (value != null) {
-      tempDebt.payment = value;
+      paymentAmount = double.parse(value);
     }
   }
 
@@ -158,7 +157,13 @@ class _Controller {
   }
 
   void generateSchedule() {
-    paymentAmount = double.parse(tempDebt.payment);
+    FormState? currentState = state.formKey.currentState;
+    if (currentState == null || !currentState.validate()) {
+      return;
+    }
+
+    currentState.save();
+
     if (paymentAmount < minPayment) {
       showSnackBar(
         context: state.context,
@@ -168,21 +173,28 @@ class _Controller {
             '\n minimum = ' +
             minPayment.toStringAsFixed(2),
       );
+      state.showSchedule = false;
+      state.render(() {});
       return;
     } else {
+      double tempInterest = 0;
+      double principal = 0;
+      interestPaid = 0;
+      payments = 0;
       double balance = double.parse(state.widget.debt.balance);
       double intrest = double.parse(state.widget.debt.interest) / 100;
-      payments = ((log(paymentAmount / intrest)) /
-          (paymentAmount / intrest + balance) /
-          log(1 + intrest));
-      interestPaid = payments * paymentAmount - balance;
+      while (balance > 0) {
+        print('balance: ' + balance.toStringAsFixed(2));
+        tempInterest = balance * (intrest / 12);
+        interestPaid += tempInterest;
+        print('interest: ' + interestPaid.toStringAsFixed(2));
+        principal = paymentAmount - tempInterest;
+        balance = balance - principal;
+        payments++;
+      }
+      print(payments);
       state.showSchedule = true;
       state.render(() {});
     }
   }
-  /*double balance = double.parse(state.widget.debt.balance);
-    double intrest = double.parse(state.widget.debt.interest) / 100;
-    double minPayment = balance * intrest / 12.0;
-    String minPay = minPayment.toStringAsFixed(2);
-  }*/
 }

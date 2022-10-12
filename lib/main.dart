@@ -115,7 +115,7 @@ class Capstone extends StatelessWidget {
               );
             }
           },
-          PayoffScreen.routeName: (context) {
+          PayoffScheduleScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
               return const ErrorScreen('args is null for PayoffScreen');
@@ -123,7 +123,7 @@ class Capstone extends StatelessWidget {
               var argument = args as Map;
               var user = argument[ArgKey.user];
               var debt = argument[ArgKey.singleDebt];
-              return PayoffScreen(
+              return PayoffScheduleScreen(
                 user: user,
                 debt: debt,
               );

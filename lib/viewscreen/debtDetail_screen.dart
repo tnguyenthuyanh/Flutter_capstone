@@ -1,10 +1,9 @@
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
-import 'package:cap_project/viewscreen/payoffSchedule_screen.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'payoffSchedule_screen.dart';
 import '../controller/firestore_controller.dart';
 import '../model/constant.dart';
 import 'debt_screen.dart';
@@ -207,7 +206,7 @@ class _Controller {
   }
 
   void payOff() async {
-    await Navigator.pushNamed(state.context, PayoffScreen.routeName,
+    await Navigator.pushNamed(state.context, PayoffScheduleScreen.routeName,
         arguments: {
           ArgKey.user: state.widget.user,
           ArgKey.singleDebt: state.widget.debt
