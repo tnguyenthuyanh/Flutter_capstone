@@ -24,15 +24,19 @@ class BudgetList {
   }
 
   void setNewCurrentBudget(Budget newCurrent) {
-    // if there is more than one budget
     if (_budgets.length > 1) {
       // set all active budgets but newCurrent to inactive
       // and set their dirty flag
       for (Budget budget in _budgets) {
-        if (budget != newCurrent) {
+        if (!budget.equals(newCurrent)) {
+          // TODO:Remove-debug
+          print("Comparing: " + newCurrent.title + " to " + budget.title);
+
           if (budget.isCurrent!) {
             budget.isCurrent = false;
             budget.dirty = true;
+
+            // TODO: Remove- debug
             print("BudgetList: budget " + budget.title + " set dirty");
           }
         }
@@ -47,6 +51,10 @@ class BudgetList {
     for (Budget budget in _budgets) {
       if (budget.dirty) {
         temp.add(budget);
+
+        // TODO: Remove-debug
+        print("Adding to dirtyList: ");
+        print(budget.serialize());
       }
     }
     return temp;

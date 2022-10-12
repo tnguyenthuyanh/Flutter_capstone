@@ -1,5 +1,6 @@
 import 'dart:collection';
 import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
+import 'package:cap_project/viewscreen/components/texts/titletext.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../View_Model/budget_data.dart';
@@ -43,7 +44,7 @@ class _BudgetsState extends State<BudgetsScreen> {
       child: Scaffold(
         //        APPBAR      --------------------------------------------------
         appBar: AppBar(
-          title: const Text(BudgetsScreen._screenName),
+          title: TitleText(title: BudgetsScreen._screenName),
           actions: [
             // delete/cancel button
             IconButton(

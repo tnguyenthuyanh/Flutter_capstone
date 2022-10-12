@@ -23,8 +23,8 @@ class FirestoreController {
     }
   }
 
-  static addBudget({required Budget budget}) async {
-    await BudgetStorageController.addBudget(budget: budget);
+  static Future<String> addBudget({required Budget budget}) async {
+    return await BudgetStorageController.addBudget(budget: budget);
   }
 
   static deleteBudget({required Budget budget}) async {
@@ -36,14 +36,7 @@ class FirestoreController {
   }
 
   static Future<void> updateBudget({required Budget budget}) async {
-    await FirebaseFirestore.instance
-        .collection(Constant.budgets)
-        .doc(budget.docID!)
-        .update({
-      'isCurrent': budget.isCurrent,
-      'ownerUID': budget.ownerUID,
-      'title': budget.title
-    });
+    await BudgetStorageController.updateBudget(budget: budget);
   }
 
   static Future<List<Debt>> getDebtList({
