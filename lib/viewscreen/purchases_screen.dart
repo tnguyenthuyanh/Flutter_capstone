@@ -46,18 +46,18 @@ class _PurchasesState extends State<PurchasesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("$email's Transaction List"),
-        // actions: con.selected.isEmpty
-        //     ? null
-        //     : [
-        //         IconButton(
-        //           onPressed: con.deleteTransactions,
-        //           icon: const Icon(Icons.delete),
-        //         ),
-        //         IconButton(
-        //           onPressed: con.cancelDelete,
-        //           icon: const Icon(Icons.cancel),
-        //         ),
-        //       ],
+        actions: con.selected == -1
+            ? null
+            : [
+                IconButton(
+                  onPressed: con.delete,
+                  icon: const Icon(Icons.delete),
+                ),
+                IconButton(
+                  onPressed: con.cancelDelete,
+                  icon: const Icon(Icons.cancel),
+                ),
+              ],
       ),
       body: widget.userP.purchases.isEmpty
           ? Text(
@@ -68,14 +68,15 @@ class _PurchasesState extends State<PurchasesScreen> {
               itemCount: widget.userP.purchases.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
-                  color: con.selected.contains(index)
-                      ? con.selectedColor
-                      : con.unselectedColor,
+                  // color: con.selected ==
+                  //     ? con.selectedColor
+                  //     : con.unselectedColor,
                   margin: const EdgeInsets.all(17.0),
                   child: ListTile(
                     title: Text(widget.userP.purchases[index].amount),
                     subtitle: Text(widget.userP.purchases[index].note),
-                    onLongPress: () => con.delete(index),
+                    //onLongPress: () => con.delete(index),
+                    onTap: () => con.onTap(index),
                   ),
                 );
               },
@@ -91,13 +92,22 @@ class _PurchasesState extends State<PurchasesScreen> {
 class _Controller {
   _PurchasesState state;
   late List<dynamic> purchaseList;
-  List<int> selected = [];
+  int selected = -1;
 
   final selectedColor = Colors.black12;
   final unselectedColor = Colors.black87;
 
   _Controller(this.state) {
     List<dynamic> purchaseList = state.widget.userP.purchases;
+  }
+
+  void onTap(int index) {
+    selected = index;
+    state.render(() {});
+  }
+
+  void cancelDelete() {
+    selected = -1;
   }
 
   void addButton() async {
@@ -110,8 +120,8 @@ class _Controller {
     state.render(() {}); //rerender the screen
   }
 
-  void delete(int index) async {
-    Purchase test = state.widget.userP.purchases[index];
+  void delete() async {
+    Purchase test = state.widget.userP.purchases[selected];
     UserProfile testing = state.widget.userP;
     await FirestoreController.deleteTransaction(test, testing);
     state.render(() {});
