@@ -1,5 +1,10 @@
 import 'dart:collection';
+
 import 'package:cap_project/viewscreen/budgetCategory.dart';
+
+import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
+import 'package:cap_project/viewscreen/components/texts/ohnoeserrortext.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../View_Model/budget_data.dart';
@@ -7,6 +12,7 @@ import '../model/budget.dart';
 import '../model/constant.dart';
 import 'addbudget_screen.dart';
 import 'components/budgetdetailfield.dart';
+import 'components/buttons/mysizedbutton.dart';
 
 // TODO: add edit functionality
 // TODO: add copy to functionality
@@ -24,6 +30,7 @@ class BudgetDetailScreen extends StatefulWidget {
 class _BudgetDetailState extends State<BudgetDetailScreen> {
   late _Controller _con;
   Budget? _selected;
+  Budget? _current;
 
   // state vars
 
@@ -40,6 +47,7 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
   @override
   Widget build(BuildContext context) {
     _selected = Provider.of<BudgetData>(context).selectedBudget;
+    _current = Provider.of<BudgetData>(context).currentBudget;
 
     return WillPopScope(
         onWillPop: _con.onPopScope,
@@ -82,28 +90,18 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: _selected == null
-                    ? const Text(
-                        'There has been a mistake. Selected Budget is null')
+                    ? OhNoesErrorText(
+                        message:
+                            'There has been a mistake. Selected Budget is null')
                     : Column(
                         children: [
                           BudgetDetailField(
                               titleText: "Title", fieldText: _selected!.title),
-                          BudgetDetailField(
-                              titleText: "OwnerUID",
-                              fieldText: _selected!.ownerUID),
-                          BudgetDetailField(
-                              titleText: "Docid", fieldText: _selected!.docID!),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width,
-                            child: Row(
-                              children: [
-                                Text("Use this budget"),
-                                Switch(
-                                  value: _selected!.isCurrent!,
-                                  onChanged: _con.onCurrentChanged,
-                                ),
-                              ],
-                            ),
+                          MySizedButton(
+                            buttonText: "Use",
+                            onPressedCallback: _selected! == _current
+                                ? null
+                                : _con.onUseButtonPressed,
                           ),
                         ],
                       ),
@@ -127,12 +125,9 @@ class _Controller {
     throw "I don't know what happened";
   }
 
-  void onCurrentChanged(bool? value) {
-    _state._selected!.isCurrent = value;
-
+  void onUseButtonPressed() {
     Provider.of<BudgetData>(_state.context, listen: false)
         .setCurrentBudget(_state._selected!);
-    _state.render(() {});
   }
 
   //---------------------------------------------------------------------------

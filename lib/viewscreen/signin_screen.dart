@@ -1,6 +1,7 @@
 import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/model/constant.dart';
 import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
+import 'package:cap_project/viewscreen/components/buttons/myelevatedbutton.dart';
 import 'package:cap_project/viewscreen/signup_screen.dart';
 import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +10,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../controller/firestore_controller.dart';
 import '../model/user.dart';
+import 'components/buttons/mysizedbutton.dart';
 
 class SignInScreen extends StatefulWidget {
   static const routeName = '/signInScreen';
@@ -75,7 +77,6 @@ class _SignInState extends State<SignInScreen> {
                   validator: con.validatePassword,
                   onSaved: con.savePassword,
                 ),
-
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(
@@ -91,16 +92,12 @@ class _SignInState extends State<SignInScreen> {
                     ),
                   ),
                 ),
-
                 const SizedBox(
                   height: 10,
                 ),
-                ElevatedButton(
-                  onPressed: con.signIn,
-                  child: Text(
-                    'Sign in',
-                    style: Theme.of(context).textTheme.button,
-                  ),
+                MySizedButton(
+                  buttonText: "Sign in",
+                  onPressedCallback: con.signIn,
                 ),
                 const SizedBox(
                   height: 20.0,
@@ -119,7 +116,6 @@ class _SignInState extends State<SignInScreen> {
                       provider.googleLogin(
                           context); //passed in context to google sign in provider file
                     }),
-               
               ],
             ),
           ),
