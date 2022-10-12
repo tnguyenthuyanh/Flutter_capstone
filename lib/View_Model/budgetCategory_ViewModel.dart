@@ -134,6 +134,7 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
   }
 
   validateText (String? value) {
+    print('at validated text');
     if (value == null) {
       return "Input can not be empty";
     } 
@@ -174,9 +175,23 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
   }
 
 
+  deleteSubCategoryy(int index)async{
+    try{
+      print(subCategoriess[index].toJson());
+      await BudgetStorageController.deleteSubCategories(subCategoriess[index]);
+      showToast("sub Category deleted successfully");
+
+      await getSubCategories();
+
+    }catch(e){
+      showToast(e.toString());
+    }
+
+    notifyListeners();
+  }
+
+
   addSubCategoryy ()async {
-
-
 
     try{
       Iterable<Category> subcategorytemp = categoriess.where((element) => element.isSelected == true);
@@ -218,6 +233,8 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
       showToast("Category deleted successfully");
 
       await getCategories();
+      await getSubCategories();
+
 
     }catch(e){
       showToast(e.toString());
@@ -237,7 +254,6 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
   }
   validateBudget(String? value){
     if(value == null) return "Number is not valid";
-    // ignore: unnecessary_null_comparison
     if(value.isEmpty == null) return "Number is not valid";
 
     try{

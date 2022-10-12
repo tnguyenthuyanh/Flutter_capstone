@@ -118,6 +118,24 @@ class BudgetStorageController {
     }
   }
 
+  static Future<bool> deleteSubCategories(SubCategory subCategory)  async{
+    try{
+
+       await FirebaseFirestore.instance
+          .collection(Constant.categories)
+          .doc(subCategory.categoryid)
+          .collection(subCategory.userid!)
+          .doc(subCategory.subcategoryid)
+          .delete();
+
+
+      return true;
+    }catch(e){
+      print(e);
+
+      throw (e);
+    }
+  }
 
 
   static Future<bool> addSubCategory(SubCategory subCategory)  async{
@@ -137,6 +155,7 @@ class BudgetStorageController {
           .doc(subCategory.categoryid)
           .collection(subCategory.userid!)
           .doc();
+      subCategory.subcategoryid  = documentReference.id;
 
       await documentReference.set(subCategory.toJson());
 

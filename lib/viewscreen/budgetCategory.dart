@@ -39,7 +39,7 @@ class _AddCategoryState extends State<AddCategory> {
     budgetCategory = Provider.of<BudgetCategoryViewModel>(context);
 
     return Scaffold(
-      resizeToAvoidBottomInset : false,
+       resizeToAvoidBottomInset : false,
       appBar: AppBar(
         title: const Text('Add Budget Categories'),
       ),
@@ -79,7 +79,6 @@ class _AddCategoryState extends State<AddCategory> {
                     ),
                     onDeleted: budgetCategory.categoriess[counter].type.toLowerCase() == "global"?null:  (){
                       budgetCategory.deleteCategory(counter);
-
 
                     },
                     backgroundColor:
@@ -135,7 +134,7 @@ class _AddCategoryState extends State<AddCategory> {
                         Colors.black:Colors.white
                     ),
                     onDeleted:  (){
-                      budgetCategory.deleteCategory(counter);
+                      budgetCategory.deleteSubCategoryy(counter);
 
 
                     },
@@ -278,12 +277,12 @@ class MyDialog extends StatelessWidget {
           ),
         ),
         actions: [
-          budgetCategory.isCategoriesAdding?CircularProgressIndicator(backgroundColor: Colors.white,):     ElevatedButton(
+          (isFromSubCategory?budgetCategory.isSubCategoriesAdding:budgetCategory.isCategoriesAdding)?CircularProgressIndicator(backgroundColor: Colors.white,):     ElevatedButton(
             onPressed: ()async {
               if (formKey.currentState!.validate()) {
                 if(isFromSubCategory){
                   // budgetCategory.addSubCategory();
-                  budgetCategory.addSubCategoryy();
+                  await budgetCategory.addSubCategoryy();
                   budgetCategory.getSubCategories();
 
                 }
