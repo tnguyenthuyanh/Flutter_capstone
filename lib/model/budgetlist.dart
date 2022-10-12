@@ -1,6 +1,6 @@
 import 'dart:collection';
 import '/model/budget.dart';
-//
+
 class BudgetList {
   late List<Budget> _budgets; // all budgets
   late List<Budget> _deletionList; // budgets staged for deletion
