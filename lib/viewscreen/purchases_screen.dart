@@ -46,22 +46,22 @@ class _PurchasesState extends State<PurchasesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("$email's Transaction List"),
-        actions: con.selected.isEmpty
-            ? null
-            : [
-                IconButton(
-                  onPressed: con.deleteTransactions,
-                  icon: const Icon(Icons.delete),
-                ),
-                IconButton(
-                  onPressed: con.cancelDelete,
-                  icon: const Icon(Icons.cancel),
-                ),
-              ],
+        // actions: con.selected.isEmpty
+        //     ? null
+        //     : [
+        //         IconButton(
+        //           onPressed: con.deleteTransactions,
+        //           icon: const Icon(Icons.delete),
+        //         ),
+        //         IconButton(
+        //           onPressed: con.cancelDelete,
+        //           icon: const Icon(Icons.cancel),
+        //         ),
+        //       ],
       ),
       body: widget.userP.purchases.isEmpty
           ? Text(
-              'test: ${widget.userP.purchases.length}',
+              'No Transactions',
               style: Theme.of(context).textTheme.headline6,
             )
           : ListView.builder(
@@ -75,8 +75,7 @@ class _PurchasesState extends State<PurchasesScreen> {
                   child: ListTile(
                     title: Text(widget.userP.purchases[index].amount),
                     subtitle: Text(widget.userP.purchases[index].note),
-                    onLongPress: () => con.onLongPress(index),
-                    onTap: () => con.delete(index),
+                    onLongPress: () => con.delete(index),
                   ),
                 );
               },
@@ -111,44 +110,17 @@ class _Controller {
     state.render(() {}); //rerender the screen
   }
 
-  void onTap(int index) {
-    if (selected.isNotEmpty) {
-      onLongPress(index);
-    } else {}
-  }
-
-  void onLongPress(int index) {
-    state.render(() {
-      if (selected.contains(index)) {
-        selected.remove(index);
-      } else {
-        selected.add(index);
-      }
-    });
-  }
-
-  void deleteTransactions() {
-    selected.sort();
-    for (int i = selected.length - 1; i >= 0; i--) {
-      state.widget.userP.purchases.removeAt(selected[i]);
-    }
-    state.render(() {
-      selected.clear();
-    });
-  }
-
   void delete(int index) async {
     Purchase test = state.widget.userP.purchases[index];
-    print(test.docId);
     UserProfile testing = state.widget.userP;
-    print(testing.docId);
     await FirestoreController.deleteTransaction(test, testing);
-
     state.render(() {});
-    Navigator.of(state.context).pop();
-  }
-
-  void cancelDelete() {
-    state.render(() => selected.clear());
+    await Navigator.popAndPushNamed(state.context, PurchasesScreen.routeName,
+        arguments: {
+          ArgKey.purchaseList: state.widget.userP.purchases,
+          ArgKey.user: state.widget.user,
+          ArgKey.userProfile: state.widget.userP,
+        });
+    state.render(() {});
   }
 }
