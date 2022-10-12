@@ -7,20 +7,10 @@ import '../controller/auth_controller.dart';
 import '../model/budgetlist.dart';
 import '/model/budget.dart';
 
-// Instance variables
-// Constructor
-// Getters
-//
-//
-// Deletion Related
-// Firebase Related
-
 class BudgetData extends ChangeNotifier {
   BudgetList _budgetList = BudgetList();
-  // which budget is being viewed in budgetdetail
-  Budget? _selectedBudget = null;
-  // which budget is being used by the rest of the app
-  Budget? _currentBudget = null;
+  Budget? _selectedBudget = null; // budget being VIEWED
+  Budget? _currentBudget = null; // budget being USED for calculations etc
 
   BudgetData() {
     fsLoadBudgets();
@@ -33,8 +23,7 @@ class BudgetData extends ChangeNotifier {
   List<int> get selectedIndices => _budgetList.selectedIndices;
   int get numberOfBudgets => _budgetList.size;
 
-  /// add the budget to the local budget list and store in firebase
-  /// then notify listeners
+  /// add the budget to the local budget list, store in firebase and notify
   void add(Budget budget) async {
     budget.docID = await fsAddBudget(budget);
 
@@ -50,6 +39,7 @@ class BudgetData extends ChangeNotifier {
 
   void setCurrentBudget(Budget budget) {
     _currentBudget = budget;
+    budget.dirty = true;
 
     budget.isCurrent = true;
 

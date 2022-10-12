@@ -74,7 +74,7 @@ class _UserHomeState extends State<UserHomeScreen> {
               ),
               ListTile(
                 leading: const Icon(Icons.local_atm),
-                title: const Text('Budgets'),
+                title: const Text('Budget Templates'),
                 onTap: con.budgetsPage,
               ),
               ListTile(

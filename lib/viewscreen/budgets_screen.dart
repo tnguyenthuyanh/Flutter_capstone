@@ -12,7 +12,7 @@ import 'components/budget_listviewtile.dart';
 
 class BudgetsScreen extends StatefulWidget {
   static const routeName = '/budgetsScreen';
-  static const _screenName = "Budgets";
+  static const _screenName = "Budget Templates";
   const BudgetsScreen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() => _BudgetsState();
