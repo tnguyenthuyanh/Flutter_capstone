@@ -1,19 +1,16 @@
 import 'dart:collection';
-
-import 'package:cap_project/viewscreen/budgetCategory.dart';
-
-import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
-import 'package:cap_project/viewscreen/components/texts/ohnoeserrortext.dart';
-
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
-import '../View_Model/budget_data.dart';
 import '../model/budget.dart';
 import '../model/constant.dart';
-import 'addbudget_screen.dart';
+import '../View_Model/budget_data.dart';
+import 'package:cap_project/viewscreen/budgetCategory.dart';
+import 'package:cap_project/viewscreen/components/texts/ohnoeserrortext.dart';
 import 'components/budgetdetailfield.dart';
+import 'components/buttons/modebuttons/editcancelmode_button.dart';
 import 'components/buttons/mysizedbutton.dart';
+import 'components/textfields/budgettitle_textfield.dart';
 import 'components/texts/titletext.dart';
 
 // TODO: add edit functionality
@@ -58,7 +55,9 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
       //        APPBAR     -----------------------------------------------------
       appBar: AppBar(
         title: TitleText(title: BudgetDetailScreen._screenName),
+        //          ACTIONS     ------------------------------------------------
         actions: [
+          //              CATEGORIES DROPDOWN    --------------------------------
           DropdownButton<String>(
             value: "Categories",
             icon: const Icon(Icons.arrow_downward),
@@ -85,9 +84,7 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
               );
             }).toList(),
           ),
-        ],
-        //        ACTIONS     ---------------------------------------------
-        actions: <Widget>[
+          //              EDIT/CANCEL & SAVE BUTTONS   ---------------------------
           EditCancelModeButton(
             editMode: _editMode,
             onPressedCallback: _con.onEditPressed,
@@ -156,13 +153,4 @@ class _Controller {
       _state._editMode = !_state._editMode;
     });
   }
-
-  //---------------------------------------------------------------------------
-
-  // // Mode methods
-  // //---------------------------------------------------------------------------
-
-  //---------------------------------------------------------------------------
-
-  //---------------------------------------------------------------------------
 }
