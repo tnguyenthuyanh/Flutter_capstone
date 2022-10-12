@@ -1,9 +1,10 @@
 import 'dart:collection';
-import 'package:cap_project/viewscreen/components/buttons/modebuttons/editcancelmode_button.dart';
-import 'package:cap_project/viewscreen/components/buttons/savebutton.dart';
-import 'package:cap_project/viewscreen/components/textfields/budgettitle_textfield.dart';
+
+import 'package:cap_project/viewscreen/budgetCategory.dart';
+
 import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
 import 'package:cap_project/viewscreen/components/texts/ohnoeserrortext.dart';
+
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
@@ -57,6 +58,34 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
       //        APPBAR     -----------------------------------------------------
       appBar: AppBar(
         title: TitleText(title: BudgetDetailScreen._screenName),
+        actions: [
+          DropdownButton<String>(
+            value: "Categories",
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 2,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              if (value == "Set Budget Categories") {
+                Navigator.pushNamed(context, AddCategory.routeName);
+              }
+              setState(() {
+                //dropdownValue = value!;
+              });
+            },
+            items: ["Set Budget Categories", "placeholder1", "Categories"]
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          ),
+        ],
         //        ACTIONS     ---------------------------------------------
         actions: <Widget>[
           EditCancelModeButton(
