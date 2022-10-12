@@ -51,26 +51,27 @@ class _SavingsState extends State<SavingsScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            for (var badge in badgeList)
-              if (badge.amount <= widget.userP.savings.first.amount)
-                Card(
-                  margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
-                  color: Colors.black12,
-                  elevation: 15.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25.0),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 100.0,
-                        width: 100.0,
-                        child: Image.network(badge.badgeUrl),
-                      ),
-                    ],
-                  ),
-                )
+            if (widget.userP.savings.isNotEmpty)
+              for (var badge in badgeList)
+                if (badge.amount <= widget.userP.savings.first.amount)
+                  Card(
+                    margin: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
+                    color: Colors.black12,
+                    elevation: 15.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 100.0,
+                          width: 100.0,
+                          child: Image.network(badge.badgeUrl),
+                        ),
+                      ],
+                    ),
+                  )
           ],
         ),
       ),
