@@ -121,7 +121,6 @@ class _Controller {
 
   // enter delete selection mode
   void onDeleteModeButtonPressed() {
-    print("delete button pressed");
     // if mode is already delete, set mode to view
     if (getCurrentMode() == BudgetListMode.delete) {
       onCancelButtonPressed();
