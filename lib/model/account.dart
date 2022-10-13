@@ -16,6 +16,7 @@ class Account extends StorableInterface {
   Map<String, dynamic> serialize() {
     return {
       DocKeyStorable.docId: docId,
+      DocKeyStorable.ownerUid: ownerUid,
       DocKeyStorable.title: title,
       DocKeyStorable.isCurrent: isCurrent,
     };

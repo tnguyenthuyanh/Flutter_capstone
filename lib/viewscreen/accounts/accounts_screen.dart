@@ -63,35 +63,29 @@ class _AccountState extends State<AccountsScreen> {
           //        BODY      --------------------------------------------------
           body: Padding(
             padding: const EdgeInsets.all(12.0),
-            child: Consumer<AccountData>(
-              builder: (context, accounts, child) {
-                //no accounts - display a text with the message
-                if (accounts.list.isEmpty) {
-                  return EmptyContentText(message: "No Accounts");
-                } else {
-                  return Column(
-                    children: <Widget>[
-                      Expanded(
-                        child:
-                            // Account list
-                            ListView.builder(
-                          itemCount: accounts.list.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            // get the account at the selected index
-                            Account _temp = accounts.list[index];
+            child: //no accounts - display a text with the message
+                accounts.list.isEmpty
+                    ? EmptyContentText(message: "No Accounts")
+                    : Column(
+                        children: <Widget>[
+                          Expanded(
+                            child:
+                                // Account list
+                                ListView.builder(
+                              itemCount: accounts.list.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                // get the account at the selected index
+                                Account _temp = accounts.list[index];
 
-                            return AccountListViewTile(
-                              currentMode: accounts.currentMode,
-                              object: _temp,
-                            );
-                          },
-                        ),
+                                return AccountListViewTile(
+                                  currentMode: accounts.currentMode,
+                                  object: _temp,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  );
-                }
-              },
-            ),
           ),
         ),
       );
@@ -119,7 +113,7 @@ class _Controller {
     // if mode is already delete, set mode to view
     if (getCurrentMode() == ListMode.delete) {
       setCurrentMode(ListMode.view);
-      Provider.of<AccountData>(_state.context).cancelDeletion();
+      Provider.of<AccountData>(_state.context, listen: false).cancelDeletion();
     } else {
       setCurrentMode(ListMode.delete);
     }
@@ -128,15 +122,14 @@ class _Controller {
   // // unstage any accounts selected for deletion and set mode to view
   void onDeleteButtonPressed() {
     // if mode is delete then cancel, else if mode is view then set for delete
-    if (Provider.of<AccountData>(_state.context, listen: false).currentMode ==
-        ListMode.view) {
-      Provider.of<AccountData>(_state.context, listen: false).currentMode ==
-          ListMode.delete;
-      return;
-    }
+    if (getCurrentMode() == ListMode.view) {
+      setCurrentMode(ListMode.delete);
 
-    Provider.of<AccountData>(_state.context, listen: false).cancelDeletion();
-    setCurrentMode(ListMode.view);
+      return;
+    } else {
+      setCurrentMode(ListMode.view);
+      Provider.of<AccountData>(_state.context, listen: false).cancelDeletion();
+    }
   }
 
   void onConfirmButtonPressed() {
@@ -147,7 +140,7 @@ class _Controller {
 
   // if back arrow is pressed
   Future<bool> onPopScope() {
-    Provider.of<AccountData>(_state.context).cancelDeletion();
+    Provider.of<AccountData>(_state.context, listen: false).cancelDeletion();
 
     Navigator.pop(_state.context);
     // TODO: fix this
@@ -164,14 +157,4 @@ class _Controller {
   void setCurrentMode(ListMode mode) {
     Provider.of<AccountData>(_state.context, listen: false).currentMode = mode;
   }
-  // //-----------------------------------------------------------------------
-
-  // UnmodifiableListView<Account> getAccountListView() {
-  //   if (Provider.of<AccountData>(_state.context).accounts != null) {
-  //     return Provider.of<AccountData>(_state.context).accounts;
-  //   } else {
-  //     return UnmodifiableListView(<Account>[]);
-  //   }
-  // }
-  //---------------------------------------------------------------------------
 }

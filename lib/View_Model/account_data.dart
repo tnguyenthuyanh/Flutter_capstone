@@ -34,8 +34,11 @@ class AccountData extends ChangeNotifier {
 
   // add to the local list, store in firebase and notify
   void add(Account object) async {
+    printer.setMethodName(methodName: "add");
+
     object.docId = await fsAdd(object);
 
+    printer.debugPrint("object created has docId " + object.docId!);
     _list.add(object);
 
     if (object.isCurrent! || _current == null) {
@@ -54,7 +57,7 @@ class AccountData extends ChangeNotifier {
     object.isCurrent = true;
 
     // TODO: Remove - debug
-    printer.debugPrint("Current updated to: $object.title");
+    printer.debugPrint("Current updated to: " + object.title);
 
     // if there is more than one budget, set others to inactive
     if (_list.size > 1) {
@@ -66,7 +69,7 @@ class AccountData extends ChangeNotifier {
     _list.clearDirtyFlags();
 
     // TODO:Remove-debug
-    print("$object.title : isCurrent = $object.isCurrent.toString()");
+    print("$object.title : isCurrent = " + object.isCurrent.toString());
 
     notifyListeners();
   }
@@ -126,16 +129,27 @@ class AccountData extends ChangeNotifier {
 
 // // ---- Firestore Related Methods ----------------------------------------------
   void fsLoad() async {
+    printer.setMethodName(methodName: "fsLoad");
     List<Account> _temp = await FirestoreController.getAccountList();
+
+    printer.debugPrint("Loading objects from FS");
 
     // load all the budgets into the provider's budget list
     for (Account object in _temp) {
       _list.add(object);
+      printer.debugPrint("Loaded object = " + object.serialize().toString());
 
       // if the budget is set as current, set the provider's selected budget
       if (object.isCurrent!) {
         setCurrent(object);
       }
+
+      if (list.length == 1) {
+        list[0].isCurrent = true;
+        setCurrent(list[0]);
+      }
+
+      notifyListeners();
     }
   }
 
@@ -144,11 +158,11 @@ class AccountData extends ChangeNotifier {
     printer.setMethodName(methodName: "fsAdd");
 
     var docId = await FirestoreController.addAccount(object: object);
-    object.docId = docId;
+    // object.docId = docId;
 
     // TODO: Remove - debug
-    printer.debugPrint(
-        "Added $object.title to FireStore with docid " + "$object.docId!");
+    // printer.debugPrint(
+    //     "Added " + object.title + " to FireStore with docid " + object.docId!);
 
     notifyListeners();
 
@@ -162,7 +176,8 @@ class AccountData extends ChangeNotifier {
       await FirestoreController.updateAccount(object: dirtyBoi as Account);
 
       // TODO: Remove-debug
-      printer.debugPrint("Sending to FS to update: $dirtyBoi.serialize()");
+      printer.debugPrint(
+          "Sending to FS to update: " + dirtyBoi.serialize().toString());
     }
   }
 
@@ -178,17 +193,17 @@ class AccountData extends ChangeNotifier {
 //   // ---- Debug Methods ----------------------------------------------
   void printAll() {
     for (Account object in list) {
-      print("Object: $object.serialize()");
+      print("Object: " + object.serialize().toString());
     }
 
     if (_current != null) {
-      print("Current: $current!.serialize()");
+      print("Current: " + current!.serialize().toString());
     } else {
       print("Current is null");
     }
 
     if (_selected != null) {
-      print("Selected: $selected!.serialize()");
+      print("Selected: " + selected!.serialize().toString());
     } else {
       print("Selected is null");
     }

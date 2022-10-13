@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import '../../View_Model/account_data.dart';
 import '../../model/account.dart';
@@ -24,7 +25,7 @@ class AccountListViewTile extends StatelessWidget {
       backgroundColor:
           _stagedForDeletion ? _selectedForDeleteColor : _normalColor,
       onTapCallback: () {
-        if (currentMode == BudgetListMode.delete) {
+        if (currentMode == ListMode.delete) {
           if (_stagedForDeletion) {
             Provider.of<AccountData>(context, listen: false)
                 .unstageForDeletion(object);
@@ -33,6 +34,7 @@ class AccountListViewTile extends StatelessWidget {
                 .stageForDeletion(object);
           }
         } else {
+          showToast("I'm afraid I can't do that Dave");
           // Provider.of<AccountData>(context, listen: false)
           //     .setSelected(object);
           // Navigator.pushNamed(context, AccountDetailScreen.routeName);

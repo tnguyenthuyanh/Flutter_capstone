@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/constant.dart';
+import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import '../controller/auth_controller.dart';
@@ -8,6 +9,8 @@ import '../model/budgetlist.dart';
 import '/model/budget.dart';
 
 class BudgetData extends ChangeNotifier {
+  DebugPrinter printer = DebugPrinter(className: "BudgetData");
+
   BudgetList _budgetList = BudgetList();
   Budget? _selectedBudget = null; // budget being VIEWED
   Budget? _currentBudget = null; // budget being USED for calculations etc
@@ -38,15 +41,15 @@ class BudgetData extends ChangeNotifier {
   }
 
   void setCurrentBudget(Budget budget) {
+    printer.setMethodName(methodName: "setCurrentBudget");
+
     _currentBudget = budget;
     budget.dirty = true;
 
     budget.isCurrent = true;
 
     // TODO: Remove - debug
-    print('BudgetData: current updated to: ' +
-        budget.title +
-        "********************");
+    printer.debugPrint('Current updated to: ' + budget.title);
 
     // if there is more than one budget, set others to inactive
     if (_budgetList.size > 1) {
@@ -58,8 +61,9 @@ class BudgetData extends ChangeNotifier {
     _budgetList.clearDirtyFlags();
 
     // TODO:Remove-debug
-    print("BudgetData: " + budget.title + " current?");
-    print(budget.isCurrent.toString());
+    printer
+        .debugPrint(budget.title + " current: " + budget.isCurrent.toString());
+
     notifyListeners();
   }
 
@@ -81,7 +85,9 @@ class BudgetData extends ChangeNotifier {
   }
 
   void confirmDeletion() {
-    print("Before deletion:");
+    printer.setMethodName(methodName: "confirmDeletion");
+    // TODO: Remove-debug
+    printer.debugPrint("Before deletion:");
     printAllBudgets();
 
     for (Budget budget in _budgetList.deletionList) {
@@ -97,7 +103,7 @@ class BudgetData extends ChangeNotifier {
 
     _budgetList.commitDeletion();
 
-    print("After deletion: ");
+    printer.debugPrint("After deletion: ");
     printAllBudgets();
 
     notifyListeners();

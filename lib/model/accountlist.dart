@@ -35,14 +35,15 @@ class AccountList {
       for (StorableInterface object in _objectList) {
         if (!identical(newCurrent, object)) {
           // TODO:Remove-debug
-          printer.debugPrint("Comparing: $newCurrent.title to $object.title");
+          printer.debugPrint(
+              "Comparing: " + newCurrent.title + " to " + object.title);
 
           if (object.isCurrent!) {
             object.isCurrent = false;
             object.setDirty(true);
 
             // TODO: Remove- debug
-            printer.debugPrint("object $object.title set dirty");
+            printer.debugPrint("object " + object.title + " set dirty");
           }
         }
       }
