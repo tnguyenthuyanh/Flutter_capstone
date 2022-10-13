@@ -9,9 +9,12 @@ class PlanScreen extends StatefulWidget {
   static const routeName = '/planScreen';
 
   final User user;
-  late List<Plan> planList;
+  late List<Plan> planList = <Plan>[];
 
-  PlanScreen({required this.user, required this.planList, Key? key})
+  PlanScreen(
+      {required this.user,
+      //required this.planList,
+      Key? key})
       : super(key: key);
 
   @override
@@ -84,6 +87,11 @@ class _Controller {
 
   _Controller(this.state) {
     planList = state.widget.planList;
+    getPlanList(state.widget.user.email);
+  }
+
+  Future<void> getPlanList(String? email) async {
+    planList = await FirestoreController.getPlanList(email: email!);
   }
 
   void addNewPlanScreen(String? email) async {
