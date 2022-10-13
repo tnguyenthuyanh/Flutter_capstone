@@ -1,3 +1,4 @@
+import 'package:cap_project/viewscreen/debtDetail_screen.dart';
 import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/viewscreen/addPurchase_screen.dart';
 import 'package:cap_project/viewscreen/addSavings_screen.dart';
@@ -26,6 +27,7 @@ import 'viewscreen/addbudget_screen.dart';
 import 'viewscreen/budgetdetail_screen.dart';
 import 'viewscreen/budgets_screen.dart';
 import 'viewscreen/error_screen.dart';
+import 'viewscreen/payoffSchedule_screen.dart';
 import 'viewscreen/signup_screen.dart';
 import 'viewscreen/userhome_screen.dart';
 
@@ -87,6 +89,22 @@ class Capstone extends StatelessWidget {
               );
             }
           },
+          DebtDetailScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for DebtScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var userP = argument[ArgKey.userProfile];
+              var debt = argument[ArgKey.singleDebt];
+              return DebtDetailScreen(
+                user: user,
+                userP: userP,
+                debt: debt,
+              );
+            }
+          },
           AddDebtScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
@@ -99,6 +117,20 @@ class Capstone extends StatelessWidget {
                 user: user,
                 userP: userP,
                 debtList: [],
+              );
+            }
+          },
+          PayoffScheduleScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for PayoffScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var debt = argument[ArgKey.singleDebt];
+              return PayoffScheduleScreen(
+                user: user,
+                debt: debt,
               );
             }
           },
