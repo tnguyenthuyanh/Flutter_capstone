@@ -1,9 +1,15 @@
 abstract class StorableInterface {
+  String? docId;
+  final String title;
   final String ownerUid;
   bool _dirty = false;
-  String? docId;
+  bool? isCurrent = false;
 
-  StorableInterface({required this.ownerUid, this.docId});
+  StorableInterface(
+      {required this.ownerUid,
+      required this.title,
+      this.docId,
+      this.isCurrent});
 
   Map<String, dynamic> serialize();
   static Object? deserialize(

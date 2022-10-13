@@ -1,11 +1,7 @@
-import 'package:cap_project/viewscreen/budgetdetail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../View_Model/account_data.dart';
-import '../../View_Model/budget_data.dart';
 import '../../model/account.dart';
-import '../../model/budget.dart';
 import '../../model/constant.dart';
 import 'my_listview_tile.dart';
 
@@ -30,16 +26,16 @@ class AccountListViewTile extends StatelessWidget {
       onTapCallback: () {
         if (currentMode == BudgetListMode.delete) {
           if (_stagedForDeletion) {
-            Provider.of<BudgetData>(context, listen: false)
-                .unstageForDeletion(budget);
+            Provider.of<AccountData>(context, listen: false)
+                .unstageForDeletion(object);
           } else {
-            Provider.of<BudgetData>(context, listen: false)
-                .stageForDeletion(budget);
+            Provider.of<AccountData>(context, listen: false)
+                .stageForDeletion(object);
           }
         } else {
-          Provider.of<BudgetData>(context, listen: false)
-              .setSelectedBudget(budget);
-          Navigator.pushNamed(context, BudgetDetailScreen.routeName);
+          // Provider.of<AccountData>(context, listen: false)
+          //     .setSelected(object);
+          // Navigator.pushNamed(context, AccountDetailScreen.routeName);
         }
       },
     );

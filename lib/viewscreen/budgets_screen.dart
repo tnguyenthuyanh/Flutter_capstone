@@ -50,13 +50,13 @@ class _BudgetsState extends State<BudgetsScreen> {
           actions: [
             // delete/cancel button
             IconButton(
-              icon: _currentMode == AccountListMode.delete
+              icon: _currentMode == BudgetListMode.delete
                   ? const Icon(Icons.cancel)
                   : const Icon(Icons.delete),
               onPressed: _con.onDeleteModeButtonPressed,
             ),
             // confirm button
-            if (_currentMode == AccountListMode.delete)
+            if (_currentMode == BudgetListMode.delete)
               IconButton(
                 icon: const Icon(Icons.check),
                 onPressed: _con.onConfirmButtonPressed,

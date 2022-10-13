@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../View_Model/account_data.dart';
-import '../../View_Model/accountlistmode_data.dart';
 import '../../model/account.dart';
 import '../../model/constant.dart';
+import '../components/accountlistviewtile.dart';
 import '../components/buttons/modebuttons/deletecancel_button.dart';
 import 'addaccount_screen.dart';
 
@@ -27,7 +27,6 @@ class _AccountState extends State<AccountsScreen> {
   void initState() {
     super.initState();
     _con = _Controller(this);
-    Provider.of<AccountData>(context).currentMode = ListMode.view; 
   }
 
   void render(fn) {
@@ -36,8 +35,7 @@ class _AccountState extends State<AccountsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<AccountData>(
-      builder: (context, accounts, child){
+    return Consumer<AccountData>(builder: (context, accounts, child) {
       return WillPopScope(
         onWillPop: _con.onPopScope,
         child: Scaffold(
@@ -46,15 +44,15 @@ class _AccountState extends State<AccountsScreen> {
             title: TitleText(title: AccountsScreen._screenName),
             actions: [
               //              DELETE/CANCEL & SAVE BUTTONS   ---------------------------
-          DeleteCancelModeButton(
-            mode: accounts.currentMode,
-            onPressedCallback: _con.onDeleteButtonPressed,
-          ),
-          if (accounts.currentMode == ListMode.delete)
-            IconButton(
-              icon: Icon(Icons.check),
-              onPressed: _con.onConfirmButtonPressed,
-            ),
+              DeleteCancelModeButton(
+                mode: accounts.currentMode,
+                onPressedCallback: _con.onDeleteButtonPressed,
+              ),
+              if (accounts.currentMode == ListMode.delete)
+                IconButton(
+                  icon: Icon(Icons.check),
+                  onPressed: _con.onConfirmButtonPressed,
+                ),
             ],
           ),
           // Add FloatingActionButton
@@ -79,12 +77,12 @@ class _AccountState extends State<AccountsScreen> {
                             ListView.builder(
                           itemCount: accounts.list.length,
                           itemBuilder: (BuildContext context, int index) {
-                            // get the budget at the selected index
+                            // get the account at the selected index
                             Account _temp = accounts.list[index];
 
                             return AccountListViewTile(
                               currentMode: accounts.currentMode,
-                              account: _temp,
+                              object: _temp,
                             );
                           },
                         ),
@@ -96,8 +94,8 @@ class _AccountState extends State<AccountsScreen> {
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 
@@ -130,8 +128,10 @@ class _Controller {
   // // unstage any accounts selected for deletion and set mode to view
   void onDeleteButtonPressed() {
     // if mode is delete then cancel, else if mode is view then set for delete
-    if(Provider.of<AccountData>(_state.context, listen: false).currentMode == ListMode.view){
-      Provider.of<AccountData>(_state.context, listen: false).currentMode == ListMode.delete;
+    if (Provider.of<AccountData>(_state.context, listen: false).currentMode ==
+        ListMode.view) {
+      Provider.of<AccountData>(_state.context, listen: false).currentMode ==
+          ListMode.delete;
       return;
     }
 
@@ -158,13 +158,11 @@ class _Controller {
   // Mode methods
   //--------------------------------------------------------------------------
   ListMode getCurrentMode() {
-    return Provider.of<AccountData>(_state.context, listen: false)
-        .currentMode;
+    return Provider.of<AccountData>(_state.context, listen: false).currentMode;
   }
 
   void setCurrentMode(ListMode mode) {
-    Provider.of<AccountData>(_state.context, listen: false).currentMode =
-        mode;
+    Provider.of<AccountData>(_state.context, listen: false).currentMode = mode;
   }
   // //-----------------------------------------------------------------------
 

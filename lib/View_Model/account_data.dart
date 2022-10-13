@@ -1,22 +1,22 @@
 import 'dart:collection';
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/constant.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:cap_project/model/storableobject.dart';
+import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'package:flutter/material.dart';
-import '../controller/auth_controller.dart';
 import '../model/account.dart';
 import '../model/accountlist.dart';
-import '../model/budgetlist.dart';
-import '/model/budget.dart';
 
 class AccountData extends ChangeNotifier {
+  DebugPrinter printer = DebugPrinter(className: "AccountData");
+
   AccountList _list = AccountList();
   Account? _selected = null; // account being VIEWED
   Account? _current = null; // account being USED for calculations etc
   ListMode _currentMode = ListMode.view;
 
   AccountData() {
-    // fsLoadBudgets();
+    fsLoad();
   }
 
 // ---- getters for encapsulated member variables ------------------------------
@@ -32,66 +32,67 @@ class AccountData extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// add the budget to the local budget list, store in firebase and notify
-//   void add(Budget budget) async {
-//     budget.docID = await fsAddBudget(budget);
+  // add to the local list, store in firebase and notify
+  void add(Account object) async {
+    object.docId = await fsAdd(object);
 
-//     _budgetList.add(budget);
+    _list.add(object);
 
-//     // if the new budget is set to current, set update other budgets, if any
-//     if (budget.isCurrent! || _currentBudget == null) {
-//       setCurrentBudget(budget);
-//     }
+    if (object.isCurrent! || _current == null) {
+      setCurrent(object);
+    }
 
-//     notifyListeners();
-//   }
+    notifyListeners();
+  }
 
-//   void setCurrentBudget(Budget budget) {
-//     _currentBudget = budget;
-//     budget.dirty = true;
+  void setCurrent(Account object) {
+    printer.setMethodName(methodName: "setCurrent");
 
-//     budget.isCurrent = true;
+    _current = object;
+    object.setDirty(true);
 
-//     // TODO: Remove - debug
-//     print('BudgetData: current updated to: ' +
-//         budget.title +
-//         "********************");
+    object.isCurrent = true;
 
-//     // if there is more than one budget, set others to inactive
-//     if (_budgetList.size > 1) {
-//       _budgetList.setNewCurrentBudget(budget);
-//     }
+    // TODO: Remove - debug
+    printer.debugPrint("Current updated to: $object.title");
 
-//     // update firestore, if needed
-//     fsUpdateAllDirty();
-//     _budgetList.clearDirtyFlags();
+    // if there is more than one budget, set others to inactive
+    if (_list.size > 1) {
+      _list.setNewCurrent(object);
+    }
 
-//     // TODO:Remove-debug
-//     print("BudgetData: " + budget.title + " current?");
-//     print(budget.isCurrent.toString());
-//     notifyListeners();
-//   }
+    // update firestore, if needed
+    fsUpdateAllDirty();
+    _list.clearDirtyFlags();
 
-//   // sets the budget selected for view/edit in the budgets list
-//   void setSelectedBudget(Budget budget) {
-//     _selectedBudget = budget;
-//     notifyListeners();
-//   }
+    // TODO:Remove-debug
+    print("$object.title : isCurrent = $object.isCurrent.toString()");
+
+    notifyListeners();
+  }
+
+//   // sets selected for view/edit in the acount list
+  void setSelected(Account object) {
+    _selected = object;
+    notifyListeners();
+  }
 
 // // ---- Deletion Related Methods -----------------------------------------------
-//   void stageForDeletion(Budget budget) {
-//     _budgetList.stageForDeletion(budget);
-//     notifyListeners();
-//   }
+  void stageForDeletion(Account object) {
+    _list.stageForDeletion(object);
+    notifyListeners();
+  }
 
-//   void unstageForDeletion(Budget budget) {
-//     _budgetList.unstageForDeletion(budget);
-//     notifyListeners();
-//   }
+  void unstageForDeletion(Account object) {
+    _list.unstageForDeletion(object);
+    notifyListeners();
+  }
 
   void confirmDeletion() {
+    printer.setMethodName(methodName: "confirmDeletion");
+
     // TODO: Remove-debug
-    print("Before deletion:");
+    printer.debugPrint("Before deletion:");
     printAll();
 
     for (Account object in _list.deletionList) {
@@ -108,7 +109,7 @@ class AccountData extends ChangeNotifier {
     _list.commitDeletion();
 
     // TODO: Remove-Debug
-    print("After deletion: ");
+    printer.debugPrint("After deletion: ");
     printAll();
 
     notifyListeners();
@@ -124,51 +125,51 @@ class AccountData extends ChangeNotifier {
   }
 
 // // ---- Firestore Related Methods ----------------------------------------------
-//   void fsLoadBudgets() async {
-//     List<Budget> _tempBudgets = await FirestoreController.getBudgetList();
+  void fsLoad() async {
+    List<Account> _temp = await FirestoreController.getAccountList();
 
-//     // load all the budgets into the provider's budget list
-//     for (Budget budget in _tempBudgets) {
-//       _budgetList.add(budget);
+    // load all the budgets into the provider's budget list
+    for (Account object in _temp) {
+      _list.add(object);
 
-//       // if the budget is set as current, set the provider's selected budget
-//       if (budget.isCurrent!) {
-//         setCurrentBudget(budget);
-//       }
-//     }
-//   }
+      // if the budget is set as current, set the provider's selected budget
+      if (object.isCurrent!) {
+        setCurrent(object);
+      }
+    }
+  }
 
-//   // add the budget to firestore and set the budget's docid
-//   Future<String> fsAddBudget(Budget budget) async {
-//     var docID = await FirestoreController.addBudget(budget: budget);
-//     budget.docID = docID;
+//   // add to firestore and set the object's docid
+  Future<String> fsAdd(Account object) async {
+    printer.setMethodName(methodName: "fsAdd");
 
-//     // TODO: Remove - debug
-//     print("Added " +
-//         budget.title +
-//         " to FireStore with docid " +
-//         budget.docID! +
-//         "***********************8");
+    var docId = await FirestoreController.addAccount(object: object);
+    object.docId = docId;
 
-//     notifyListeners();
+    // TODO: Remove - debug
+    printer.debugPrint(
+        "Added $object.title to FireStore with docid " + "$object.docId!");
 
-//     return docID;
-//   }
+    notifyListeners();
 
-//   Future<void> fsUpdateAllDirty() async {
-//     for (Budget dirtyBoi in _budgetList.getDirtyList()) {
-//       await FirestoreController.updateBudget(budget: dirtyBoi);
+    return docId;
+  }
 
-//       // TODO: Remove-debug
-//       print("Sending to FS to update: ");
-//       print(dirtyBoi.serialize());
-//     }
-//   }
+  Future<void> fsUpdateAllDirty() async {
+    printer.setMethodName(methodName: "fsUpdateAllDirty");
 
-//   void fsUpdateBudget(Budget budget) async {
-//     FirestoreController.updateBudget(budget: budget);
-//     notifyListeners();
-//   }
+    for (StorableInterface dirtyBoi in _list.getDirtyList()) {
+      await FirestoreController.updateAccount(object: dirtyBoi as Account);
+
+      // TODO: Remove-debug
+      printer.debugPrint("Sending to FS to update: $dirtyBoi.serialize()");
+    }
+  }
+
+  void fsUpdate(Account object) async {
+    FirestoreController.updateAccount(object: object);
+    notifyListeners();
+  }
 
   void fsDelete(Account object) {
     FirestoreController.deleteAccount(object: object);

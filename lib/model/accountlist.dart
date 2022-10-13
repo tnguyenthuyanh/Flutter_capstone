@@ -1,8 +1,12 @@
 import 'dart:collection';
+import 'package:cap_project/model/constant.dart';
 import 'package:cap_project/model/storableobject.dart';
+import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'account.dart';
 
 class AccountList {
+  final DebugPrinter printer = DebugPrinter(className: "AccountList");
+
   late List<Account> _objectList; // all objects
   late List<Account> _deletionList; // objects staged for deletion
   late List<int> _selectedIndices; // and their indices
@@ -24,29 +28,31 @@ class AccountList {
     _objectList.add(account);
   }
 
-  // void setNewCurrentAccount(Budget newCurrent) {
-  //   if (_budgets.length > 1) {
-  //     // set all active budgets but newCurrent to inactive
-  //     // and set their dirty flag
-  //     for (Budget budget in _budgets) {
-  //       if (!budget.equals(newCurrent)) {
-  //         // TODO:Remove-debug
-  //         print("Comparing: " + newCurrent.title + " to " + budget.title);
+  void setNewCurrent(Account newCurrent) {
+    printer.setMethodName(methodName: "setNewCurrent");
 
-  //         if (budget.isCurrent!) {
-  //           budget.isCurrent = false;
-  //           budget.dirty = true;
+    if (_objectList.length > 1) {
+      for (StorableInterface object in _objectList) {
+        if (!identical(newCurrent, object)) {
+          // TODO:Remove-debug
+          printer.debugPrint("Comparing: $newCurrent.title to $object.title");
 
-  //           // TODO: Remove- debug
-  //           print("BudgetList: budget " + budget.title + " set dirty");
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+          if (object.isCurrent!) {
+            object.isCurrent = false;
+            object.setDirty(true);
+
+            // TODO: Remove- debug
+            printer.debugPrint("object $object.title set dirty");
+          }
+        }
+      }
+    }
+  }
 
   // Get a list of all objects that need to be updated in firestore
   List<StorableInterface> getDirtyList() {
+    printer.setMethodName(methodName: "getDirtyList");
+
     List<StorableInterface> temp = [];
 
     for (StorableInterface object in _objectList) {
@@ -54,8 +60,8 @@ class AccountList {
         temp.add(object);
 
         // TODO: Remove-debug
-        print("Adding to dirtyList: ");
-        print(object.serialize());
+        printer.debugPrint("Adding to dirtyList: ");
+        printer.debugPrint(object.serialize());
       }
     }
     return temp;
@@ -83,24 +89,21 @@ class AccountList {
     return false;
   }
 
-  // void stageForDeletion(StorableInterface object) {
-  //   // if the budget isn't in the deletionlist already, add it
-  //   if (!(_deletionList.contains(object))) {
-  //     _deletionList.add(object);
-  //   }
-  // }
+  void stageForDeletion(StorableInterface object) {
+    if (!(_deletionList.contains(object))) {
+      _deletionList.add(object as Account);
+    }
+  }
 
-  // // removes a budget from the deletionlist
-  // void unstageForDeletion(Budget budget) {
-  //   if (_deletionList.contains(budget)) {
-  //     _deletionList.remove(budget);
-  //   }
-  // }
+  // // removes object from the deletionlist
+  void unstageForDeletion(StorableInterface object) {
+    if (_deletionList.contains(object)) {
+      _deletionList.remove(object);
+    }
+  }
 
   // // perform the deletion
   void commitDeletion() {
-    // iterate through the deletionlist and remove object from
-    // the provider's list
     for (StorableInterface object in _deletionList) {
       if (_objectList.contains(object)) {
         _objectList.remove(object);
@@ -116,7 +119,7 @@ class AccountList {
   }
 
   // // returns if the object is to be deleted or not
-  bool isStagedForDeletion(Account object) {
+  bool isStagedForDeletion(StorableInterface object) {
     return _deletionList.contains(object);
   }
 }
