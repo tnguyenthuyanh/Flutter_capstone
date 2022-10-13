@@ -55,7 +55,7 @@ class _PayoffScheduleState extends State<PayoffScheduleScreen> {
                 TextFormField(
                   enabled: false,
                   style: Theme.of(context).textTheme.bodyText1,
-                  initialValue: 'Interest Rate: \$' + widget.debt.interest,
+                  initialValue: 'Interest Rate: ' + widget.debt.interest + '%',
                 ),
                 TextFormField(
                   enabled: false,

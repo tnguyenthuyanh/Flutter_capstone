@@ -154,7 +154,7 @@ class _Controller {
         state.widget.debt.copyFrom(tempDebt);
       }
 
-      await Navigator.pushNamed(
+      /*await Navigator.pushNamed(
         state.context,
         DebtScreen.routeName,
         arguments: {
@@ -163,7 +163,7 @@ class _Controller {
           ArgKey.user: state.widget.user,
           ArgKey.userProfile: state.widget.userP,
         },
-      );
+      );*/
 
       stopCircularProgress(state.context);
       state.render(() => state.editmode = false);
@@ -187,13 +187,15 @@ class _Controller {
 
   void saveBalance(String? value) {
     if (value != null) {
-      tempDebt.balance = value;
+      String tempVal = value.substring(10);
+      tempDebt.balance = tempVal;
     }
   }
 
   void saveInterest(String? value) {
     if (value != null) {
-      tempDebt.interest = value;
+      String tempVal = value.substring(15, value.length - 1);
+      tempDebt.interest = tempVal;
     }
   }
 
