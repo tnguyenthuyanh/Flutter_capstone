@@ -1,6 +1,8 @@
+import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/addPurchase_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import '../model/constant.dart';
 import '../model/purchase.dart';
@@ -44,11 +46,11 @@ class _PurchasesState extends State<PurchasesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("$email's Transaction List"),
-        actions: con.selected.isEmpty
+        actions: con.selected == -1
             ? null
             : [
                 IconButton(
-                  onPressed: con.deleteTransactions,
+                  onPressed: con.delete,
                   icon: const Icon(Icons.delete),
                 ),
                 IconButton(
@@ -59,21 +61,21 @@ class _PurchasesState extends State<PurchasesScreen> {
       ),
       body: widget.userP.purchases.isEmpty
           ? Text(
-              'test: ${widget.userP.purchases.length}',
+              'No Transactions',
               style: Theme.of(context).textTheme.headline6,
             )
           : ListView.builder(
               itemCount: widget.userP.purchases.length,
               itemBuilder: (BuildContext context, int index) {
                 return Container(
-                  color: con.selected.contains(index)
-                      ? con.selectedColor
-                      : con.unselectedColor,
+                  // color: con.selected ==
+                  //     ? con.selectedColor
+                  //     : con.unselectedColor,
                   margin: const EdgeInsets.all(17.0),
                   child: ListTile(
                     title: Text(widget.userP.purchases[index].amount),
                     subtitle: Text(widget.userP.purchases[index].note),
-                    onLongPress: () => con.onLongPress(index),
+                    //onLongPress: () => con.delete(index),
                     onTap: () => con.onTap(index),
                   ),
                 );
@@ -90,13 +92,22 @@ class _PurchasesState extends State<PurchasesScreen> {
 class _Controller {
   _PurchasesState state;
   late List<dynamic> purchaseList;
-  List<int> selected = [];
+  int selected = -1;
 
   final selectedColor = Colors.black12;
   final unselectedColor = Colors.black87;
 
   _Controller(this.state) {
     List<dynamic> purchaseList = state.widget.userP.purchases;
+  }
+
+  void onTap(int index) {
+    selected = index;
+    state.render(() {});
+  }
+
+  void cancelDelete() {
+    selected = -1;
   }
 
   void addButton() async {
@@ -109,33 +120,17 @@ class _Controller {
     state.render(() {}); //rerender the screen
   }
 
-  void onTap(int index) {
-    if (selected.isNotEmpty) {
-      onLongPress(index);
-    } else {}
-  }
-
-  void onLongPress(int index) {
-    state.render(() {
-      if (selected.contains(index)) {
-        selected.remove(index);
-      } else {
-        selected.add(index);
-      }
-    });
-  }
-
-  void deleteTransactions() {
-    selected.sort();
-    for (int i = selected.length - 1; i >= 0; i--) {
-      state.widget.userP.purchases.removeAt(selected[i]);
-    }
-    state.render(() {
-      selected.clear();
-    });
-  }
-
-  void cancelDelete() {
-    state.render(() => selected.clear());
+  void delete() async {
+    Purchase test = state.widget.userP.purchases[selected];
+    UserProfile testing = state.widget.userP;
+    await FirestoreController.deleteTransaction(test, testing);
+    state.render(() {});
+    await Navigator.popAndPushNamed(state.context, PurchasesScreen.routeName,
+        arguments: {
+          ArgKey.purchaseList: state.widget.userP.purchases,
+          ArgKey.user: state.widget.user,
+          ArgKey.userProfile: state.widget.userP,
+        });
+    state.render(() {});
   }
 }

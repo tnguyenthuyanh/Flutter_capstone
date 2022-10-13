@@ -386,6 +386,16 @@ class FirestoreController {
     return ref.id; // doc is auto-generated.
   }
 
+  static Future<void> deleteTransaction(
+      Purchase purchase, UserProfile user) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.purchases)
+        .doc(purchase.docId)
+        .delete();
+  }
+
   static Future<List<Purchase>> getPurchaseList({
     required UserProfile user,
   }) async {
