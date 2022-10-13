@@ -77,7 +77,7 @@ class _DebtDetailState extends State<DebtDetailScreen> {
                     hintText: 'Enter Balance',
                   ),
                   initialValue: "Balance: \$" + con.tempDebt.balance,
-                  keyboardType: TextInputType.numberWithOptions(),
+                  keyboardType: const TextInputType.numberWithOptions(),
                   maxLines: 1,
                   validator: Debt.validateBalance,
                   onSaved: con.saveBalance,
@@ -103,7 +103,7 @@ class _DebtDetailState extends State<DebtDetailScreen> {
                       )
                     : Text('Debt Category \n' + con.tempDebt.category),
                 ElevatedButton(
-                    onPressed: con.payOff, child: Text('Payoff Schedule'))
+                    onPressed: con.payOff, child: const Text('Payoff Schedule'))
               ],
             ),
           ),
