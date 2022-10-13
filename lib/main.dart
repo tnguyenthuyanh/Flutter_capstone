@@ -202,7 +202,7 @@ class Capstone extends StatelessWidget {
               var planList = argument[ArgKey.planList];
               return PlanScreen(
                 user: user,
-                //planList: planList,
+                //planList: [],
               );
             }
           },

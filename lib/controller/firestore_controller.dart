@@ -55,8 +55,8 @@ class FirestoreController {
   }) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.plans)
-        .where(DocKeyPlan.createdBy, isEqualTo: email)
-        .orderBy(DocKeyPlan.timeStamp, descending: true)
+        .where(Plan.CREATED_BY, isEqualTo: email)
+        .orderBy(Plan.TIMESTAMP, descending: true)
         .get();
     var result = <Plan>[];
     querySnapshot.docs.forEach((doc) {

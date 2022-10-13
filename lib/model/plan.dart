@@ -1,13 +1,20 @@
-enum DocKeyPlan {
-  createdBy,
-  title,
-  costs,
-  reduction,
-  length,
-  timeStamp,
-}
+// enum DocKeyPlan {
+//   createdBy,
+//   title,
+//   costs,
+//   reduction,
+//   length,
+//   timeStamp,
+// }
 
 class Plan {
+  static const CREATED_BY = 'createdBy';
+  static const TITLE = 'title';
+  static const COSTS = 'costs';
+  static const REDUCTION = 'reduction';
+  static const LENGTH = 'length';
+  static const TIMESTAMP = 'timeStamp';
+
   String? docId;
   late String createdBy;
   late String title;
@@ -26,32 +33,50 @@ class Plan {
     this.timeStamp,
   });
 
+  Plan.clone(Plan p) {
+    docId = p.docId;
+    createdBy = p.createdBy;
+    title = p.title;
+    costs = p.costs;
+    reduction = p.reduction;
+    length = p.length;
+  }
+
+  void assign(Plan p) {
+    docId = p.docId;
+    createdBy = p.createdBy;
+    title = p.title;
+    costs = p.costs;
+    reduction = p.reduction;
+    length = p.length;
+  }
+
   //serialization
   Map<String, dynamic> toFirestoreDoc() {
     return {
-      DocKeyPlan.createdBy.name: createdBy,
-      DocKeyPlan.title.name: title,
-      DocKeyPlan.costs.name: costs,
-      DocKeyPlan.reduction.name: reduction,
-      DocKeyPlan.length.name: length,
-      DocKeyPlan.timeStamp.name: timeStamp,
+      CREATED_BY: createdBy,
+      TITLE: title,
+      COSTS: costs,
+      REDUCTION: reduction,
+      LENGTH: length,
+      TIMESTAMP: timeStamp,
     };
   }
 
   //deserialization
   static Plan? fromFirestoreDoc(
       {required Map<String, dynamic> doc, required String docId}) {
+    for (var key in doc.keys) {
+      if (doc[key] == null) return null;
+    }
     return Plan(
-        docId: docId,
-        createdBy: doc[DocKeyPlan.createdBy.name] ??= 'N/A',
-        title: doc[DocKeyPlan.title.name] ??= 'N/A',
-        costs: doc[DocKeyPlan.costs.name] ??= 'N/A',
-        reduction: doc[DocKeyPlan.reduction.name] ??= 'N/A',
-        length: doc[DocKeyPlan.length.name] ??= 'N/A',
-        timeStamp: doc[DocKeyPlan.timeStamp] != null
-            ? DateTime.fromMillisecondsSinceEpoch(
-                doc[DocKeyPlan.timeStamp].millisecondsSinceEpoch)
-            : DateTime.now());
+      docId: docId,
+      createdBy: doc[CREATED_BY] ??= 'N/A',
+      title: doc[TITLE] ??= 'N/A',
+      costs: doc[COSTS] ??= 'N/A',
+      reduction: doc[REDUCTION] ??= 'N/A',
+      length: doc[LENGTH] ??= 'N/A',
+    );
   }
 
   static String? validateTitle(String? value) {

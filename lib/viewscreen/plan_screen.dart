@@ -50,7 +50,7 @@ class _PlanState extends State<PlanScreen> {
                   decoration: BoxDecoration(
                     color: con.toDelete.contains(index)
                         ? Colors.red
-                        : Colors.white,
+                        : Colors.black,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: ListTile(
@@ -92,6 +92,7 @@ class _Controller {
 
   Future<void> getPlanList(String? email) async {
     planList = await FirestoreController.getPlanList(email: email!);
+    state.render(() {});
   }
 
   void addNewPlanScreen(String? email) async {
