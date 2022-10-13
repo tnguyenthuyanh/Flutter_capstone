@@ -228,7 +228,6 @@ class _Controller {
   late _UserListState state;
   late List<UserInfo> userList;
   late String currentUID;
-  late Filter filterValue;
   String? searchKeyString;
   late SearchOption searchOption;
 
@@ -250,7 +249,7 @@ class _Controller {
             ArgKey.currentUID: currentUID,
             ArgKey.isFriendAdded: isFriendAdded,
           });
-      await filter(filterValue);
+      await filter(state.filterValue);
       // Navigator.of(state.context).pop();
     } catch (e) {
       if (Constant.devMode) print('====== ProfileScreen error: $e');
