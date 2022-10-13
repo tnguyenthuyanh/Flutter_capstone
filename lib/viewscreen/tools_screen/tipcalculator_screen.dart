@@ -19,20 +19,38 @@ class TipCalculatorScreen extends StatefulWidget {
 
 class _TipCalculatorState extends State<TipCalculatorScreen> {
   late _Controller con;
-  List<int> list = <int>[];
+  List<int> list = <int>[]; // num of people
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  List<TipCalc> tcList = <TipCalc>[]; // saved tip calc list
 
   @override
   void initState() {
     super.initState();
     con = _Controller(this);
+
     for (int i = 1; i <= 50; i++) {
       list.add(i);
     }
     con.numOfPeople = list.first;
+    asyncInitState();
   }
 
   void render(fn) => setState(fn);
+
+  void asyncInitState() async {
+    try {
+      await FirestoreController.getSavedTipCalcList(email: widget.user.email.toString())
+          .then((value) {
+        tcList = value;
+      });
+    } catch (e) {
+      PopupDialog.info(
+        context: context,
+        title: "Something went wrong!",
+        content: '$e. Cannot retrieve saved tip calculating results',
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,10 +60,10 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
         appBar: AppBar(
           title: const Text("Tip Calculator"),
           actions: [
-            // IconButton(
-            //   icon: Icon(Icons.list),
-            //   onPressed: () => con.getTipCalcList(),
-            // )
+            IconButton(
+              icon: Icon(Icons.list),
+              onPressed: () => con.getSavedTipCalcList(context),
+            )
           ],
         ),
         body: GestureDetector(
@@ -259,10 +277,6 @@ class _Controller {
     tipcalc.tipPerPerson = tipPerPerson;
     tipcalc.totalPay = totalPay;
     tipcalc.amountPerPerson = amountPerPerson;
-    showCalculatedResult(state.context, tipcalc);
-  }
-
-  void showCalculatedResult(BuildContext context, TipCalc tc) {
     showGeneralDialog(
       context: context,
       useRootNavigator: false,
@@ -307,7 +321,7 @@ class _Controller {
                           ),
                           padding: EdgeInsets.all(5),
                           child: Text(
-                            "\$ " + tc.totalPay!.toStringAsFixed(2).toString(),
+                            "\$ " + tipcalc.totalPay!.toStringAsFixed(2).toString(),
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.white,
@@ -342,7 +356,7 @@ class _Controller {
                               ),
                               padding: EdgeInsets.all(5),
                               child: Text(
-                                "\$ " + tc.totalTip!.toStringAsFixed(2).toString(),
+                                "\$ " + tipcalc.totalTip!.toStringAsFixed(2).toString(),
                                 style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.white,
@@ -369,7 +383,8 @@ class _Controller {
                               ),
                               padding: EdgeInsets.all(5),
                               child: Text(
-                                "\$ " + tc.tipPerPerson!.toStringAsFixed(2).toString(),
+                                "\$ " +
+                                    tipcalc.tipPerPerson!.toStringAsFixed(2).toString(),
                                 style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.white,
@@ -405,7 +420,8 @@ class _Controller {
                           ),
                           padding: EdgeInsets.all(5),
                           child: Text(
-                            "\$ " + tc.amountPerPerson!.toStringAsFixed(2).toString(),
+                            "\$ " +
+                                tipcalc.amountPerPerson!.toStringAsFixed(2).toString(),
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.white,
@@ -427,7 +443,7 @@ class _Controller {
                                 size: 14,
                               ),
                               Text(
-                                tc.numOfPeople!.toString(),
+                                tipcalc.numOfPeople!.toString(),
                                 style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.white,
@@ -454,7 +470,7 @@ class _Controller {
                       color: Colors.cyan.shade900.withAlpha(90),
                       child: InkWell(
                         splashColor: Colors.red.shade500.withAlpha(50),
-                        onTap: () => saveTipCalc(context, tc),
+                        onTap: () => saveTipCalc(context),
                         child: SizedBox(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -493,11 +509,12 @@ class _Controller {
     );
   }
 
-  void saveTipCalc(BuildContext context, TipCalc tc) async {
+  void saveTipCalc(BuildContext context) async {
     PopupDialog.circularProgressStart(context);
     try {
-      String id = await FirestoreController.saveTipCalc(tc);
-      tc.docId = id;
+      String id = await FirestoreController.saveTipCalc(tipcalc);
+      tipcalc.docId = id;
+      state.tcList.insert(0, tipcalc);
       state.setState(() {
         numOfPeople = 1;
         star = 0;
@@ -510,24 +527,25 @@ class _Controller {
       PopupDialog.circularProgressStop(context);
       PopupDialog.info(
         context: context,
-        title: "Save Failed",
+        title: "Save failed",
         content: '$e',
       );
     }
   }
 
-  void getTipCalcList() async {
-    try {
-      var tipCalcList = <TipCalc>[];
-      tipCalcList = await FirestoreController.getTipCalcList(
-          email: state.widget.user.email.toString());
-      tipCalcList.forEach((tc) {
-        print(tc.amountPerPerson);
-      });
-    } catch (e) {}
+  void getSavedTipCalcList(BuildContext context) {
+    if (state.tcList.isNotEmpty) {
+      showSavedTipCalc(context);
+    } else {
+      PopupDialog.info(
+        context: context,
+        title: "Oops!",
+        content: "You have saved nothing :D",
+      );
+    }
   }
 
-  void showSavedTipCalc(BuildContext context, TipCalc tc) {
+  void showSavedTipCalc(BuildContext context) {
     showGeneralDialog(
       context: context,
       useRootNavigator: false,
@@ -536,22 +554,135 @@ class _Controller {
       barrierColor: Colors.black.withOpacity(0.5),
       transitionDuration: const Duration(milliseconds: animationTransitionDelay),
       pageBuilder: (_, __, ___) {
-        return Center(
-          child: Container(
-            height: 300,
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: BoxDecoration(
-              color: Colors.black.withAlpha(100),
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [],
+        return StatefulBuilder(
+          builder: ((context, setState) {
+            return AlertDialog(
+              contentPadding: EdgeInsets.only(left: 10, right: 10),
+              title: Center(child: Text("Saved Results")),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(20.0))),
+              content: Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.75,
+                    width: MediaQuery.of(context).size.height * 0.9,
+                    decoration: BoxDecoration(
+                        color: Colors.black.withAlpha(90),
+                        borderRadius: BorderRadius.circular(20)),
+                    margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: state.tcList.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          // Each item
+                          title: state.tcList[index].note == ""
+                              ? Text("Unknown",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25.0,
+                                  ))
+                              : Text(state.tcList[index].note.toString(),
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 25.0,
+                                  )),
+                          subtitle: Padding(
+                            padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    StarRating(
+                                        rating: double.parse(
+                                            state.tcList[index].star.toString()),
+                                        onRatingChanged: (value) {},
+                                        color: Colors.yellow),
+                                    SizedBox(width: 10),
+                                    Icon(
+                                      Icons.person,
+                                      size: 14,
+                                    ),
+                                    Text(
+                                      state.tcList[index].numOfPeople!.toString(),
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.white,
+                                        decoration: TextDecoration.none,
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    Card(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(40.0),
+                                      ),
+                                      color: Colors.red.shade900.withAlpha(90),
+                                      child: InkWell(
+                                        splashColor: Colors.red.shade500.withAlpha(50),
+                                        onTap: () {
+                                          deleteSavedCalcTip(context,
+                                              state.tcList[index].docId.toString());
+                                          setState(() => state.tcList.removeAt(index));
+                                        },
+                                        child: SizedBox(
+                                          child: Icon(Icons.close),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Text("Purchase Amount: \$" +
+                                    state.tcList[index].purchaseAmount!
+                                        .toStringAsFixed(2)
+                                        .toString()),
+                                Text("Tip Per Person: \$" +
+                                    state.tcList[index].tipPerPerson!
+                                        .toStringAsFixed(2)
+                                        .toString()),
+                                Text("Total Tip: \$" +
+                                    state.tcList[index].totalTip!
+                                        .toStringAsFixed(2)
+                                        .toString()),
+                                Text("Amount Per Person: \$" +
+                                    state.tcList[index].amountPerPerson!
+                                        .toStringAsFixed(2)
+                                        .toString()),
+                                Text('Date: ' +
+                                    state.tcList[index].timestamp
+                                        .toString()
+                                        .substring(5, 7) + // mm
+                                    state.tcList[index].timestamp
+                                        .toString()
+                                        .substring(7, 10) + // dd
+                                    '-' +
+                                    state.tcList[index].timestamp
+                                        .toString()
+                                        .substring(0, 4)),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40.0),
+                    ),
+                    color: Colors.cyan.shade900.withAlpha(90),
+                    child: InkWell(
+                      splashColor: Colors.red.shade500.withAlpha(50),
+                      onTap: () => Navigator.of(context).pop(),
+                      child: SizedBox(
+                        child: Icon(Icons.arrow_back),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ),
+            );
+          }),
         );
       },
       transitionBuilder: (_, animation, __, child) {
@@ -571,5 +702,17 @@ class _Controller {
         );
       },
     );
+  }
+
+  void deleteSavedCalcTip(BuildContext context, String docId) async {
+    PopupDialog.circularProgressStart(context);
+    try {
+      await FirestoreController.deleteSavedTipCalcItem(docId);
+      PopupDialog.circularProgressStop(context);
+      PopupDialog.info(context: context, title: "YAY!", content: "Removed successfully!");
+    } catch (e) {
+      PopupDialog.info(
+          context: context, title: "Oops!", content: "Something went wrong! $e");
+    }
   }
 }

@@ -16,6 +16,7 @@ class Constant {
   static const USERPROFILE_COLLECTION = 'userProfile';
 
   static const savedTipCalc = 'SavedTipCalc';
+  static const savedFuelCostCalc = 'SavedFuelCostCalc';
 }
 
 enum ArgKey {

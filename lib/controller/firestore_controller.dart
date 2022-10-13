@@ -1,4 +1,5 @@
 import 'package:cap_project/model/debt.dart';
+import 'package:cap_project/model/fuelcostcalc.dart';
 import 'package:cap_project/model/savings.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/model/tipcalc.dart';
@@ -175,7 +176,8 @@ class FirestoreController {
   }
 
   // tools - get tipcalc list
-  static Future<List<TipCalc>> getTipCalcList({required String email}) async {
+  static Future<List<TipCalc>> getSavedTipCalcList(
+      {required String email}) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.savedTipCalc)
         .where(TipCalc.CREATE_BY, isEqualTo: email)
@@ -200,6 +202,22 @@ class FirestoreController {
         .collection(Constant.debts)
         .doc(docId)
         .update(update);
+  }
+
+  // delete saved tip calc
+  static Future<void> deleteSavedTipCalcItem(String docId) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.savedTipCalc)
+        .doc(docId)
+        .delete();
+  }
+
+  // tools - save fuel cost calc. result
+  static Future<String> saveFuelCostCalc(FuelCostCalc fcc) async {
+    var ref = await FirebaseFirestore.instance
+        .collection(Constant.savedFuelCostCalc)
+        .add(fcc.toFirestoreDoc());
+    return ref.id;
   }
 
   static addPurchase({
