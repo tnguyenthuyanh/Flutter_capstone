@@ -1,3 +1,5 @@
+import 'package:cap_project/model/budgetAmount.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -205,6 +207,31 @@ class BudgetStorageController {
       throw (e);
     }
   }
+
+
+  static Future<bool> addBudgetAmount(BudgetAmount budgetAmount,String budgetId)  async{
+    try{
+      print("hello");
+
+      DocumentReference documentReference = FirebaseFirestore.instance
+          .collection(Constant.budgets)
+          .doc(budgetId)
+          .collection(budgetAmount.ownerId)
+          .doc();
+
+      budgetAmount.budgetAmountId =  documentReference.id;
+      await documentReference.set(budgetAmount.toJson());
+
+
+      return true;
+
+    }catch(e){
+
+      throw (e);
+    }
+  }
+
+
 
   static Future<bool> deleteCategory(String categoryid)  async{
     print(categoryid);

@@ -106,4 +106,4 @@ class GoogleSignInProvider extends ChangeNotifier {
       ArgKey.user: user,
     });
   }
-} //EnoogleProvider
+} //EnooglePro
