@@ -12,9 +12,14 @@ import '../model/user.dart';
 class AddPlanScreen extends StatefulWidget {
   static const routeName = 'addPlanScreen';
   final User user;
+  final UserProfile userP;
   late List<Plan> planList;
 
-  AddPlanScreen({required this.user, required this.planList, Key? key})
+  AddPlanScreen(
+      {required this.user,
+      required this.userP,
+      required this.planList,
+      Key? key})
       : super(key: key);
 
   @override
