@@ -199,11 +199,10 @@ class Capstone extends StatelessWidget {
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
-              var userP = argument[ArgKey.userProfile];
+              var planList = argument[ArgKey.planList];
               return PlanScreen(
                 user: user,
-                userP: userP,
-                planList: [],
+                planList: planList,
               );
             }
           },
@@ -214,11 +213,9 @@ class Capstone extends StatelessWidget {
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
-              var userP = argument[ArgKey.userProfile];
-              //var planList = argument[ArgKey.planList];
+              var planList = argument[ArgKey.planList];
               return AddPlanScreen(
                 user: user,
-                userP: userP,
                 planList: [],
               );
             }
