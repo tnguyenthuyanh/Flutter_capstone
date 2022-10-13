@@ -154,17 +154,6 @@ class _Controller {
         state.widget.debt.copyFrom(tempDebt);
       }
 
-      /*await Navigator.pushNamed(
-        state.context,
-        DebtScreen.routeName,
-        arguments: {
-          ArgKey.debtList:
-              FirestoreController.getDebtList(user: state.widget.userP),
-          ArgKey.user: state.widget.user,
-          ArgKey.userProfile: state.widget.userP,
-        },
-      );*/
-
       stopCircularProgress(state.context);
       state.render(() => state.editmode = false);
     } catch (e) {
