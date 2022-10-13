@@ -6,6 +6,7 @@ class Constant {
   static const DARKMODE = true;
   static const debts = 'Debts';
   static const budgets = 'budgets';
+  static const accounts = 'accounts';
   static const categories = 'categories';
 
   static const List<DropdownMenuItem<String>> menuItems = [
@@ -44,7 +45,9 @@ List<DropdownMenuItem<String>> get dropdownItems {
   return menuItems;
 }
 
-// view mode for budget lists
+// view mode for lists
+enum ListMode { view, add, delete, edit }
+
 enum BudgetListMode { view, add, delete, edit }
 
 class ValidationError {

@@ -4,10 +4,12 @@ import 'package:cap_project/model/user.dart';
 import 'package:cap_project/model/tipcalc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../model/account.dart';
 import '../model/budget.dart';
 import '../model/constant.dart';
 import '../model/user.dart' as usr;
 import 'auth_controller.dart';
+import 'storagecontrollers/accountstoragecontroller.dart';
 
 class FirestoreController {
   static addUser({
@@ -37,6 +39,22 @@ class FirestoreController {
 
   static Future<void> updateBudget({required Budget budget}) async {
     await BudgetStorageController.updateBudget(budget: budget);
+  }
+
+  static Future<String> addAccount({required Account object}) async {
+    return await AccountStorageController.add(object: object);
+  }
+
+  static deleteAccount({required Account object}) async {
+    await AccountStorageController.delete(object: object);
+  }
+
+  static Future<List<Account>> getAccountList() async {
+    return await AccountStorageController.getList();
+  }
+
+  static Future<void> updateAccount({required Account object}) async {
+    await AccountStorageController.update(object: object);
   }
 
   static Future<List<Debt>> getDebtList({

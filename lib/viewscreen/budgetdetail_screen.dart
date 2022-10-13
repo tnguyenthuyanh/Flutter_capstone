@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'package:cap_project/viewscreen/components/texts/listviewheadertext.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
@@ -119,6 +120,15 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
                               ? null
                               : _con.onUseButtonPressed,
                         ),
+                        // ListViewHeaderText(listViewTitle: "Categories"),
+                        // ListView.builder(
+                        //   itemCount: 12,
+                        //   itemBuilder: (BuildContext context, int index) {
+                        //     return ListTile(
+                        //       leading: Text("yay"),
+                        //     );
+                        //   },
+                        // ),
                       ],
                     ),
             ),

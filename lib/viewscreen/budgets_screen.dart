@@ -1,9 +1,6 @@
 import 'dart:collection';
-
 import 'package:cap_project/viewscreen/budgetCategory.dart';
-
 import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
-
 import 'package:cap_project/viewscreen/components/texts/titletext.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +14,7 @@ import 'components/budget_listviewtile.dart';
 class BudgetsScreen extends StatefulWidget {
   static const routeName = '/budgetsScreen';
   static const _screenName = "Budget Templates";
+
   const BudgetsScreen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() => _BudgetsState();
@@ -52,13 +50,13 @@ class _BudgetsState extends State<BudgetsScreen> {
           actions: [
             // delete/cancel button
             IconButton(
-              icon: _currentMode == BudgetListMode.delete
+              icon: _currentMode == AccountListMode.delete
                   ? const Icon(Icons.cancel)
                   : const Icon(Icons.delete),
               onPressed: _con.onDeleteModeButtonPressed,
             ),
             // confirm button
-            if (_currentMode == BudgetListMode.delete)
+            if (_currentMode == AccountListMode.delete)
               IconButton(
                 icon: const Icon(Icons.check),
                 onPressed: _con.onConfirmButtonPressed,

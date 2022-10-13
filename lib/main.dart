@@ -1,4 +1,7 @@
+import 'package:cap_project/View_Model/account_data.dart';
+import 'package:cap_project/View_Model/accountlistmode_data.dart';
 import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
+import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/editprofile_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/addDebt_screen.dart';
@@ -21,6 +24,7 @@ import 'controller/auth_controller.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'model/constant.dart';
+import 'viewscreen/accounts/addaccount_screen.dart';
 import 'viewscreen/addbudget_screen.dart';
 import 'viewscreen/budgetdetail_screen.dart';
 import 'viewscreen/budgets_screen.dart';
@@ -41,6 +45,8 @@ void main() async {
     ChangeNotifierProvider(create: (context) => BudgetData()),
     ChangeNotifierProvider(create: (context) => BudgetListModeData()),
     ChangeNotifierProvider(create: (context) => BudgetCategoryViewModel()),
+    ChangeNotifierProvider(create: (context) => AccountListModeData()),
+    ChangeNotifierProvider(create: (context) => AccountData()),
   ], child: const Capstone()));
 }
 
@@ -164,7 +170,9 @@ class Capstone extends StatelessWidget {
           AddBudgetScreen.routeName: (context) => const AddBudgetScreen(),
           BudgetDetailScreen.routeName: (context) => const BudgetDetailScreen(),
           // ignore: prefer_const_constructors
-          AddCategory.routeName: (context) =>  AddCategory(),
+          AddCategory.routeName: (context) => AddCategory(),
+          AccountsScreen.routeName: (context) => const AccountsScreen(),
+          AddAccountScreen.routeName: (context) => const AddAccountScreen(),
         },
       ),
     );
