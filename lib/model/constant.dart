@@ -14,6 +14,7 @@ class Constant {
     DropdownMenuItem(child: Text('Medical Bill'), value: 'Medical Bill'),
   ];
   static const USERPROFILE_COLLECTION = 'userProfile';
+  static const USERFRIENDS_COLLECTION = 'UserFriends';
 
   static const savedTipCalc = 'SavedTipCalc';
   static const savedFuelCostCalc = 'SavedFuelCostCalc';
@@ -32,7 +33,19 @@ enum ArgKey {
   profile,
   userList,
   currentUID,
-  singleDebt
+  singleDebt,
+  isFriendAdded,
+}
+
+enum Filter {
+  MyFriends,
+  AllUsers,
+  FriendRequest,
+}
+
+enum SearchOption {
+  email,
+  name,
 }
 
 List<DropdownMenuItem<String>> menuItems = [

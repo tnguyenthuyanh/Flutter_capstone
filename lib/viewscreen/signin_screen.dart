@@ -75,7 +75,6 @@ class _SignInState extends State<SignInScreen> {
                   validator: con.validatePassword,
                   onSaved: con.savePassword,
                 ),
-
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(
@@ -91,7 +90,6 @@ class _SignInState extends State<SignInScreen> {
                     ),
                   ),
                 ),
-
                 const SizedBox(
                   height: 10,
                 ),
@@ -119,7 +117,6 @@ class _SignInState extends State<SignInScreen> {
                       provider.googleLogin(
                           context); //passed in context to google sign in provider file
                     }),
-               
               ],
             ),
           ),

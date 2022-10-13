@@ -81,8 +81,13 @@ class FirestoreController {
         .collection(Constant.USERPROFILE_COLLECTION)
         .where('uid', isEqualTo: user.uid)
         .get();
-    if (querySnapshot.size == 0)
-      // ignore: curly_braces_in_flow_control_structures
+    if (querySnapshot.size == 0) {
+      List<String> searchOptions = [];
+      String temp = "";
+      for (int i = 0; i < user.email!.length; i++) {
+        temp = temp + user.email![i].toLowerCase();
+        searchOptions.add(temp);
+      }
       await FirebaseFirestore.instance
           .collection(Constant.USERPROFILE_COLLECTION)
           .add({
@@ -90,10 +95,13 @@ class FirestoreController {
         'bio': "",
         'email': user.email,
         'uid': user.uid,
+        'search_name': [],
+        'search_email': searchOptions,
       });
+    }
   }
 
-  static Future<Map> getProfile({
+  static Future<usr.UserInfo> getProfile({
     required String uid,
   }) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
@@ -102,12 +110,21 @@ class FirestoreController {
         .get();
 
     var i = querySnapshot.docs[0];
-    return {
-      'name': i['name'],
-      'bio': i['bio'],
-      'email': i['email'],
-      "uid": i['uid']
-    };
+    //usr.UserInfo profile = usr.UserInfo.fromFirestoreDoc(doc: i.data() as Map<String, dynamic>, docId: i.id);
+    var document = i.data() as Map<String, dynamic>;
+    var p = usr.UserInfo.fromFirestoreDoc(
+      doc: document,
+      docId: i.id,
+    );
+    usr.UserInfo profile = p!;
+    return profile;
+
+    // return {
+    //   'name': i['name'],
+    //   'bio': i['bio'],
+    //   'email': i['email'],
+    //   "uid": i['uid']
+    // };
   }
 
   static Future<void> addUpdateProfile({
@@ -120,13 +137,21 @@ class FirestoreController {
         .where('uid', isEqualTo: uid)
         .get();
 
+    List<String> searchOptions = [];
+    String temp = "";
+    for (int i = 0; i < name.length; i++) {
+      temp = temp + name[i].toLowerCase();
+      searchOptions.add(temp);
+    }
+
     await FirebaseFirestore.instance
         .collection(Constant.USERPROFILE_COLLECTION)
         .doc(querySnapshot.docs[0].id)
-        .update({'name': name, 'bio': bio});
+        .update({'name': name, 'bio': bio, 'search_name': searchOptions});
   }
 
-  static Future<List<usr.UserInfo>> getUserList({required User user}) async {
+  static Future<List<usr.UserInfo>> getUserList(
+      {required String currentUID}) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.USERPROFILE_COLLECTION)
         .orderBy(usr.UserInfo.EMAIL)
@@ -142,7 +167,7 @@ class FirestoreController {
           docId: doc.id,
         );
         if (p != null) {
-          if (p.uid != user.uid) result.add(p);
+          if (p.uid != currentUID) result.add(p);
         }
       }
     });
@@ -165,6 +190,135 @@ class FirestoreController {
             .doc(docId)
             .delete();
       }
+  }
+
+  static Future<void> addFriend({
+    required usr.UserFriends userFriends,
+  }) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.USERFRIENDS_COLLECTION)
+        .add(userFriends.toFirestoreDoc());
+  }
+
+  static Future<String> isFriendAdded({
+    required String friendUID,
+    required String currentUID,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERFRIENDS_COLLECTION)
+        .where('uid_send', isEqualTo: currentUID)
+        .where('uid_receive', isEqualTo: friendUID)
+        .get();
+    for (int i = 0; i < querySnapshot.size; i++)
+      if (querySnapshot.docs[i]['accept'] == 0)
+        return 'Pending';
+      else
+        return 'isFriend';
+
+    QuerySnapshot querySnapshot1 = await FirebaseFirestore.instance
+        .collection(Constant.USERFRIENDS_COLLECTION)
+        .where('uid_send', isEqualTo: friendUID)
+        .where('uid_receive', isEqualTo: currentUID)
+        .get();
+    for (int i = 0; i < querySnapshot1.size; i++)
+      if (querySnapshot1.docs[i]['accept'] == 0)
+        return 'Accept';
+      else
+        return 'isFriend';
+
+    return 'canAdd';
+  }
+
+  static Future<void> acceptFriend({
+    required String friendUID,
+    required String currentUID,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERFRIENDS_COLLECTION)
+        .where('uid_send', isEqualTo: friendUID)
+        .where('uid_receive', isEqualTo: currentUID)
+        .get();
+
+    await FirebaseFirestore.instance
+        .collection(Constant.USERFRIENDS_COLLECTION)
+        .doc(querySnapshot.docs[0].id)
+        .update({usr.UserFriends.ACCEPT: 1});
+  }
+
+  static Future<List<usr.UserInfo>> getFriendList({
+    required String currentUID,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERFRIENDS_COLLECTION)
+        .where(usr.UserFriends.UID_RECEIVE, isEqualTo: currentUID)
+        .where(usr.UserFriends.ACCEPT, isEqualTo: 1)
+        .get();
+
+    var result = <usr.UserInfo>[];
+
+    for (int i = 0; i < querySnapshot.size; i++) {
+      if (querySnapshot.docs[i] != null) {
+        var document = querySnapshot.docs[i].data() as Map<String, dynamic>;
+        var p = usr.UserFriends.fromFirestoreDoc(
+          doc: document,
+          docId: querySnapshot.docs[i].id,
+        );
+        if (p != null) {
+          usr.UserInfo eachUser = await getProfile(uid: p.uid_send);
+          result.add(eachUser);
+        }
+      }
+    }
+
+    querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERFRIENDS_COLLECTION)
+        .where(usr.UserFriends.UID_SEND, isEqualTo: currentUID)
+        .where(usr.UserFriends.ACCEPT, isEqualTo: 1)
+        .get();
+
+    for (int i = 0; i < querySnapshot.size; i++) {
+      if (querySnapshot.docs[i] != null) {
+        var document = querySnapshot.docs[i].data() as Map<String, dynamic>;
+        var p = usr.UserFriends.fromFirestoreDoc(
+          doc: document,
+          docId: querySnapshot.docs[i].id,
+        );
+        if (p != null) {
+          usr.UserInfo eachUser = await getProfile(uid: p.uid_receive);
+          result.add(eachUser);
+        }
+      }
+    }
+
+    return result;
+  }
+
+  static Future<List<usr.UserInfo>> getFriendRequest({
+    required String currentUID,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERFRIENDS_COLLECTION)
+        .where(usr.UserFriends.UID_RECEIVE, isEqualTo: currentUID)
+        .where(usr.UserFriends.ACCEPT, isEqualTo: 0)
+        .get();
+
+    var result = <usr.UserInfo>[];
+
+    for (int i = 0; i < querySnapshot.size; i++) {
+      if (querySnapshot.docs[i] != null) {
+        var document = querySnapshot.docs[i].data() as Map<String, dynamic>;
+        var p = usr.UserFriends.fromFirestoreDoc(
+          doc: document,
+          docId: querySnapshot.docs[i].id,
+        );
+        if (p != null) {
+          usr.UserInfo eachUser = await getProfile(uid: p.uid_send);
+          result.add(eachUser);
+        }
+      }
+    }
+
+    return result;
   }
 
   // tools - save tip calc
@@ -251,6 +405,48 @@ class FirestoreController {
       }
     }
     return result;
+  }
+
+  static Future<List<usr.UserInfo>> searchUsersByEmail({
+    required String searchKey,
+  }) async {
+    var results = <usr.UserInfo>[];
+
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERPROFILE_COLLECTION)
+        .where(usr.UserInfo.SEARCH_EMAIL, arrayContains: searchKey)
+        .get();
+
+    querySnapshot.docs.forEach((doc) {
+      var p = usr.UserInfo.fromFirestoreDoc(
+        doc: doc.data() as Map<String, dynamic>,
+        docId: doc.id,
+      );
+      if (p != null) results.add(p);
+    });
+
+    return results;
+  }
+
+  static Future<List<usr.UserInfo>> searchUsersByName({
+    required String searchKey,
+  }) async {
+    var results = <usr.UserInfo>[];
+
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERPROFILE_COLLECTION)
+        .where(usr.UserInfo.SEARCH_NAME, arrayContains: searchKey)
+        .get();
+
+    querySnapshot.docs.forEach((doc) {
+      var p = usr.UserInfo.fromFirestoreDoc(
+        doc: doc.data() as Map<String, dynamic>,
+        docId: doc.id,
+      );
+      if (p != null) results.add(p);
+    });
+
+    return results;
   }
 
   static Future<List<Savings>> getSavings({
