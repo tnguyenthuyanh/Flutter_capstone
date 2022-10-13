@@ -235,7 +235,6 @@ class _Controller {
   _Controller(this.state) {
     userList = state.widget.userList;
     currentUID = state.widget.currentUID;
-    filterValue = state.filterValue;
     searchOption = state.searchOption;
   }
 
@@ -279,7 +278,7 @@ class _Controller {
 
     stopCircularProgress(state.context);
     state.render(() {
-      filterValue = value!;
+      state.filterValue = value!;
       userList = filteredUserList;
     });
   }
