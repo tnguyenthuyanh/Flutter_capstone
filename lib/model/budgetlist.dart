@@ -28,15 +28,10 @@ class BudgetList {
       // set all active budgets but newCurrent to inactive
       // and set their dirty flag
       for (Budget budget in _budgets) {
-        if (!budget.equals(newCurrent)) {
-          // TODO:Remove-debug
-          print("Comparing: " + newCurrent.title + " to " + budget.title);
-
+        if (budget != newCurrent) {
           if (budget.isCurrent!) {
             budget.isCurrent = false;
             budget.dirty = true;
-
-            // TODO: Remove- debug
             print("BudgetList: budget " + budget.title + " set dirty");
           }
         }
@@ -51,10 +46,6 @@ class BudgetList {
     for (Budget budget in _budgets) {
       if (budget.dirty) {
         temp.add(budget);
-
-        // TODO: Remove-debug
-        print("Adding to dirtyList: ");
-        print(budget.serialize());
       }
     }
     return temp;
@@ -90,7 +81,7 @@ class BudgetList {
 
   void stageForDeletion(Budget budget) {
     // if the deletionList is null, instantiate it
-   // _deletionList ??= <Budget>[];
+    // _deletionList ??= <Budget>[];
 
     // if the budget isn't in the deletionlist already, add it
     if (!(_deletionList.contains(budget))) {

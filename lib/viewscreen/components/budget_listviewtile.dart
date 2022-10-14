@@ -1,3 +1,4 @@
+import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
 import 'package:cap_project/viewscreen/budgetdetail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,6 +38,8 @@ class BudgetListViewTile extends StatelessWidget {
         } else {
           Provider.of<BudgetData>(context, listen: false)
               .setSelectedBudget(budget);
+          Provider.of<BudgetCategoryViewModel>(context, listen: false)
+              .selectedBudgetId=budget.docID;
           Navigator.pushNamed(context, BudgetDetailScreen.routeName);
         }
       },

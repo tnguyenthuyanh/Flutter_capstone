@@ -62,7 +62,7 @@ class _AddCategoryState extends State<AddCategory> {
                             return MyDialog(isFromSubCategory:false);
                           });
                     } else {
-                      budgetCategory.updateSubCategories(counter);
+                      budgetCategory.updateCategories(counter);
                     }
                   },
                   child: counter == budgetCategory.categoriess.length
@@ -228,9 +228,11 @@ class _AddCategoryState extends State<AddCategory> {
               ),
             ),
           ),
-          ElevatedButton(onPressed: (){
-            if(formKey.currentState!.validate()){}
-          }, child: Text("Submit"))
+          budgetCategory.isBudgetAdding?CircularProgressIndicator():ElevatedButton(onPressed: (){
+            if(formKey.currentState!.validate()){
+              budgetCategory.addBudgetAmount();
+            }
+          }, child:  Text("Submit"))
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:cap_project/controller/storagecontrollers/budgetstoragecontroller.dart';
+import 'package:cap_project/model/budgetAmount.dart';
 import 'package:cap_project/model/subcategories.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -11,7 +12,7 @@ import '../model/catergories.dart';
 class BudgetCategoryViewModel extends ChangeNotifier  {
   final TextEditingController textFormValidator = TextEditingController();
   final TextEditingController budgetController = TextEditingController();
-
+  String? selectedBudgetId = null;
   int selectedCategoryIndex = 0;
   int selectedSubCategoryIndex = 0;
 
@@ -24,6 +25,7 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
 
 
   bool isCategoriesLoading = false;
+  bool isBudgetAdding = false;
   bool isSubCategoriesLoading = false;
 
   bool isCategoriesAdding = false;
@@ -35,6 +37,7 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
     }
     print(value);
     categoriess[value].isSelected = true;
+    getSubCategories();
     notifyListeners();
   }
 
@@ -87,12 +90,11 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
     }
   }
   updateSubCategories (int value) {
-    for(Category i in categoriess){
+    for(SubCategory i in subCategoriess){
       i.isSelected = false;
     }
     print(value);
-    categoriess[value].isSelected = true;
-    getSubCategories();
+    subCategoriess[value].isSelected = true;
     notifyListeners();
   }
   getSelectedCategory(){
@@ -174,6 +176,42 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
     notifyListeners();
   }
 
+  addBudgetAmount ()async {
+
+
+
+    try{
+      Iterable<Category> categorytemp = categoriess.where((element) => element.isSelected == true);
+      Iterable<SubCategory> subcategorytemp = subCategoriess.where((element) => element.isSelected == true);
+      if(categorytemp.isNotEmpty && selectedBudgetId!=null){
+        BudgetAmount budgetAmount = await BudgetAmount(ownerId: FirebaseAuth.instance.currentUser!.uid, CategoryId: categorytemp.first.categoryid, CategoryLabel: categorytemp.first.label, amount: double.parse(budgetController.text), budgetAmountId: "",SubCategory: subcategorytemp == null?null:subcategorytemp.first.subcategoryid,SubCategoryLabel: subcategorytemp == null?null:subcategorytemp.first.label);
+        budgetController.clear();
+        isBudgetAdding = true;
+        notifyListeners();
+        bool status = await BudgetStorageController.addBudgetAmount(budgetAmount,selectedBudgetId!);
+        if(status){
+          showToast("Budget amount added successfully!");
+        }
+        isBudgetAdding = false;
+        notifyListeners();
+
+      }
+      else{
+        showToast("please select the categories");
+      }
+
+
+
+
+    }catch(e){
+      isCategoriesAdding = false;
+
+      showToast(e.toString());
+    }
+
+    notifyListeners();
+  }
+
 
   deleteSubCategoryy(int index)async{
     try{
@@ -192,6 +230,9 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
 
 
   addSubCategoryy ()async {
+
+    Iterable<Category> subcategorytemp = categoriess.where((element) => element.isSelected == true);
+
 
     try{
       Iterable<Category> subcategorytemp = categoriess.where((element) => element.isSelected == true);
