@@ -3,6 +3,7 @@ class Budget {
   String title; // the user assigned title of the budget
   String? docID; // the firebase docID of the budget
   bool? isCurrent; // is this budget the budget currently selected by the user
+  bool dirty = false;
 
   Budget({
     required this.ownerUID,
@@ -14,21 +15,24 @@ class Budget {
   Budget copyToNew({required String title}) =>
       Budget(ownerUID: ownerUID, title: title, isCurrent: false);
 
-  Map<String, dynamic> serialize(){
-    return{
+  Map<String, dynamic> serialize() {
+    return {
       'ownerUID': ownerUID,
-      'title' : title,
-      'isCurrent' : isCurrent,
+      'title': title,
+      'isCurrent': isCurrent,
     };
   }
 
   static Budget? deserialize(
-    {required Map<String, dynamic> doc, required docId}){
-      return Budget(
-        docID: docId, 
+      {required Map<String, dynamic> doc, required docId}) {
+    return Budget(
+        docID: docId,
         ownerUID: doc['ownerUID'],
         title: doc['title'],
-        isCurrent: doc['isCurrent']
-      );
-    }
+        isCurrent: doc['isCurrent']);
+  }
+
+  bool equals(Budget budget) {
+    return docID == budget.docID;
+  }
 }

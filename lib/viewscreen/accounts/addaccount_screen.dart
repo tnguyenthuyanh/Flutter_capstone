@@ -1,28 +1,28 @@
 import 'package:cap_project/controller/auth_controller.dart';
+import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import '../View_Model/budget_data.dart';
-import '../View_Model/validator.dart';
-import '../model/budget.dart';
-import 'components/buttons/savebutton.dart';
-import 'components/sizedboxes/fullwidth_sizedbox.dart';
-import 'components/textfields/budgettitle_textfield.dart';
-import 'components/texts/titletext.dart';
+import '../../View_Model/account_data.dart';
+import '../../model/account.dart';
+import '../components/buttons/savebutton.dart';
+import '../components/sizedboxes/fullwidth_sizedbox.dart';
+import '../components/textfields/accouttitle_textfield.dart';
+import '../components/texts/titletext.dart';
 
-class AddBudgetScreen extends StatefulWidget {
-  static const routeName = '/addBudgetScreen';
-  const AddBudgetScreen({Key? key}) : super(key: key);
+class AddAccountScreen extends StatefulWidget {
+  static const routeName = '/addAccountScreen';
+
+  const AddAccountScreen({Key? key}) : super(key: key);
   @override
-  State<StatefulWidget> createState() => _AddBudgetScreenState();
+  State<StatefulWidget> createState() => _AddAccountScreenState();
 }
 
-class _AddBudgetScreenState extends State<AddBudgetScreen> {
+class _AddAccountScreenState extends State<AddAccountScreen> {
   // UI String values
-  final String _screenTitle = 'Add Budget';
+  final String _screenTitle = 'Add Account';
   final String _titleFieldHint = 'Title';
-  final String _useBudgetText =
-      "We'll use this template to create your monthly budgets";
+  final String _defaultText = "Using as the default account for transactions";
   final String _currentSwitchLabel = "Set as default";
 
   // state vars
@@ -43,7 +43,7 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // _current = Provider.of<BudgetData>(context).numberOfBudgets == 0;
+    _current = Provider.of<AccountData>(context).number == 0;
 
     return Scaffold(
       //        APPBAR      ----------------------------------------------------
@@ -51,7 +51,7 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
         title: TitleText(title: _screenTitle),
       ),
       //        BODY      ------------------------------------------------------
-      body: Consumer<BudgetData>(builder: (context, budgets, child) {
+      body: Consumer<AccountData>(builder: (context, accounts, child) {
         return Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
@@ -59,20 +59,20 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
               key: _formKey,
               child: Column(
                 children: [
-                  //        BUDGET TITLE      ----------------------------------
+                  //        ACCOUNT TITLE      ----------------------------------
                   FullWidthSizedBox(
-                    child: BudgetTitleTextField(
+                    child: AccountTitleTextField(
                       onSaved: _con.onSaveTitle,
                     ),
                   ),
                   //        IS CURRENT      ------------------------------------
-                  // if this is the first budget added for the user, it should
+                  // if this is the first account added for the user, it should
                   // be set to current
-                  budgets.numberOfBudgets == 0
+                  accounts.number == 0
                       ? Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Text(
-                            _useBudgetText,
+                            _defaultText,
                             textAlign: TextAlign.center,
                           ),
                         )
@@ -102,7 +102,7 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
 }
 
 class _Controller {
-  _AddBudgetScreenState _state;
+  _AddAccountScreenState _state;
   _Controller(this._state);
 
   void save() {
@@ -119,17 +119,17 @@ class _Controller {
       return;
     }
 
-    // if uid is ok, save the budget, slap some good toast on the screen
-    // and navigate to the budgets list
-    Provider.of<BudgetData>(_state.context, listen: false).add(
-      Budget(
+    // if uid is ok, save, slap some good toast on the screen
+    // and navigate to the accounts list
+    Provider.of<AccountData>(_state.context, listen: false).add(
+      Account(
         title: _state._title!,
-        ownerUID: uid,
+        ownerUid: uid,
         isCurrent: _state._current,
       ),
     );
 
-    showToast("Budget created!");
+    showToast("Account created!");
 
     Navigator.pop(_state.context);
   }

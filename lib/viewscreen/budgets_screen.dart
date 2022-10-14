@@ -1,4 +1,7 @@
 import 'dart:collection';
+import 'package:cap_project/viewscreen/budgetCategory.dart';
+import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
+import 'package:cap_project/viewscreen/components/texts/titletext.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../View_Model/budget_data.dart';
@@ -10,10 +13,9 @@ import 'components/budget_listviewtile.dart';
 
 class BudgetsScreen extends StatefulWidget {
   static const routeName = '/budgetsScreen';
-  static const _screenName = "Budgets";
+  static const _screenName = "Budget Templates";
 
   const BudgetsScreen({Key? key}) : super(key: key);
-
   @override
   State<StatefulWidget> createState() => _BudgetsState();
 }
@@ -23,11 +25,6 @@ class _BudgetsState extends State<BudgetsScreen> {
 
   // state vars
   // TODO: Fix this- change current mode to a provider consumer
-  // TODO: add listviewtile click functionality -> view budget detail
-  // TODO: separate viewing from isCurrent. isCurrent is global- don't need to set
-  // the budget, just need to view it
-  // TODO: add a Use This budget dialog to AddBudgetScreen
-  // TODO: add Use this budget button to BudgetDetailScreen
   BudgetListMode _currentMode = BudgetListMode.view;
 
   @override
@@ -49,7 +46,7 @@ class _BudgetsState extends State<BudgetsScreen> {
       child: Scaffold(
         //        APPBAR      --------------------------------------------------
         appBar: AppBar(
-          title: const Text(BudgetsScreen._screenName),
+          title: TitleText(title: BudgetsScreen._screenName),
           actions: [
             // delete/cancel button
             IconButton(
@@ -78,10 +75,7 @@ class _BudgetsState extends State<BudgetsScreen> {
             builder: (context, budgets, child) {
               //no budgets - display a text with the message
               if (budgets.budgets.isEmpty) {
-                return Text(
-                  'No Budgets to show',
-                  style: Theme.of(context).textTheme.headline5,
-                );
+                return EmptyContentText(message: "No budgets");
               } else {
                 return Column(
                   children: <Widget>[
@@ -93,10 +87,10 @@ class _BudgetsState extends State<BudgetsScreen> {
                         itemBuilder: (BuildContext context, int index) {
                           // get the budget at the selected index
                           Budget _temp = budgets.budgets[index];
+
                           return BudgetListViewTile(
                             currentMode: _currentMode,
                             budget: _temp,
-                            
                           );
                         },
                       ),
@@ -129,7 +123,6 @@ class _Controller {
 
   // enter delete selection mode
   void onDeleteModeButtonPressed() {
-    print("delete button pressed");
     // if mode is already delete, set mode to view
     if (getCurrentMode() == BudgetListMode.delete) {
       onCancelButtonPressed();

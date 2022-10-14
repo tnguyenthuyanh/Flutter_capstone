@@ -1,3 +1,6 @@
+import 'package:cap_project/View_Model/account_data.dart';
+import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
+import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/debtDetail_screen.dart';
 import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/viewscreen/addPurchase_screen.dart';
@@ -16,6 +19,7 @@ import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
 import 'package:cap_project/View_Model/auth_viewModel.dart';
 import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
+import 'package:cap_project/viewscreen/budgetCategory.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +28,7 @@ import 'View_Model/budgetlistmode_data.dart';
 import 'firebase_options.dart';
 import 'package:oktoast/oktoast.dart';
 import 'model/constant.dart';
+import 'viewscreen/accounts/addaccount_screen.dart';
 import 'viewscreen/addbudget_screen.dart';
 import 'viewscreen/budgetdetail_screen.dart';
 import 'viewscreen/budgets_screen.dart';
@@ -44,6 +49,8 @@ void main() async {
     ChangeNotifierProvider(create: (_) => AuthViewModel()),
     ChangeNotifierProvider(create: (context) => BudgetData()),
     ChangeNotifierProvider(create: (context) => BudgetListModeData()),
+    ChangeNotifierProvider(create: (context) => BudgetCategoryViewModel()),
+    ChangeNotifierProvider(create: (context) => AccountData()),
   ], child: const Capstone()));
 }
 
@@ -198,7 +205,8 @@ class Capstone extends StatelessWidget {
           FuelCostEstimatorScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
-              return const ErrorScreen('args is null for FuelCostEstimatorScreen');
+              return const ErrorScreen(
+                  'args is null for FuelCostEstimatorScreen');
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
@@ -208,6 +216,10 @@ class Capstone extends StatelessWidget {
           BudgetsScreen.routeName: (context) => const BudgetsScreen(),
           AddBudgetScreen.routeName: (context) => const AddBudgetScreen(),
           BudgetDetailScreen.routeName: (context) => const BudgetDetailScreen(),
+          // ignore: prefer_const_constructors
+          AddCategory.routeName: (context) => AddCategory(),
+          AccountsScreen.routeName: (context) => const AccountsScreen(),
+          AddAccountScreen.routeName: (context) => const AddAccountScreen(),
           PurchasesScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {

@@ -5,6 +5,10 @@ class Constant {
   static const users = 'Users';
   static const DARKMODE = true;
   static const debts = 'Debts';
+  static const budgets = 'budgets';
+  static const accounts = 'accounts';
+  static const categories = 'categories';
+
   static const purchases = 'Purchases';
   static const savings = "Savings";
   static const List<DropdownMenuItem<String>> menuItems = [
@@ -59,13 +63,15 @@ List<DropdownMenuItem<String>> get dropdownItems {
   return menuItems;
 }
 
-// view mode for budget lists
+// view mode for lists
+enum ListMode { view, add, delete, edit }
+
 enum BudgetListMode { view, add, delete, edit }
 
 class ValidationError {
   static String requiredFieldError = 'Required';
   static String budgetTitleLengthError = 'Minimum 4 characters';
-  static String itemTitleLengthError = 'Title can not be empty';
+  static String titleLengthError = 'Title can not be empty';
   static String dateOutOfBoundsError = 'Date Due not valid';
   static String amountLengthError = 'Amount can not be empty';
   static String monthTooLongError = 'Must be 1 or 2 characters';
@@ -74,8 +80,6 @@ class ValidationError {
   static String yearLengthError = 'Must be 4 characters';
   static String yearValueError = 'Must be a valid number for a year';
   static String yearRangeError = 'Really? You a budget THAT year?';
-  static String pinLengthError = 'PIN must be at least 4 characters';
-  static String invalidPINError = 'Invalid PIN. Try again.';
   static String invalidEmailLengthError = 'Email must be at least 8 characters';
   static String invalidEmailFormatError = 'Invalid Email Address';
 }

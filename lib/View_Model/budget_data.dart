@@ -1,86 +1,79 @@
 import 'dart:collection';
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/constant.dart';
+import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import '../controller/auth_controller.dart';
 import '../model/budgetlist.dart';
 import '/model/budget.dart';
 
 class BudgetData extends ChangeNotifier {
+  DebugPrinter printer = DebugPrinter(className: "BudgetData");
+
   BudgetList _budgetList = BudgetList();
-  Budget? _selectedBudget = null;
+  Budget? _selectedBudget = null; // budget being VIEWED
+  Budget? _currentBudget = null; // budget being USED for calculations etc
 
   BudgetData() {
-    loadBudgets();
+    fsLoadBudgets();
   }
 
-  // getters for encapsulated member variables
+// ---- getters for encapsulated member variables ------------------------------
   UnmodifiableListView<Budget> get budgets => _budgetList.budgetsListView;
   Budget? get selectedBudget => _selectedBudget;
+  Budget? get currentBudget => _currentBudget;
   List<int> get selectedIndices => _budgetList.selectedIndices;
+  int get numberOfBudgets => _budgetList.size;
 
-  void loadBudgets() async {
-    // mock data
-    final _tempBudgets = <Budget>[
-      Budget(ownerUID: 'eetdgasdg3443t43tdasg', docID: 'eetdgasdg3443t43tdasg1', title: 'May', isCurrent: false),
-      Budget(ownerUID: 'eetdgasdg3443t43tdasg', docID: 'eetdgasdg3443t43tdasg2', title: 'June', isCurrent: false),
-      Budget(ownerUID: 'eetdgasdg3443t43tdasg', docID: 'eetdgasdg3443t43tdasg4', title: 'July', isCurrent: true),
-    ];
+  /// add the budget to the local budget list, store in firebase and notify
+  void add(Budget budget) async {
+    budget.docID = await fsAddBudget(budget);
 
-    // List<Budget> _tempBudgets = await FirestoreController.getBudgetList();
-
-    // load all the budgets into the provider's budget list
-    for (Budget budget in _tempBudgets) {
-      _budgetList.add(budget);
-
-      // if the budget is set as current, set the provider's selected budget
-      if (budget.isCurrent!) {
-        setSelectedBudget(budget);
-      }
-    }
-  }
-
-  void setSelectedBudget(Budget budget) {
-    // TODO: implement firebase selected budget?
-    // set selected budget to budget
-    _selectedBudget = budget;
-
-    // if the budget isn't in the budget list, add it
-    if (!_budgetList.containsBudget(budget)) {
-      add(budget);
-    }
-
-    notifyListeners();
-  }
-
-  // add the budget to the local budget list and store in firebase
-  // then notify listeners
-  void add(Budget budget) {
-    // add to the budget list
     _budgetList.add(budget);
 
-    // store in firebase
-    storeBudget(budget);
+    // if the new budget is set to current, set update other budgets, if any
+    if (budget.isCurrent! || _currentBudget == null) {
+      setCurrentBudget(budget);
+    }
 
     notifyListeners();
   }
 
-  // modifies the values of the CURRENTLY SELECTED budget
-  void updateBudget(String title) async {
-    // TODO: implement firebase controller updateBudget
-    _selectedBudget?.title = title;
+  void setCurrentBudget(Budget budget) {
+    printer.setMethodName(methodName: "setCurrentBudget");
+
+    _currentBudget = budget;
+    budget.dirty = true;
+
+    budget.isCurrent = true;
+
+    // TODO: Remove - debug
+    printer.debugPrint('Current updated to: ' + budget.title);
+
+    // if there is more than one budget, set others to inactive
+    if (_budgetList.size > 1) {
+      _budgetList.setNewCurrentBudget(budget);
+    }
+
+    // update firestore, if needed
+    fsUpdateAllDirty();
+    _budgetList.clearDirtyFlags();
+
+    // TODO:Remove-debug
+    printer
+        .debugPrint(budget.title + " current: " + budget.isCurrent.toString());
+
     notifyListeners();
   }
 
-  // store adds the budget to Firebase without notifying listeners
-  void storeBudget(Budget budget) async {
-    // budget.docID = await FirestoreController.addBudget(budget.serialize());
-  }
-
-  void addAll(List<Budget> budgetList) {
-    _budgetList.addAll(budgetList);
+  // sets the budget selected for view/edit in the budgets list
+  void setSelectedBudget(Budget budget) {
+    _selectedBudget = budget;
     notifyListeners();
   }
 
+// ---- Deletion Related Methods -----------------------------------------------
   void stageForDeletion(Budget budget) {
     _budgetList.stageForDeletion(budget);
     notifyListeners();
@@ -92,7 +85,27 @@ class BudgetData extends ChangeNotifier {
   }
 
   void confirmDeletion() {
+    printer.setMethodName(methodName: "confirmDeletion");
+    // TODO: Remove-debug
+    printer.debugPrint("Before deletion:");
+    printAllBudgets();
+
+    for (Budget budget in _budgetList.deletionList) {
+      fsDeleteBudget(budget);
+
+      if (budget == _currentBudget) {
+        _currentBudget = null;
+      }
+      if (budget == selectedBudget) {
+        _selectedBudget = null;
+      }
+    }
+
     _budgetList.commitDeletion();
+
+    printer.debugPrint("After deletion: ");
+    printAllBudgets();
+
     notifyListeners();
   }
 
@@ -103,5 +116,78 @@ class BudgetData extends ChangeNotifier {
 
   bool isStagedForDeletion(Budget budget) {
     return _budgetList.isStagedForDeletion(budget);
+  }
+
+// ---- Firestore Related Methods ----------------------------------------------
+  void fsLoadBudgets() async {
+    List<Budget> _tempBudgets = await FirestoreController.getBudgetList();
+
+    // load all the budgets into the provider's budget list
+    for (Budget budget in _tempBudgets) {
+      _budgetList.add(budget);
+
+      // if the budget is set as current, set the provider's selected budget
+      if (budget.isCurrent!) {
+        setCurrentBudget(budget);
+      }
+    }
+  }
+
+  // add the budget to firestore and set the budget's docid
+  Future<String> fsAddBudget(Budget budget) async {
+    var docID = await FirestoreController.addBudget(budget: budget);
+    budget.docID = docID;
+
+    // TODO: Remove - debug
+    print("Added " +
+        budget.title +
+        " to FireStore with docid " +
+        budget.docID! +
+        "***********************8");
+
+    notifyListeners();
+
+    return docID;
+  }
+
+  Future<void> fsUpdateAllDirty() async {
+    for (Budget dirtyBoi in _budgetList.getDirtyList()) {
+      await FirestoreController.updateBudget(budget: dirtyBoi);
+
+      // TODO: Remove-debug
+      print("Sending to FS to update: ");
+      print(dirtyBoi.serialize());
+    }
+  }
+
+  void fsUpdateBudget(Budget budget) async {
+    FirestoreController.updateBudget(budget: budget);
+    notifyListeners();
+  }
+
+  void fsDeleteBudget(Budget budget) {
+    FirestoreController.deleteBudget(budget: budget);
+  }
+
+  // ---- Debug Methods ----------------------------------------------
+  void printAllBudgets() {
+    for (Budget budget in budgets) {
+      print("Budget: ");
+      print(budget.serialize());
+    }
+
+    if (_currentBudget != null) {
+      print("Current: ");
+      print(currentBudget!.serialize());
+    } else {
+      print("Current budget is null");
+    }
+
+    if (_selectedBudget != null) {
+      print("Selected Budget: ");
+      print(selectedBudget!.serialize());
+    } else {
+      print("Selected Budget is null");
+    }
   }
 }

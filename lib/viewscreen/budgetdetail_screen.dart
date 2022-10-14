@@ -1,11 +1,18 @@
 import 'dart:collection';
+import 'package:cap_project/viewscreen/components/texts/listviewheadertext.dart';
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
-import '../View_Model/budget_data.dart';
 import '../model/budget.dart';
 import '../model/constant.dart';
-import 'addbudget_screen.dart';
+import '../View_Model/budget_data.dart';
+import 'package:cap_project/viewscreen/budgetCategory.dart';
+import 'package:cap_project/viewscreen/components/texts/ohnoeserrortext.dart';
 import 'components/budgetdetailfield.dart';
+import 'components/buttons/modebuttons/editcancelmode_button.dart';
+import 'components/buttons/mysizedbutton.dart';
+import 'components/textfields/budgettitle_textfield.dart';
+import 'components/texts/titletext.dart';
 
 // TODO: add edit functionality
 // TODO: add copy to functionality
@@ -24,6 +31,11 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
   late _Controller _con;
 
   // state vars
+  Budget? _selected;
+  Budget? _current;
+  bool _editMode = false;
+  String? newTitle;
+  var _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -37,33 +49,93 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Budget? _current = Provider.of<BudgetData>(context).selectedBudget;
+    _selected = Provider.of<BudgetData>(context).selectedBudget;
+    _current = Provider.of<BudgetData>(context).currentBudget;
 
-    return WillPopScope(
-      onWillPop: _con.onPopScope,
-      child: Scaffold(
-        //        APPBAR     --------------------------------------------------
-        appBar: AppBar(
-          title: const Text(BudgetDetailScreen._screenName),
+    return Scaffold(
+      //        APPBAR     -----------------------------------------------------
+      appBar: AppBar(
+        title: TitleText(title: BudgetDetailScreen._screenName),
+        //          ACTIONS     ------------------------------------------------
+        actions: [
+          //              CATEGORIES DROPDOWN    --------------------------------
+          DropdownButton<String>(
+            value: "Categories",
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 2,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              if (value == "Set Budget Categories") {
+                Navigator.pushNamed(context, AddCategory.routeName);
+              }
+              setState(() {
+                //dropdownValue = value!;
+              });
+            },
+            items: ["Set Budget Categories", "placeholder1", "Categories"]
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+          ),
+          //              EDIT/CANCEL & SAVE BUTTONS   ---------------------------
+          EditCancelModeButton(
+            editMode: _editMode,
+            onPressedCallback: _con.onEditPressed,
+          ),
+          if (_editMode)
+            IconButton(
+              icon: Icon(Icons.check),
+              onPressed: _con.onSavePressed,
+            ),
+        ],
+      ),
+      //        BODY      ------------------------------------------------------
+      body: SingleChildScrollView(
+        child: Center(
+          child: Form(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: _selected == null
+                  ? OhNoesErrorText(
+                      message:
+                          'There has been a mistake. Selected Budget is null')
+                  : Column(
+                      children: [
+                        _editMode
+                            ? BudgetTitleTextField(onSaved: _con.save)
+                            : BudgetDetailField(
+                                titleText: "Title",
+                                fieldText: _selected!.title),
+                        MySizedButton(
+                          buttonText: "Use",
+                          onPressedCallback: _selected! == _current
+                              ? null
+                              : _con.onUseButtonPressed,
+                        ),
+                        // ListViewHeaderText(listViewTitle: "Categories"),
+                        // ListView.builder(
+                        //   itemCount: 12,
+                        //   itemBuilder: (BuildContext context, int index) {
+                        //     return ListTile(
+                        //       leading: Text("yay"),
+                        //     );
+                        //   },
+                        // ),
+                      ],
+                    ),
+            ),
+          ),
         ),
-        //        BODY      --------------------------------------------------
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: _current == null
-                ? const Text('There has been a mistake. Selected Budget is null')
-                : Column(
-                    children: [
-                      BudgetDetailField(titleText: "Title", fieldText: _current.title),
-                      BudgetDetailField(titleText: "OwnerUID", fieldText: _current.ownerUID),
-                      BudgetDetailField(titleText: "Docid", fieldText: _current.docID!),
-                      BudgetDetailField(titleText: "isCurrent", fieldText: _current.isCurrent.toString()),
-                    ],
-                  ),
-              ),
-        ),
-        )
-    ); 
+      ),
+    );
   }
 }
 
@@ -73,19 +145,22 @@ class _Controller {
 
   // button events
   //---------------------------------------------------------------------------
-  // if back arrow is pressed
-  Future<bool> onPopScope() {
-    Navigator.pop(_state.context);
-    // TODO: fix this
-    throw "I don't know what happened";
+  void onUseButtonPressed() {
+    Provider.of<BudgetData>(_state.context, listen: false)
+        .setCurrentBudget(_state._selected!);
   }
 
-  //---------------------------------------------------------------------------
+  void onSavePressed() {
+    showToast("You keep on knockin but you can't come in");
+  }
 
-  // // Mode methods
-  // //---------------------------------------------------------------------------
+  void save(String? value) {
+    showToast("not implemented yet");
+  }
 
-  //---------------------------------------------------------------------------
-
-  //---------------------------------------------------------------------------
+  void onEditPressed() {
+    _state.render(() {
+      _state._editMode = !_state._editMode;
+    });
+  }
 }

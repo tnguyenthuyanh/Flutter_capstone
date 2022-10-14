@@ -2,24 +2,68 @@ import 'dart:collection';
 import '/model/budget.dart';
 
 class BudgetList {
-  late List<Budget> _budgets;
+  late List<Budget> _budgets; // all budgets
+  late List<Budget> _deletionList; // budgets staged for deletion
+  late List<int> _selectedIndices; // and their indices
 
-  // budgets staged for deletion and their indices
-  late List<Budget> _deletionList;
-  late List<int> _selectedIndices;
+  int get size => _budgets.length; // how many budgets
 
   BudgetList() {
     _budgets = <Budget>[];
     _deletionList = <Budget>[];
   }
 
+  // ---- GETTERS ----
+  List<int> get selectedIndices => _selectedIndices;
+  List<Budget> get deletionList => _deletionList;
   UnmodifiableListView<Budget> get budgetsListView =>
       UnmodifiableListView(_budgets);
 
-  List<int> get selectedIndices => _selectedIndices;
-
   void add(Budget budget) {
     _budgets.add(budget);
+  }
+
+  void setNewCurrentBudget(Budget newCurrent) {
+    if (_budgets.length > 1) {
+      // set all active budgets but newCurrent to inactive
+      // and set their dirty flag
+      for (Budget budget in _budgets) {
+        if (!budget.equals(newCurrent)) {
+          // TODO:Remove-debug
+          print("Comparing: " + newCurrent.title + " to " + budget.title);
+
+          if (budget.isCurrent!) {
+            budget.isCurrent = false;
+            budget.dirty = true;
+
+            // TODO: Remove- debug
+            print("BudgetList: budget " + budget.title + " set dirty");
+          }
+        }
+      }
+    }
+  }
+
+  // Get a list of all budgets that need to be updated in firestore
+  List<Budget> getDirtyList() {
+    List<Budget> temp = [];
+
+    for (Budget budget in _budgets) {
+      if (budget.dirty) {
+        temp.add(budget);
+
+        // TODO: Remove-debug
+        print("Adding to dirtyList: ");
+        print(budget.serialize());
+      }
+    }
+    return temp;
+  }
+
+  void clearDirtyFlags() {
+    for (Budget budget in _budgets) {
+      budget.dirty = false;
+    }
   }
 
   void addAll(List<Budget> budgets) {
@@ -46,7 +90,7 @@ class BudgetList {
 
   void stageForDeletion(Budget budget) {
     // if the deletionList is null, instantiate it
-    _deletionList ??= <Budget>[];
+   // _deletionList ??= <Budget>[];
 
     // if the budget isn't in the deletionlist already, add it
     if (!(_deletionList.contains(budget))) {
@@ -64,12 +108,10 @@ class BudgetList {
   // perform the deletion
   void commitDeletion() {
     // iterate through the deletionlist and remove budgets from
-    // the provider's budget list and firebase
+    // the provider's budget list
     for (Budget budget in _deletionList) {
       if (_budgets.contains(budget)) {
         _budgets.remove(budget);
-        // TODO: Implement Firebase
-
       }
     }
     _deletionList.clear();
