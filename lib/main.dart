@@ -3,9 +3,11 @@ import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/debtDetail_screen.dart';
 import 'package:cap_project/model/savingsBadge.dart';
+import 'package:cap_project/viewscreen/addPlan_screen.dart';
 import 'package:cap_project/viewscreen/addPurchase_screen.dart';
 import 'package:cap_project/viewscreen/addSavings_screen.dart';
 import 'package:cap_project/viewscreen/editprofile_screen.dart';
+import 'package:cap_project/viewscreen/plan_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/addDebt_screen.dart';
 import 'package:cap_project/controller/auth_controller.dart';
@@ -280,7 +282,35 @@ class Capstone extends StatelessWidget {
               );
             }
           },
-        },
+          PlanScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for PlanScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var planList = argument[ArgKey.planList];
+              return PlanScreen(
+                user: user,
+                //planList: [],
+              );
+            }
+          },
+          AddPlanScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null for AddPlanScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var planList = argument[ArgKey.planList];
+              return AddPlanScreen(
+                user: user,
+                planList: [],
+              );
+            }
+          },
+        }, //end of routes
       ),
     );
   }
