@@ -170,6 +170,7 @@ class BudgetCategoryViewModel extends ChangeNotifier {
             CategoryLabel: categorytemp.first.label,
             amount: double.parse(budgetController.text),
             budgetAmountId: "",
+            // ignore: prefer_null_aware_operators
             SubCategory: subcategorytemp == null
                 ? null
                 : subcategorytemp.first.subcategoryid,
