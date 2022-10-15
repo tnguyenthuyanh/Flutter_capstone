@@ -155,60 +155,7 @@ class _AddCategoryState extends State<AddCategory> {
               ),
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: Wrap(
-          //     spacing: 12.0,
-          //     children: List<GestureDetector>.generate(
-          //       budgetCategory.subcategories[budgetCategory.getSelectedCategory()] == null ?1: budgetCategory.subcategories[budgetCategory.getSelectedCategory()].length+1,
-          //           (counter) => GestureDetector(
-          //         onTap: () {
-          //           if (budgetCategory.isLastSubcategory(counter)) {
-          //             showDialog(
-          //                 context: context,
-          //                 builder: (context) {
-          //                   // ignore: prefer_const_constructors
-          //                   return MyDialog(isFromSubCategory:true);
-          //                 });
-          //           } else {
-          //             budgetCategory.updateSubCategories(counter);
-          //           }
-          //         },
-          //         child: budgetCategory.isLastSubcategory(counter)
-          //             ? const Padding(
-          //           padding: EdgeInsets.only(top: 12.0),
-          //           child: Icon(Icons.add),
-          //         )
-          //             : Chip(
-          //           deleteIcon:  Icon(
-          //               Icons.clear,
-          //               color:
-          //               budgetCategory.selectedSubCategoryIndex == counter ?
-          //               Colors.black:Colors.white
-          //           ),
-          //           onDeleted: (){
-          //             budgetCategory.deleteSubCategory(counter);
-          //
-          //
-          //           },
-          //           backgroundColor:
-          //           budgetCategory.selectedSubCategoryIndex == counter
-          //               ? Colors.white
-          //               : Colors.blue,
-          //           label: Text(
-          //             budgetCategory.subcategories[budgetCategory.getSelectedCategory()][counter].toString(),
-          //             style: TextStyle(
-          //               color: budgetCategory.selectedSubCategoryIndex ==
-          //                   counter
-          //                   ? Colors.black
-          //                   : Colors.white,
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Form(

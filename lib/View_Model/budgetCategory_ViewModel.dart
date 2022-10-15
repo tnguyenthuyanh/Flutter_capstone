@@ -182,9 +182,14 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
 
     try{
       Iterable<Category> categorytemp = categoriess.where((element) => element.isSelected == true);
+      if (categories.isNotEmpty) {
+
+      }
       Iterable<SubCategory> subcategorytemp = subCategoriess.where((element) => element.isSelected == true);
       if(categorytemp.isNotEmpty && selectedBudgetId!=null){
-        BudgetAmount budgetAmount = await BudgetAmount(ownerId: FirebaseAuth.instance.currentUser!.uid, CategoryId: categorytemp.first.categoryid, CategoryLabel: categorytemp.first.label, amount: double.parse(budgetController.text), budgetAmountId: "",SubCategory: subcategorytemp == null?null:subcategorytemp.first.subcategoryid,SubCategoryLabel: subcategorytemp == null?null:subcategorytemp.first.label);
+        BudgetAmount budgetAmount = await BudgetAmount(ownerId: FirebaseAuth.instance.currentUser!.uid, CategoryId: categorytemp.first.categoryid, CategoryLabel: categorytemp.first.label,
+         amount: double.parse(budgetController.text), budgetAmountId: "",SubCategory: subcategorytemp.isEmpty?null:subcategorytemp.first.subcategoryid,SubCategoryLabel: subcategorytemp.isEmpty?null:subcategorytemp.first.label);
+        //BudgetAmount budgetAmount = await BudgetAmount(ownerId: FirebaseAuth.instance.currentUser!.uid, CategoryId: categorytemp.first.categoryid, CategoryLabel: categorytemp.first.label, amount: double.parse(budgetController.text), budgetAmountId: "",SubCategory: "",SubCategoryLabel: "");
         budgetController.clear();
         isBudgetAdding = true;
         notifyListeners();
@@ -192,6 +197,7 @@ class BudgetCategoryViewModel extends ChangeNotifier  {
         if(status){
           showToast("Budget amount added successfully!");
         }
+        
         isBudgetAdding = false;
         notifyListeners();
 
