@@ -1,11 +1,6 @@
 import 'package:cap_project/model/catergories.dart';
-import 'package:cap_project/viewscreen/budgetdetail_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../View_Model/budget_data.dart';
-import '../../model/budget.dart';
-import '../../model/constant.dart';
 import 'my_listview_tile.dart';
 
 class CategoryListViewTile extends StatelessWidget {

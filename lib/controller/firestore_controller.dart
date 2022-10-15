@@ -9,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../model/account.dart';
 import '../model/budget.dart';
 import '../model/constant.dart';
+import '../model/plan.dart';
 import '../model/purchase.dart';
 import '../model/user.dart' as usr;
 import 'auth_controller.dart';
@@ -26,6 +27,55 @@ class FirestoreController {
     } catch (e) {
       rethrow;
     }
+  }
+
+  static addPlan({
+    required Plan plan,
+  }) async {
+    DocumentReference ref = await FirebaseFirestore.instance
+        .collection(Constant.plans)
+        .add(plan.toFirestoreDoc());
+    return ref.id;
+  }
+
+  static Future<void> updatePlan({
+    required String docId,
+    required Map<String, dynamic> updateInfo,
+  }) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.plans)
+        .doc(docId)
+        .update(updateInfo);
+  }
+
+  static Future<void> deletePlan({
+    required Plan plan,
+  }) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.plans)
+        .doc(plan.docId)
+        .delete();
+  } //end food stuff
+
+  static Future<List<Plan>> getPlanList({
+    required String email,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.plans)
+        .where(Plan.CREATED_BY, isEqualTo: email)
+        .orderBy(Plan.TIMESTAMP, descending: true)
+        .get();
+    var result = <Plan>[];
+    querySnapshot.docs.forEach((doc) {
+      if (doc.data() != null) {
+        var document = doc.data() as Map<String, dynamic>;
+        var p = Plan.fromFirestoreDoc(doc: document, docId: doc.id);
+        if (p != null) {
+          result.add(p);
+        }
+      }
+    });
+    return result;
   }
 
   static Future<String> addBudget({required Budget budget}) async {

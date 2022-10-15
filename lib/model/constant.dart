@@ -3,25 +3,25 @@ import 'package:flutter/material.dart';
 class Constant {
   static const devMode = true;
   static const users = 'Users';
+  static const USERPROFILE_COLLECTION = 'userProfile';
+  static const USERFRIENDS_COLLECTION = 'UserFriends';
   static const DARKMODE = true;
   static const debts = 'Debts';
   static const budgets = 'budgets';
   static const accounts = 'accounts';
   static const categories = 'categories';
-
   static const purchases = 'Purchases';
   static const savings = "Savings";
+  static const plans = 'Plans';
+  static const savedTipCalc = 'SavedTipCalc';
+  static const savedFuelCostCalc = 'SavedFuelCostCalc';
+
   static const List<DropdownMenuItem<String>> menuItems = [
     DropdownMenuItem(child: Text('Mortgage'), value: 'Mortgage'),
     DropdownMenuItem(child: Text('Car loan'), value: 'Car loan'),
     DropdownMenuItem(child: Text('Credit Card'), value: 'Credit Card'),
     DropdownMenuItem(child: Text('Medical Bill'), value: 'Medical Bill'),
   ];
-  static const USERPROFILE_COLLECTION = 'userProfile';
-  static const USERFRIENDS_COLLECTION = 'UserFriends';
-
-  static const savedTipCalc = 'SavedTipCalc';
-  static const savedFuelCostCalc = 'SavedFuelCostCalc';
 }
 
 enum ArgKey {
@@ -30,6 +30,7 @@ enum ArgKey {
   debtList,
   purchaseList,
   savings,
+  planList,
   onePhotoMemo,
   userProfile,
   replies,
