@@ -174,7 +174,6 @@ class BudgetStorageController {
 
   static Future<bool> addCategory(Category category)  async{
     try{
-      print("hello");
       QuerySnapshot<Map<String,dynamic>> data = await  FirebaseFirestore.instance
           .collection(Constant.categories).where("label",isEqualTo: category.label).where("type",isEqualTo: "global").get();
       if(data.docs.isNotEmpty){
@@ -196,7 +195,7 @@ class BudgetStorageController {
       .doc();
       category.categoryid =  documentReference.id;
       await documentReference.set(category.toJson());
-      print("hello1");
+     
 
 
       return true;
