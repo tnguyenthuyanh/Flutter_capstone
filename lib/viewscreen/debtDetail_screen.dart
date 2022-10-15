@@ -79,7 +79,7 @@ class _DebtDetailState extends State<DebtDetailScreen> {
                   initialValue: "Balance: \$" + con.tempDebt.balance,
                   keyboardType: const TextInputType.numberWithOptions(),
                   maxLines: 1,
-                  validator: Debt.validateBalance,
+                  validator: Debt.validateEditBalance,
                   onSaved: con.saveBalance,
                 ),
                 TextFormField(
@@ -91,7 +91,7 @@ class _DebtDetailState extends State<DebtDetailScreen> {
                   initialValue: "Interest Rate: " + con.tempDebt.interest + '%',
                   keyboardType: TextInputType.number,
                   maxLines: 1,
-                  validator: Debt.validateInterest,
+                  validator: Debt.validateEditInterest,
                   onSaved: con.saveInterest,
                 ),
                 editmode

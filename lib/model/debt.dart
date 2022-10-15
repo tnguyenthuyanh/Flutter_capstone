@@ -73,6 +73,13 @@ class Debt {
 
   static String? validateBalance(String? value) {
     if (value != null) {
+      var bal = double.parse(value);
+      return (bal < 1) ? "Balance too small" : null;
+    }
+  }
+
+  static String? validateEditBalance(String? value) {
+    if (value != null) {
       String tempVal = value.substring(10);
       var bal = double.parse(tempVal);
       return (bal < 1) ? "Balance too small" : null;
@@ -80,6 +87,13 @@ class Debt {
   }
 
   static String? validateInterest(String? value) {
+    if (value != null) {
+      var bal = double.parse(value);
+      return (bal < 1) ? "Balance too small" : null;
+    }
+  }
+
+  static String? validateEditInterest(String? value) {
     if (value != null) {
       String tempVal = value.substring(15, value.length - 1);
       var bal = double.parse(tempVal);
