@@ -6,12 +6,13 @@ import 'package:flutter/material.dart';
 
 import '../model/constant.dart';
 import 'addDebt_screen.dart';
+import 'debtDetail_screen.dart';
 
 class DebtScreen extends StatefulWidget {
   const DebtScreen(
       {required this.debtList,
-      required this.userP,
       required this.user,
+      required this.userP,
       Key? key})
       : super(key: key);
 
@@ -117,12 +118,13 @@ class _Controller {
     state.render(() {}); //rerender the screen
   }
 
-  void onTap(int index) async {}
-  /*await Navigator.pushNamed(state.context, FollowerViewScreen.routeName,
+  void onTap(int index) async {
+    await Navigator.pushNamed(state.context, DebtDetailScreen.routeName,
         arguments: {
           ArgKey.user: state.widget.user,
-          ArgKey.onePhotoMemo: photoMemoList[index],
+          ArgKey.singleDebt: state.widget.userP.debts[index],
+          ArgKey.userProfile: state.widget.userP,
         });
     state.render(() {});
-  }*/
+  }
 }

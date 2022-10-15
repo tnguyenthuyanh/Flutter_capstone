@@ -31,4 +31,8 @@ class Budget {
         title: doc['title'],
         isCurrent: doc['isCurrent']);
   }
+
+  bool equals(Budget budget) {
+    return docID == budget.docID;
+  }
 }

@@ -1,10 +1,14 @@
 import 'package:cap_project/model/custom_icons_icons.dart';
-import 'package:cap_project/model/debt.dart';
+import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/model/user.dart';
+import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/budgets_screen.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/model/user.dart' as usr;
+import 'package:cap_project/viewscreen/plan_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
+import 'package:cap_project/viewscreen/purchases_screen.dart';
+import 'package:cap_project/viewscreen/savings_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -56,9 +60,11 @@ class _UserHomeState extends State<UserHomeScreen> {
         appBar: AppBar(
           title: Text("$email's feed"),
         ),
+        //        DRAWER      ------------------------------------------------
         drawer: Drawer(
           child: ListView(
             children: [
+              //        USER ACCOUNT HEADER      -----------------------------
               UserAccountsDrawerHeader(
                 currentAccountPicture: const Icon(
                   Icons.person,
@@ -67,16 +73,35 @@ class _UserHomeState extends State<UserHomeScreen> {
                 accountName: const Text('no profile'),
                 accountEmail: Text(email),
               ),
+              //        DEBTS     --------------------------------------------
               ListTile(
                 leading: const Icon(CustomIcons.money_check),
                 title: const Text('Debts'),
                 onTap: con.debtPage,
               ),
+              //        BUDGET TEMPLATES      --------------------------------
+              ListTile(
+                leading: const Icon(Icons.payments),
+                title: const Text('Transactions'),
+                onTap: con.purchasePage,
+              ),
+              ListTile(
+                leading: const Icon(Icons.savings),
+                title: const Text('Savings'),
+                onTap: con.savingsPage,
+              ),
               ListTile(
                 leading: const Icon(Icons.local_atm),
-                title: const Text('Budgets'),
+                title: const Text('Budget Templates'),
                 onTap: con.budgetsPage,
               ),
+              //        ACCOUNTS      ----------------------------------------
+              ListTile(
+                leading: const Icon(Icons.account_box),
+                title: const Text('Accounts'),
+                onTap: con.accountsPage,
+              ),
+              //        TOOLS      -------------------------------------------
               ListTile(
                 leading: const Icon(Icons.build),
                 title: const Text('Tools'),
@@ -87,16 +112,31 @@ class _UserHomeState extends State<UserHomeScreen> {
                       })
                 },
               ),
+              //        PLANS      -------------------------------------------
+
+              ListTile(
+                leading: const Icon(Icons.book),
+                title: const Text('Plans'),
+                onTap: () => {
+                  Navigator.pushNamed(context, PlanScreen.routeName,
+                      arguments: {
+                        ArgKey.user: widget.user,
+                      }),
+                },
+              ),
+              //        PROFILE      ----------------------------------------
               ListTile(
                 leading: Icon(Icons.account_box_outlined),
                 title: Text('My Profile'),
                 onTap: con.seeProfile,
               ),
+              //        USERS     --------------------------------------------
               ListTile(
                 leading: Icon(Icons.people),
                 title: Text('Users List'),
                 onTap: con.seeUserList,
               ),
+              //        SIGN OUT      --------------------------------------------------
               ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text('Sign Out'),
@@ -164,18 +204,29 @@ class _Controller {
   }
 
   void budgetsPage() async {
+    navigateTo(BudgetsScreen.routeName);
+  }
+
+  void accountsPage() async {
+    navigateTo(AccountsScreen.routeName);
+  }
+
+  void navigateTo(String routename) async {
     try {
       await Navigator.pushNamed(
         state.context,
-        BudgetsScreen.routeName,
+        routename,
       );
       Navigator.of(state.context).pop(); // push in drawer
     } catch (e) {
-      if (Constant.devMode) print('======== get Budgets error: $e');
+      if (Constant.devMode) {
+        print('Could not naviate to $routename');
+        print('======== Navigation Error: $e');
+      }
       showSnackBar(
         context: state.context,
         seconds: 20,
-        message: 'Failed to get Budgets list: $e',
+        message: "An error has occured. Could not navigate to $routename",
       );
     }
   }
@@ -184,8 +235,8 @@ class _Controller {
 
   void seeUserList() async {
     try {
-      List<usr.UserInfo> userList =
-          await FirestoreController.getUserList(user: state.widget.user);
+      List<usr.UserInfo> userList = await FirestoreController.getUserList(
+          currentUID: state.widget.user.uid);
       await Navigator.pushNamed(state.context, UserListScreen.routeName,
           arguments: {
             ArgKey.currentUID: state.widget.user.uid,
@@ -204,12 +255,13 @@ class _Controller {
 
   void seeProfile() async {
     try {
-      Map profile =
+      usr.UserInfo profile =
           await FirestoreController.getProfile(uid: state.widget.user.uid);
       await Navigator.pushNamed(state.context, ProfileScreen.routeName,
           arguments: {
             ArgKey.profile: profile,
             ArgKey.currentUID: state.widget.user.uid,
+            ArgKey.isFriendAdded: 'N/A',
           });
       // close the drawer
       Navigator.of(state.context).pop();
@@ -221,4 +273,50 @@ class _Controller {
       );
     }
   }
-}
+
+  void purchasePage() async {
+    try {
+      userP = await FirestoreController.getUser(email: state.email);
+      userP.purchases = await FirestoreController.getPurchaseList(user: userP);
+
+      await Navigator.pushNamed(
+        state.context,
+        PurchasesScreen.routeName,
+        arguments: {
+          ArgKey.purchaseList: userP.purchases,
+          ArgKey.user: state.widget.user,
+          ArgKey.userProfile: userP,
+        },
+      );
+      Navigator.of(state.context).pop(); // close drawer
+    } catch (e) {
+      if (Constant.devMode) print('get Purchase List Error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed: get Purchase List $e',
+        seconds: 20,
+      );
+    }
+  }
+
+  void savingsPage() async {
+    try {
+      userP = await FirestoreController.getUser(email: state.email);
+      userP.savings = await FirestoreController.getSavings(user: userP);
+      print('TEST_TEST_TEST_TEST IN ');
+      await Navigator.pushNamed(state.context, SavingsScreen.routeName,
+          arguments: {
+            ArgKey.savings: userP.savings,
+            ArgKey.user: state.widget.user,
+            ArgKey.userProfile: userP,
+          });
+    } catch (e) {
+      if (Constant.devMode) print('get Savings Error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed: to get Savings $e',
+        seconds: 20,
+      );
+    }
+  }
+}//end of controller

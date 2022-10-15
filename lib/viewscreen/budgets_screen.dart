@@ -1,9 +1,7 @@
 import 'dart:collection';
-
 import 'package:cap_project/viewscreen/budgetCategory.dart';
-
 import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
-
+import 'package:cap_project/viewscreen/components/texts/titletext.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../View_Model/budget_data.dart';
@@ -15,7 +13,8 @@ import 'components/budget_listviewtile.dart';
 
 class BudgetsScreen extends StatefulWidget {
   static const routeName = '/budgetsScreen';
-  static const _screenName = "Budgets";
+  static const _screenName = "Budget Templates";
+
   const BudgetsScreen({Key? key}) : super(key: key);
   @override
   State<StatefulWidget> createState() => _BudgetsState();
@@ -47,9 +46,8 @@ class _BudgetsState extends State<BudgetsScreen> {
       child: Scaffold(
         //        APPBAR      --------------------------------------------------
         appBar: AppBar(
-          title: const Text(BudgetsScreen._screenName),
+          title: TitleText(title: BudgetsScreen._screenName),
           actions: [
-            
             // delete/cancel button
             IconButton(
               icon: _currentMode == BudgetListMode.delete
@@ -125,7 +123,6 @@ class _Controller {
 
   // enter delete selection mode
   void onDeleteModeButtonPressed() {
-    print("delete button pressed");
     // if mode is already delete, set mode to view
     if (getCurrentMode() == BudgetListMode.delete) {
       onCancelButtonPressed();

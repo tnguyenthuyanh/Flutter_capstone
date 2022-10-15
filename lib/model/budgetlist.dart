@@ -24,7 +24,6 @@ class BudgetList {
   }
 
   void setNewCurrentBudget(Budget newCurrent) {
-    // if there is more than one budget
     if (_budgets.length > 1) {
       // set all active budgets but newCurrent to inactive
       // and set their dirty flag
@@ -82,7 +81,7 @@ class BudgetList {
 
   void stageForDeletion(Budget budget) {
     // if the deletionList is null, instantiate it
-   // _deletionList ??= <Budget>[];
+    // _deletionList ??= <Budget>[];
 
     // if the budget isn't in the deletionlist already, add it
     if (!(_deletionList.contains(budget))) {

@@ -9,7 +9,7 @@ import '../../model/subcategories.dart';
 import '../auth_controller.dart';
 
 class BudgetStorageController {
-  static addBudget({required Budget budget}) async {
+  static Future<String> addBudget({required Budget budget}) async {
     try {
       DocumentReference ref = await FirebaseFirestore.instance
           .collection(Constant.budgets)
@@ -17,6 +17,7 @@ class BudgetStorageController {
       return ref.id;
     } catch (e) {
       print(e.toString());
+      return "errawr";
     }
   }
 

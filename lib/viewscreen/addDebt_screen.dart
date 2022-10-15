@@ -46,19 +46,19 @@ class _AddDebtState extends State<AddDebtScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Add A Debt'),
-          actions: [
-            IconButton(
-              onPressed: con.save,
-              icon: const Icon(Icons.check),
-            )
-          ],
-        ),
-        body: Form(
-          key: formKey,
-          child: SingleChildScrollView(
-              child: Center(
+      appBar: AppBar(
+        title: const Text('Add A Debt'),
+        actions: [
+          IconButton(
+            onPressed: con.save,
+            icon: const Icon(Icons.check),
+          )
+        ],
+      ),
+      body: Form(
+        key: formKey,
+        child: SingleChildScrollView(
+          child: Center(
             child: Column(
               children: [
                 TextFormField(
@@ -67,15 +67,32 @@ class _AddDebtState extends State<AddDebtScreen> {
                   validator: Debt.validateTitle,
                   onSaved: con.saveTitle,
                 ),
+                TextFormField(
+                  decoration: const InputDecoration(hintText: 'Balance'),
+                  autocorrect: true,
+                  keyboardType: TextInputType.numberWithOptions(),
+                  validator: Debt.validateBalance,
+                  onSaved: con.saveBalance,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(hintText: 'Interest'),
+                  autocorrect: true,
+                  keyboardType: TextInputType.numberWithOptions(),
+                  validator: Debt.validateInterest,
+                  onSaved: con.saveInterest,
+                ),
                 DropdownButton(
-                    value: dropValue,
-                    items: Constant.menuItems,
-                    onChanged: con.saveCategory,
-                    hint: const Text('Select Category'))
+                  value: dropValue,
+                  items: Constant.menuItems,
+                  onChanged: con.saveCategory,
+                  hint: const Text('Select Category'),
+                ),
               ],
             ),
-          )),
-        ));
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -92,6 +109,18 @@ class _Controller {
     if (value != null) {
       tempDebt.title = value;
       tempDebt.createdBy = state.email;
+    }
+  }
+
+  void saveBalance(String? value) {
+    if (value != null) {
+      tempDebt.balance = value;
+    }
+  }
+
+  void saveInterest(String? value) {
+    if (value != null) {
+      tempDebt.interest = value;
     }
   }
 
@@ -122,12 +151,13 @@ class _Controller {
 
       stopCircularProgress(state.context);
 
-      // return to home
+      // return to debts screen
       await Navigator.pushNamed(
         state.context,
         DebtScreen.routeName,
         arguments: {
-          //ArgKey.debtList: debtList,
+          ArgKey.debtList:
+              FirestoreController.getDebtList(user: state.widget.userP),
           ArgKey.user: state.widget.user,
           ArgKey.userProfile: state.widget.userP,
         },
