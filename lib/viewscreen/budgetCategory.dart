@@ -24,7 +24,7 @@ class _AddCategoryState extends State<AddCategory> {
     // TODO: implement initState
 
 
-    new Future.delayed(Duration.zero,() {
+    Future.delayed(Duration.zero,() {
       budgetCategory = Provider.of<BudgetCategoryViewModel>(context,listen: false);
       budgetCategory.getCategories();
       budgetCategory.getSubCategories();
