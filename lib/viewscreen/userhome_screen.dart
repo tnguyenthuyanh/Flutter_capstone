@@ -9,10 +9,12 @@ import 'package:cap_project/viewscreen/plan_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/savings_screen.dart';
+import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../View_Model/budget_data.dart';
 import '../controller/auth_controller.dart';
@@ -141,6 +143,16 @@ class _UserHomeState extends State<UserHomeScreen> {
                 leading: const Icon(Icons.logout),
                 title: const Text('Sign Out'),
                 onTap: con.signOut,
+              ),
+              ListTile(
+                leading: const FaIcon(FontAwesomeIcons.google),
+                title: const Text('Sign Out with Google'),
+                onTap: () {
+                  final provider =
+                      Provider.of<GoogleSignInProvider>(context, listen: false);
+                  provider.logout();
+                  Navigator.pushNamed(context, SignInScreen.routeName);
+                },
               ),
             ],
           ),

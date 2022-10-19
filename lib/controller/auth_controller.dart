@@ -106,4 +106,13 @@ class GoogleSignInProvider extends ChangeNotifier {
       ArgKey.user: user,
     });
   }
-} //EnoogleProvider
+
+  Future logout() async {
+    await googleSignIn.disconnect();
+  }
+} //End GoogleProvider
+
+
+
+
+
