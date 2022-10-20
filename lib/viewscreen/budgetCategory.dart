@@ -2,6 +2,7 @@ import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
 class AddCategory extends StatefulWidget {
@@ -71,13 +72,28 @@ class _AddCategoryState extends State<AddCategory> {
                     child: Icon(Icons.add),
                   )
                       : Chip(
-                    deleteIcon:  Icon(
-                        Icons.clear,
+                    deleteIcon: budgetCategory.categoriess[counter].type.toLowerCase() == 'global'  
+                    ? Icon(  
+                        Icons.info,  
+                        color: 
+                        budgetCategory.categoriess[counter].isSelected ? 
+                        Colors.black: Colors.white,
+                      )
+                    : Icon(
+                         Icons.clear,
                         color:
                         budgetCategory.categoriess[counter].isSelected ?
                         Colors.black:Colors.white
                     ),
-                    onDeleted: budgetCategory.categoriess[counter].type.toLowerCase() == "global"?null:  (){
+                    onDeleted: budgetCategory.categoriess[counter].type.toLowerCase() == "global"?(){
+                      
+                     budgetCategory.categoriess[counter].globalAvg  !=  null 
+                     ? showToast(
+                        'The average person ${budgetCategory.categoriess[counter].nature}s \$${budgetCategory.categoriess[counter].globalAvg!} on this category' 
+                      )
+                      : showToast("Average does not exist for this category");
+
+                    }:  (){
                       budgetCategory.deleteCategory(counter);
 
                     },
@@ -98,8 +114,6 @@ class _AddCategoryState extends State<AddCategory> {
               ),
             ),
           ),
-
-
 
         Text("Select a Sub Category"),
           budgetCategory.isSubCategoriesLoading?CircularProgressIndicator():Padding(
@@ -155,60 +169,7 @@ class _AddCategoryState extends State<AddCategory> {
               ),
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: Wrap(
-          //     spacing: 12.0,
-          //     children: List<GestureDetector>.generate(
-          //       budgetCategory.subcategories[budgetCategory.getSelectedCategory()] == null ?1: budgetCategory.subcategories[budgetCategory.getSelectedCategory()].length+1,
-          //           (counter) => GestureDetector(
-          //         onTap: () {
-          //           if (budgetCategory.isLastSubcategory(counter)) {
-          //             showDialog(
-          //                 context: context,
-          //                 builder: (context) {
-          //                   // ignore: prefer_const_constructors
-          //                   return MyDialog(isFromSubCategory:true);
-          //                 });
-          //           } else {
-          //             budgetCategory.updateSubCategories(counter);
-          //           }
-          //         },
-          //         child: budgetCategory.isLastSubcategory(counter)
-          //             ? const Padding(
-          //           padding: EdgeInsets.only(top: 12.0),
-          //           child: Icon(Icons.add),
-          //         )
-          //             : Chip(
-          //           deleteIcon:  Icon(
-          //               Icons.clear,
-          //               color:
-          //               budgetCategory.selectedSubCategoryIndex == counter ?
-          //               Colors.black:Colors.white
-          //           ),
-          //           onDeleted: (){
-          //             budgetCategory.deleteSubCategory(counter);
-          //
-          //
-          //           },
-          //           backgroundColor:
-          //           budgetCategory.selectedSubCategoryIndex == counter
-          //               ? Colors.white
-          //               : Colors.blue,
-          //           label: Text(
-          //             budgetCategory.subcategories[budgetCategory.getSelectedCategory()][counter].toString(),
-          //             style: TextStyle(
-          //               color: budgetCategory.selectedSubCategoryIndex ==
-          //                   counter
-          //                   ? Colors.black
-          //                   : Colors.white,
-          //             ),
-          //           ),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
+
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Form(
