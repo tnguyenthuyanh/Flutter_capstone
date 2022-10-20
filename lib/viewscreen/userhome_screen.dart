@@ -11,6 +11,7 @@ import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/savings_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
+import 'package:cap_project/viewscreen/wallet_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -135,6 +136,12 @@ class _UserHomeState extends State<UserHomeScreen> {
                 leading: Icon(Icons.people),
                 title: Text('Users List'),
                 onTap: con.seeUserList,
+              ),
+              //        Wallet     --------------------------------------------
+              ListTile(
+                leading: Icon(Icons.wallet),
+                title: Text('My Wallet'),
+                onTap: con.seeWallet,
               ),
               //        SIGN OUT      --------------------------------------------------
               ListTile(
@@ -270,6 +277,26 @@ class _Controller {
       showSnackBar(
         context: state.context,
         message: 'Failed to get editProfile: $e',
+      );
+    }
+  }
+
+  void seeWallet() async {
+    try {
+      usr.UserInfo profile =
+          await FirestoreController.getProfile(uid: state.widget.user.uid);
+      await Navigator.pushNamed(state.context, WalletScreen.routeName,
+          arguments: {
+            ArgKey.profile: profile,
+            ArgKey.user: state.widget.user,
+          });
+      // close the drawer
+      Navigator.of(state.context).pop();
+    } catch (e) {
+      if (Constant.devMode) print('====== WalletScreen error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed to get walletScreen: $e',
       );
     }
   }

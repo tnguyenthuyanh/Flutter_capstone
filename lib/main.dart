@@ -16,12 +16,14 @@ import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/savings_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/fuelcostestimator_screen.dart';
+import 'package:cap_project/viewscreen/transferMoney_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
 import 'package:cap_project/View_Model/auth_viewModel.dart';
 import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
 import 'package:cap_project/viewscreen/budgetCategory.dart';
+import 'package:cap_project/viewscreen/wallet_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -181,6 +183,32 @@ class Capstone extends StatelessWidget {
               return UserListScreen(
                 currentUID: currentUID,
                 userList: userList,
+              );
+            }
+          },
+          WalletScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at WalletScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var profile = argument[ArgKey.profile];
+              return WalletScreen(
+                user: user,
+                profile: profile,
+              );
+            }
+          },
+          TransferMoneyScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at TransferMoneyScreen');
+            } else {
+              var argument = args as Map;
+              var profile = argument[ArgKey.profile];
+              return TransferMoneyScreen(
+                profile: profile,
               );
             }
           },
