@@ -38,6 +38,7 @@ dependencies:
   uuid: ^3.0.6
   google_sign_in: ^5.4.2
   font_awesome_flutter: ^10.2.1
+  flutter_credit_card: ^3.0.3
   #State management
   provider: ^6.0.3
   oktoast: ^3.3.0

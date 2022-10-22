@@ -1,4 +1,5 @@
 import 'package:cap_project/model/user.dart' as usr;
+import 'package:cap_project/viewscreen/addCard_screen.dart';
 import 'package:cap_project/viewscreen/transferMoney_screen.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../controller/firestore_controller.dart';
 import '../model/constant.dart';
+import 'addBalance_screen.dart';
 
 class WalletScreen extends StatefulWidget {
   static const routeName = '/walletScreen';
@@ -225,7 +227,23 @@ class _Controller {
   late _WalletState state;
   _Controller(this.state);
 
-  void addMoney() async {}
+  void addMoney() async {
+    try {
+      await Navigator.pushNamed(state.context, AddBalanceScreen.routeName,
+          arguments: {
+            ArgKey.user: state.widget.user,
+          });
+      // close the drawer
+      Navigator.of(state.context).pop();
+    } catch (e) {
+      if (Constant.devMode) print('====== AddBalanceScreen error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed to get AddBalanceScreen: $e',
+      );
+    }
+  }
+
   void send() async {
     try {
       usr.UserInfo profile =

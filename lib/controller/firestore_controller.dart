@@ -12,6 +12,7 @@ import '../model/constant.dart';
 import '../model/plan.dart';
 import '../model/purchase.dart';
 import '../model/user.dart' as usr;
+import '../model/wallet.dart';
 import 'auth_controller.dart';
 import 'storagecontrollers/accountstoragecontroller.dart';
 
@@ -406,6 +407,24 @@ class FirestoreController {
     }
 
     return result;
+  }
+
+  static Future<void> saveWallet(Wallet wallet) async {
+    var ref = await FirebaseFirestore.instance
+        .collection(Constant.WALLET_COLLECTION)
+        .add(wallet.toFirestoreDoc());
+  }
+
+  static Future<bool> isCardSaved(String uid) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.WALLET_COLLECTION)
+        .where(Wallet.UID, isEqualTo: uid)
+        .get();
+
+    if (querySnapshot.size == 0)
+      return false;
+    else
+      return true;
   }
 
   // tools - save tip calc

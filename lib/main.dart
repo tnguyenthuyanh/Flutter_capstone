@@ -1,6 +1,8 @@
 import 'package:cap_project/View_Model/account_data.dart';
 import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
+import 'package:cap_project/viewscreen/addBalance_screen.dart';
+import 'package:cap_project/viewscreen/addCard_screen.dart';
 import 'package:cap_project/viewscreen/debtDetail_screen.dart';
 import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/viewscreen/addPlan_screen.dart';
@@ -209,6 +211,30 @@ class Capstone extends StatelessWidget {
               var profile = argument[ArgKey.profile];
               return TransferMoneyScreen(
                 profile: profile,
+              );
+            }
+          },
+          AddCardScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at AddCardScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              return AddCardScreen(
+                user: user,
+              );
+            }
+          },
+          AddBalanceScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at AddBalanceScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              return AddBalanceScreen(
+                user: user,
               );
             }
           },

@@ -5,6 +5,7 @@ class Constant {
   static const users = 'Users';
   static const USERPROFILE_COLLECTION = 'userProfile';
   static const USERFRIENDS_COLLECTION = 'UserFriends';
+  static const WALLET_COLLECTION = 'VirtualWallet';
   static const DARKMODE = true;
   static const debts = 'Debts';
   static const budgets = 'budgets';
