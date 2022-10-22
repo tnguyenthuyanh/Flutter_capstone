@@ -195,10 +195,10 @@ class Capstone extends StatelessWidget {
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
-              var profile = argument[ArgKey.profile];
+              var wallet = argument[ArgKey.wallet];
               return WalletScreen(
                 user: user,
-                profile: profile,
+                wallet: wallet,
               );
             }
           },
@@ -233,8 +233,10 @@ class Capstone extends StatelessWidget {
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
+              var wallet = argument[ArgKey.wallet];
               return AddBalanceScreen(
                 user: user,
+                wallet: wallet,
               );
             }
           },

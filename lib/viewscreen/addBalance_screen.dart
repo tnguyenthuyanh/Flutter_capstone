@@ -8,12 +8,14 @@ import 'package:flutter_credit_card/flutter_credit_card.dart';
 
 import '../controller/firestore_controller.dart';
 import '../model/constant.dart';
+import 'addCard_screen.dart';
 
 class AddBalanceScreen extends StatefulWidget {
   static const routeName = '/addBalanceScreen';
   final User user;
+  final Wallet wallet;
 
-  AddBalanceScreen({required this.user});
+  AddBalanceScreen({required this.user, required this.wallet});
 
   @override
   State<StatefulWidget> createState() {
@@ -24,7 +26,6 @@ class AddBalanceScreen extends StatefulWidget {
 class _AddBalanceState extends State<AddBalanceScreen> {
   late _Controller con;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  bool isCreditCardSaved = true;
 
   @override
   void initState() {
@@ -48,15 +49,14 @@ class _AddBalanceState extends State<AddBalanceScreen> {
             const SizedBox(
               height: 30,
             ),
-            isCreditCardSaved
+            widget.wallet.card_saved == 1
                 ? CreditCardWidget(
-                    cardNumber: '124214124',
-                    expiryDate: 'ee',
-                    cardHolderName: 'cardHolderName',
+                    cardNumber: widget.wallet.card_number,
+                    expiryDate: widget.wallet.exp,
+                    cardHolderName: widget.wallet.holder_name,
                     cvvCode: '***',
                     bankName: 'Virtual Bank',
                     showBackView: false,
-                    obscureCardNumber: true,
                     obscureCardCvv: true,
                     isHolderNameVisible: true,
                     cardBgColor: Color.fromARGB(255, 7, 71, 123),
@@ -64,8 +64,10 @@ class _AddBalanceState extends State<AddBalanceScreen> {
                     onCreditCardWidgetChange:
                         (CreditCardBrand creditCardBrand) {},
                   )
-                : SizedBox(),
-            isCreditCardSaved
+                : Align(
+                    alignment: Alignment.center,
+                    child: Text('No card is added')),
+            widget.wallet.card_saved == 1
                 ? Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -78,7 +80,8 @@ class _AddBalanceState extends State<AddBalanceScreen> {
                                 children: [
                                   TextFormField(
                                     enabled: false,
-                                    initialValue: "\$5000",
+                                    initialValue:
+                                        '\$' + widget.wallet.balance.toString(),
                                     decoration: InputDecoration(
                                       labelText: "Wallet Balance",
                                     ),
@@ -87,7 +90,8 @@ class _AddBalanceState extends State<AddBalanceScreen> {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 16),
                                     child: TextFormField(
-                                      maxLength: 8,
+                                      maxLength: 6,
+                                      validator: con.validateCredit,
                                       keyboardType: TextInputType.number,
                                       inputFormatters: <TextInputFormatter>[
                                         FilteringTextInputFormatter.digitsOnly
@@ -122,7 +126,19 @@ class _AddBalanceState extends State<AddBalanceScreen> {
                       ),
                     ),
                   )
-                : SizedBox(),
+                : ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      backgroundColor: Color.fromARGB(255, 74, 125, 193),
+                    ),
+                    child: Container(
+                      margin: const EdgeInsets.all(12),
+                      child: const Text('Add a card'),
+                    ),
+                    onPressed: con.addCardScreen,
+                  ),
           ],
         ),
       ),
@@ -133,37 +149,57 @@ class _AddBalanceState extends State<AddBalanceScreen> {
 class _Controller {
   late _AddBalanceState state;
   late int? credit;
+  late Wallet wallet;
 
-  _Controller(this.state) {}
+  _Controller(this.state);
+
+  String? validateCredit(String? value) {
+    if (value == null || value.isEmpty || int.parse(value) <= 0) {
+      return 'Please enter value greater than 0';
+    }
+    return null;
+  }
 
   void saveCredit(String? value) {
     if (value != null) credit = int.parse(value);
   }
 
-  void add() {
+  void add() async {
     FormState? currentState = state.formKey.currentState;
     if (currentState == null || !currentState.validate()) return;
     currentState.save();
-    print(credit);
-    // startCircularProgress(state.context);
-    // try {
-    //   String exp = month! + '/' + year!;
-    //   Wallet wallet = new Wallet(
-    //       exp: exp,
-    //       holder_name: holderName!,
-    //       card_number: cardNumber!,
-    //       cvv: cvv!,
-    //       card_saved: 1);
-    //   await FirestoreController.saveWallet(wallet);
-    //   stopCircularProgress(state.context);
-    //   Navigator.of(state.context).pop();
-    // } catch (e) {
-    //   stopCircularProgress(state.context);
-    //   if (Constant.devMode) print('====== error: $e');
-    //   showSnackBar(
-    //     context: state.context,
-    //     message: 'error: $e',
-    //   );
-    // }
+
+    startCircularProgress(state.context);
+
+    try {
+      await FirestoreController.addCredit(
+          state.widget.user.uid, credit!, state.widget.wallet.docId!);
+      stopCircularProgress(state.context);
+      Navigator.of(state.context).pop();
+    } catch (e) {
+      stopCircularProgress(state.context);
+      if (Constant.devMode) print('====== error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'error: $e',
+      );
+    }
+  }
+
+  void addCardScreen() async {
+    try {
+      await Navigator.pushNamed(state.context, AddCardScreen.routeName,
+          arguments: {
+            ArgKey.user: state.widget.user,
+          });
+      Navigator.of(state.context).pop();
+      Navigator.of(state.context).pop();
+    } catch (e) {
+      if (Constant.devMode) print('====== AddCardScreen error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed to get AddCardScreen: $e',
+      );
+    }
   }
 }

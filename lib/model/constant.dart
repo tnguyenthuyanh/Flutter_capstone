@@ -41,6 +41,7 @@ enum ArgKey {
   currentUID,
   singleDebt,
   isFriendAdded,
+  wallet,
 }
 
 enum Filter {

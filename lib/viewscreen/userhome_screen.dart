@@ -20,6 +20,7 @@ import '../controller/auth_controller.dart';
 import '../controller/firestore_controller.dart';
 import '../model/budget.dart';
 import '../model/constant.dart';
+import '../model/wallet.dart';
 import 'view/view_util.dart';
 
 class UserHomeScreen extends StatefulWidget {
@@ -283,11 +284,11 @@ class _Controller {
 
   void seeWallet() async {
     try {
-      usr.UserInfo profile =
-          await FirestoreController.getProfile(uid: state.widget.user.uid);
+      Wallet wallet =
+          await FirestoreController.getWallet(state.widget.user.uid);
       await Navigator.pushNamed(state.context, WalletScreen.routeName,
           arguments: {
-            ArgKey.profile: profile,
+            ArgKey.wallet: wallet,
             ArgKey.user: state.widget.user,
           });
       // close the drawer

@@ -3,8 +3,6 @@ import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_credit_card/credit_card_brand.dart';
-import 'package:flutter_credit_card/flutter_credit_card.dart';
 
 import '../controller/firestore_controller.dart';
 import '../model/constant.dart';
@@ -45,36 +43,9 @@ class _AddCardState extends State<AddCardScreen> {
         child: SafeArea(
           child: Column(
             children: <Widget>[
-              const SizedBox(
+              SizedBox(
                 height: 30,
               ),
-              isCreditCardSaved
-                  ? CreditCardWidget(
-                      cardNumber: '124214124',
-                      expiryDate: 'ee',
-                      cardHolderName: 'cardHolderName',
-                      cvvCode: 'cvvCode',
-                      bankName: 'Axis Bank',
-                      showBackView: false,
-                      obscureCardNumber: true,
-                      obscureCardCvv: true,
-                      isHolderNameVisible: true,
-                      //cardBgColor: Colors.red,
-                      isSwipeGestureEnabled: true,
-                      onCreditCardWidgetChange:
-                          (CreditCardBrand creditCardBrand) {},
-                      customCardTypeIcons: <CustomCardTypeIcon>[
-                        CustomCardTypeIcon(
-                          cardType: CardType.americanExpress,
-                          cardImage: Image.asset(
-                            'assets/mastercard.png',
-                            height: 40,
-                            width: 40,
-                          ),
-                        ),
-                      ],
-                    )
-                  : SizedBox(),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -104,7 +75,7 @@ class _AddCardState extends State<AddCardScreen> {
                                 keyboardType: TextInputType.name,
                                 inputFormatters: <TextInputFormatter>[
                                   FilteringTextInputFormatter.allow(
-                                      RegExp(r'[a-zA-Z]')),
+                                      RegExp(r'[a-zA-Z ]')),
                                 ],
                                 onSaved: con.saveHolderName,
                                 decoration: const InputDecoration(
@@ -203,12 +174,10 @@ class _Controller {
   String? month;
   String? year;
 
-  _Controller(this.state) {}
-
-  void update() async {}
+  _Controller(this.state);
 
   String? validateCardNumber(String? value) {
-    if (value == null || value.isEmpty) {
+    if (value == null || value.isEmpty || value.length != 12) {
       return 'Please enter 12-digit card number';
     }
     return null;
@@ -270,6 +239,8 @@ class _Controller {
     try {
       String exp = month! + '/' + year!;
       Wallet wallet = new Wallet(
+          uid: state.widget.user.uid,
+          email: state.widget.user.email!,
           exp: exp,
           holder_name: holderName!,
           card_number: cardNumber!,
@@ -278,6 +249,7 @@ class _Controller {
       await FirestoreController.saveWallet(wallet);
       stopCircularProgress(state.context);
       Navigator.of(state.context).pop();
+      //Navigator.of(state.context).pop();
     } catch (e) {
       stopCircularProgress(state.context);
       if (Constant.devMode) print('====== error: $e');

@@ -409,22 +409,44 @@ class FirestoreController {
     return result;
   }
 
-  static Future<void> saveWallet(Wallet wallet) async {
+  static Future<String> saveWallet(Wallet wallet) async {
     var ref = await FirebaseFirestore.instance
         .collection(Constant.WALLET_COLLECTION)
         .add(wallet.toFirestoreDoc());
+    return ref.id;
   }
 
-  static Future<bool> isCardSaved(String uid) async {
+  static Future<Wallet> getWallet(String uid) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.WALLET_COLLECTION)
         .where(Wallet.UID, isEqualTo: uid)
         .get();
 
-    if (querySnapshot.size == 0)
-      return false;
-    else
-      return true;
+    var result = <Wallet>[];
+
+    if (querySnapshot.size != 0) {
+      var document = querySnapshot.docs[0].data() as Map<String, dynamic>;
+      var p = Wallet.fromFirestoreDoc(
+        doc: document,
+        docId: querySnapshot.docs[0].id,
+      );
+      if (p != null) {
+        result.add(p);
+      }
+    } else
+      return new Wallet();
+
+    return result[0];
+  }
+
+  static Future<void> addCredit(String uid, int credit, String docId) async {
+    Wallet wallet = await getWallet(uid);
+    int newBalance = wallet.balance + credit;
+
+    await FirebaseFirestore.instance
+        .collection(Constant.WALLET_COLLECTION)
+        .doc(docId)
+        .update({Wallet.BALANCE: newBalance});
   }
 
   // tools - save tip calc

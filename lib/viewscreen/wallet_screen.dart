@@ -1,5 +1,4 @@
 import 'package:cap_project/model/user.dart' as usr;
-import 'package:cap_project/viewscreen/addCard_screen.dart';
 import 'package:cap_project/viewscreen/transferMoney_screen.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,17 +6,17 @@ import 'package:flutter/material.dart';
 
 import '../controller/firestore_controller.dart';
 import '../model/constant.dart';
+import '../model/wallet.dart';
 import 'addBalance_screen.dart';
 
 class WalletScreen extends StatefulWidget {
   static const routeName = '/walletScreen';
   final User user;
-  final usr.UserInfo profile;
-  // final int numberOfPhotos;
+  final Wallet wallet;
 
   WalletScreen({
     required this.user,
-    required this.profile,
+    required this.wallet,
   });
 
   @override
@@ -64,7 +63,7 @@ class _WalletState extends State<WalletScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        widget.profile.email,
+                        widget.user.email!,
                         style: TextStyle(
                           fontSize: 15.0,
                         ),
@@ -97,7 +96,10 @@ class _WalletState extends State<WalletScreen> {
                                       height: 5.0,
                                     ),
                                     Text(
-                                      "\$5000",
+                                      widget.wallet.card_saved == 0
+                                          ? '\$0'
+                                          : '\$' +
+                                              widget.wallet.balance.toString(),
                                       style: TextStyle(
                                         fontSize: 27.0,
                                         color: Colors.blueAccent,
@@ -225,16 +227,29 @@ class _WalletState extends State<WalletScreen> {
 
 class _Controller {
   late _WalletState state;
-  _Controller(this.state);
+  late Wallet wallet;
+
+  _Controller(this.state) {
+    wallet = state.widget.wallet;
+  }
 
   void addMoney() async {
     try {
+      Wallet wallet =
+          await FirestoreController.getWallet(state.widget.user.uid);
+
       await Navigator.pushNamed(state.context, AddBalanceScreen.routeName,
           arguments: {
             ArgKey.user: state.widget.user,
+            ArgKey.wallet: wallet,
           });
-      // close the drawer
-      Navigator.of(state.context).pop();
+
+      Wallet newWallet =
+          await FirestoreController.getWallet(state.widget.user.uid);
+
+      state.render(() {
+        state.widget.wallet.balance = newWallet.balance;
+      });
     } catch (e) {
       if (Constant.devMode) print('====== AddBalanceScreen error: $e');
       showSnackBar(
