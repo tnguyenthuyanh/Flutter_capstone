@@ -17,6 +17,7 @@ class BudgetAmount {
      this.SubCategoryLabel,
     required this.amount,
     required this.budgetAmountId,
+    required this.budgetId,
 
   });
 
@@ -27,6 +28,7 @@ class BudgetAmount {
   String? SubCategoryLabel;
   double amount;
   String budgetAmountId;
+  String budgetId;
 
 
   factory BudgetAmount.fromJson(Map<String, dynamic> json) => BudgetAmount(
@@ -37,6 +39,7 @@ class BudgetAmount {
     SubCategoryLabel: json["sub_BudgetAmount_label"],
     amount: json["amount"],
     budgetAmountId: json["budgetAmountId"],
+    budgetId: json["budgetId"],
 
   );
 
@@ -47,6 +50,13 @@ class BudgetAmount {
     "SubCategory": SubCategory,
     "SubCategoryLabel": SubCategoryLabel,
     "amount": amount,
-    "budgetAmountId":budgetAmountId
+    "budgetAmountId":budgetAmountId,
+    "budgetId":budgetId,
+  };
+
+  Map<String, dynamic> toJsonforSubCat() => {
+    "SubCategory": SubCategory,
+    "SubCategoryLabel": SubCategoryLabel,
+    "amount": amount,
   };
 }

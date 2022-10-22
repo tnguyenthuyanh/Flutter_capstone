@@ -158,24 +158,30 @@ class BudgetCategoryViewModel extends ChangeNotifier {
   }
 
   addBudgetAmount() async {
+
     try {
+
       Iterable<Category> categorytemp =
           categoriess.where((element) => element.isSelected == true);
       Iterable<SubCategory> subcategorytemp =
           subCategoriess.where((element) => element.isSelected == true);
+          print('!!!!!!!!!!!!!!!!!!!!!!hello from line 168');
       if (categorytemp.isNotEmpty && selectedBudgetId != null) {
+        
         BudgetAmount budgetAmount = await BudgetAmount(
+            budgetId: selectedBudgetId!,
             ownerId: FirebaseAuth.instance.currentUser!.uid,
             CategoryId: categorytemp.first.categoryid,
             CategoryLabel: categorytemp.first.label,
             amount: double.parse(budgetController.text),
             budgetAmountId: "",
             // ignore: prefer_null_aware_operators
-            SubCategory: subcategorytemp == null
+            SubCategory: subcategorytemp.isEmpty
                 ? null
                 : subcategorytemp.first.subcategoryid,
             SubCategoryLabel:
-                subcategorytemp == null ? null : subcategorytemp.first.label);
+                subcategorytemp.isEmpty ? null : subcategorytemp.first.label);
+                print('hello from line 183!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         budgetController.clear();
         isBudgetAdding = true;
         notifyListeners();
@@ -190,6 +196,7 @@ class BudgetCategoryViewModel extends ChangeNotifier {
         showToast("please select the categories");
       }
     } catch (e) {
+      print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!hello from inside catch');
       isCategoriesAdding = false;
 
       showToast(e.toString());

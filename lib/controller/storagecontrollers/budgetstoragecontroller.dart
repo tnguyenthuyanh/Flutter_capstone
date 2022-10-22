@@ -11,9 +11,12 @@ import '../auth_controller.dart';
 class BudgetStorageController {
   static Future<String> addBudget({required Budget budget}) async {
     try {
-      DocumentReference ref = await FirebaseFirestore.instance
+      DocumentReference ref =  FirebaseFirestore.instance
           .collection(Constant.budgets)
-          .add(budget.serialize());
+          .doc();
+
+      budget.budgetId = ref.id;
+      await ref.set(budget.serialize());
       return ref.id;
     } catch (e) {
       print(e.toString());
@@ -26,6 +29,9 @@ class BudgetStorageController {
         .collection(Constant.budgets)
         .where('ownerUID', isEqualTo: AuthController.currentUser!.uid)
         .get();
+  print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!hello from getbudgetList');
+   print(querySnapshot.docs.length);
+   print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%afterdoclenght');
 
     var result = <Budget>[];
     for (var doc in querySnapshot.docs) {
@@ -35,6 +41,8 @@ class BudgetStorageController {
         if (temp != null) result.add(temp);
       }
     }
+    print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%beforereturn');
+    print(result);
     return result;
   }
 
@@ -88,8 +96,6 @@ class BudgetStorageController {
 
   static Future<List<SubCategory>> getSubCategories(String categoryid) async {
     try {
-      print("error1");
-
       QuerySnapshot<Map<String, dynamic>> data = await FirebaseFirestore
           .instance
           .collection(Constant.categories)
@@ -189,19 +195,19 @@ class BudgetStorageController {
     }
   }
 
-  static Future<bool> addBudgetAmount(
-      BudgetAmount budgetAmount, String budgetId) async {
+  static Future<bool> addBudgetAmount( BudgetAmount budgetAmount, String budgetId) async {
     try {
-      print("hello");
-
+      DocumentReference? ref1 = null;
       DocumentReference documentReference = FirebaseFirestore.instance
-          .collection(Constant.budgets)
-          .doc(budgetId)
-          .collection(budgetAmount.ownerId)
+          .collection(Constant.budgetAmount)
           .doc();
-
+    if(budgetAmount.SubCategory != null){
+      ref1 = documentReference.collection(Constant.subcatagory).doc(budgetAmount.SubCategoryLabel);
+    }
+    
       budgetAmount.budgetAmountId = documentReference.id;
       await documentReference.set(budgetAmount.toJson());
+      await ref1?.set(budgetAmount.toJsonforSubCat());
 
       return true;
     } catch (e) {

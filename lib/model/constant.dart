@@ -1,3 +1,4 @@
+import 'package:cap_project/model/subcategories.dart';
 import 'package:flutter/material.dart';
 
 class Constant {
@@ -15,6 +16,8 @@ class Constant {
   static const plans = 'Plans';
   static const savedTipCalc = 'SavedTipCalc';
   static const savedFuelCostCalc = 'SavedFuelCostCalc';
+  static const budgetAmount ='budgetAmount';
+  static const subcatagory  = 'subcatagory';
 
   static const List<DropdownMenuItem<String>> menuItems = [
     DropdownMenuItem(child: Text('Mortgage'), value: 'Mortgage'),
@@ -23,6 +26,8 @@ class Constant {
     DropdownMenuItem(child: Text('Medical Bill'), value: 'Medical Bill'),
   ];
 }
+
+
 
 enum ArgKey {
   user,
