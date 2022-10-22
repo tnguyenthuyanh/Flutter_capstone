@@ -177,8 +177,8 @@ class _WalletState extends State<WalletScreen> {
                                 BorderRadius.all(Radius.circular(50.0)),
                           ),
                           child: ElevatedButton(
-                            onPressed: con.send,
-                            child: Text('Send',
+                            onPressed: con.transferMoney,
+                            child: Text('Send/Request',
                                 style: TextStyle(
                                     fontSize: 14, color: Colors.white)),
                             style: ElevatedButton.styleFrom(
@@ -199,8 +199,8 @@ class _WalletState extends State<WalletScreen> {
                                 BorderRadius.all(Radius.circular(50.0)),
                           ),
                           child: ElevatedButton(
-                            onPressed: con.request,
-                            child: Text('Request',
+                            onPressed: con.seeHistory,
+                            child: Text('Transaction History',
                                 style: TextStyle(
                                     fontSize: 14, color: Colors.white)),
                             style: ElevatedButton.styleFrom(
@@ -259,16 +259,18 @@ class _Controller {
     }
   }
 
-  void send() async {
+  void transferMoney() async {
     try {
-      usr.UserInfo profile =
-          await FirestoreController.getProfile(uid: state.widget.user.uid);
+      List<usr.UserInfo> friendList = await FirestoreController.getFriendList(
+          currentUID: state.widget.user.uid);
+      Wallet wallet =
+          await FirestoreController.getWallet(state.widget.user.uid);
       await Navigator.pushNamed(state.context, TransferMoneyScreen.routeName,
           arguments: {
-            ArgKey.profile: profile,
+            ArgKey.userList: friendList,
+            ArgKey.wallet: wallet,
+            ArgKey.user: state.widget.user,
           });
-      // close the drawer
-      Navigator.of(state.context).pop();
     } catch (e) {
       if (Constant.devMode) print('====== TransferMoneyScreen error: $e');
       showSnackBar(
@@ -278,5 +280,5 @@ class _Controller {
     }
   }
 
-  void request() async {}
+  void seeHistory() {}
 }

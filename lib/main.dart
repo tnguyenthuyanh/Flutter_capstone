@@ -208,9 +208,13 @@ class Capstone extends StatelessWidget {
               return const ErrorScreen('args is null at TransferMoneyScreen');
             } else {
               var argument = args as Map;
-              var profile = argument[ArgKey.profile];
+              var user = argument[ArgKey.user];
+              var friendList = argument[ArgKey.userList];
+              var wallet = argument[ArgKey.wallet];
               return TransferMoneyScreen(
-                profile: profile,
+                user: user,
+                friendList: friendList,
+                wallet: wallet,
               );
             }
           },

@@ -55,6 +55,11 @@ enum SearchOption {
   name,
 }
 
+enum Transfer {
+  Send,
+  Request,
+}
+
 List<DropdownMenuItem<String>> menuItems = [
   DropdownMenuItem(child: Text('Mortgage'), value: 'Mortgage'),
   DropdownMenuItem(child: Text('Car loan'), value: 'Car loan'),
