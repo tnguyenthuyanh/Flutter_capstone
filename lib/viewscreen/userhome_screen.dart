@@ -5,6 +5,7 @@ import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/budgets_screen.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/model/user.dart' as usr;
+import 'package:cap_project/viewscreen/moreInfo_screen.dart';
 import 'package:cap_project/viewscreen/plan_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
@@ -165,6 +166,26 @@ class _UserHomeState extends State<UserHomeScreen> {
                     'Viewing: ' + selectedBudget.title,
                     style: Theme.of(context).textTheme.headline6,
                   ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, MoreInfoScreen.routeName);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Confused on specific term? Click here to learn more',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
