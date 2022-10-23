@@ -1,3 +1,6 @@
+/*
+Template credit: https://www.fluttertemplates.dev/widgets/must_haves/content_feed
+ */
 import 'package:flutter/material.dart';
 
 import '../model/terms.dart';
@@ -81,10 +84,6 @@ class _MoreInfoState extends State<MoreInfoScreen> {
 }
 
 class Terms {
-  static const TITLE = "Title";
-  static const DEF = "Definition";
-  static const IMAGE = 'Image';
-
   String? docId;
   late String title;
   late String def;
@@ -96,24 +95,6 @@ class Terms {
     this.def = '',
     this.img = '',
   });
-
-  Map<String, dynamic> serialize() {
-    return {
-      TITLE: title,
-      DEF: def,
-      IMAGE: img,
-    };
-  }
-
-  static Terms deserialize(
-      {required Map<String, dynamic> doc, required String docId}) {
-    return Terms(
-      docId: docId,
-      title: doc[TITLE],
-      def: doc[DEF],
-      img: doc[IMAGE],
-    );
-  }
 }
 
 final List<Terms> termList = [
