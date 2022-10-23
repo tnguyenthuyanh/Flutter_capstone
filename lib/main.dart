@@ -1,5 +1,6 @@
 import 'package:cap_project/View_Model/account_data.dart';
 import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
+import 'package:cap_project/viewscreen/accounts/accountdetail_screen.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/debtDetail_screen.dart';
 import 'package:cap_project/model/savingsBadge.dart';
@@ -222,6 +223,8 @@ class Capstone extends StatelessWidget {
           AddCategory.routeName: (context) => AddCategory(),
           AccountsScreen.routeName: (context) => const AccountsScreen(),
           AddAccountScreen.routeName: (context) => const AddAccountScreen(),
+          AccountDetailScreen.routeName: (context) =>
+              const AccountDetailScreen(),
           PurchasesScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
