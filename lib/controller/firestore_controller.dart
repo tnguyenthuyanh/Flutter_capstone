@@ -2,6 +2,7 @@ import 'package:cap_project/controller/storagecontrollers/budgetstoragecontrolle
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/fuelcostcalc.dart';
 import 'package:cap_project/model/savings.dart';
+import 'package:cap_project/model/userTransaction.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/model/tipcalc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -439,14 +440,47 @@ class FirestoreController {
     return result[0];
   }
 
-  static Future<void> addCredit(String uid, int credit, String docId) async {
+  static Future<void> addCredit(String uid, double credit, String docId) async {
     Wallet wallet = await getWallet(uid);
-    int newBalance = wallet.balance + credit;
+    double newBalance = wallet.balance + credit;
 
     await FirebaseFirestore.instance
         .collection(Constant.WALLET_COLLECTION)
         .doc(docId)
         .update({Wallet.BALANCE: newBalance});
+  }
+
+  static Future<String> saveTransaction(UserTransaction tran) async {
+    var ref = await FirebaseFirestore.instance
+        .collection(Constant.TRANSACTION_COLLECTION)
+        .add(tran.toFirestoreDoc());
+    return ref.id;
+  }
+
+  static Future<List<UserTransaction>> getTransactionHistory({
+    required String currentUID,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.TRANSACTION_COLLECTION)
+        .where(UserTransaction.FROM_UID, isEqualTo: currentUID)
+        .get();
+
+    var result = <UserTransaction>[];
+
+    for (int i = 0; i < querySnapshot.size; i++) {
+      if (querySnapshot.docs[i] != null) {
+        var document = querySnapshot.docs[i].data() as Map<String, dynamic>;
+        var p = UserTransaction.fromFirestoreDoc(
+          doc: document,
+          docId: querySnapshot.docs[i].id,
+        );
+        if (p != null) {
+          result.add(p);
+        }
+      }
+    }
+
+    return result;
   }
 
   // tools - save tip calc

@@ -18,6 +18,7 @@ import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/savings_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/fuelcostestimator_screen.dart';
+import 'package:cap_project/viewscreen/transactionHistory_screen.dart';
 import 'package:cap_project/viewscreen/transferMoney_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
@@ -241,6 +242,21 @@ class Capstone extends StatelessWidget {
               return AddBalanceScreen(
                 user: user,
                 wallet: wallet,
+              );
+            }
+          },
+          TransactionHistoryScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen(
+                  'args is null at TransactionHistoryScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var transList = argument[ArgKey.transactionList];
+              return TransactionHistoryScreen(
+                user: user,
+                transList: transList,
               );
             }
           },

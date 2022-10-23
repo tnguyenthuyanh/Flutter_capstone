@@ -14,7 +14,7 @@ class Wallet {
   late String cvv;
   late String holder_name;
   late int card_saved;
-  late int balance;
+  late double balance;
   late String uid;
   late String email;
 

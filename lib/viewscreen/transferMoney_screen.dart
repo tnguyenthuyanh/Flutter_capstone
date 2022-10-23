@@ -1,4 +1,5 @@
 import 'package:cap_project/controller/auth_controller.dart';
+import 'package:cap_project/model/userTransaction.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -144,7 +145,7 @@ class _TransferMoneyState extends State<TransferMoneyScreen> {
                   validator: con.validateAmount,
                   keyboardType: TextInputType.number,
                   inputFormatters: <TextInputFormatter>[
-                    FilteringTextInputFormatter.digitsOnly
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9\.]')),
                   ],
                   onSaved: con.saveAmount,
                   decoration: const InputDecoration(
@@ -176,32 +177,74 @@ class _TransferMoneyState extends State<TransferMoneyScreen> {
 
 class _Controller {
   late _TransferMoneyState state;
-  late int? amount;
+  late double? amount;
 
   _Controller(this.state);
 
   String? validateAmount(String? value) {
-    if (value == null || value.isEmpty || int.parse(value) <= 0) {
+    if (value == null ||
+        value.isEmpty ||
+        '.'.allMatches(value).length > 1 ||
+        double.tryParse(value) == null ||
+        double.parse(value) <= 0) {
       return 'Please enter value greater than 0';
+    } else if (value != null && value.indexOf('.') != -1) {
+      int n = value.indexOf('.');
+      if (value.length - 1 - n > 2) {
+        return 'Please enter value in correct format ###.##';
+      }
     }
     return null;
   }
 
   void saveAmount(String? value) {
-    if (value != null) amount = int.parse(value);
+    if (value != null) amount = double.parse(value);
   }
 
-  Future<void> selectFriend(usr.UserInfo? value) async {
+  void selectFriend(usr.UserInfo? value) {
     state.render(() {
       state.eachUser = value!;
     });
   }
 
-  Future<void> chooseTranferType(Transfer? value) async {
+  void chooseTranferType(Transfer? value) {
     state.render(() {
       state.transfer = value!;
     });
   }
 
-  void submit() {}
+  Future<void> submit() async {
+    if (state.eachUser == null || state.transfer == null) {
+      return;
+    }
+    FormState? currentState = state.formKey.currentState;
+    if (currentState == null || !currentState.validate()) return;
+    currentState.save();
+
+    try {
+      UserTransaction tran = new UserTransaction(
+          from_email: state.widget.user.email!,
+          from_uid: state.widget.user.uid,
+          to_email: state.eachUser!.email,
+          to_uid: state.eachUser!.uid,
+          type: state.transfer.toString(),
+          amount: amount!,
+          timestamp: DateTime.now());
+
+      await FirestoreController.saveTransaction(tran);
+      showSnackBar(
+        context: state.context,
+        message:
+            '${state.transfer.toString().split('.')[1].replaceFirst('_', ' ')} submitted',
+      );
+
+      Navigator.of(state.context).pop();
+    } catch (e) {
+      if (Constant.devMode) print('====== error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'error: $e',
+      );
+    }
+  }
 }

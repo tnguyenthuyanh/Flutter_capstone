@@ -94,7 +94,8 @@ class _AddBalanceState extends State<AddBalanceScreen> {
                                       validator: con.validateCredit,
                                       keyboardType: TextInputType.number,
                                       inputFormatters: <TextInputFormatter>[
-                                        FilteringTextInputFormatter.digitsOnly
+                                        FilteringTextInputFormatter.allow(
+                                            RegExp(r'[0-9\.]')),
                                       ],
                                       onSaved: con.saveCredit,
                                       decoration: const InputDecoration(
@@ -148,20 +149,29 @@ class _AddBalanceState extends State<AddBalanceScreen> {
 
 class _Controller {
   late _AddBalanceState state;
-  late int? credit;
+  late double? credit;
   late Wallet wallet;
 
   _Controller(this.state);
 
   String? validateCredit(String? value) {
-    if (value == null || value.isEmpty || int.parse(value) <= 0) {
+    if (value == null ||
+        value.isEmpty ||
+        '.'.allMatches(value).length > 1 ||
+        double.tryParse(value) == null ||
+        double.parse(value) <= 0) {
       return 'Please enter value greater than 0';
+    } else if (value != null && value.indexOf('.') != -1) {
+      int n = value.indexOf('.');
+      if (value.length - 1 - n > 2) {
+        return 'Please enter value in correct format ###.##';
+      }
     }
     return null;
   }
 
   void saveCredit(String? value) {
-    if (value != null) credit = int.parse(value);
+    if (value != null) credit = double.parse(value);
   }
 
   void add() async {

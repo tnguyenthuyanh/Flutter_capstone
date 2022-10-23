@@ -1,4 +1,5 @@
 import 'package:cap_project/model/user.dart' as usr;
+import 'package:cap_project/viewscreen/transactionHistory_screen.dart';
 import 'package:cap_project/viewscreen/transferMoney_screen.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../controller/firestore_controller.dart';
 import '../model/constant.dart';
+import '../model/userTransaction.dart';
 import '../model/wallet.dart';
 import 'addBalance_screen.dart';
 
@@ -130,7 +132,7 @@ class _WalletState extends State<WalletScreen> {
                           onPressed: con.addMoney,
                           child: Text('Add Money',
                               style:
-                                  TextStyle(fontSize: 14, color: Colors.amber)),
+                                  TextStyle(fontSize: 14, color: Colors.white)),
                           style: ElevatedButton.styleFrom(
                               primary: Colors.transparent,
                               shadowColor: Colors.transparent),
@@ -166,7 +168,7 @@ class _WalletState extends State<WalletScreen> {
                       children: [
                         Container(
                           height: 40,
-                          width: 110,
+                          width: 130,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.white),
                             gradient: LinearGradient(colors: [
@@ -174,7 +176,7 @@ class _WalletState extends State<WalletScreen> {
                               Color.fromARGB(255, 3, 65, 5),
                             ]),
                             borderRadius:
-                                BorderRadius.all(Radius.circular(50.0)),
+                                BorderRadius.all(Radius.circular(10.0)),
                           ),
                           child: ElevatedButton(
                             onPressed: con.transferMoney,
@@ -188,7 +190,7 @@ class _WalletState extends State<WalletScreen> {
                         ),
                         Container(
                           height: 40,
-                          width: 110,
+                          width: 157,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.white),
                             gradient: LinearGradient(colors: [
@@ -196,7 +198,7 @@ class _WalletState extends State<WalletScreen> {
                               Color.fromARGB(255, 12, 22, 131)
                             ]),
                             borderRadius:
-                                BorderRadius.all(Radius.circular(50.0)),
+                                BorderRadius.all(Radius.circular(10.0)),
                           ),
                           child: ElevatedButton(
                             onPressed: con.seeHistory,
@@ -280,5 +282,24 @@ class _Controller {
     }
   }
 
-  void seeHistory() {}
+  void seeHistory() async {
+    try {
+      List<UserTransaction> transList =
+          await FirestoreController.getTransactionHistory(
+              currentUID: state.widget.user.uid);
+
+      await Navigator.pushNamed(
+          state.context, TransactionHistoryScreen.routeName,
+          arguments: {
+            ArgKey.transactionList: transList,
+            ArgKey.user: state.widget.user,
+          });
+    } catch (e) {
+      if (Constant.devMode) print('====== TransactionHistoryScreen error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed to get TransactionHistoryScreen: $e',
+      );
+    }
+  }
 }
