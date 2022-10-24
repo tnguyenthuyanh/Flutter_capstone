@@ -443,11 +443,24 @@ class FirestoreController {
   static Future<void> addCredit(String uid, double credit, String docId) async {
     Wallet wallet = await getWallet(uid);
     double newBalance = wallet.balance + credit;
+    double roundedBalance = double.parse((newBalance).toStringAsFixed(2));
 
     await FirebaseFirestore.instance
         .collection(Constant.WALLET_COLLECTION)
         .doc(docId)
-        .update({Wallet.BALANCE: newBalance});
+        .update({Wallet.BALANCE: roundedBalance});
+  }
+
+  static Future<void> adjustBalance(
+      String uid, double amount, String docId) async {
+    Wallet wallet = await getWallet(uid);
+    double newBalance = wallet.balance - amount;
+    double roundedBalance = double.parse((newBalance).toStringAsFixed(2));
+
+    await FirebaseFirestore.instance
+        .collection(Constant.WALLET_COLLECTION)
+        .doc(docId)
+        .update({Wallet.BALANCE: roundedBalance});
   }
 
   static Future<String> saveTransaction(UserTransaction tran) async {

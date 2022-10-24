@@ -136,27 +136,6 @@ class _TransactionHistoryState extends State<TransactionHistoryScreen> {
                                 Text('${con.transList[index].timestamp}'),
                               ],
                             ),
-                            // trailing: Container(
-                            //   height: 40,
-                            //   width: 40,
-                            //   // decoration: BoxDecoration(
-                            //   //     shape: BoxShape.circle, color: Colors.purple),
-                            //   child: Center(
-                            //     child: Wrap(
-                            //       children: [
-                            // Text(
-                            //   con.transList[index].type ==
-                            //           Transfer.Send.toString()
-                            //       ? '+ \$${con.transList[index].amount}'
-                            //       : '- \$${con.transList[index].amount}',
-                            //   style: TextStyle(
-                            //     fontSize: 10,
-                            //   ),
-                            //         ),
-                            //       ],
-                            //     ),
-                            //   ),
-                            // ),
                             onTap: () => ({}),
                           ),
                         ),

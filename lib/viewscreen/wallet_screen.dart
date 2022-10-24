@@ -273,6 +273,12 @@ class _Controller {
             ArgKey.wallet: wallet,
             ArgKey.user: state.widget.user,
           });
+      Wallet newWallet =
+          await FirestoreController.getWallet(state.widget.user.uid);
+
+      state.render(() {
+        state.widget.wallet.balance = newWallet.balance;
+      });
     } catch (e) {
       if (Constant.devMode) print('====== TransferMoneyScreen error: $e');
       showSnackBar(
