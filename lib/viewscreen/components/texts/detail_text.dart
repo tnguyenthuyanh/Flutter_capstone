@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class DetailField extends StatelessWidget {
+class DetailText extends StatelessWidget {
   final String labelText;
   final String text;
 
-  DetailField({required this.labelText, required this.text});
+  DetailText({required this.labelText, required this.text});
 
   @override
   Widget build(BuildContext context) {

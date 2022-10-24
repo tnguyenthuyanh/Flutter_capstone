@@ -35,6 +35,9 @@ class _AccountDetailState extends State<AccountDetailScreen> {
   Account? _current;
   bool _editMode = false;
   String? newTitle;
+  String? newAccountNumber;
+  String? newRate;
+  String? newWebsite;
 
   var _formKey = GlobalKey<FormState>();
 
@@ -83,11 +86,22 @@ class _AccountDetailState extends State<AccountDetailScreen> {
                           'There has been a mistake. Selected Account is null')
                   : Column(
                       children: [
-                        _editMode
-                            ? AccountTextFields.titleTextField(
-                                onSaved: _con.onSaveTitle)
-                            : DetailField(
-                                labelText: "Title", text: _selected!.title),
+                        AccountTextFields.titleTextField(
+                            onSaved: _con.onSaveTitle,
+                            mode: _editMode,
+                            account: _selected),
+                        AccountTextFields.accountNumberTextField(
+                            mode: _editMode,
+                            onSaved: _con.onSaveAccountNumber,
+                            account: _selected),
+                        AccountTextFields.rateTextField(
+                            mode: _editMode,
+                            onSaved: _con.onSaveRate,
+                            account: _selected),
+                        AccountTextFields.websiteTextField(
+                            mode: _editMode,
+                            onSaved: _con.onSaveWebsite,
+                            account: _selected),
                         MySizedButton(
                           buttonText: "Use",
                           onPressedCallback: _selected! == _current
@@ -153,6 +167,24 @@ class _Controller {
   void onSaveTitle(String? value) {
     _state.render(() {
       _state.newTitle = value;
+    });
+  }
+
+  void onSaveAccountNumber(String? value) {
+    _state.render(() {
+      _state.newAccountNumber = value;
+    });
+  }
+
+  void onSaveRate(String? value) {
+    _state.render(() {
+      _state.newRate = value;
+    });
+  }
+
+  void onSaveWebsite(String? value) {
+    _state.render(() {
+      _state.newWebsite = value;
     });
   }
 }
