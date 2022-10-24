@@ -1,6 +1,11 @@
+import 'dart:async';
+
 import 'package:cap_project/model/constant.dart';
+import 'package:cap_project/model/savings.dart';
+import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
 
@@ -76,7 +81,7 @@ class _ProfileState extends State<ProfileScreen> {
                       widget.profile.name == ""
                           ? "N/A"
                           : widget.profile.name[0].toUpperCase(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20.0,
                         fontFamily: 'Satisfy-Regular',
                         color: Colors.blueAccent,
@@ -84,29 +89,29 @@ class _ProfileState extends State<ProfileScreen> {
                     ),
                     radius: 50,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
                   Text(
                     widget.profile.name == "" ? "N/A" : widget.profile.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 25.0,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
                   Text(
                     widget.profile.email,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 15.0,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 15.0,
                   ),
                   widget.profile.uid == widget.currentUID
-                      ? SizedBox()
+                      ? const SizedBox()
                       : con.isFriendAdded == 'canAdd'
                           ? Padding(
                               padding: const EdgeInsets.all(12.0),
@@ -115,7 +120,7 @@ class _ProfileState extends State<ProfileScreen> {
                                 width: 110,
                                 decoration: BoxDecoration(
                                   border: Border.all(color: Colors.white),
-                                  gradient: LinearGradient(colors: [
+                                  gradient: const LinearGradient(colors: [
                                     Color.fromARGB(255, 205, 91, 129),
                                     Color.fromARGB(255, 102, 192, 94)
                                   ]),
@@ -124,7 +129,7 @@ class _ProfileState extends State<ProfileScreen> {
                                 ),
                                 child: ElevatedButton(
                                   onPressed: con.addFriend,
-                                  child: Text('Add Friend',
+                                  child: const Text('Add Friend',
                                       style: TextStyle(
                                           fontSize: 14, color: Colors.white)),
                                   style: ElevatedButton.styleFrom(
@@ -141,7 +146,7 @@ class _ProfileState extends State<ProfileScreen> {
                                     width: 110,
                                     child: ElevatedButton(
                                       onPressed: null,
-                                      child: Text('Pending',
+                                      child: const Text('Pending',
                                           style: TextStyle(
                                               fontSize: 14,
                                               color: Colors.white)),
@@ -151,7 +156,7 @@ class _ProfileState extends State<ProfileScreen> {
                                           RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(50.0),
-                                              side: BorderSide(
+                                              side: const BorderSide(
                                                   color: Colors.white)),
                                         ),
                                       ),
@@ -166,7 +171,7 @@ class _ProfileState extends State<ProfileScreen> {
                                         width: 110,
                                         child: ElevatedButton(
                                           onPressed: con.acceptFriend,
-                                          child: Text('Accept',
+                                          child: const Text('Accept',
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   color: Colors.white)),
@@ -177,7 +182,7 @@ class _ProfileState extends State<ProfileScreen> {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           50.0),
-                                                  side: BorderSide(
+                                                  side: const BorderSide(
                                                       color: Colors.green)),
                                             ),
                                           ),
@@ -192,7 +197,7 @@ class _ProfileState extends State<ProfileScreen> {
                                             width: 110,
                                             child: ElevatedButton.icon(
                                               onPressed: null,
-                                              label: Text('Friend',
+                                              label: const Text('Friend',
                                                   style: TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.black)),
@@ -207,31 +212,31 @@ class _ProfileState extends State<ProfileScreen> {
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               50.0),
-                                                      side: BorderSide(
+                                                      side: const BorderSide(
                                                           color: Colors.white)),
                                                 ),
                                               ),
-                                              icon: Icon(
+                                              icon: const Icon(
                                                   Icons.people_alt_outlined),
                                             ),
                                           ),
                                         )
-                                      : SizedBox(),
-                  Divider(
+                                      : const SizedBox(),
+                  const Divider(
                     color: Colors.yellow,
                     height: 30.0, // space betwen top or bottom item
                   ),
                   Container(
                     height: 150,
                     child: Card(
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.0),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 15.0, vertical: 2.0),
                       clipBehavior: Clip.antiAlias,
                       color: Colors.green[50],
                       elevation: 14.0,
                       child: SingleChildScrollView(
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 15.0, vertical: 15.0),
                           child: Row(
                             children: [
@@ -241,7 +246,7 @@ class _ProfileState extends State<ProfileScreen> {
                                     alignment: Alignment.topLeft,
                                     child: Text(
                                       widget.profile.bio,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Color.fromARGB(255, 60, 98, 169),
                                         fontSize: 15.0,
                                       ),
@@ -255,9 +260,15 @@ class _ProfileState extends State<ProfileScreen> {
                       ),
                     ),
                   ),
-                  Divider(
+                  const Divider(
                     color: Colors.yellow,
                     height: 30.0, // space betwen top or bottom item
+                  ),
+                  const Text('Friend\'s Saving Badge'),
+                  SizedBox(
+                    height: 100.0,
+                    width: 100.0,
+                    child: Image.network(con.getBadge()),
                   ),
                 ],
               ),
@@ -272,7 +283,8 @@ class _ProfileState extends State<ProfileScreen> {
 class _Controller {
   late _ProfileState state;
   late String isFriendAdded;
-
+  double savingsAmt = 1;
+  List<String> valueList = [];
   _Controller(this.state) {
     isFriendAdded = state.widget.isFriendAdded;
   }
@@ -318,5 +330,60 @@ class _Controller {
     state.render(() {
       isFriendAdded = 'isFriend';
     });
+  }
+
+  void getBadgeNumber() async {
+    UserProfile friend =
+        await FirestoreController.getUser(email: state.widget.profile.email);
+
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(friend.docId)
+        .collection(Constant.savings)
+        .orderBy(DocKeySavings.amount.name, descending: false)
+        .get();
+    String tmp = ' ';
+    Map<String, dynamic> data = {};
+
+    querySnapshot.docs.forEach((e) {
+      data = e.data() as Map<String, dynamic>;
+
+      data.forEach((key, value) {
+        tmp = value.toString();
+        valueList.add(tmp.toString());
+      });
+    });
+
+    for (int i = 0; i < valueList.length; i++) {
+      if (savingsAmt < double.parse(valueList[i])) {
+        savingsAmt = double.parse(valueList[i]);
+        print(savingsAmt);
+      }
+    }
+
+    valueList.clear();
+  }
+
+  String getBadge() {
+    // return url;
+    state.render(() {
+      getBadgeNumber();
+      print(savingsAmt);
+      double target = 0;
+      String url = '';
+      badgeList.forEach(
+        (element) {
+          if (element.amount <= savingsAmt) {
+            target = element.amount;
+
+            if (element.amount == target) {
+              url = element.badgeUrl;
+            }
+          }
+        },
+      );
+    });
+
+    return 'https://www.pikpng.com/pngl/b/99-992927_money-emoji-png.png';
   }
 }

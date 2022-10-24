@@ -303,7 +303,6 @@ class _Controller {
     try {
       userP = await FirestoreController.getUser(email: state.email);
       userP.savings = await FirestoreController.getSavings(user: userP);
-      print('TEST_TEST_TEST_TEST IN ');
       await Navigator.pushNamed(state.context, SavingsScreen.routeName,
           arguments: {
             ArgKey.savings: userP.savings,
