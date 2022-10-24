@@ -284,6 +284,8 @@ class _Controller {
   late _ProfileState state;
   late String isFriendAdded;
   double savingsAmt = 1;
+  String url =
+      'https://www.imprintlogo.com/images/products/saving-money-is-smart-sticker-rolls_11979.jpg';
   List<String> valueList = [];
   _Controller(this.state) {
     isFriendAdded = state.widget.isFriendAdded;
@@ -357,10 +359,10 @@ class _Controller {
     for (int i = 0; i < valueList.length; i++) {
       if (savingsAmt < double.parse(valueList[i])) {
         savingsAmt = double.parse(valueList[i]);
-        print(savingsAmt);
+        //print(savingsAmt);
       }
     }
-
+    state.render(() {});
     valueList.clear();
   }
 
@@ -368,14 +370,13 @@ class _Controller {
     // return url;
     state.render(() {
       getBadgeNumber();
-      print(savingsAmt);
+      //print(savingsAmt);
       double target = 0;
-      String url = '';
       badgeList.forEach(
         (element) {
           if (element.amount <= savingsAmt) {
             target = element.amount;
-
+            //print(target);
             if (element.amount == target) {
               url = element.badgeUrl;
             }
@@ -384,6 +385,7 @@ class _Controller {
       );
     });
 
-    return 'https://www.pikpng.com/pngl/b/99-992927_money-emoji-png.png';
+    return url;
+    //return 'https://www.pikpng.com/pngl/b/99-992927_money-emoji-png.png';
   }
 }
