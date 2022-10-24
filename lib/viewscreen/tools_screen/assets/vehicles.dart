@@ -57,6 +57,9 @@ class Vehicle {
       HIGHWAYMPG: highwayMpg,
       CITYMPG: cityMpg,
       COMBINEDMPG: combinedMpg,
+      DISPL: displ,
+      DRIVE: drive,
+      FUELTYPE: fuelType,
     };
   }
 

@@ -40,7 +40,7 @@ class PopupDialog {
     );
   }
 
-  static void statefulPopUp(
+  static void statefulPopUpWithoutSetState(
       {required BuildContext context,
       required String title,
       required int animationTransitionDelay,
@@ -67,6 +67,39 @@ class PopupDialog {
             );
           }),
         );
+      },
+      transitionBuilder: (_, animation, __, child) {
+        Tween<Offset> tween;
+        if (animation.status == AnimationStatus.reverse) {
+          tween = Tween(begin: const Offset(-1, 0), end: Offset.zero);
+        } else {
+          tween = Tween(begin: const Offset(1, 0), end: Offset.zero);
+        }
+
+        return SlideTransition(
+          position: tween.animate(animation),
+          child: FadeTransition(
+            opacity: animation,
+            child: child,
+          ),
+        );
+      },
+    );
+  }
+
+  static void statefulPopUpWithSetState(
+      {required BuildContext context,
+      required int animationTransitionDelay,
+      required Widget widget}) {
+    showGeneralDialog(
+      context: context,
+      useRootNavigator: false,
+      barrierLabel: "Barrier",
+      barrierDismissible: true,
+      barrierColor: Colors.black.withOpacity(0.5),
+      transitionDuration: Duration(milliseconds: animationTransitionDelay),
+      pageBuilder: (_, __, ___) {
+        return widget;
       },
       transitionBuilder: (_, animation, __, child) {
         Tween<Offset> tween;

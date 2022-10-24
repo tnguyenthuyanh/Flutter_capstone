@@ -12,6 +12,7 @@ import '../model/constant.dart';
 import '../model/plan.dart';
 import '../model/purchase.dart';
 import '../model/user.dart' as usr;
+import '../viewscreen/tools_screen/assets/vehicles.dart';
 import 'auth_controller.dart';
 import 'storagecontrollers/accountstoragecontroller.dart';
 
@@ -51,10 +52,7 @@ class FirestoreController {
   static Future<void> deletePlan({
     required Plan plan,
   }) async {
-    await FirebaseFirestore.instance
-        .collection(Constant.plans)
-        .doc(plan.docId)
-        .delete();
+    await FirebaseFirestore.instance.collection(Constant.plans).doc(plan.docId).delete();
   } //end food stuff
 
   static Future<List<Plan>> getPlanList({
@@ -175,9 +173,7 @@ class FirestoreController {
         temp = temp + user.email![i].toLowerCase();
         searchOptions.add(temp);
       }
-      await FirebaseFirestore.instance
-          .collection(Constant.USERPROFILE_COLLECTION)
-          .add({
+      await FirebaseFirestore.instance.collection(Constant.USERPROFILE_COLLECTION).add({
         'name': "",
         'bio': "",
         'email': user.email,
@@ -237,8 +233,7 @@ class FirestoreController {
         .update({'name': name, 'bio': bio, 'search_name': searchOptions});
   }
 
-  static Future<List<usr.UserInfo>> getUserList(
-      {required String currentUID}) async {
+  static Future<List<usr.UserInfo>> getUserList({required String currentUID}) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.USERPROFILE_COLLECTION)
         .orderBy(usr.UserInfo.EMAIL)
@@ -417,8 +412,7 @@ class FirestoreController {
   }
 
   // tools - get tipcalc list
-  static Future<List<TipCalc>> getSavedTipCalcList(
-      {required String email}) async {
+  static Future<List<TipCalc>> getSavedTipCalcList({required String email}) async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.savedTipCalc)
         .where(TipCalc.CREATE_BY, isEqualTo: email)
@@ -432,20 +426,7 @@ class FirestoreController {
     return result;
   }
 
-  static Future<void> updateDebt({
-    required UserProfile userP,
-    required String docId,
-    required Map<String, dynamic> update,
-  }) async {
-    await FirebaseFirestore.instance
-        .collection(Constant.users)
-        .doc(userP.docId)
-        .collection(Constant.debts)
-        .doc(docId)
-        .update(update);
-  }
-
-  // delete saved tip calc
+  // tools - delete saved tip calc
   static Future<void> deleteSavedTipCalcItem(String docId) async {
     await FirebaseFirestore.instance
         .collection(Constant.savedTipCalc)
@@ -461,6 +442,73 @@ class FirestoreController {
     return ref.id;
   }
 
+  // tools - get fuel cost calc. list
+  static Future<List<FuelCostCalc>> getSavedFuelCostCalcList(
+      {required String email}) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.savedFuelCostCalc)
+        .where(FuelCostCalc.CREATED_BY, isEqualTo: email)
+        .orderBy(FuelCostCalc.TIMESTAMP, descending: true)
+        .get();
+    var result = <FuelCostCalc>[];
+    querySnapshot.docs.forEach((m) {
+      var data = m.data() as Map<String, dynamic>;
+      result.add(FuelCostCalc.fromFirestoreDoc(docId: m.id, doc: data));
+    });
+    return result;
+  }
+
+  // tools - delete saved fuel cost calc.
+  static Future<void> deleteSavedFCCItem(String docId) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.savedFuelCostCalc)
+        .doc(docId)
+        .delete();
+  }
+
+  // tools - save vehicle
+  static Future<String> saveVehicle(Vehicle vehicle) async {
+    var ref = await FirebaseFirestore.instance
+        .collection(Constant.savedVehicle)
+        .add(vehicle.toFirestoreDoc());
+    return ref.id;
+  }
+
+  // tools - get vehicle
+  static Future<List<Vehicle>> getSavedVehicleList({required String email}) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.savedVehicle)
+        .where(Vehicle.CREATED_BY, isEqualTo: email)
+        .get();
+    var result = <Vehicle>[];
+    querySnapshot.docs.forEach((m) {
+      var data = m.data() as Map<String, dynamic>;
+      result.add(Vehicle.fromFirestoreDoc(docId: m.id, doc: data));
+    });
+    return result;
+  }
+
+  // tools - delete saved vehicle
+  static Future<void> deleteSavedVehicle(String docId) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.savedVehicle)
+        .doc(docId)
+        .delete();
+  }
+
+  static Future<void> updateDebt({
+    required UserProfile userP,
+    required String docId,
+    required Map<String, dynamic> update,
+  }) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(userP.docId)
+        .collection(Constant.debts)
+        .doc(docId)
+        .update(update);
+  }
+
   static addPurchase({
     required UserProfile user,
     required Purchase purchase,
@@ -473,8 +521,7 @@ class FirestoreController {
     return ref.id; // doc is auto-generated.
   }
 
-  static Future<void> deleteTransaction(
-      Purchase purchase, UserProfile user) async {
+  static Future<void> deleteTransaction(Purchase purchase, UserProfile user) async {
     await FirebaseFirestore.instance
         .collection(Constant.users)
         .doc(user.docId)

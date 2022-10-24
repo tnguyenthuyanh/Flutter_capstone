@@ -7136,8 +7136,6 @@
 2000,Plymouth,Voyager/Grand Voyager 2WD,Automatic 4-spd,23,16,19,3.3,Front-Wheel Drive,Gasoline or E85
 2000,Dodge,Caravan/Grand Caravan 2WD,Automatic 4-spd,23,16,19,3.3,Front-Wheel Drive,Gasoline or E85
 2000,Chrysler,Town and Country/Voyager/Grand Voy. 2WD,Automatic 4-spd,22,16,18,3.3,Front-Wheel Drive,Gasoline or E85
-2000,Nissan,Altra EV,,91,81,85,,,Electricity
-2000,Toyota,RAV4 EV,,64,81,72,,2-Wheel Drive,Electricity
 2001,Acura,NSX,Automatic (S4),22,15,18,3,Rear-Wheel Drive,Premium
 2001,Acura,NSX,Manual 6-spd,22,15,18,3.2,Rear-Wheel Drive,Premium
 2001,Audi,TT Roadster,Manual 5-spd,27,19,22,1.8,Front-Wheel Drive,Premium
@@ -8141,11 +8139,7 @@
 2001,Ford,Ranger 2WD FFV,Automatic 5-spd,20,15,17,3,Rear-Wheel Drive,Gasoline or E85
 2001,Chrysler,Town and Country/Voyager/Grand Voy. 2WD,Automatic 4-spd,22,16,18,3.3,Front-Wheel Drive,Gasoline or E85
 2001,Dodge,Caravan/Grand Caravan 2WD,Automatic 4-spd,22,16,18,3.3,Front-Wheel Drive,Gasoline or E85
-2001,Toyota,RAV4 EV,,64,81,72,,2-Wheel Drive,Electricity
-2001,Ford,Th!nk,,58,74,65,,,Electricity
 1986,Mazda,RX-7,Automatic 4-spd,22,15,18,1.3,Rear-Wheel Drive,Regular
-2001,Ford,Explorer USPS Electric,,33,45,39,,2-Wheel Drive,Electricity
-2001,Nissan,Hyper-Mini,,66,84,75,,,Electricity
 2002,Acura,NSX,Automatic (S4),22,15,18,3,Rear-Wheel Drive,Premium
 2002,Acura,NSX,Manual 6-spd,22,15,18,3.2,Rear-Wheel Drive,Premium
 2002,Aston Martin,Vanquish,Automatic (S6),18,11,13,5.9,Rear-Wheel Drive,Premium
@@ -9210,8 +9204,6 @@
 2002,Mazda,B3000 FFV 2WD,Automatic 5-spd,20,15,17,3,Rear-Wheel Drive,Gasoline or E85
 2002,Mercury,Mountaineer 2WD FFV,Automatic 5-spd,19,14,16,4,Rear-Wheel Drive,Gasoline or E85
 1986,Honda,Civic,Manual 4-spd,39,31,34,1.3,Front-Wheel Drive,Regular
-2002,Toyota,RAV4 EV,,69,87,78,,2-Wheel Drive,Electricity
-2002,Ford,Explorer USPS Electric,,33,45,39,,2-Wheel Drive,Electricity
 2003,Acura,NSX,Automatic (S4),22,15,18,3,Rear-Wheel Drive,Premium
 2003,Acura,NSX,Manual 6-spd,22,15,18,3.2,Rear-Wheel Drive,Premium
 2003,BMW Alpina,Roadster V8,Automatic 5-spd,19,13,15,4.8,Rear-Wheel Drive,Premium
@@ -10327,7 +10319,6 @@
 2003,Ford,Crown Victoria CNG,Automatic 4-spd,17,12,14,4.6,Rear-Wheel Drive,CNG
 2003,Ford,F150 Dual-fuel 2WD (CNG),Automatic 4-spd,15,11,13,5.4,Rear-Wheel Drive,Gasoline or natural gas
 2003,Ford,F150 Dual-fuel 4WD (CNG),Automatic 4-spd,14,11,12,5.4,4-Wheel or All-Wheel Drive,Gasoline or natural gas
-2003,Toyota,RAV4 EV,,69,87,78,,2-Wheel Drive,Electricity
 2003,MINI,Cooper S,Manual 6-spd,31,22,25,1.6,Front-Wheel Drive,Premium
 2003,MINI,Cooper,Automatic (variable gear ratios),29,22,25,1.6,Front-Wheel Drive,Premium
 2003,MINI,Cooper,Manual 5-spd,33,25,28,1.6,Front-Wheel Drive,Premium
@@ -23014,24 +23005,8 @@
 2011,Jeep,Patriot 4WD,Manual 5-spd,27,22,24,2.4,4-Wheel Drive,Regular
 2011,Nissan,Murano AWD,Automatic (variable gear ratios),23,18,20,3.5,All-Wheel Drive,Regular
 2011,Porsche,Cayenne S Hybrid,Automatic 8-spd,24,20,21,3,All-Wheel Drive,Premium
-2001,Ford,Ranger Pickup 2WD,Automatic (A1),54,62,58,,2-Wheel Drive,Electricity
-2000,Ford,Ranger Pickup 2WD,Automatic (A1),54,62,58,,2-Wheel Drive,Electricity
-2000,Ford,Ranger Pickup 2WD,Automatic (A1),52,59,56,,2-Wheel Drive,Electricity
-1999,GMC,EV1,Automatic (A1),94,79,85,,,Electricity
-1999,GMC,EV1,Automatic (A1),39,35,37,,,Electricity
 1987,Pontiac,Firefly,Manual 5-spd,43,36,39,1,Front-Wheel Drive,Regular
-1999,Honda,EV Plus,Automatic (A1),46,49,48,,,Electricity
-1999,Ford,Ranger Pickup 2WD,Automatic (A1),54,62,58,,2-Wheel Drive,Electricity
-1999,Ford,Ranger Pickup 2WD,Automatic (A1),44,50,47,,2-Wheel Drive,Electricity
-1999,Dodge,Caravan/Grand Caravan 2WD,Automatic (A1),33,37,35,,2-Wheel Drive,Electricity
-1999,Plymouth,Voyager/Grand Voyager 2WD,Automatic (A1),33,37,35,,Front-Wheel Drive,Electricity
-1998,Honda,EV Plus,Automatic (A1),46,49,48,,,Electricity
-1998,Chevrolet,S10 Electric,Automatic (A1),58,52,55,,2-Wheel Drive,Electricity
-1998,Chevrolet,S10 Electric,Automatic (A1),28,28,28,,2-Wheel Drive,Electricity
-2008,MINI,MiniE,Automatic (A1),94,102,98,,,Electricity
-2011,Nissan,Leaf,Automatic (A1),92,106,99,,Front-Wheel Drive,Electricity
 1987,Pontiac,Sunbird Convertible,Automatic 3-spd,24,18,20,2,Front-Wheel Drive,Premium
-2011,Chevrolet,Volt,Automatic (variable gear ratios),40,35,37,1.4,Front-Wheel Drive,Premium Gas or Electricity
 2011,Nissan,370Z,Automatic (S7),26,19,22,3.7,Rear-Wheel Drive,Premium
 2011,Nissan,370Z,Manual 6-spd,26,18,21,3.7,Rear-Wheel Drive,Premium
 2011,Nissan,370Z Roadster,Automatic (S7),25,18,20,3.7,Rear-Wheel Drive,Premium
@@ -23125,8 +23100,6 @@
 2011,Ford,Explorer 4WD,Automatic (S6),23,17,19,3.5,4-Wheel Drive,Regular
 2011,Jeep,Compass 4WD,Automatic (variable gear ratios),23,20,21,2.4,4-Wheel Drive,Regular
 2011,Volkswagen,Touareg Hybrid,Automatic (S8),24,20,21,3,All-Wheel Drive,Premium
-2011,smart,fortwo electric drive cabriolet,Automatic (A1),79,94,87,,Rear-Wheel Drive,Electricity
-2011,smart,fortwo electric drive coupe,Automatic (A1),79,94,87,,Rear-Wheel Drive,Electricity
 2011,Mercedes-Benz,CL550 4matic,Automatic 7-spd,23,15,18,4.7,4-Wheel Drive,Premium
 2011,Mercedes-Benz,CL600,Automatic 5-spd,18,12,14,5.5,Rear-Wheel Drive,Premium
 2011,Mercedes-Benz,CL63 AMG,Automatic 7-spd,21,15,17,5.5,Rear-Wheel Drive,Premium
@@ -23733,7 +23706,6 @@
 2012,Volvo,XC90 AWD,Automatic (S6),22,16,18,3.2,All-Wheel Drive,Regular
 2012,Volvo,XC70 AWD,Automatic (S6),24,18,20,3.2,All-Wheel Drive,Regular
 2012,Volvo,XC60 AWD,Automatic (S6),24,18,20,3.2,All-Wheel Drive,Regular
-2012,Chevrolet,Volt,Automatic (variable gear ratios),40,35,37,1.4,Front-Wheel Drive,Premium Gas or Electricity
 2012,Bugatti,Veyron,Automatic (S7),15,8,10,8,All-Wheel Drive,Premium
 1987,Acura,Legend,Automatic 4-spd,22,16,18,2.7,Front-Wheel Drive,Regular
 2012,Lamborghini,Gallardo Coupe,Manual 6-spd,20,12,15,5.2,All-Wheel Drive,Premium
@@ -23794,7 +23766,6 @@
 2012,MINI,Cooper S Clubman,Automatic (S6),33,25,28,1.6,Front-Wheel Drive,Premium
 2012,MINI,Cooper S Clubman,Manual 6-spd,34,26,30,1.6,Front-Wheel Drive,Premium
 2012,MINI,John Cooper Works Clubman,Manual 6-spd,32,25,28,1.6,Front-Wheel Drive,Premium
-2012,Mitsubishi,i-MiEV,Automatic (A1),99,126,112,,Rear-Wheel Drive,Electricity
 2012,Acura,TSX,Manual 6-spd,29,21,24,2.4,Front-Wheel Drive,Premium
 2012,Acura,TSX,Automatic (S5),31,22,25,2.4,Front-Wheel Drive,Premium
 2012,Acura,TSX,Automatic (S5),28,19,22,3.5,Front-Wheel Drive,Premium
@@ -24037,8 +24008,6 @@
 2012,GMC,Savana 3500 2WD (Passenger),Automatic 6-spd,17,11,13,4.8,Rear-Wheel Drive,Gasoline or E85
 2012,GMC,Savana 2500 2WD (Passenger),Automatic 6-spd,16,11,13,6,Rear-Wheel Drive,Gasoline or E85
 2012,GMC,Savana 3500 2WD (Passenger),Automatic 6-spd,15,10,12,6,Rear-Wheel Drive,Gasoline or E85
-2012,Azure Dynamics,Transit Connect Electric Van,Automatic (A1),62,62,62,,Front-Wheel Drive,Electricity
-2012,Azure Dynamics,Transit Connect Electric Wagon,Automatic (A1),62,62,62,,Front-Wheel Drive,Electricity
 2012,Honda,Odyssey,Automatic 5-spd,27,18,21,3.5,Front-Wheel Drive,Regular
 2012,Honda,Odyssey,Automatic 6-spd,27,19,22,3.5,Front-Wheel Drive,Regular
 2012,Toyota,Sienna 2WD,Automatic (S6),24,19,21,2.7,Front-Wheel Drive,Regular
@@ -24323,7 +24292,6 @@
 2012,Nissan,Armada 4WD,Automatic 5-spd,18,12,14,5.6,4-Wheel Drive,Gasoline or E85
 2012,Toyota,4Runner 4WD,Automatic (S5),22,17,19,4,4-Wheel Drive,Regular
 2012,Toyota,4Runner 4WD,Automatic (S5),22,17,19,4,Part-time 4-Wheel Drive,Regular
-2012,Nissan,Leaf,Automatic (A1),92,106,99,,Front-Wheel Drive,Electricity
 2012,Mitsubishi,Outlander Sport 2WD,Automatic (AV-S6),30,25,27,2,Front-Wheel Drive,Regular
 2012,Mitsubishi,Outlander Sport 2WD,Manual 5-spd,30,24,26,2,Front-Wheel Drive,Regular
 2012,Mitsubishi,Outlander Sport 4WD,Automatic (AV-S6),28,23,25,2,4-Wheel Drive,Regular
@@ -24454,9 +24422,6 @@
 2013,Kia,Sorento 4WD,Automatic 6-spd,26,20,22,2.4,4-Wheel Drive,Regular
 2013,Kia,Sorento 4WD,Automatic 6-spd,26,21,23,2.4,4-Wheel Drive,Regular
 2013,Kia,Sorento 4WD,Automatic 6-spd,24,18,20,3.5,4-Wheel Drive,Regular
-2011,BMW,Active E,Automatic (A1),96,107,102,,Rear-Wheel Drive,Electricity
-2012,CODA Automotive,CODA,Automatic (A1),68,77,73,,Front-Wheel Drive,Electricity
-2012,Ford,Focus Electric,Automatic (variable gear ratios),99,110,105,,Front-Wheel Drive,Electricity
 2012,Mercedes-Benz,SLK250,Automatic 7-spd,32,23,26,1.8,Rear-Wheel Drive,Premium
 1987,Ford,Tempo,Manual 5-spd,28,19,22,2.3,Front-Wheel Drive,Regular
 2012,Mercedes-Benz,SLK250,Manual 6-spd,32,22,26,1.8,Rear-Wheel Drive,Premium
@@ -24685,7 +24650,6 @@
 2013,GMC,Yukon XL 1500 4WD,Automatic 6-spd,21,15,17,5.3,4-Wheel Drive,Gasoline or E85
 2013,GMC,Yukon 1500 4WD,Automatic 6-spd,21,15,17,5.3,4-Wheel Drive,Gasoline or E85
 2013,GMC,Yukon Denali 1500 AWD,Automatic 6-spd,18,13,15,6.2,All-Wheel Drive,Gasoline or E85
-2012,Toyota,Prius Plug-in Hybrid,Automatic (variable gear ratios),49,51,50,1.8,Front-Wheel Drive,Regular Gas and Electricity
 2013,Infiniti,G37 Convertible,Automatic (S7),25,17,20,3.7,Rear-Wheel Drive,Premium
 2013,Infiniti,G37 Convertible,Manual 6-spd,24,16,19,3.7,Rear-Wheel Drive,Premium
 2013,Infiniti,G37 Coupe,Manual 6-spd,25,17,20,3.7,Rear-Wheel Drive,Premium
@@ -24721,7 +24685,6 @@
 2013,Chevrolet,Suburban 2500 4WD,Automatic 6-spd,16,10,12,6,4-Wheel Drive,Regular
 2013,GMC,Yukon XL 1500 AWD,Automatic 6-spd,18,13,14,6.2,All-Wheel Drive,Gasoline or E85
 2013,GMC,Yukon XL 2500 4WD,Automatic 6-spd,16,10,12,6,4-Wheel Drive,Regular
-2012,Fisker,Karma,Automatic (A1),21,20,20,2,Rear-Wheel Drive,Premium Gas or Electricity
 2013,Porsche,Boxster S,Manual 6-spd,27,20,22,3.4,Rear-Wheel Drive,Premium
 2013,Porsche,Boxster S,Automatic (AM-S7),29,21,24,3.4,Rear-Wheel Drive,Premium
 2013,Porsche,911 Turbo,Automatic 7-spd,24,17,19,3.8,Rear-Wheel Drive,Premium
@@ -24766,7 +24729,6 @@
 2013,Toyota,Venza AWD,Automatic (S6),25,18,21,3.5,All-Wheel Drive,Regular
 2013,Cadillac,SRX 2WD,Automatic (S6),24,17,19,3.6,Front-Wheel Drive,Gasoline or E85
 2013,Cadillac,SRX AWD,Automatic (S6),23,16,18,3.6,All-Wheel Drive,Gasoline or E85
-2012,Tesla,Model S,Automatic (A1),90,88,89,,Rear-Wheel Drive,Electricity
 2013,Audi,TT Roadster quattro,Automatic (AM-S6),31,22,26,2,All-Wheel Drive,Premium
 2013,Mercedes-Benz,SLK250,Manual 6-spd,32,22,26,1.8,Rear-Wheel Drive,Premium
 1987,Mazda,626,Manual 5-spd,26,19,22,2,Front-Wheel Drive,Regular
@@ -24874,7 +24836,6 @@
 2013,GMC,Yukon Denali 1500 Hybrid 4WD,Automatic (variable gear ratios),23,20,21,6,4-Wheel Drive,Regular
 2013,Jeep,Grand Cherokee 4WD,Automatic 5-spd,23,16,19,3.6,4-Wheel Drive,Gasoline or E85
 2013,Land Rover,Range Rover Sport,Automatic (S6),17,12,14,5,4-Wheel Drive,Premium
-2013,Chevrolet,Volt,Automatic (variable gear ratios),40,35,37,1.4,Front-Wheel Drive,Premium Gas or Electricity
 2013,Bugatti,Veyron,Automatic (AM-S7),15,8,10,8,All-Wheel Drive,Premium
 2013,Lamborghini,Gallardo Coupe,Automatic (AM-S6),20,13,16,5.2,All-Wheel Drive,Premium
 2013,Lamborghini,Gallardo Spyder,Automatic (AM-S6),20,13,16,5.2,All-Wheel Drive,Premium
@@ -25284,7 +25245,6 @@
 2013,Jeep,Wrangler 4WD,Manual 6-spd,21,17,18,3.6,4-Wheel Drive,Regular
 2013,Jeep,Wrangler Unlimited 4WD,Manual 6-spd,21,16,18,3.6,4-Wheel Drive,Regular
 2013,Lexus,RX 350 AWD,Automatic (S8),26,18,21,3.5,All-Wheel Drive,Regular
-2013,Ford,Focus Electric,Automatic (A1),99,110,105,,Front-Wheel Drive,Electricity
 2013,Lamborghini,Aventador Coupe,Automatic (AM-S7),18,11,13,6.5,All-Wheel Drive,Premium
 2013,Ferrari,California,Automatic (AM7),19,14,16,4.3,Rear-Wheel Drive,Premium
 2013,Fiat,500,Manual 5-spd,33,28,30,1.4,Front-Wheel Drive,Premium
@@ -25550,7 +25510,6 @@
 2013,Toyota,4Runner 4WD,Automatic (S5),21,17,18,4,Part-time 4-Wheel Drive,Regular
 2013,Toyota,Sequoia 4WD,Automatic (S6),17,13,14,5.7,Part-time 4-Wheel Drive,Regular
 2013,Toyota,Sequoia 4WD FFV,Automatic (S6),17,13,15,5.7,Part-time 4-Wheel Drive,Gasoline or E85
-2013,Honda,Fit EV,Automatic (A1),105,132,118,,Front-Wheel Drive,Electricity
 2013,Nissan,Versa,Automatic (variable gear ratios),40,31,35,1.6,Front-Wheel Drive,Regular
 2013,Nissan,Versa,Manual 5-spd,35,27,30,1.6,Front-Wheel Drive,Regular
 2013,Nissan,Versa,Automatic 4-spd,35,26,30,1.6,Front-Wheel Drive,Regular
@@ -25594,10 +25553,6 @@
 2013,Mazda,CX-9 4WD,Automatic (S6),22,16,19,3.7,4-Wheel Drive,Regular
 2013,Infiniti,QX56 2WD,Automatic (S7),20,14,16,5.6,Rear-Wheel Drive,Premium
 2013,Infiniti,QX56 4WD,Automatic (S7),20,14,16,5.6,4-Wheel Drive,Premium
-2013,smart,fortwo electric drive convertible,Automatic (A1),93,122,107,,Rear-Wheel Drive,Electricity
-2013,smart,fortwo electric drive coupe,Automatic (A1),93,122,107,,Rear-Wheel Drive,Electricity
-2013,Scion,iQ EV,Automatic (variable gear ratios),105,138,121,,Front-Wheel Drive,Electricity
-2012,Toyota,RAV4 EV,Automatic (variable gear ratios),74,78,76,,Front-Wheel Drive,Electricity
 2013,Lotus,Evora,Manual 6-spd,26,18,21,3.5,Rear-Wheel Drive,Premium
 1987,Volkswagen,Golf,Manual 5-spd,31,23,26,1.8,Front-Wheel Drive,Regular
 2013,Lotus,Evora,Manual 6-spd,26,17,20,3.5,Rear-Wheel Drive,Premium
@@ -25627,9 +25582,6 @@
 2013,Nissan,Murano FWD,Automatic (variable gear ratios),24,18,20,3.5,Front-Wheel Drive,Regular
 2013,Land Rover,Range Rover Evoque,Automatic (S6),27,20,22,2,4-Wheel Drive,Premium
 2013,Nissan,Murano AWD,Automatic (variable gear ratios),23,18,20,3.5,All-Wheel Drive,Regular
-2013,Toyota,Prius Plug-in Hybrid,Automatic (variable gear ratios),49,51,50,1.8,Front-Wheel Drive,Regular Gas and Electricity
-2013,Ford,C-MAX Energi Plug-in Hybrid,Automatic (variable gear ratios),36,40,38,2,Front-Wheel Drive,Regular Gas and Electricity
-2013,CODA Automotive,CODA,Automatic (A1),68,77,73,,Front-Wheel Drive,Electricity
 2013,Mercedes-Benz,SL65 AMG,Automatic 7-spd,21,14,17,6,Rear-Wheel Drive,Premium
 2013,Mercedes-Benz,SLS AMG GT Coupe,Automatic (AM7),19,13,15,6.2,Rear-Wheel Drive,Premium
 1987,Volkswagen,GTI/Golf GT,Manual 5-spd,28,23,25,1.8,Front-Wheel Drive,Regular
@@ -25650,7 +25602,6 @@
 2013,Audi,Q5,Automatic (S8),26,18,21,3,All-Wheel Drive,Premium
 2013,Nissan,Pathfinder 4WD,Automatic (variable gear ratios),25,19,21,3.5,4-Wheel Drive,Regular
 2013,Land Rover,LR4,Automatic (S6),17,13,14,5,4-Wheel Drive,Premium
-2013,Mitsubishi,i-MiEV,Automatic (A1),99,126,112,,Rear-Wheel Drive,Electricity
 2012,Mercedes-Benz,C350 4matic Coupe,Automatic 7-spd,27,19,22,3.5,4-Wheel Drive,Premium
 1987,Volkswagen,Jetta,Manual 5-spd,31,23,26,1.8,Front-Wheel Drive,Regular
 2012,BMW,650i Convertible xDrive,Automatic (S8),19,15,17,4.4,All-Wheel Drive,Premium
@@ -25660,8 +25611,6 @@
 2012,Honda,Crosstour 2WD,Automatic 5-spd,29,21,24,2.4,Front-Wheel Drive,Regular
 2012,Mercedes-Benz,ML350 4matic,Automatic 7-spd,23,18,20,3.5,4-Wheel Drive,Premium or E85
 2013,Volkswagen,Jetta Hybrid,Automatic (AM-S7),48,41,44,1.4,Front-Wheel Drive,Premium
-2013,Tesla,Model S (60 kW-hr battery pack),Automatic (A1),97,94,95,,Rear-Wheel Drive,Electricity
-2013,Tesla,Model S (85 kW-hr battery pack),Automatic (A1),90,88,89,,Rear-Wheel Drive,Electricity
 2013,Audi,RS 5 Cabriolet,Automatic (AM-S7),22,16,18,4.2,All-Wheel Drive,Premium
 1987,Volkswagen,Jetta GLI 16v,Manual 5-spd,26,21,23,1.8,Front-Wheel Drive,Regular
 2013,Jaguar,XF,Automatic (S8),30,19,23,2,Rear-Wheel Drive,Premium
@@ -25678,7 +25627,6 @@
 2013,Land Rover,LR2,Automatic (S6),24,17,20,2,4-Wheel Drive,Premium
 2013,Land Rover,Range Rover,Automatic (S8),19,13,15,5,4-Wheel Drive,Premium
 2013,Land Rover,Range Rover,Automatic (S8),20,14,16,5,4-Wheel Drive,Premium
-2012,BYD,e6,Automatic (A1),64,60,62,,Front-Wheel Drive,Electricity
 2013,Aston Martin,V8 Vantage,Manual 6-spd,19,13,15,4.7,Rear-Wheel Drive,Premium
 2013,Aston Martin,V8 Vantage,Automatic (AM7),21,14,16,4.7,Rear-Wheel Drive,Premium
 2013,Aston Martin,V8 Vantage S,Manual 6-spd,19,13,15,4.7,Rear-Wheel Drive,Premium
@@ -25692,9 +25640,6 @@
 2013,Hyundai,Santa Fe 4WD,Automatic 6-spd,24,18,20,3.3,4-Wheel Drive,Regular
 2013,Nissan,Murano CrossCabriolet,Automatic (variable gear ratios),22,17,19,3.5,All-Wheel Drive,Premium
 2013,BMW,X5 xDrive35d,Automatic (S6),26,19,22,3,All-Wheel Drive,Diesel
-2013,Fiat,500e,Automatic (A1),108,122,116,,Front-Wheel Drive,Electricity
-2013,Toyota,RAV4 EV,Automatic (variable gear ratios),74,78,76,,Front-Wheel Drive,Electricity
-2013,Ford,Fusion Energi Plug-in Hybrid,Automatic (variable gear ratios),36,40,38,2,Front-Wheel Drive,Regular Gas and Electricity
 2014,Mazda,6,Manual 6-spd,36,25,29,2.5,Front-Wheel Drive,Regular
 1985,Mazda,626,Manual 5-spd,29,23,25,2,Front-Wheel Drive,Regular
 1987,Volkswagen,Quantum,Automatic 3-spd,20,16,18,2.2,Front-Wheel Drive,Regular
@@ -25871,8 +25816,6 @@
 2014,BMW,X6 xDrive35i,Automatic (S8),24,17,20,3,All-Wheel Drive,Premium
 2014,BMW,X6 xDrive50i,Automatic (S8),21,14,17,4.4,All-Wheel Drive,Premium
 2014,BMW,X6 M,Automatic (S6),17,13,15,4.4,All-Wheel Drive,Premium
-2014,Honda,Accord Plug-in Hybrid,Automatic (variable gear ratios),46,47,46,2,Front-Wheel Drive,Regular Gas and Electricity
-2013,Nissan,Leaf,Automatic (A1),102,129,115,,Front-Wheel Drive,Electricity
 2014,Jaguar,F-Type V8 S Convertible,Automatic (S8),23,16,18,5,Rear-Wheel Drive,Premium
 1987,Buick,Century,Automatic 3-spd,29,19,23,2.5,Front-Wheel Drive,Regular
 2014,Porsche,Boxster S,Manual 6-spd,27,20,22,3.4,Rear-Wheel Drive,Premium
@@ -25932,7 +25875,6 @@
 1987,Buick,Regal,Automatic 4-spd,23,15,18,3.8,Rear-Wheel Drive,Premium
 2014,Porsche,Cayenne Diesel,Automatic (S8),29,20,23,3,All-Wheel Drive,Diesel
 2014,Volkswagen,Touareg,Automatic (S8),29,20,23,3,All-Wheel Drive,Diesel
-2013,Tesla,Model S (40 kW-hr battery pack),Automatic (A1),96,93,94,,Rear-Wheel Drive,Electricity
 2014,Audi,TT Roadster quattro,Automatic (AM-S6),31,22,26,2,All-Wheel Drive,Premium
 2014,Bugatti,Veyron,Automatic (AM-S7),15,8,10,8,All-Wheel Drive,Premium
 2014,Jaguar,F-Type Convertible,Automatic (S8),28,20,23,3,Rear-Wheel Drive,Premium
@@ -25963,7 +25905,6 @@
 2014,Audi,RS 5,Automatic (AM-S7),23,16,18,4.2,All-Wheel Drive,Premium
 2014,Audi,TT Coupe quattro,Automatic (AM-S6),31,22,26,2,All-Wheel Drive,Premium
 1987,Buick,Riviera,Automatic 4-spd,25,16,19,3.8,Front-Wheel Drive,Regular
-2014,Chevrolet,Spark EV,Automatic (A1),109,128,119,,Front-Wheel Drive,Electricity
 2014,Buick,Verano,Manual 6-spd,31,20,24,2,Front-Wheel Drive,Regular
 2014,Cadillac,ATS,Automatic (S6),32,22,26,2.5,Rear-Wheel Drive,Regular
 2014,Cadillac,ATS,Automatic (S6),30,21,24,2,Rear-Wheel Drive,Regular
@@ -26250,12 +26191,10 @@
 2014,GMC,Yukon XL K10 AWD,Automatic 6-spd,18,13,14,6.2,All-Wheel Drive,Gasoline or E85
 1985,Mercedes-Benz,300SD,Automatic 4-spd,20,19,19,3,Rear-Wheel Drive,Diesel
 1987,Dodge,Aries,Manual 5-spd,29,22,25,2.2,Front-Wheel Drive,Regular
-2014,Chevrolet,Volt,Automatic (variable gear ratios),40,35,37,1.4,Front-Wheel Drive,Premium Gas or Electricity
 2013,Ferrari,F12,Automatic (AM7),16,12,13,6.3,Rear-Wheel Drive,Premium
 2013,Ferrari,F12,Automatic (AM7),16,12,13,6.3,Rear-Wheel Drive,Premium
 2013,Dodge,Dart,Automatic 6-spd,30,21,24,2.4,Front-Wheel Drive,Regular
 2013,Jaguar,XJ LWB,Automatic (S8),27,17,20,3,Rear-Wheel Drive,Premium
-2014,Honda,Fit EV,Automatic (A1),105,132,118,,Front-Wheel Drive,Electricity
 2014,Mazda,6,Automatic (S6),39,28,32,2.5,Front-Wheel Drive,Regular
 2014,Chevrolet,Corvette,Manual 7-spd,28,17,21,6.2,Rear-Wheel Drive,Premium
 2014,Mazda,MX-5,Manual 5-spd,27,22,24,2,Rear-Wheel Drive,Premium
@@ -26458,7 +26397,6 @@
 2014,Ford,Fusion AWD,Automatic (S6),31,22,25,2,All-Wheel Drive,Regular
 2014,Ford,Fusion FWD,Automatic (S6),32,22,26,2,Front-Wheel Drive,Regular
 2014,Ford,Fusion FWD,Automatic (S6),33,22,26,2.5,Front-Wheel Drive,Regular
-2014,Ford,Fusion Energi Plug-in Hybrid,Automatic (variable gear ratios),36,40,38,2,Front-Wheel Drive,Regular Gas and Electricity
 1987,Lincoln,Mark VII,Automatic 4-spd,24,16,19,5,Rear-Wheel Drive,Regular
 2014,Jaguar,XF,Automatic (S8),30,19,23,2,Rear-Wheel Drive,Premium
 2014,Lincoln,MKZ AWD,Automatic (S6),31,22,25,2,All-Wheel Drive,Regular
@@ -26504,7 +26442,6 @@
 2014,Jeep,Wrangler 4WD,Automatic 5-spd,21,17,18,3.6,4-Wheel Drive,Regular
 2014,Porsche,Cayenne S Hybrid,Automatic 8-spd,24,20,21,3,All-Wheel Drive,Premium
 1987,Mercedes-Benz,560SEL,Automatic 4-spd,15,12,13,5.6,Rear-Wheel Drive,Premium
-2014,Ford,Focus Electric,Automatic (A1),99,110,105,,Front-Wheel Drive,Electricity
 2014,SRT,Viper,Manual 6-spd,19,12,15,8.4,Rear-Wheel Drive,Premium
 2014,Infiniti,Q60 AWD Coupe,Automatic (S7),25,18,20,3.7,All-Wheel Drive,Premium
 2014,Infiniti,Q60 Convertible,Automatic (S7),25,18,20,3.7,Rear-Wheel Drive,Premium
@@ -26782,9 +26719,6 @@
 1987,Pontiac,6000,Automatic 3-spd,24,18,20,2.8,Front-Wheel Drive,Regular
 2014,Land Rover,Range Rover Sport FFV,Automatic (S8),19,14,16,5,4-Wheel Drive,Premium or E85
 2014,Lexus,LX 570,Automatic (S6),17,12,14,5.7,4-Wheel Drive,Premium
-2014,Fiat,500e,Automatic (A1),108,122,116,,Front-Wheel Drive,Electricity
-2014,smart,fortwo electric drive convertible,Automatic (A1),93,122,107,,Rear-Wheel Drive,Electricity
-2014,smart,fortwo electric drive coupe,Automatic (A1),93,122,107,,Rear-Wheel Drive,Electricity
 2014,Honda,Accord Hybrid,Automatic (variable gear ratios),45,49,47,2,Front-Wheel Drive,Regular
 2014,Toyota,Corolla,Automatic 4-spd,35,27,30,1.8,Front-Wheel Drive,Regular
 2014,Toyota,Corolla,Automatic (variable gear ratios),37,29,32,1.8,Front-Wheel Drive,Regular
@@ -26817,7 +26751,6 @@
 2014,Dodge,Durango AWD,Automatic 8-spd,22,14,16,5.7,4-Wheel Drive,Midgrade
 2014,Nissan,Armada 4WD,Automatic 5-spd,18,12,14,5.6,4-Wheel Drive,Regular
 2014,Nissan,Armada 4WD,Automatic 5-spd,18,12,14,5.6,4-Wheel Drive,Gasoline or E85
-2014,Toyota,RAV4 EV,Automatic (variable gear ratios),74,78,76,,Front-Wheel Drive,Electricity
 2014,Honda,CR-Z,Automatic (AV-S7),38,35,36,1.5,Front-Wheel Drive,Regular
 2014,Honda,CR-Z,Manual 6-spd,37,31,33,1.5,Front-Wheel Drive,Regular
 2014,Lexus,IS 350 C,Automatic (S6),27,19,22,3.5,Rear-Wheel Drive,Premium
@@ -26918,7 +26851,6 @@
 2014,Kia,Sportage 4WD,Automatic 6-spd,26,19,22,2.4,4-Wheel Drive,Regular
 2014,Mercedes-Benz,G550,Automatic 7-spd,15,12,13,5.5,4-Wheel Drive,Premium
 2014,Mercedes-Benz,G63 AMG,Automatic 7-spd,14,12,13,5.5,4-Wheel Drive,Premium
-2014,Toyota,Prius Plug-in Hybrid,Automatic (variable gear ratios),49,51,50,1.8,Front-Wheel Drive,Regular Gas and Electricity
 2014,Lexus,GS 350,Automatic (S8),29,19,23,3.5,Rear-Wheel Drive,Premium
 2014,Nissan,Frontier 2WD,Automatic 5-spd,23,17,19,2.5,Rear-Wheel Drive,Regular
 2014,Nissan,Frontier 2WD,Manual 5-spd,23,19,21,2.5,Rear-Wheel Drive,Regular
@@ -27077,7 +27009,6 @@
 1987,Chevrolet,Caprice,Automatic 4-spd,23,16,18,5,Rear-Wheel Drive,Regular
 2015,Volvo,XC70 AWD,Automatic (S6),24,17,20,3,All-Wheel Drive,Regular
 2014,Ford,Fusion FWD,Automatic (S6),36,25,29,1.5,Front-Wheel Drive,Regular
-2014,Ford,C-MAX Energi Plug-in Hybrid,Automatic (variable gear ratios),36,40,38,2,Front-Wheel Drive,Regular Gas and Electricity
 2015,Audi,TT Roadster quattro,Automatic (AM-S6),31,22,26,2,All-Wheel Drive,Premium
 2015,Audi,TT Coupe quattro,Automatic (AM-S6),31,22,26,2,All-Wheel Drive,Premium
 2015,Subaru,WRX,Manual 6-spd,28,21,24,2,All-Wheel Drive,Premium
@@ -27114,7 +27045,6 @@
 2014,Ford,C-MAX Hybrid FWD,Automatic (variable gear ratios),36,41,39,2,Front-Wheel Drive,Regular
 2014,Ford,Transit Connect Van 2WD,Automatic (S6),29,22,25,1.6,Front-Wheel Drive,Regular
 2014,Nissan,NV200 Cargo Van,Automatic (variable gear ratios),25,24,24,2,Front-Wheel Drive,Regular
-2014,Nissan,Leaf,Automatic (A1),101,126,114,,Front-Wheel Drive,Electricity
 1985,Oldsmobile,Firenza,Automatic 3-spd,29,21,24,1.8,Front-Wheel Drive,Regular
 1987,Mercury,Grand Marquis,Automatic 4-spd,24,16,19,5,Rear-Wheel Drive,Regular
 2015,Jaguar,F-Type V8 S Convertible,Automatic (S8),23,16,18,5,Rear-Wheel Drive,Premium
@@ -27193,13 +27123,10 @@
 2015,Hyundai,Genesis AWD,Automatic 8-spd,25,16,19,3.8,All-Wheel Drive,Regular
 2015,Hyundai,Genesis RWD,Automatic 8-spd,23,15,18,5,Rear-Wheel Drive,Premium
 1987,Rolls-Royce,Silver Spur Limousine,Automatic 3-spd,9,7,8,6.8,Rear-Wheel Drive,Regular
-2014,Cadillac,ELR,Automatic (variable gear ratios),35,31,33,1.4,Front-Wheel Drive,Premium Gas or Electricity
 2015,Audi,A3,Automatic (AM-S6),33,23,27,1.8,Front-Wheel Drive,Premium
 2014,Honda,Civic,Automatic (variable gear ratios),37,29,33,1.8,Front-Wheel Drive,Regular
 2014,Honda,Civic,Manual 6-spd,31,22,25,2.4,Front-Wheel Drive,Premium
 2014,Honda,Civic HF,Automatic (variable gear ratios),40,31,34,1.8,Front-Wheel Drive,Regular
-2014,Tesla,Model S (85 kW-hr battery pack),Automatic (A1),90,88,89,,Rear-Wheel Drive,Electricity
-2014,Tesla,Model S (60 kW-hr battery pack),Automatic (A1),97,94,95,,Rear-Wheel Drive,Electricity
 2015,Chrysler,200 AWD,Automatic 9-spd,28,18,22,3.6,All-Wheel Drive,Regular
 2015,Lexus,RX 350,Automatic (S6),25,18,21,3.5,Front-Wheel Drive,Regular
 2015,Lexus,RX 450h,Automatic (AV-S6),28,31,29,3.5,Front-Wheel Drive,Premium
@@ -27213,7 +27140,6 @@
 2014,Mercedes-Benz,CLA250 4matic,Automatic (AM7),31,24,27,2,4-Wheel Drive,Premium
 2014,Dodge,Dart,Automatic (AM6),36,27,30,1.4,Front-Wheel Drive,Premium
 2014,BMW,X5 xDrive35d,Automatic (S8),31,23,26,3,All-Wheel Drive,Diesel
-2014,Porsche,Panamera S E-Hybrid,Automatic (AM-S8),29,23,25,3,Rear-Wheel Drive,Premium and Electricity
 1987,Saab,9000,Automatic 4-spd,24,17,19,2,Front-Wheel Drive,Regular
 2014,MINI,Cooper (3-doors),Automatic (S6),37,28,31,1.5,Front-Wheel Drive,Premium
 2014,MINI,Cooper (3-doors),Manual 6-spd,39,29,33,1.5,Front-Wheel Drive,Premium
@@ -27287,12 +27213,9 @@
 2015,BMW,528i,Automatic (S8),33,23,26,2,Rear-Wheel Drive,Premium
 2015,BMW,X1 sDrive28i,Automatic (S8),33,23,26,2,Rear-Wheel Drive,Premium
 2015,Honda,Fit,Automatic (variable gear ratios),40,33,36,1.5,Front-Wheel Drive,Regular
-2015,Porsche,918 Spyder,Automatic (AM-S7),24,20,22,4.6,All-Wheel Drive,Premium Gas or Electricity
 2014,BMW,428i xDrive Convertible,Automatic (S8),32,21,25,2,All-Wheel Drive,Premium
 2014,MINI,Cooper S (3-doors),Automatic (S6),34,26,29,2,Front-Wheel Drive,Premium
-2014,BYD,e6,Automatic (A1),65,61,63,,Front-Wheel Drive,Electricity
 1987,Buick,Skyhawk Wagon,Manual 5-spd,33,23,26,2,Front-Wheel Drive,Regular
-2013,BYD,e6,Automatic (A1),65,61,63,,Front-Wheel Drive,Electricity
 2015,MINI,Cooper Roadster,Manual 6-spd,33,27,29,1.6,Front-Wheel Drive,Premium
 2015,MINI,Cooper Coupe,Manual 6-spd,36,29,32,1.6,Front-Wheel Drive,Premium
 2015,MINI,Cooper S Roadster,Manual 6-spd,34,26,29,1.6,Front-Wheel Drive,Premium
@@ -27338,7 +27261,6 @@
 1985,Oldsmobile,Firenza,Automatic 3-spd,27,22,24,2,Front-Wheel Drive,Regular
 1987,Chevrolet,Cavalier Wagon,Automatic 3-spd,24,18,20,2.8,Front-Wheel Drive,Regular
 2015,Land Rover,LR2,Automatic (S9),24,17,20,2,4-Wheel Drive,Premium
-2014,Mitsubishi,i-MiEV,Automatic (A1),99,126,112,,Rear-Wheel Drive,Electricity
 2015,BMW,650i Coupe,Automatic (S8),24,17,20,4.4,Rear-Wheel Drive,Premium
 2015,BMW,650i Convertible,Automatic (S8),24,17,20,4.4,Rear-Wheel Drive,Premium
 2015,BMW,M6 Coupe,Manual 6-spd,22,15,17,4.4,Rear-Wheel Drive,Premium
@@ -27356,7 +27278,6 @@
 2015,Volvo,V60 PoleStar AWD,Automatic (S6),27,18,21,3,All-Wheel Drive,Regular
 2015,Infiniti,QX70 RWD,Automatic (S7),24,17,19,3.7,Rear-Wheel Drive,Premium
 2015,Infiniti,QX70 AWD,Automatic (S7),22,16,18,3.7,All-Wheel Drive,Premium
-2015,Nissan,Leaf,Automatic (A1),101,126,114,,Front-Wheel Drive,Electricity
 2014,McLaren Automotive,MP4-12C Coupe,Automatic 7-spd,22,15,18,3.8,Rear-Wheel Drive,Premium
 1987,Nissan,Maxima Wagon,Automatic 4-spd,22,16,18,3,Front-Wheel Drive,Regular
 2014,McLaren Automotive,MP4-12C Spider,Automatic 7-spd,22,15,18,3.8,Rear-Wheel Drive,Premium
@@ -27581,7 +27502,6 @@
 2015,Volvo,XC60 AWD,Automatic (S6),25,18,21,2.5,All-Wheel Drive,Regular
 2015,Audi,Q7,Automatic (S8),22,16,18,3,All-Wheel Drive,Premium
 1987,Mitsubishi,Space Wagon,Automatic 3-spd,22,20,21,2,Front-Wheel Drive,Regular
-2015,Chevrolet,Spark EV,Automatic (A1),109,128,119,,Front-Wheel Drive,Electricity
 2014,Hyundai,Santa Fe Ultimate 2WD,Automatic 6-spd,23,18,20,3.3,Front-Wheel Drive,Regular
 2014,Hyundai,Santa Fe Ultimate 4WD,Automatic 6-spd,22,17,19,3.3,All-Wheel Drive,Regular
 2015,Cadillac,ATS,Manual 6-spd,29,19,23,2,Rear-Wheel Drive,Regular
@@ -27675,8 +27595,6 @@
 2015,Kia,Sportage FWD,Automatic 6-spd,26,20,23,2,Front-Wheel Drive,Regular
 2015,Kia,Sportage AWD,Automatic 6-spd,26,19,22,2.4,All-Wheel Drive,Regular
 2015,Kia,Sportage AWD,Automatic 6-spd,24,19,21,2,All-Wheel Drive,Regular
-2015,Fiat,500e,Automatic (A1),108,122,116,,Front-Wheel Drive,Electricity
-2014,BMW,i3 BEV,Automatic (A1),111,137,124,,Rear-Wheel Drive,Electricity
 2015,Porsche,911 Carrera Cabriolet,Automatic (AM-S7),28,21,23,3.4,Rear-Wheel Drive,Premium
 2015,Cadillac,ATS,Automatic (S6),29,21,24,2,Rear-Wheel Drive,Regular
 1987,Pontiac,Sunbird Wagon,Manual 4-spd,30,22,25,2,Front-Wheel Drive,Regular
@@ -27718,8 +27636,6 @@
 2015,Mitsubishi,Outlander 4WD,Automatic (AV-S6),29,24,26,2.4,4-Wheel Drive,Regular
 2015,Mitsubishi,Outlander 4WD,Automatic (S6),27,20,23,3,4-Wheel Drive,Premium
 2015,Mitsubishi,Outlander Sport 4WD,Automatic (AV-S6),30,24,27,2,4-Wheel Drive,Regular
-2015,Chevrolet,Volt,Automatic (variable gear ratios),40,35,37,1.4,Front-Wheel Drive,Premium Gas or Electricity
-2014,Mercedes-Benz,B-Class Electric Drive,Automatic (A1),83,85,84,,Front-Wheel Drive,Electricity
 2015,Nissan,370Z,Automatic (S7),26,19,21,3.7,Rear-Wheel Drive,Premium
 2015,Nissan,370Z,Manual 6-spd,25,18,21,3.7,Rear-Wheel Drive,Premium
 1987,Subaru,Wagon,Automatic 3-spd,24,21,22,1.8,Front-Wheel Drive,Regular
@@ -27752,9 +27668,6 @@
 2015,Mercedes-Benz,SLK250,Manual 6-spd,32,22,26,1.8,Rear-Wheel Drive,Premium
 2015,Aston Martin,V12 Vantage S,Automatic (AM7),18,12,14,6,Rear-Wheel Drive,Premium
 2015,Jaguar,XF,Automatic (S8),27,18,21,3,Rear-Wheel Drive,Premium
-2015,Ford,Fusion Energi Plug-in Hybrid,Automatic (variable gear ratios),36,40,38,2,Front-Wheel Drive,Regular Gas and Electricity
-2015,Porsche,Panamera S E-Hybrid,Automatic (AM-S8),29,23,25,3,Rear-Wheel Drive,Premium and Electricity
-2014,BMW,i3 REX,Automatic (A1),37,41,39,0.6,Rear-Wheel Drive,Premium Gas or Electricity
 1987,Subaru,Wagon 4WD Turbo,Automatic 3-spd,21,18,19,1.8,4-Wheel or All-Wheel Drive,Regular
 2015,Mercedes-Benz,SL550,Automatic 7-spd,24,18,20,4.7,Rear-Wheel Drive,Premium
 2015,Mercedes-Benz,SL65 AMG,Automatic 7-spd,21,14,17,6,Rear-Wheel Drive,Premium
@@ -27797,7 +27710,6 @@
 2015,Volkswagen,Tiguan 4motion,Automatic (S6),26,20,22,2,All-Wheel Drive,Premium
 2015,Mercedes-Benz,GL550 4matic,Automatic 7-spd,18,13,15,4.7,4-Wheel Drive,Premium
 2015,Mercedes-Benz,ML350 4matic,Automatic 7-spd,22,18,19,3.5,4-Wheel Drive,Premium or E85
-2015,Cadillac,ELR,Automatic (variable gear ratios),35,31,33,1.4,Front-Wheel Drive,Premium Gas or Electricity
 2015,Chevrolet,Corvette,Manual 7-spd,28,17,21,6.2,Rear-Wheel Drive,Premium
 2015,Mercedes-Benz,SL400,Automatic 7-spd,27,20,23,3,Rear-Wheel Drive,Premium
 1987,Toyota,Tercel Wagon 2WD,Automatic 3-spd,28,25,26,1.5,Front-Wheel Drive,Regular
@@ -28107,12 +28019,8 @@
 2015,Toyota,4Runner 4WD,Automatic (S5),21,17,18,4,Part-time 4-Wheel Drive,Regular
 2015,Toyota,Land Cruiser Wagon 4WD,Automatic (S6),18,13,15,5.7,4-Wheel Drive,Regular
 2015,Toyota,4Runner 4WD,Automatic (S5),21,17,18,4,All-Wheel Drive,Regular
-2015,Toyota,Prius Plug-in Hybrid,Automatic (variable gear ratios),49,51,50,1.8,Front-Wheel Drive,Regular Gas and Electricity
-2014,BMW,i8,Automatic 6-spd,29,28,28,1.5,All-Wheel Drive,Premium and Electricity
 1985,Peugeot,505,Automatic 3-spd,23,22,22,2.5,Rear-Wheel Drive,Diesel
 1987,Ford,Taurus Wagon,Manual 5-spd,27,19,21,2.5,Front-Wheel Drive,Regular
-2014,McLaren Automotive,P1,Automatic 7-spd,20,16,17,3.8,Rear-Wheel Drive,Premium and Electricity
-2015,Kia,Soul Electric,Automatic (A1),92,120,105,,Front-Wheel Drive,Electricity
 2015,Chevrolet,Corvette,Automatic (S8),29,16,20,6.2,Rear-Wheel Drive,Premium
 2015,Ferrari,F12,Automatic (AM7),16,12,13,6.3,Rear-Wheel Drive,Premium
 2015,McLaren Automotive,650S Coupe,Automatic 7-spd,22,16,18,3.8,Rear-Wheel Drive,Premium
@@ -28168,7 +28076,6 @@
 1987,Mercedes-Benz,300TD,Automatic 4-spd,25,21,22,3,Rear-Wheel Drive,Diesel
 2015,Toyota,Sequoia 4WD FFV,Automatic (S6),17,13,15,5.7,Part-time 4-Wheel Drive,Gasoline or E85
 2015,Toyota,Sequoia 4WD,Automatic (S6),17,13,14,5.7,Part-time 4-Wheel Drive,Regular
-2015,McLaren Automotive,P1,Automatic 7-spd,20,16,17,3.8,Rear-Wheel Drive,Premium and Electricity
 2014,Ferrari,458 Speciale,Automatic (AM7),17,13,14,4.5,Rear-Wheel Drive,Premium
 2014,Ferrari,458 Speciale,Automatic (AM7),17,13,15,4.5,Rear-Wheel Drive,Premium
 2014,Mobility Ventures LLC,MV-1 CNG,Automatic 4-spd,16,12,13,4.6,Rear-Wheel Drive,CNG
@@ -28293,7 +28200,6 @@
 2015,Land Rover,Range Rover Sport FFV,Automatic (S8),19,14,16,5,4-Wheel Drive,Premium or E85
 2015,Nissan,Armada 4WD,Automatic 5-spd,18,12,14,5.6,4-Wheel Drive,Regular
 2015,Nissan,Armada 4WD,Automatic 5-spd,18,12,14,5.6,4-Wheel Drive,Gasoline or E85
-2015,Ford,C-MAX Energi Plug-in Hybrid,Automatic (variable gear ratios),36,40,38,2,Front-Wheel Drive,Regular Gas and Electricity
 2015,Mercedes-Benz,SL63 AMG,Automatic 7-spd,25,16,19,5.5,Rear-Wheel Drive,Premium
 2015,Mercedes-Benz,SLK55 AMG,Automatic 7-spd,28,19,22,5.5,Rear-Wheel Drive,Premium
 2015,Infiniti,Q50 Hybrid,Automatic (S7),36,29,31,3.5,Rear-Wheel Drive,Premium
@@ -28385,7 +28291,6 @@
 2015,Mercedes-Benz,E350 Convertible,Automatic 7-spd,28,20,23,3.5,Rear-Wheel Drive,Premium
 2015,Mercedes-Benz,E550 Convertible,Automatic 7-spd,25,17,20,4.7,Rear-Wheel Drive,Premium
 2015,Mercedes-Benz,S63 AMG 4matic Coupe,Automatic 7-spd,23,15,18,5.5,4-Wheel Drive,Premium
-2015,Volkswagen,e-Golf,Automatic (A1),105,126,116,,Front-Wheel Drive,Electricity
 1987,Volvo,240 DL/240 GL Wagon,Manual 5-spd,26,19,22,2.3,Rear-Wheel Drive,Regular
 2015,Mercedes-Benz,E350,Automatic 7-spd,28,20,23,3.5,Rear-Wheel Drive,Premium
 2015,Mercedes-Benz,E350 4matic,Automatic 7-spd,27,20,23,3.5,4-Wheel Drive,Premium
@@ -28394,8 +28299,6 @@
 2015,Land Rover,Range Rover Evoque,Automatic (S9),29,21,24,2,4-Wheel Drive,Premium
 2015,Mercedes-Benz,GLK250 Bluetec 4matic,Automatic 7-spd,32,24,27,2.1,4-Wheel Drive,Diesel
 2015,Mercedes-Benz,G550,Automatic 7-spd,15,12,13,5.5,4-Wheel Drive,Premium
-2015,smart,fortwo electric drive convertible,Automatic (A1),93,122,107,,Rear-Wheel Drive,Electricity
-2015,smart,fortwo electric drive coupe,Automatic (A1),93,122,107,,Rear-Wheel Drive,Electricity
 1987,Volvo,740/760 Wagon,Automatic 4-spd,20,17,18,2.3,Rear-Wheel Drive,Regular
 2015,Ford,Mustang Convertible,Automatic (S6),23,15,18,5,Rear-Wheel Drive,Regular
 2015,Ford,Mustang Convertible,Automatic (S6),29,20,24,2.3,Rear-Wheel Drive,Regular
@@ -28435,7 +28338,6 @@
 2015,Hyundai,Azera,Automatic (S6),28,20,23,3.3,Front-Wheel Drive,Regular
 2015,Mercedes-Benz,ML250 Bluetec 4matic,Automatic 7-spd,29,22,25,2.1,4-Wheel Drive,Diesel
 2015,Porsche,Cayenne Turbo,Automatic (S8),21,14,17,4.8,All-Wheel Drive,Premium
-2015,Porsche,Cayenne S e-Hybrid,Automatic (AM8),24,21,22,3,All-Wheel Drive,Premium Gas or Electricity
 2015,BMW,228i Convertible,Automatic (S8),33,23,26,2,Rear-Wheel Drive,Premium
 2015,Mercedes-Benz,CLS400 4matic,Automatic 7-spd,26,19,22,3,4-Wheel Drive,Premium
 2015,Hyundai,Elantra GT,Automatic (S6),32,24,27,2,Front-Wheel Drive,Regular
@@ -28507,7 +28409,6 @@
 2015,Mercedes-Benz,CLA250,Automatic (AM7),37,26,30,2,Front-Wheel Drive,Premium
 2015,Hyundai,Elantra GT,Manual 6-spd,33,24,27,2,Front-Wheel Drive,Regular
 1987,Chevrolet,S10 Pickup 2WD,Automatic 4-spd,25,18,21,2.5,Rear-Wheel Drive,Regular
-2015,Mercedes-Benz,B-Class Electric Drive,Automatic (A1),82,85,84,,Front-Wheel Drive,Electricity
 2015,Ford,Focus FWD,Manual 6-spd,38,29,32,1,Front-Wheel Drive,Regular
 2015,Ford,Focus FWD,Automatic (AM6),38,27,31,2,Front-Wheel Drive,Regular
 2015,Ford,Focus FWD,Automatic (S6),37,26,30,2,Front-Wheel Drive,Regular
@@ -28518,7 +28419,6 @@
 2015,Ford,Focus FWD FFV,Manual 5-spd,35,26,29,2,Front-Wheel Drive,Gasoline or E85
 2015,Ford,Focus SFE FWD,Manual 6-spd,41,30,34,1,Front-Wheel Drive,Regular
 1987,Chevrolet,S10 Pickup 2WD,Manual 4-spd,24,19,21,2.5,Rear-Wheel Drive,Regular
-2015,Ford,Focus Electric,Automatic (A1),99,110,105,,Front-Wheel Drive,Electricity
 2015,Nissan,Sentra,Manual 6-spd,35,27,30,1.8,Front-Wheel Drive,Regular
 2015,Nissan,Sentra,Automatic (variable gear ratios),37,29,32,1.8,Front-Wheel Drive,Regular
 2015,Nissan,Sentra FE,Automatic (variable gear ratios),38,30,33,1.8,Front-Wheel Drive,Regular
@@ -28529,7 +28429,6 @@
 2015,Volvo,V60 CC FWD,Automatic (S8),31,24,27,2,Front-Wheel Drive,Regular
 2015,Volvo,V60 CC AWD,Automatic (S6),28,20,23,2.5,All-Wheel Drive,Regular
 1987,Chevrolet,S10 Pickup 2WD,Manual 5-spd,26,20,22,2.5,Rear-Wheel Drive,Regular
-2015,Tesla,Model S (85 kW-hr battery pack),Automatic (A1),90,88,89,,Rear-Wheel Drive,Electricity
 2016,Mazda,6,Automatic (S6),37,26,30,2.5,Front-Wheel Drive,Regular
 2016,Mazda,6,Automatic (S6),38,28,32,2.5,Front-Wheel Drive,Regular
 2016,Mazda,6,Manual 6-spd,36,25,29,2.5,Front-Wheel Drive,Regular
@@ -28544,7 +28443,6 @@
 2016,Kia,Sorento AWD,Automatic (S6),25,21,22,2.4,All-Wheel Drive,Regular
 2016,Kia,Sorento AWD,Automatic (S6),23,17,19,3.3,All-Wheel Drive,Regular
 2016,Mazda,CX-5 4WD,Automatic (S6),29,24,26,2.5,4-Wheel Drive,Regular
-2014,Tesla,Model S AWD (85 kW-hr battery pack),Automatic (A1),94,86,89,,4-Wheel Drive,Electricity
 2016,Audi,A7 quattro,Automatic (S8),29,20,24,3,All-Wheel Drive,Premium
 2016,Audi,A6 quattro,Automatic (S8),29,20,24,3,All-Wheel Drive,Premium
 2016,Honda,HR-V 2WD,Manual 6-spd,33,25,28,1.8,Front-Wheel Drive,Regular
@@ -28560,23 +28458,18 @@
 2015,Nissan,Rogue Select FWD,Automatic (variable gear ratios),28,23,25,2.5,Front-Wheel Drive,Regular
 2015,Land Rover,Discovery Sport,Automatic (S9),26,20,22,2,4-Wheel Drive,Premium
 2015,Nissan,Rogue Select AWD,Automatic (variable gear ratios),26,22,24,2.5,All-Wheel Drive,Regular
-2015,Tesla,Model S AWD - P85D,Automatic (A1),98,89,93,,All-Wheel Drive,Electricity
-2015,Tesla,Model S AWD - 85D,Automatic (A1),106,95,100,,All-Wheel Drive,Electricity
 1987,Chevrolet,S10 Pickup 2WD,Manual 4-spd,21,16,18,2.8,Rear-Wheel Drive,Regular
 2016,Jaguar,F-Type Coupe,Automatic (S8),27,19,22,3,Rear-Wheel Drive,Premium
 2016,Jaguar,F-Type Convertible,Automatic (S8),27,19,22,3,Rear-Wheel Drive,Premium
 2016,Jaguar,F-Type S Coupe,Automatic (S8),27,19,22,3,Rear-Wheel Drive,Premium
 2016,Jaguar,F-Type S Convertible,Automatic (S8),27,19,22,3,Rear-Wheel Drive,Premium
 2016,Bentley,Mulsanne,Automatic (S8),18,11,14,6.8,Rear-Wheel Drive,Premium
-2015,BMW,i3 BEV,Automatic (A1),111,137,124,,Rear-Wheel Drive,Electricity
-2015,Tesla,Model S (60 kW-hr battery pack),Automatic (A1),97,94,95,,Rear-Wheel Drive,Electricity
 2015,Kia,Sportage SX FWD,Automatic (S6),26,20,22,2,Front-Wheel Drive,Regular
 2015,Kia,Sportage SX AWD,Automatic (S6),25,19,21,2,All-Wheel Drive,Regular
 1987,Chevrolet,S10 Pickup 2WD,Manual 5-spd,22,16,18,2.8,Rear-Wheel Drive,Regular
 2016,Hyundai,Veloster,Automatic (AM6),35,28,31,1.6,Front-Wheel Drive,Regular
 2016,Hyundai,Veloster,Manual 6-spd,34,27,30,1.6,Front-Wheel Drive,Regular
 2016,Hyundai,Elantra GT,Manual 6-spd,32,24,27,2,Front-Wheel Drive,Regular
-2016,Mitsubishi,i-MiEV,Automatic (A1),99,126,112,0,Rear-Wheel Drive,Electricity
 2015,Ford,Edge FWD,Automatic (S6),30,20,24,2,Front-Wheel Drive,Regular
 2015,Ford,Edge FWD,Automatic (S6),26,18,21,3.5,Front-Wheel Drive,Regular
 2015,Ford,Edge FWD,Automatic (S6),27,18,21,2.7,Front-Wheel Drive,Regular
@@ -28584,8 +28477,6 @@
 2015,Ford,Edge AWD,Automatic (S6),24,17,20,3.5,All-Wheel Drive,Regular
 2015,Ford,Edge AWD,Automatic (S6),24,17,20,2.7,All-Wheel Drive,Regular
 1987,Nissan,Truck 2WD,Automatic 4-spd,23,18,20,2.4,Rear-Wheel Drive,Regular
-2015,BMW,i3 REX,Automatic (A1),37,41,39,0.6,Rear-Wheel Drive,Premium Gas or Electricity
-2015,BMW,i8,Automatic 6-spd,29,28,28,1.5,All-Wheel Drive,Premium and Electricity
 2016,Jaguar,F-Type S AWD Coupe,Automatic (S8),26,18,21,3,All-Wheel Drive,Premium
 2016,Jaguar,F-Type S AWD Convertible,Automatic (S8),26,18,21,3,All-Wheel Drive,Premium
 2016,Acura,ILX,Automatic (AM8),35,25,29,2.4,Front-Wheel Drive,Premium
@@ -28689,7 +28580,6 @@
 2015,Ford,Edge FWD,Automatic (S6),29,21,24,2,Front-Wheel Drive,Regular
 2015,Jeep,Renegade 2WD,Manual 6-spd,31,24,26,1.4,Front-Wheel Drive,Premium
 2015,Jeep,Renegade 4WD,Manual 6-spd,31,24,27,1.4,All-Wheel Drive,Premium
-2015,Tesla,Model S AWD - 70D,Automatic (A1),102,101,101,,All-Wheel Drive,Electricity
 2016,Mazda,2,Manual 6-spd,40,31,34,1.5,Front-Wheel Drive,Regular
 2016,Mazda,2,Automatic (S6),41,33,36,1.5,Front-Wheel Drive,Regular
 2016,Subaru,WRX,Automatic (AV-S8),24,18,21,2,All-Wheel Drive,Premium
@@ -28822,7 +28712,6 @@
 2016,Volvo,XC60 AWD,Automatic (S6),26,19,21,2.5,All-Wheel Drive,Regular
 2016,Volvo,V60 CC AWD,Automatic (S6),28,20,23,2.5,All-Wheel Drive,Regular
 2016,Volvo,S60 CC AWD,Automatic (S6),28,20,23,2.5,All-Wheel Drive,Regular
-2016,Ford,Fusion Energi Plug-in Hybrid,Automatic (variable gear ratios),36,40,38,2,Front-Wheel Drive,Regular Gas and Electricity
 2016,Porsche,Boxster S,Manual 6-spd,27,20,22,3.4,Rear-Wheel Drive,Premium
 1987,Isuzu,Pickup 2WD,Manual 4-spd,29,22,25,1.9,Rear-Wheel Drive,Regular
 2016,Porsche,Boxster Spyder,Manual 6-spd,24,18,20,3.8,Rear-Wheel Drive,Premium
@@ -29113,7 +29002,6 @@
 2016,Land Rover,Range Rover Evoque,Automatic (S9),29,21,24,2,4-Wheel Drive,Premium
 2016,Lincoln,MKC AWD,Automatic (S6),26,19,22,2,All-Wheel Drive,Regular
 2016,Lincoln,MKC AWD,Automatic (S6),26,18,21,2.3,All-Wheel Drive,Regular
-2015,Mercedes-Benz,S550e,Automatic 7-spd,30,24,26,3,Rear-Wheel Drive,Premium and Electricity
 2016,Mercedes-Benz,SL400,Automatic 7-spd,27,20,23,3,Rear-Wheel Drive,Premium
 2016,Mercedes-Benz,AMG SL63,Automatic 7-spd,25,16,19,5.5,Rear-Wheel Drive,Premium
 2016,Mercedes-Benz,AMG SLK55,Automatic 7-spd,28,19,22,5.5,Rear-Wheel Drive,Premium
@@ -29155,7 +29043,6 @@
 2016,Jeep,Cherokee Trailhawk 4WD,Automatic 9-spd,25,19,22,2.4,4-Wheel Drive,Regular
 2016,Mercedes-Benz,GLE350 4matic,Automatic 7-spd,22,18,19,3.5,4-Wheel Drive,Premium
 2016,Mercedes-Benz,GLE350 4matic,Automatic 7-spd,22,18,19,3.5,4-Wheel Drive,Premium or E85
-2016,Kia,Soul Electric,Automatic (A1),92,120,105,,Front-Wheel Drive,Electricity
 2016,Mercedes-Benz,SL550,Automatic 7-spd,24,16,19,4.7,Rear-Wheel Drive,Premium
 2016,Mercedes-Benz,AMG SL65,Automatic 7-spd,21,14,17,6,Rear-Wheel Drive,Premium
 2016,Mercedes-Benz,SLK300,Automatic 9-spd,32,24,27,2,Rear-Wheel Drive,Premium
@@ -29325,9 +29212,7 @@
 2016,Mercedes-Benz,GLE350 d 4matic,Automatic 9-spd,29,23,25,3,4-Wheel Drive,Diesel
 2016,Mercedes-Benz,GL550 4matic,Automatic 7-spd,18,13,15,4.7,4-Wheel Drive,Premium
 2016,Mercedes-Benz,AMG GL63,Automatic 7-spd,17,13,14,5.5,4-Wheel Drive,Premium
-2016,Porsche,Cayenne S e-Hybrid,Automatic (AM8),24,21,22,3,All-Wheel Drive,Premium Gas or Electricity
 1987,Chevrolet,R10 Pickup 2WD,Manual 4-spd,15,12,13,5.7,Rear-Wheel Drive,Regular
-2016,Porsche,Panamera S E-Hybrid,Automatic (AM-S8),29,23,25,3,Rear-Wheel Drive,Premium and Electricity
 2016,BMW,228i Convertible,Automatic (S8),34,23,27,2,Rear-Wheel Drive,Premium
 2016,BMW,M235i xDrive,Automatic (S8),30,20,23,3,All-Wheel Drive,Premium
 2016,BMW,M235i xDrive Convertible,Automatic (S8),30,20,23,3,All-Wheel Drive,Premium
@@ -29408,8 +29293,6 @@
 2016,Mercedes-Benz,GL450 4matic,Automatic 7-spd,21,17,19,3,4-Wheel Drive,Premium
 2016,Porsche,Cayenne Diesel,Automatic (S8),28,21,24,3,All-Wheel Drive,Diesel
 2016,Volkswagen,Touareg,Automatic (S8),23,17,19,3.6,All-Wheel Drive,Regular
-2015,Tesla,Model S AWD - 90D,Automatic (A1),106,95,100,,All-Wheel Drive,Electricity
-2015,Tesla,Model S AWD - P90D,Automatic (A1),98,89,93,,All-Wheel Drive,Electricity
 2016,BMW,228i,Automatic (S8),35,23,27,2,Rear-Wheel Drive,Premium
 2016,BMW,M4 Convertible,Automatic (AM-S7),24,17,19,3,Rear-Wheel Drive,Premium
 1987,Chevrolet,R20 (C20) Pickup 2WD,Automatic 4-spd,17,12,14,5,Rear-Wheel Drive,Regular
@@ -29462,7 +29345,6 @@
 2016,Subaru,XV Crosstrek AWD,Manual 5-spd,30,23,26,2,All-Wheel Drive,Regular
 2016,Subaru,XV Crosstrek AWD,Automatic (AV-S6),33,26,29,2,All-Wheel Drive,Regular
 2016,Subaru,XV Crosstrek Hybrid AWD,Automatic (AV-S6),33,29,31,2,All-Wheel Drive,Regular
-2016,Volkswagen,e-Golf,Automatic (A1),105,126,116,,Front-Wheel Drive,Electricity
 2015,Roush Performance,Stage 3 Mustang,Automatic (S6),23,13,16,5,Rear-Wheel Drive,Premium
 2015,Roush Performance,Stage 3 Mustang,Manual 6-spd,23,13,16,5,Rear-Wheel Drive,Premium
 2016,Fiat,500,Automatic 6-spd,33,27,29,1.4,Front-Wheel Drive,Premium
@@ -29491,10 +29373,6 @@
 2016,Toyota,4Runner 4WD,Automatic (S5),21,17,18,4,Part-time 4-Wheel Drive,Regular
 2016,Toyota,4Runner 4WD,Automatic (S5),21,17,18,4,All-Wheel Drive,Regular
 1987,Dodge,Dakota Pickup 2WD,Automatic 3-spd,19,16,18,3.9,Rear-Wheel Drive,Regular
-2016,smart,fortwo electric drive convertible,Automatic (A1),93,122,107,,Rear-Wheel Drive,Electricity
-2016,smart,fortwo electric drive coupe,Automatic (A1),93,122,107,,Rear-Wheel Drive,Electricity
-2016,Cadillac,ELR,Automatic (variable gear ratios),33,31,32,1.4,Front-Wheel Drive,Premium Gas or Electricity
-2016,Chevrolet,Volt,Automatic (variable gear ratios),42,43,42,1.5,Front-Wheel Drive,Regular Gas or Electricity
 2016,Aston Martin,V8 Vantage,Manual 6-spd,19,13,15,4.7,Rear-Wheel Drive,Premium
 2016,Aston Martin,V8 Vantage S,Manual 6-spd,19,13,15,4.7,Rear-Wheel Drive,Premium
 2016,Aston Martin,Vantage GT,Manual 6-spd,19,13,15,4.7,Rear-Wheel Drive,Premium
@@ -29571,7 +29449,6 @@
 1987,Dodge,D100/D150 Pickup 2WD,Automatic 3-spd,15,11,13,5.2,Rear-Wheel Drive,Regular
 2016,Jeep,Wrangler Unlimited 4WD,Manual 6-spd,21,16,18,3.6,4-Wheel Drive,Regular
 2016,Toyota,Land Cruiser Wagon 4WD,Automatic (S8),18,13,15,5.7,4-Wheel Drive,Regular
-2016,Ford,C-MAX Energi Plug-in Hybrid,Automatic (variable gear ratios),36,40,38,2,Front-Wheel Drive,Regular Gas and Electricity
 2016,Lamborghini,Huracan,Automatic (AM-S7),21,14,17,5.2,All-Wheel Drive,Premium
 2016,smart,fortwo coupe,Automatic (AM6),39,33,35,0.9,Rear-Wheel Drive,Premium
 2016,smart,fortwo coupe,Manual 5-spd,39,31,34,0.9,Rear-Wheel Drive,Premium
@@ -29616,10 +29493,7 @@
 2016,Dodge,Charger,Automatic 8-spd,30,19,23,3.6,Rear-Wheel Drive,Regular
 2016,Dodge,Charger,Automatic 8-spd,30,19,23,3.6,Rear-Wheel Drive,Gasoline or E85
 2016,Mercedes-Benz,Metris (Passenger Van),Automatic 7-spd,23,20,22,2,Rear-Wheel Drive,Premium
-2016,Ford,Focus Electric,Automatic (A1),99,110,105,,Front-Wheel Drive,Electricity
-2016,Tesla,Model X AWD - 90D,Automatic (A1),94,90,92,,All-Wheel Drive,Electricity
 1987,Dodge,D100/D150 Pickup 2WD,Manual 4-spd,14,10,12,5.2,Rear-Wheel Drive,Regular
-2016,Tesla,Model X AWD - P90D,Automatic (A1),90,89,89,,All-Wheel Drive,Electricity
 2016,Ford,Focus FWD,Manual 6-spd,41,30,34,1,Front-Wheel Drive,Regular
 2016,Ford,Focus FWD FFV,Automatic (AM6),39,27,31,2,Front-Wheel Drive,Gasoline or E85
 2016,Ford,Focus FWD FFV,Automatic (AM-S6),37,26,30,2,Front-Wheel Drive,Gasoline or E85
@@ -29636,9 +29510,6 @@
 2016,Mercedes-Benz,GLA250 4matic,Automatic (AM7),31,24,27,2,4-Wheel Drive,Premium or E85
 2016,Volvo,XC90 FWD,Automatic (S8),26,22,24,2,Front-Wheel Drive,Premium
 2016,Volvo,XC90 AWD,Automatic (S8),25,22,23,2,All-Wheel Drive,Premium
-2016,Chevrolet,Spark EV,Automatic (A1),109,128,119,,Front-Wheel Drive,Electricity
-2016,Mercedes-Benz,B250e,Automatic (A1),82,85,84,,Front-Wheel Drive,Electricity
-2016,Hyundai,Sonata Plug-in Hybrid,Automatic (AM6),41,38,40,2,Front-Wheel Drive,Regular Gas and Electricity
 2016,Jaguar,XF AWD,Automatic (S8),28,20,23,3,All-Wheel Drive,Premium
 1985,Chevrolet,Sprint,Manual 5-spd,47,39,42,1,Front-Wheel Drive,Regular
 1985,Pontiac,Sunbird,Manual 5-spd,32,23,26,1.8,Front-Wheel Drive,Regular
@@ -29715,9 +29586,6 @@
 2016,Lexus,NX 200t AWD F Sport,Automatic (S6),27,22,24,2,All-Wheel Drive,Premium
 2016,Mercedes-Benz,GLA250 4matic,Automatic (AM7),31,24,27,2,4-Wheel Drive,Premium
 2016,Lexus,LX 570,Automatic (S8),18,13,15,5.7,4-Wheel Drive,Premium
-2016,Nissan,Leaf (24 kW-hr battery pack),Automatic (A1),101,126,114,,Front-Wheel Drive,Electricity
-2016,Nissan,Leaf (30 kW-hr battery pack),Automatic (A1),101,124,112,,Front-Wheel Drive,Electricity
-2016,BMW,X5 xDrive40e,Automatic (S8),25,23,24,2,All-Wheel Drive,Premium and Electricity
 2016,Ferrari,488 GTB,Automatic (AM7),22,15,18,3.9,Rear-Wheel Drive,Premium
 1987,Dodge,D250 Pickup 2WD,Manual 4-spd,14,11,12,5.2,Rear-Wheel Drive,Regular
 2016,Ferrari,488 GTB,Automatic (AM7),22,16,18,3.9,Rear-Wheel Drive,Premium
@@ -29784,10 +29652,7 @@
 2016,Toyota,Highlander AWD,Automatic (S6),24,18,20,3.5,All-Wheel Drive,Regular
 2016,Toyota,Highlander Hybrid AWD,Automatic (AV-S6),28,27,28,3.5,All-Wheel Drive,Regular
 2016,Toyota,Highlander Hybrid AWD LE Plus,Automatic (AV-S6),28,28,28,3.5,All-Wheel Drive,Regular
-2016,Audi,A3 e-tron,Automatic (AM-S6),37,33,35,1.4,Front-Wheel Drive,Premium and Electricity
 1987,Ford,F150 Pickup 2WD,Manual 4-spd,17,15,16,4.9,Rear-Wheel Drive,Regular
-2016,Audi,A3 e-tron ultra,Automatic (AM-S6),41,37,39,1.4,Front-Wheel Drive,Premium and Electricity
-2016,Cadillac,ELR Sport,Automatic (variable gear ratios),33,28,30,1.4,Front-Wheel Drive,Premium Gas or Electricity
 2016,Lexus,RC 200t,Automatic (S8),32,22,26,2,Rear-Wheel Drive,Premium
 2016,Lexus,RC 300 AWD,Automatic (S6),26,19,21,3.5,All-Wheel Drive,Premium
 2016,Lexus,RC 350,Automatic (S8),28,19,22,3.5,Rear-Wheel Drive,Premium
@@ -29814,13 +29679,11 @@
 2016,Nissan,Pathfinder 2WD,Automatic (variable gear ratios),27,20,23,3.5,Front-Wheel Drive,Regular
 2016,Nissan,Pathfinder 4WD,Automatic (variable gear ratios),26,19,22,3.5,4-Wheel Drive,Regular
 2016,Nissan,Pathfinder 4WD Platinum,Automatic (variable gear ratios),26,19,21,3.5,4-Wheel Drive,Regular
-2016,Fiat,500e,Automatic (A1),103,121,112,,Front-Wheel Drive,Electricity
 2016,Toyota,Sienna 2WD,Automatic (S6),25,18,21,3.5,Front-Wheel Drive,Regular
 2016,Toyota,Sienna AWD,Automatic (S6),23,16,19,3.5,All-Wheel Drive,Regular
 2016,Mercedes-Benz,GLC300,Automatic 9-spd,28,22,24,2,Front-Wheel Drive,Premium
 1987,Ford,F150 Pickup 2WD,Manual 4-spd,18,14,15,5,Rear-Wheel Drive,Regular
 2016,Mercedes-Benz,GLC300 4matic,Automatic 9-spd,28,21,24,2,4-Wheel Drive,Premium
-2016,Mercedes-Benz,S550e,Automatic 7-spd,30,24,26,3,Rear-Wheel Drive,Premium and Electricity
 2016,Ferrari,F12 tdf,Automatic (AM7),15,11,12,6.3,Rear-Wheel Drive,Premium
 2016,Toyota,Prius,Automatic (variable gear ratios),50,54,52,1.8,Front-Wheel Drive,Regular
 2016,Toyota,Prius Eco,Automatic (variable gear ratios),53,58,56,1.8,Front-Wheel Drive,Regular
@@ -29880,16 +29743,12 @@
 2016,Jeep,Grand Cherokee 4WD,Automatic 8-spd,28,21,24,3,4-Wheel Drive,Diesel
 2016,Jeep,Grand Cherokee 4WD,Automatic 8-spd,25,18,21,3.6,4-Wheel Drive,Regular
 2016,Jeep,Grand Cherokee 4WD,Automatic 8-spd,22,14,17,5.7,All-Wheel Drive,Midgrade
-2016,BMW,i3 BEV,Automatic (A1),111,137,124,,Rear-Wheel Drive,Electricity
 2017,Hyundai,Santa Fe Sport FWD,Automatic (S6),28,20,23,2,Front-Wheel Drive,Regular
 2017,Hyundai,Santa Fe Sport Ultimate FWD,Automatic (S6),27,20,23,2,Front-Wheel Drive,Regular
 2017,Hyundai,Santa Fe Sport AWD,Automatic (S6),26,19,22,2,All-Wheel Drive,Regular
 1987,Ford,F250 Pickup 2WD,Automatic 4-spd,17,12,14,5,Rear-Wheel Drive,Regular
 2017,Hyundai,Santa Fe Sport Ultimate AWD,Automatic (S6),24,19,21,2,All-Wheel Drive,Regular
 2017,Audi,Q7,Automatic (S8),25,19,21,3,All-Wheel Drive,Premium
-2016,BMW,i3 REX,Automatic (A1),37,41,39,0.6,Rear-Wheel Drive,Premium Gas or Electricity
-2016,BMW,i8,Automatic 6-spd,29,28,28,1.5,All-Wheel Drive,Premium and Electricity
-2016,Volvo,XC90 AWD PHEV,Automatic (S8),27,24,25,2,All-Wheel Drive,Premium and Electricity
 2017,Hyundai,Elantra SE,Automatic (S6),38,29,33,2,Front-Wheel Drive,Regular
 2017,Hyundai,Elantra,Automatic (S6),37,28,32,2,Front-Wheel Drive,Regular
 2017,Hyundai,Elantra,Manual 6-spd,36,26,29,2,Front-Wheel Drive,Regular
@@ -29898,17 +29757,8 @@
 1987,Ford,F250 Pickup 2WD,Manual 4-spd,14,12,13,5,Rear-Wheel Drive,Regular
 2017,Hyundai,Santa Fe AWD,Automatic (S6),24,18,20,3.3,All-Wheel Drive,Regular
 2017,Hyundai,Santa Fe Ultimate AWD,Automatic (S6),22,17,19,3.3,All-Wheel Drive,Regular
-2016,Tesla,Model S (70 kW-hr battery pack),Automatic (A1),90,88,89,,Rear-Wheel Drive,Electricity
-2016,Tesla,Model S (85 kW-hr battery pack),Automatic (A1),90,88,89,,Rear-Wheel Drive,Electricity
-2016,Tesla,Model S (90 kW-hr battery pack),Automatic (A1),90,88,89,,Rear-Wheel Drive,Electricity
-2015,Tesla,Model S (90 kW-hr battery pack),Automatic (A1),90,88,89,,Rear-Wheel Drive,Electricity
 2016,Nissan,NV200 NYC Taxi,Automatic (variable gear ratios),26,23,24,2,Front-Wheel Drive,Regular
-2016,Tesla,Model S AWD - 70D,Automatic (A1),102,101,101,,All-Wheel Drive,Electricity
-2016,Tesla,Model S AWD - 85D,Automatic (A1),106,95,100,,All-Wheel Drive,Electricity
 1987,Ford,F250 Pickup 2WD,Automatic 3-spd,13,11,12,5.8,Rear-Wheel Drive,Regular
-2016,Tesla,Model S AWD - 90D,Automatic (A1),107,101,103,,All-Wheel Drive,Electricity
-2016,Tesla,Model S AWD - P85D,Automatic (A1),98,89,93,,All-Wheel Drive,Electricity
-2016,Tesla,Model S AWD - P90D,Automatic (A1),100,91,95,,All-Wheel Drive,Electricity
 2017,Hyundai,Santa Fe Sport FWD,Automatic (S6),27,21,24,2.4,Front-Wheel Drive,Regular
 2017,Hyundai,Santa Fe Sport AWD,Automatic (S6),26,20,22,2.4,All-Wheel Drive,Regular
 2016,MINI,Cooper Convertible,Automatic (S6),36,27,30,1.5,Front-Wheel Drive,Premium
@@ -29959,12 +29809,10 @@
 2016,Honda,Civic 2Dr,Automatic (variable gear ratios),39,30,34,2,Front-Wheel Drive,Regular
 2016,Rolls-Royce,Dawn,Automatic (S8),19,12,15,6.6,Rear-Wheel Drive,Premium
 2016,Cadillac,CT6 AWD,Automatic (S8),27,18,21,3.6,All-Wheel Drive,Regular
-2016,BMW,330e,Automatic (S8),36,28,31,2,Rear-Wheel Drive,Premium and Electricity
 1987,GMC,R15 Pickup 2WD,Automatic 3-spd,17,15,16,4.3,Rear-Wheel Drive,Regular
 2017,Mitsubishi,Mirage,Manual 5-spd,41,33,36,1.2,Front-Wheel Drive,Regular
 2017,Mitsubishi,Mirage,Automatic (variable gear ratios),43,37,39,1.2,Front-Wheel Drive,Regular
 2017,Chrysler,Pacifica,Automatic 9-spd,28,18,22,3.6,Front-Wheel Drive,Regular
-2017,Mitsubishi,i-MiEV,Automatic (A1),102,121,112,,Rear-Wheel Drive,Electricity
 2016,Ferrari,F60 America,Automatic (AM7),15,11,13,6.3,Rear-Wheel Drive,Premium
 2016,Ferrari,F60 America,Automatic (AM7),15,12,13,6.3,Rear-Wheel Drive,Premium
 2016,Audi,S8,Automatic (S8),25,15,18,4,All-Wheel Drive,Premium
@@ -29982,7 +29830,6 @@
 2017,BMW,740i xDrive,Automatic (S8),28,19,22,3,All-Wheel Drive,Premium
 2017,Acura,RDX FWD,Automatic (S6),28,20,23,3.5,Front-Wheel Drive,Premium
 2017,Acura,RDX AWD,Automatic (S6),27,19,22,3.5,All-Wheel Drive,Premium
-2017,Chevrolet,Volt,Automatic (variable gear ratios),42,43,42,1.5,Front-Wheel Drive,Regular Gas or Electricity
 1987,GMC,R15 Pickup 2WD,Manual 3-spd,19,15,17,4.3,Rear-Wheel Drive,Regular
 2016,Lamborghini,Huracan Spyder,Automatic (AM-S7),20,14,16,5.2,All-Wheel Drive,Premium
 2017,Jaguar,F-Type R AWD Coupe,Automatic (S8),23,15,18,5,All-Wheel Drive,Premium
@@ -30106,9 +29953,6 @@
 2016,Infiniti,Q50,Automatic (S7),28,19,23,3,Rear-Wheel Drive,Premium
 1987,GMC,R25 Pickup 2WD,Automatic 3-spd,15,14,14,4.3,Rear-Wheel Drive,Regular
 2016,Infiniti,Q50 AWD,Automatic (S7),27,19,22,3,All-Wheel Drive,Premium
-2016,Tesla,Model S (75 kW-hr battery pack),Automatic (A1),100,97,98,,Rear-Wheel Drive,Electricity
-2016,Tesla,Model S AWD - 75D,Automatic (A1),105,102,103,,All-Wheel Drive,Electricity
-2016,Tesla,Model X AWD - 75D,Automatic (A1),95,91,93,,All-Wheel Drive,Electricity
 2017,Porsche,911 Turbo,Automatic (AM-S7),24,19,21,3.8,All-Wheel Drive,Premium
 2017,Porsche,911 Turbo Cabriolet,Automatic (AM-S7),24,19,21,3.8,All-Wheel Drive,Premium
 2017,Porsche,911 Turbo S,Automatic (AM-S7),24,19,21,3.8,All-Wheel Drive,Premium
@@ -30160,7 +30004,6 @@
 2016,Infiniti,Q50S,Automatic (S7),28,19,23,3,Rear-Wheel Drive,Premium
 2016,Infiniti,Q50S AWD,Automatic (S7),26,18,21,3,All-Wheel Drive,Premium
 1987,GMC,R25 Pickup 2WD,Manual 4-spd,17,14,15,5,Rear-Wheel Drive,Regular
-2017,Ford,Fusion Energi Plug-in Hybrid,Automatic (variable gear ratios),41,43,42,2,Front-Wheel Drive,Regular Gas and Electricity
 2017,Lamborghini,Huracan,Automatic (AM-S7),21,14,17,5.2,All-Wheel Drive,Premium
 2017,Lamborghini,Huracan 2WD,Automatic (AM-S7),21,14,17,5.2,Rear-Wheel Drive,Premium
 2017,Lamborghini,Huracan Spyder,Automatic (AM-S7),20,14,16,5.2,All-Wheel Drive,Premium
@@ -30221,7 +30064,6 @@
 2016,Mazda,CX-9 2WD,Automatic (S6),28,22,24,2.5,Front-Wheel Drive,Regular
 2016,Land Rover,Range Rover Evoque Convertible,Automatic (S9),28,20,23,2,4-Wheel Drive,Premium
 2016,Mazda,CX-9 4WD,Automatic (S6),26,21,23,2.5,4-Wheel Drive,Regular
-2016,Mercedes-Benz,GLE550e 4matic,Automatic 7-spd,23,20,21,3,4-Wheel Drive,Premium and Electricity
 2017,Fiat,124 Spider,Automatic 6-spd,36,25,29,1.4,Rear-Wheel Drive,Premium
 2017,Fiat,124 Spider,Manual 6-spd,35,26,30,1.4,Rear-Wheel Drive,Premium
 2017,Toyota,86,Automatic (S6),32,24,27,2,Rear-Wheel Drive,Premium
@@ -30418,7 +30260,6 @@
 2017,Maserati,Levante,Automatic 8-spd,20,14,16,3,All-Wheel Drive,Premium
 2017,Porsche,Cayenne,Automatic (S8),24,18,20,3.6,All-Wheel Drive,Premium
 2017,Porsche,Cayenne Platinum,Automatic (S8),23,17,19,3.6,All-Wheel Drive,Premium
-2017,Volvo,XC90 AWD PHEV,Automatic (S8),27,24,25,2,All-Wheel Drive,Premium and Electricity
 2017,Ferrari,488 GTB,Automatic (AM7),22,16,18,3.9,Rear-Wheel Drive,Premium
 2017,Ferrari,F12 Berlinetta,Automatic (AM7),16,12,13,6.3,Rear-Wheel Drive,Premium
 2017,Ferrari,F12 tdf,Automatic (AM7),15,11,13,6.3,Rear-Wheel Drive,Premium
@@ -30521,11 +30362,8 @@
 2017,BMW,X5 xDrive35i,Automatic (S8),24,18,20,3,All-Wheel Drive,Premium
 2017,BMW,X6 xDrive35i,Automatic (S8),24,18,20,3,All-Wheel Drive,Premium
 2017,Volkswagen,Touareg,Automatic (S8),23,17,19,3.6,All-Wheel Drive,Regular
-2017,Fiat,500e,Automatic (A1),103,121,112,,Front-Wheel Drive,Electricity
-2017,Porsche,Cayenne S e-Hybrid,Automatic (AM8),24,21,22,3,All-Wheel Drive,Premium Gas or Electricity
 1985,Renault,Alliance/Encore,Manual 5-spd,33,25,28,1.7,Front-Wheel Drive,Regular
 1987,Chevrolet,V20 Pickup 4WD,Automatic 4-spd,19,15,16,6.2,4-Wheel or All-Wheel Drive,Diesel
-2016,BYD,e6,Automatic (A1),71,73,72,,Front-Wheel Drive,Electricity
 2017,Dodge,Viper,Manual 6-spd,19,12,14,8.4,Rear-Wheel Drive,Premium
 2017,Ferrari,F12 Berlinetta,Automatic (AM7),16,12,13,6.3,Rear-Wheel Drive,Premium
 2017,Mercedes-Benz,SLC300,Automatic 9-spd,32,25,27,2,Rear-Wheel Drive,Premium
@@ -30748,9 +30586,6 @@
 1985,Ferrari,Mondial,Manual 5-spd,15,9,11,2.9,Rear-Wheel Drive,Regular
 1985,Saab,900,Automatic 3-spd,19,16,17,2,Front-Wheel Drive,Regular
 1987,Ford,F150 Pickup 4WD,Automatic 3-spd,13,13,13,4.9,4-Wheel or All-Wheel Drive,Regular
-2017,BMW,i3 BEV (60  Amp-hour battery),Automatic (A1),111,137,124,,Rear-Wheel Drive,Electricity
-2017,BMW,i3 BEV (94 Amp-hour battery),Automatic (A1),106,129,118,,Rear-Wheel Drive,Electricity
-2017,Mercedes-Benz,B250e,Automatic (A1),82,85,84,,Front-Wheel Drive,Electricity
 2016,Ferrari,488 Spider,Automatic (AM7),22,15,18,3.9,Rear-Wheel Drive,Premium
 2016,Ferrari,488 Spider,Automatic (AM7),22,16,18,3.9,Rear-Wheel Drive,Premium
 2017,Audi,TT Roadster quattro,Automatic (AM-S6),30,23,26,2,All-Wheel Drive,Regular
@@ -30797,8 +30632,6 @@
 2017,Audi,A4 allroad quattro,Automatic (AM-S7),28,23,25,2,All-Wheel Drive,Premium
 2017,Subaru,Crosstrek AWD,Manual 5-spd,30,23,26,2,All-Wheel Drive,Regular
 2017,Subaru,Crosstrek AWD,Automatic (AV-S6),33,26,29,2,All-Wheel Drive,Regular
-2017,BMW,740e xDrive,Automatic (S8),29,25,27,2,All-Wheel Drive,Premium and Electricity
-2017,Hyundai,Sonata Plug-in Hybrid,Automatic (AM6),40,38,39,2,Front-Wheel Drive,Regular Gas and Electricity
 2017,Ferrari,LaFerrari Aperta,Automatic (AM7),15,12,13,6.3,Part-time 4-Wheel Drive,Premium
 2017,Mercedes-Benz,AMG SL65,Automatic 7-spd,22,13,16,6,Rear-Wheel Drive,Premium
 2017,MINI,Cooper S Convertible,Automatic (S6),33,25,28,2,Front-Wheel Drive,Premium
@@ -30837,7 +30670,6 @@
 2017,Nissan,Armada 4WD,Automatic (S7),18,13,15,5.6,4-Wheel Drive,Regular
 1987,Ford,F150 Pickup 4WD,Automatic 3-spd,12,10,11,5.8,4-Wheel or All-Wheel Drive,Regular
 2017,Toyota,Land Cruiser Wagon 4WD,Automatic (S8),18,13,15,5.7,4-Wheel Drive,Regular
-2017,BMW,330e,Automatic (S8),34,28,30,2,Rear-Wheel Drive,Premium and Electricity
 2017,Lotus,Evora,Manual 6-spd,24,16,19,3.5,Rear-Wheel Drive,Premium
 2017,Lotus,Evora,Automatic (S6),24,17,20,3.5,Rear-Wheel Drive,Premium
 2017,Buick,Cascada,Automatic (S6),27,20,23,1.6,Rear-Wheel Drive,Premium
@@ -30933,13 +30765,7 @@
 2017,Nissan,Pathfinder 4WD,Automatic (variable gear ratios),26,19,22,3.5,4-Wheel Drive,Regular
 2017,Nissan,Pathfinder 4WD Platinum,Automatic (variable gear ratios),26,19,21,3.5,4-Wheel Drive,Regular
 2017,Lexus,RX 450h AWD,Automatic (AV-S6),28,31,30,3.5,All-Wheel Drive,Premium
-2017,Kia,Soul Electric,Automatic (A1),92,120,105,,Front-Wheel Drive,Electricity
-2017,BMW,X5 xDrive40e,Automatic (S8),25,23,24,2,All-Wheel Drive,Premium and Electricity
 1987,GMC,T15 (S15) Pickup 4WD,Automatic 4-spd,20,14,16,2.8,4-Wheel or All-Wheel Drive,Regular
-2016,Tesla,Model S (60 kW-hr battery pack),Automatic (A1),101,98,99,,Rear-Wheel Drive,Electricity
-2016,Tesla,Model S AWD - 60D,Automatic (A1),107,101,104,,All-Wheel Drive,Electricity
-2016,Tesla,Model S AWD - P100D,Automatic (A1),105,92,98,,All-Wheel Drive,Electricity
-2016,Tesla,Model X AWD - 60D,Automatic (A1),94,91,93,,All-Wheel Drive,Electricity
 2017,Mazda,MX-5,Manual 6-spd,33,26,29,2,Rear-Wheel Drive,Premium
 2017,Mazda,MX-5,Automatic (S6),35,26,29,2,Rear-Wheel Drive,Premium
 2017,Audi,A3 Cabriolet quattro,Automatic (AM-S6),30,22,25,2,All-Wheel Drive,Regular
@@ -30954,7 +30780,6 @@
 2017,Jeep,Renegade 4WD,Manual 6-spd,31,24,26,1.4,All-Wheel Drive,Premium
 2017,Chevrolet,Silverado C15 2WD,Automatic 8-spd,22,16,18,5.3,Rear-Wheel Drive,Regular
 2017,GMC,Sierra C15 2WD,Automatic 8-spd,22,16,18,5.3,Rear-Wheel Drive,Regular
-2017,Chevrolet,Bolt EV,Automatic (A1),110,128,119,,Front-Wheel Drive,Electricity
 2017,Lexus,RC 300 AWD,Automatic (S6),26,19,21,3.5,All-Wheel Drive,Premium
 2017,Lexus,RC 350,Automatic (S8),28,19,22,3.5,Rear-Wheel Drive,Premium
 1987,GMC,T15 (S15) Pickup 4WD,Manual 5-spd,21,15,17,2.8,4-Wheel or All-Wheel Drive,Regular
@@ -31000,10 +30825,7 @@
 2017,Infiniti,QX60 Hybrid FWD,Automatic (AV-S7),27,25,26,2.5,Front-Wheel Drive,Regular
 2017,Infiniti,QX80 4WD,Automatic (S7),19,13,15,5.6,4-Wheel Drive,Premium
 2017,Infiniti,QX60 Hybrid AWD,Automatic (AV-S7),27,25,26,2.5,All-Wheel Drive,Regular
-2017,Audi,A3 e-tron,Automatic (AM-S6),36,33,34,1.4,Front-Wheel Drive,Premium and Electricity
-2017,BMW,i3 REX  (94 Amp-hour battery),Automatic (A1),33,36,35,0.6,Rear-Wheel Drive,Premium Gas or Electricity
 1987,GMC,V15 Pickup 4WD,Automatic 3-spd,14,12,13,5,4-Wheel or All-Wheel Drive,Regular
-2017,BMW,i8,Automatic 6-spd,29,28,28,1.5,All-Wheel Drive,Premium and Electricity
 2017,Audi,A3,Automatic (AM-S7),35,26,29,2,Front-Wheel Drive,Regular
 2017,Audi,A3 Cabriolet,Automatic (AM-S7),34,25,28,2,Front-Wheel Drive,Regular
 2017,Chevrolet,Camaro,Manual 6-spd,20,14,16,6.2,Rear-Wheel Drive,Premium
@@ -31197,7 +31019,6 @@
 2017,Mercedes-Benz,AMG GLC43 4matic Coupe,Automatic 9-spd,24,18,20,3,4-Wheel Drive,Premium
 2017,Nissan,Rogue AWD,Automatic (variable gear ratios),32,25,27,2.5,All-Wheel Drive,Regular
 2017,Audi,Q7,Automatic (S8),25,20,22,2,All-Wheel Drive,Premium
-2017,Kia,Optima Plug-in Hybrid,Automatic (AM6),43,38,40,2,Front-Wheel Drive,Regular Gas and Electricity
 2017,Alfa Romeo,4C,Automatic (AM6),34,24,28,1.8,Rear-Wheel Drive,Premium
 2017,Lamborghini,Aventador Roadster LP740-4,Automatic (AM-S7),16,10,12,6.5,All-Wheel Drive,Premium
 2017,Lamborghini,Aventador Coupe LP740-4,Automatic (AM-S7),16,10,12,6.5,All-Wheel Drive,Premium
@@ -31221,11 +31042,9 @@
 2017,Toyota,Highlander Hybrid AWD,Automatic (AV-S6),27,29,28,3.5,All-Wheel Drive,Regular
 2017,Toyota,Highlander Hybrid AWD LE Plus,Automatic (AV-S6),28,30,29,3.5,All-Wheel Drive,Regular
 2017,Toyota,Highlander AWD LE,Automatic (S8),27,20,23,3.5,All-Wheel Drive,Regular
-2017,Nissan,Leaf,Automatic (A1),101,124,112,,Front-Wheel Drive,Electricity
 2017,BMW,328d,Automatic (S8),43,31,36,2,Rear-Wheel Drive,Diesel
 1987,Jeep,J-10 Pickup Truck 4WD,Automatic 3-spd,12,10,11,5.9,4-Wheel or All-Wheel Drive,Regular
 2017,MINI,John Cooper Works Clubman All4,Manual 6-spd,31,21,24,2,All-Wheel Drive,Premium
-2017,Hyundai,Ioniq Electric,Automatic (A1),122,150,136,,Front-Wheel Drive,Electricity
 2017,Porsche,911 Carrera GTS,Manual 7-spd,26,18,21,3,Rear-Wheel Drive,Premium
 2017,Porsche,911 Carrera GTS,Automatic (AM-S7),26,20,23,3,Rear-Wheel Drive,Premium
 2017,Porsche,911 Carrera GTS Cabriolet,Manual 7-spd,26,18,21,3,Rear-Wheel Drive,Premium
@@ -31255,9 +31074,7 @@
 2017,Land Rover,Range Rover LWB,Automatic (S8),19,14,16,5,4-Wheel Drive,Premium
 2017,Land Rover,Range Rover Sport,Automatic (S8),19,14,16,5,4-Wheel Drive,Premium
 2017,Mercedes-Benz,G550,Automatic 7-spd,14,13,13,4,4-Wheel Drive,Premium
-2017,Mercedes-Benz,GLE550e 4matic,Automatic 7-spd,23,20,21,3,4-Wheel Drive,Premium and Electricity
 1987,Mitsubishi,Truck 4WD,Manual 5-spd,21,17,18,2.6,4-Wheel or All-Wheel Drive,Regular
-2017,Mercedes-Benz,S550e,Automatic 7-spd,30,24,26,3,Rear-Wheel Drive,Premium and Electricity
 2017,smart,fortwo coupe,Automatic (AM6),39,33,35,0.9,Rear-Wheel Drive,Premium
 2017,smart,fortwo coupe,Manual 5-spd,39,31,34,0.9,Rear-Wheel Drive,Premium
 2017,BMW,230i Coupe,Automatic (S8),35,24,28,2,Rear-Wheel Drive,Premium
@@ -31291,7 +31108,6 @@
 2017,Mazda,CX-9 4WD,Automatic (S6),26,20,23,2.5,4-Wheel Drive,Regular
 1987,Toyota,Truck 4WD,Automatic 4-spd,20,18,19,2.4,4-Wheel or All-Wheel Drive,Regular
 2017,BMW,X5 xDrive 35d,Automatic (S8),29,23,25,3,All-Wheel Drive,Diesel
-2017,Chrysler,Pacifica Hybrid,Automatic (variable gear ratios),33,32,32,3.6,Front-Wheel Drive,Regular Gas and Electricity
 2016,Volkswagen,Beetle Dune Convertible,Automatic (S6),31,24,27,1.8,Front-Wheel Drive,Regular
 2017,Chrysler,300,Automatic 8-spd,30,19,23,3.6,Rear-Wheel Drive,Gasoline or E85
 2017,Dodge,Charger,Automatic 8-spd,30,19,23,3.6,Rear-Wheel Drive,Gasoline or E85
@@ -31299,16 +31115,12 @@
 2017,Kia,Niro Touring,Automatic (AM6),40,46,43,1.6,Front-Wheel Drive,Regular
 2017,Kia,Niro FE,Automatic (AM6),49,52,50,1.6,Front-Wheel Drive,Regular
 2017,Porsche,Macan Turbo Kit,Automatic (AM-S7),23,17,19,3.6,All-Wheel Drive,Premium
-2016,Mercedes-Benz,C350e,Automatic 7-spd,32,28,30,2,Rear-Wheel Drive,Premium and Electricity
 1985,Subaru,Sedan,Manual 4-spd,33,27,30,1.8,Front-Wheel Drive,Regular
 1987,Toyota,Truck 4WD,Manual 5-spd,20,16,18,2.4,4-Wheel or All-Wheel Drive,Regular
-2016,Tesla,Model X AWD - P100D,Automatic (A1),92,81,86,,All-Wheel Drive,Electricity
 2017,MINI,Cooper Countryman All4,Manual 6-spd,32,22,26,1.5,All-Wheel Drive,Premium
 2017,BMW,M760i xDrive,Automatic (S8),20,13,16,6.6,All-Wheel Drive,Premium
 2017,Land Rover,Range Rover,Automatic (S8),23,17,19,3,4-Wheel Drive,Premium
 2017,Land Rover,Range Rover Sport,Automatic (S8),23,17,19,3,4-Wheel Drive,Premium
-2017,Ford,Focus Electric,Automatic (A1),96,118,107,,Front-Wheel Drive,Electricity
-2017,Ford,C-MAX Energi Plug-In Hybrid,Automatic (variable gear ratios),38,41,39,2,Front-Wheel Drive,Regular Gas and Electricity
 2017,Ford,GT,Automatic (AM7),18,11,14,3.5,Rear-Wheel Drive,Premium
 2017,Toyota,Prius c,Automatic (variable gear ratios),43,48,46,1.5,Front-Wheel Drive,Regular
 2017,Honda,Odyssey,Automatic 6-spd,27,19,22,3.5,Front-Wheel Drive,Regular
@@ -31327,22 +31139,12 @@
 2017,Land Rover,Range Rover Sport,Automatic (S8),28,22,24,3,4-Wheel Drive,Diesel
 2017,Volkswagen,Golf Alltrack,Manual 6-spd,32,22,26,1.8,All-Wheel Drive,Regular
 2017,Volkswagen,Golf SportWagen 4motion,Manual 6-spd,32,22,26,1.8,All-Wheel Drive,Regular
-2017,Tesla,Model S AWD - 60D,Automatic (A1),107,101,104,,All-Wheel Drive,Electricity
-2017,Tesla,Model S AWD - 75D,Automatic (A1),105,102,103,,All-Wheel Drive,Electricity
-2017,Tesla,Model S AWD - P100D,Automatic (A1),105,92,98,,All-Wheel Drive,Electricity
-2017,Tesla,Model X AWD - 60D,Automatic (A1),94,91,93,,All-Wheel Drive,Electricity
-2017,Tesla,Model X AWD - 75D,Automatic (A1),95,91,93,,All-Wheel Drive,Electricity
-2017,Tesla,Model X AWD - 90D,Automatic (A1),94,90,92,,All-Wheel Drive,Electricity
-2017,Tesla,Model X AWD - P90D,Automatic (A1),90,89,89,,All-Wheel Drive,Electricity
 1987,Chevrolet,Astro 2WD (cargo),Manual 4-spd,23,18,20,2.5,Rear-Wheel Drive,Regular
-2017,Tesla,Model X AWD - P100D,Automatic (A1),92,81,86,,All-Wheel Drive,Electricity
-2017,Toyota,Prius Prime,Automatic (variable gear ratios),53,55,54,1.8,Front-Wheel Drive,Regular Gas and Electricity
 2017,Chevrolet,Camaro,Automatic (S10),20,12,15,6.2,Rear-Wheel Drive,Premium
 2017,Dodge,Challenger GT,Automatic 8-spd,27,18,21,3.6,All-Wheel Drive,Regular
 2017,Jeep,New Compass 4WD,Automatic 9-spd,30,22,25,2.4,All-Wheel Drive,Regular
 2017,Mercedes-Benz,AMG GLE43 4matic,Automatic 9-spd,23,17,20,3,4-Wheel Drive,Premium
 2017,Mercedes-Benz,G550 4x4 (Special Off-Road Model),Automatic 7-spd,11,11,11,4,4-Wheel Drive,Premium
-2017,Tesla,Model S AWD - P90D,Automatic (A1),100,92,95,,All-Wheel Drive,Electricity
 2017,Subaru,Impreza 4-Door,Manual 5-spd,32,24,27,2,All-Wheel Drive,Regular
 2017,Subaru,Impreza Sport 4-Door,Manual 5-spd,31,23,26,2,All-Wheel Drive,Regular
 1987,Chevrolet,Astro 2WD (cargo),Manual 5-spd,24,19,21,2.5,Rear-Wheel Drive,Regular
@@ -31355,7 +31157,6 @@
 2017,BMW,540i xDrive,Automatic (S8),29,20,23,3,All-Wheel Drive,Premium
 2017,Mitsubishi,Outlander Sport 2WD,Automatic (AV-S6),28,23,25,2.4,Front-Wheel Drive,Regular
 2017,Mitsubishi,Outlander Sport 4WD,Automatic (AV-S6),27,22,24,2.4,4-Wheel Drive,Regular
-2017,Volkswagen,e-Golf,Automatic (A1),111,126,119,,Front-Wheel Drive,Electricity
 1987,Chevrolet,Astro 2WD (cargo),Automatic 4-spd,20,15,17,4.3,Rear-Wheel Drive,Regular
 2017,Jeep,New Compass 2WD,Automatic 6-spd,31,22,25,2.4,Front-Wheel Drive,Regular
 2018,Chevrolet,Equinox FWD,Automatic 6-spd,32,26,28,1.5,Front-Wheel Drive,Regular
@@ -31364,8 +31165,6 @@
 2017,Chevrolet,Cruze,Manual 6-spd,52,30,37,1.6,Front-Wheel Drive,Diesel
 2017,MINI,Cooper S Countryman,Automatic (S8),32,23,27,2,Front-Wheel Drive,Premium
 2017,Nissan,NV200 NYC Taxi,Automatic (variable gear ratios),26,23,24,2,Front-Wheel Drive,Regular
-2017,Tesla,Model S (60 kW-hr battery pack),Automatic (A1),101,98,99,,Rear-Wheel Drive,Electricity
-2017,Tesla,Model S (75 kW-hr battery pack),Automatic (A1),100,97,98,,Rear-Wheel Drive,Electricity
 2017,MINI,Cooper Countryman,Automatic (S6),33,25,28,1.5,Front-Wheel Drive,Premium
 1987,Chevrolet,Astro 2WD (cargo),Manual 5-spd,22,15,18,4.3,Rear-Wheel Drive,Regular
 2017,MINI,Cooper Countryman,Manual 6-spd,33,24,28,1.5,Front-Wheel Drive,Premium
@@ -31377,7 +31176,6 @@
 2017,Mazda,CX-5 2WD,Automatic (S6),31,24,27,2.5,Front-Wheel Drive,Regular
 2017,Acura,MDX Hybrid AWD,Automatic (AM-S7),27,26,27,3,All-Wheel Drive,Premium
 2017,Mazda,CX-5 4WD,Automatic (S6),29,23,26,2.5,4-Wheel Drive,Regular
-2017,Tesla,Model S AWD - 90D,Automatic (A1),107,102,104,,All-Wheel Drive,Electricity
 1987,Chevrolet,G10/20 Van 2WD,Automatic 3-spd,17,15,15,4.3,Rear-Wheel Drive,Regular
 2018,Audi,A5 Cabriolet quattro,Automatic (AM-S7),34,24,27,2,All-Wheel Drive,Premium
 2018,Audi,A5 quattro,Manual 6-spd,33,24,27,2,All-Wheel Drive,Premium
@@ -31402,7 +31200,6 @@
 2017,Jeep,New Compass 2WD,Manual 6-spd,32,23,26,2.4,Front-Wheel Drive,Regular
 1987,Chevrolet,G10/20 Van 2WD,Manual 3-spd,19,15,17,4.3,Rear-Wheel Drive,Regular
 2017,Jeep,New Compass 4WD,Manual 6-spd,31,22,25,2.4,All-Wheel Drive,Regular
-2017,BYD,e6,Automatic (A1),71,73,72,,Front-Wheel Drive,Electricity
 2018,Bentley,Bentayga,Automatic (S8),19,12,15,6,All-Wheel Drive,Premium
 2017,Porsche,Panamera,Automatic (AM-S8),28,21,24,3,Rear-Wheel Drive,Premium
 2017,Porsche,Panamera 4,Automatic (AM-S8),27,21,23,3,4-Wheel Drive,Premium
@@ -31457,7 +31254,6 @@
 2018,BMW,X4 M40i,Automatic (S8),25,18,21,3,All-Wheel Drive,Premium
 2017,Chevrolet,Colorado ZR2 4WD,Automatic 8-spd,18,16,17,3.6,4-Wheel Drive,Regular
 1987,Chevrolet,G10/20 Van 2WD,Automatic 4-spd,17,12,14,5.7,Rear-Wheel Drive,Regular
-2017,Tesla,Model S AWD - 100D,Automatic (A1),102,101,102,,All-Wheel Drive,Electricity
 2018,Subaru,WRX,Manual 6-spd,22,17,19,2.5,All-Wheel Drive,Premium
 2018,MINI,JCW Countryman All4,Automatic (S8),30,22,25,2,All-Wheel Drive,Premium
 2018,MINI,JCW Countryman All4,Manual 6-spd,29,20,24,2,All-Wheel Drive,Premium
@@ -31468,7 +31264,6 @@
 2017,Nissan,Rogue Sport FWD,Automatic (AV-S7),32,25,28,2,Front-Wheel Drive,Regular
 2017,Nissan,Rogue Sport AWD,Automatic (AV-S7),30,24,27,2,All-Wheel Drive,Regular
 1987,Chevrolet,G10/20 Van 2WD,Automatic 4-spd,21,17,18,6.2,Rear-Wheel Drive,Diesel
-2017,Cadillac,CT6 Plug-In,Automatic (variable gear ratios),29,23,26,2,Rear-Wheel Drive,Premium and Electricity
 2018,Jaguar,F-Type Coupe,Automatic (S8),28,20,23,3,Rear-Wheel Drive,Premium
 2018,Jaguar,F-Type Convertible,Automatic (S8),28,20,23,3,Rear-Wheel Drive,Premium
 2018,Jaguar,F-Type S AWD Coupe,Automatic (S8),26,18,21,3,All-Wheel Drive,Premium
@@ -31583,8 +31378,6 @@
 2018,Kia,Sorento AWD,Automatic (S6),23,17,19,3.3,All-Wheel Drive,Regular
 2018,Maserati,Levante S,Automatic 8-spd,19,14,16,3,All-Wheel Drive,Premium
 2018,Maserati,Levante,Automatic 8-spd,20,14,16,3,All-Wheel Drive,Premium
-2018,BMW,530e,Automatic (S8),31,27,29,2,Rear-Wheel Drive,Premium and Electricity
-2018,BMW,530e xDrive,Automatic (S8),31,27,28,2,All-Wheel Drive,Premium and Electricity
 2018,Acura,TLX FWD,Automatic (AM-S8),33,23,27,2.4,Front-Wheel Drive,Premium
 2018,Acura,TLX FWD,Automatic (S9),32,20,24,3.5,Front-Wheel Drive,Premium
 2018,Acura,TLX FWD A-SPEC,Automatic (S9),30,20,23,3.5,Front-Wheel Drive,Premium
@@ -31601,7 +31394,6 @@
 2018,Mercedes-Benz,GLA250 4matic,Automatic (AM7),31,23,26,2,4-Wheel Drive,Premium or E85
 2018,Mercedes-Benz,GLA250 4matic,Automatic (AM7),31,23,26,2,Part-time 4-Wheel Drive,Premium
 1987,Dodge,B150/B250 Van 2WD,Manual 4-spd,16,11,13,5.2,Rear-Wheel Drive,Regular
-2018,BMW,740e xDrive,Automatic (S8),29,25,27,2,All-Wheel Drive,Premium and Electricity
 2017,Honda,Civic Si 2Dr,Manual 6-spd,38,28,32,1.5,Front-Wheel Drive,Premium
 2017,Honda,Civic Si 4Dr,Manual 6-spd,38,28,32,1.5,Front-Wheel Drive,Premium
 2018,Audi,RS 3,Automatic (AM-S7),28,19,22,2.5,All-Wheel Drive,Premium
@@ -31704,7 +31496,6 @@
 2018,Ford,Flex AWD,Automatic (S6),22,16,18,3.5,All-Wheel Drive,Regular
 2018,Ford,Flex AWD,Automatic (S6),21,15,17,3.5,All-Wheel Drive,Regular
 2018,Lincoln,MKT AWD,Automatic (S6),21,15,17,3.5,All-Wheel Drive,Regular
-2018,MINI,Cooper SE Countryman All4,Automatic (S6),27,28,27,1.5,All-Wheel Drive,Premium and Electricity
 2018,Jaguar,XE,Automatic (S8),42,32,36,2,Rear-Wheel Drive,Diesel
 2018,Jaguar,XE AWD,Automatic (S8),40,30,34,2,All-Wheel Drive,Diesel
 2018,Mazda,3 4-Door,Manual 6-spd,38,28,31,2,Front-Wheel Drive,Regular
@@ -31821,7 +31612,6 @@
 2017,Audi,RS 3,Automatic (AM-S7),28,19,22,2.5,All-Wheel Drive,Premium
 2017,Bentley,Continental Supersports Convertible,Automatic (S8),19,11,13,6,All-Wheel Drive,Premium
 2017,Bentley,Continental Supersports,Automatic (S8),20,11,14,6,All-Wheel Drive,Premium
-2017,Mercedes-Benz,C350e,Automatic 7-spd,32,28,30,2,Rear-Wheel Drive,Premium and Electricity
 1987,GMC,G15/25 Vandura 2WD,Automatic 3-spd,17,15,15,4.3,Rear-Wheel Drive,Regular
 2018,Jaguar,F-Type R AWD Convertible,Automatic (S8),23,15,18,5,All-Wheel Drive,Premium
 2018,Mercedes-Benz,SLC300,Automatic 9-spd,32,25,27,2,Rear-Wheel Drive,Premium
@@ -32068,9 +31858,6 @@
 2018,Jeep,Grand Cherokee SRT 4WD,Automatic 8-spd,19,13,15,6.4,All-Wheel Drive,Premium
 2018,Nissan,Armada 4WD,Automatic (S7),18,13,15,5.6,4-Wheel Drive,Regular
 1987,Chevrolet,Astro 2WD (passenger),Manual 5-spd,21,15,17,4.3,Rear-Wheel Drive,Regular
-2018,Chevrolet,Volt,Automatic (variable gear ratios),42,43,42,1.5,Front-Wheel Drive,Regular Gas or Electricity
-2017,Honda,Clarity EV,Automatic (A1),103,126,114,,Front-Wheel Drive,Electricity
-2017,smart,fortwo electric drive coupe,Automatic (A1),94,124,108,,Rear-Wheel Drive,Electricity
 2018,Porsche,911 Carrera,Manual 7-spd,29,20,23,3,Rear-Wheel Drive,Premium
 2018,Porsche,911 Carrera,Automatic (AM-S7),30,22,25,3,Rear-Wheel Drive,Premium
 2018,Porsche,911 Carrera Cabriolet,Manual 7-spd,29,20,23,3,Rear-Wheel Drive,Premium
@@ -32214,7 +32001,6 @@
 1987,Dodge,B150/B250 Wagon 2WD,Automatic 3-spd,13,11,12,5.2,Rear-Wheel Drive,Regular
 2018,Toyota,Sequoia 4WD FFV,Automatic (S6),17,13,14,5.7,Part-time 4-Wheel Drive,Gasoline or E85
 2018,Toyota,Sequoia 4WD,Automatic (S6),17,13,14,5.7,Part-time 4-Wheel Drive,Regular
-2018,Kia,Soul Electric,Automatic (A1),93,124,108,,Front-Wheel Drive,Electricity
 2018,Mercedes-Benz,AMG C63 S Convertible,Automatic 7-spd,22,17,19,4,Rear-Wheel Drive,Premium
 2018,Mercedes-Benz,AMG C63 Convertible,Automatic 7-spd,22,17,19,4,Rear-Wheel Drive,Premium
 2018,Mercedes-Benz,AMG C63 S Coupe,Automatic 7-spd,23,17,19,4,Rear-Wheel Drive,Premium
@@ -32279,9 +32065,6 @@
 2018,Toyota,Land Cruiser Wagon 4WD,Automatic (S8),18,13,15,5.7,4-Wheel Drive,Regular
 1987,Dodge,B350 Wagon 2WD,Automatic 3-spd,13,11,12,5.2,Rear-Wheel Drive,Regular
 2018,Toyota,4Runner 4WD,Automatic (S5),20,17,18,4,All-Wheel Drive,Regular
-2018,Volvo,S90 AWD PHEV,Automatic (S8),33,26,29,2,All-Wheel Drive,Premium and Electricity
-2018,Volvo,XC60 AWD PHEV,Automatic (S8),28,26,26,2,All-Wheel Drive,Premium and Electricity
-2018,Volvo,XC90 AWD PHEV,Automatic (S8),30,26,27,2,All-Wheel Drive,Premium and Electricity
 2017,Ram,1500 2WD,Automatic 8-spd,27,20,23,3,Rear-Wheel Drive,Diesel
 2017,Ram,1500 4WD,Automatic 8-spd,27,19,22,3,4-Wheel Drive,Diesel
 2018,Mercedes-Benz,SL550,Automatic 9-spd,25,17,20,4.7,Rear-Wheel Drive,Premium
@@ -32308,9 +32091,6 @@
 2018,GMC,Sierra K15 4WD,Automatic 6-spd,22,16,18,5.3,4-Wheel Drive,Gasoline or E85
 2018,Chevrolet,Traverse FWD,Automatic 9-spd,26,20,22,2,Front-Wheel Drive,Premium
 2018,Lexus,GX 460,Automatic (S6),18,15,16,4.6,4-Wheel Drive,Premium
-2018,BMW,330e,Automatic (S8),34,28,30,2,Rear-Wheel Drive,Premium and Electricity
-2018,Ford,Fusion Energi Plug-in Hybrid,Automatic (variable gear ratios),41,43,42,2,Front-Wheel Drive,Regular Gas and Electricity
-2018,Karma,Revero,Automatic (A1),21,20,20,2,Rear-Wheel Drive,Premium Gas or Electricity
 1987,Ford,Aerostar Wagon,Manual 5-spd,24,19,21,2.3,Rear-Wheel Drive,Regular
 2018,Mercedes-Benz,AMG GT R Coupe,Automatic (AM-S7),20,15,17,4,Rear-Wheel Drive,Premium
 2018,Mercedes-Benz,SL450,Automatic 9-spd,28,20,23,3,Rear-Wheel Drive,Premium
@@ -32392,7 +32172,6 @@
 2018,BMW,X6 xDrive35i,Automatic (S8),24,18,20,3,All-Wheel Drive,Premium
 2018,BMW,X6 M,Automatic (S8),19,14,16,4.4,All-Wheel Drive,Premium
 2018,Buick,Enclave AWD,Automatic 9-spd,25,17,20,3.6,All-Wheel Drive,Regular
-2018,Chrysler,Pacifica Hybrid,Automatic (variable gear ratios),33,32,32,3.6,Front-Wheel Drive,Regular Gas and Electricity
 2018,Fiat,124 Spider,Automatic 6-spd,36,25,29,1.4,Rear-Wheel Drive,Premium
 2018,Fiat,124 Spider,Manual 6-spd,35,26,30,1.4,Rear-Wheel Drive,Premium
 2018,Mercedes-Benz,AMG GT C Coupe,Automatic (AM7),20,15,17,4,Rear-Wheel Drive,Premium
@@ -32440,7 +32219,6 @@
 2018,Jeep,Grand Cherokee TrackHawk 4WD,Automatic 8-spd,17,11,13,6.2,All-Wheel Drive,Premium
 2018,Porsche,Cayenne,Automatic (S8),24,18,20,3.6,All-Wheel Drive,Premium
 2018,Porsche,Cayenne Platinum,Automatic (S8),23,17,19,3.6,All-Wheel Drive,Premium
-2018,BMW,X5 xDrive40e,Automatic (S8),25,23,24,2,All-Wheel Drive,Premium and Electricity
 2017,Aston Martin,DB11 V12,Automatic (S8),21,15,17,5.2,Rear-Wheel Drive,Premium
 2018,Audi,R8 AWD,Automatic (AM-S7),22,14,17,5.2,All-Wheel Drive,Premium
 2018,Audi,R8 Spyder AWD,Automatic (AM-S7),22,14,17,5.2,All-Wheel Drive,Premium
@@ -32509,7 +32287,6 @@
 2018,Lexus,NX 300h AWD,Automatic (AV-S6),30,33,31,2.5,All-Wheel Drive,Regular
 2018,Lexus,NX 300 AWD,Automatic (S6),28,22,24,2,All-Wheel Drive,Premium
 2018,Lexus,NX 300 AWD F Sport,Automatic (S6),27,22,24,2,All-Wheel Drive,Premium
-2018,Audi,A3 e-tron,Automatic (AM-S6),39,34,36,1.4,Front-Wheel Drive,Premium and Electricity
 1987,GMC,Safari 2WD (passenger),Manual 5-spd,21,15,17,4.3,Rear-Wheel Drive,Regular
 2018,Bentley,Continental GT Convertible,Automatic (S8),20,12,14,6,All-Wheel Drive,Premium
 2018,Bentley,Continental Supersports Convertible,Automatic (S8),20,12,14,6,All-Wheel Drive,Premium
@@ -32526,7 +32303,6 @@
 2018,Ford,F150 Pickup 4WD FFV,Automatic (S10),22,16,18,5,Part-time 4-Wheel Drive,Gasoline or E85
 2018,Ford,F150 5.0L 4WD FFV GVWR>7599 LBS,Automatic (S10),19,15,17,5,Part-time 4-Wheel Drive,Gasoline or E85
 2018,Ford,F150 4WD FFV BASE PAYLOAD LT,Automatic (S10),20,16,17,5,Part-time 4-Wheel Drive,Gasoline or E85
-2017,smart,fortwo electric drive convertible,Automatic (A1),91,112,102,,Rear-Wheel Drive,Electricity
 2018,Ford,Focus FWD,Automatic (AM6),38,26,31,2,Front-Wheel Drive,Regular
 2018,Ford,Focus FWD,Automatic (AM-S6),34,24,28,2,Front-Wheel Drive,Regular
 2018,Ford,Focus FWD,Manual 5-spd,34,25,28,2,Front-Wheel Drive,Regular
@@ -32567,8 +32343,6 @@
 2018,Ford,Expedition MAX 4WD,Automatic (S10),21,16,18,3.5,Part-time 4-Wheel Drive,Regular
 2018,Lincoln,Navigator 4WD,Automatic (S10),21,16,18,3.5,Part-time 4-Wheel Drive,Regular
 1987,Toyota,Van 4WD,Manual 5-spd,20,18,19,2.2,4-Wheel or All-Wheel Drive,Regular
-2018,Ford,Focus Electric,Automatic (A1),96,118,107,,Front-Wheel Drive,Electricity
-2018,Hyundai,Ioniq Electric,Automatic (A1),122,150,136,,Front-Wheel Drive,Electricity
 2018,Ford,Mustang,Manual 6-spd,31,21,25,2.3,Rear-Wheel Drive,Regular
 2018,Ford,Mustang Performance Package,Manual 6-spd,28,20,23,2.3,Rear-Wheel Drive,Regular
 2018,Ford,Mustang Convertible,Manual 6-spd,28,20,23,2.3,Rear-Wheel Drive,Regular
@@ -32680,7 +32454,6 @@
 1987,Chevrolet,S10 Blazer 2WD,Manual 5-spd,24,19,21,2.5,Rear-Wheel Drive,Regular
 2018,Toyota,Highlander AWD,Automatic (S8),26,20,22,3.5,All-Wheel Drive,Regular
 2018,Toyota,Highlander AWD LE,Automatic (S8),27,20,23,3.5,All-Wheel Drive,Regular
-2018,Mercedes-Benz,GLE550e 4matic,Automatic 7-spd,23,20,21,3,4-Wheel Drive,Premium and Electricity
 2017,Lincoln,MKT Hearse AWD,Automatic 6-spd,19,14,16,3.5,All-Wheel Drive,Regular
 2017,Lincoln,MKT Limo AWD,Automatic 6-spd,19,14,15,3.5,All-Wheel Drive,Regular
 2018,Jaguar,XE (296 Hp),Automatic (S8),32,24,27,2,Rear-Wheel Drive,Premium
@@ -32707,9 +32480,6 @@
 2018,Toyota,Tacoma 4WD,Manual 6-spd,21,17,18,3.5,Part-time 4-Wheel Drive,Regular
 2018,Toyota,Tacoma 4WD Double Cab Off-Road,Manual 6-spd,20,17,18,3.5,Part-time 4-Wheel Drive,Regular
 2018,Toyota,Tacoma 4WD,Automatic (S6),22,19,20,2.7,Part-time 4-Wheel Drive,Regular
-2018,Cadillac,CT6 Plug-In,Automatic (variable gear ratios),29,23,25,2,Rear-Wheel Drive,Premium and Electricity
-2018,Hyundai,Ioniq Plug-in Hybrid,Automatic (AM6),52,53,52,1.6,Front-Wheel Drive,Regular Gas and Electricity
-2017,Tesla,Model 3 Long Range,Automatic (A1),120,131,126,,Rear-Wheel Drive,Electricity
 1987,Chevrolet,S10 Blazer 2WD,Manual 4-spd,20,15,17,2.8,Rear-Wheel Drive,Regular
 2018,Mazda,MX-5,Manual 6-spd,33,26,29,2,Rear-Wheel Drive,Premium
 2018,Mazda,MX-5,Automatic (S6),35,26,29,2,Rear-Wheel Drive,Premium
@@ -32724,11 +32494,6 @@
 1987,Chevrolet,S10 Blazer 2WD,Manual 5-spd,22,15,18,2.8,Rear-Wheel Drive,Regular
 2018,Jeep,Renegade 4WD,Manual 6-spd,31,24,26,1.4,All-Wheel Drive,Premium
 2018,Mazda,CX-5 4WD,Automatic (S6),30,24,26,2.5,4-Wheel Drive,Regular
-2018,Honda,Clarity Plug-in Hybrid,Automatic (variable gear ratios),40,44,42,1.5,Front-Wheel Drive,Regular Gas and Electricity
-2018,Kia,Optima Plug-in Hybrid,Automatic (AM6),43,38,40,2,Front-Wheel Drive,Regular Gas and Electricity
-2018,smart,fortwo electric drive coupe,Automatic (A1),94,124,108,,Rear-Wheel Drive,Electricity
-2018,smart,fortwo electric drive convertible,Automatic (A1),91,112,102,,Rear-Wheel Drive,Electricity
-2018,Chevrolet,Bolt EV,Automatic (A1),110,128,119,,Front-Wheel Drive,Electricity
 2018,Acura,NSX Hybrid,Automatic (AM-S9),22,21,21,3.5,All-Wheel Drive,Premium
 2018,Ford,GT,Automatic (AM7),18,11,14,3.5,Rear-Wheel Drive,Premium
 2018,Ford,Fiesta FWD,Automatic (AM-S6),37,27,31,1.6,Front-Wheel Drive,Regular
@@ -32742,7 +32507,6 @@
 2018,Honda,Pilot AWD,Automatic 6-spd,26,18,21,3.5,All-Wheel Drive,Regular
 2018,Infiniti,QX80 2WD,Automatic (S7),20,14,16,5.6,Rear-Wheel Drive,Premium
 2018,Infiniti,QX80 4WD,Automatic (S7),19,13,15,5.6,4-Wheel Drive,Premium
-2018,Kia,Niro Plug-in Hybrid,Automatic (AM6),44,48,46,1.6,Front-Wheel Drive,Regular Gas and Electricity
 1985,Toyota,Cressida,Manual 5-spd,22,18,19,2.8,Rear-Wheel Drive,Premium
 1987,Dodge,AD100/AD150 Ramcharger 2WD,Automatic 3-spd,14,11,12,5.2,Rear-Wheel Drive,Regular
 2017,Porsche,Cayman,Automatic (AM-S7),29,22,25,2,Rear-Wheel Drive,Premium
@@ -32778,21 +32542,9 @@
 2018,Lexus,RX 350 AWD,Automatic (S8),26,19,22,3.5,All-Wheel Drive,Regular
 2018,Lexus,RX 450h AWD,Automatic (AV-S6),28,31,30,3.5,All-Wheel Drive,Premium
 1987,Dodge,Caravan/Grand Caravan/Ram Van 2WD,Automatic 3-spd,20,17,18,2.2,Front-Wheel Drive,Regular
-2018,Mitsubishi,Outlander PHEV,Automatic (A1),26,25,25,2,All-Wheel Drive,Regular Gas and Electricity
-2017,Tesla,Model X AWD - 100D,Automatic (A1),89,86,87,,All-Wheel Drive,Electricity
 2018,Volkswagen,Golf,Automatic (S6),33,24,28,1.8,Front-Wheel Drive,Regular
 2018,Volkswagen,Golf SportWagen,Automatic (S6),33,24,28,1.8,Front-Wheel Drive,Regular
-2018,BMW,i3 (94Ah) with Range Extender,Automatic (A1),33,36,35,0.6,Rear-Wheel Drive,Premium Gas or Electricity
-2018,BMW,i3s (94Ah) with Range Extender,Automatic (A1),33,36,35,0.6,Rear-Wheel Drive,Premium Gas or Electricity
-2018,Tesla,Model 3 Long Range,Automatic (A1),123,136,130,,Rear-Wheel Drive,Electricity
-2018,Tesla,Model S 75kWh,Automatic (A1),100,97,98,,Rear-Wheel Drive,Electricity
-2018,Tesla,Model S 75D,Automatic (A1),105,102,103,,All-Wheel Drive,Electricity
-2018,Tesla,Model S 100D,Automatic (A1),102,101,102,,All-Wheel Drive,Electricity
 1987,Dodge,Caravan/Grand Caravan/Ram Van 2WD,Automatic 3-spd,22,18,19,2.2,Front-Wheel Drive,Regular
-2018,Tesla,Model S P100D,Automatic (A1),105,92,98,,All-Wheel Drive,Electricity
-2018,Tesla,Model X 75D,Automatic (A1),95,91,93,,All-Wheel Drive,Electricity
-2018,Tesla,Model X 100D,Automatic (A1),89,86,87,,All-Wheel Drive,Electricity
-2018,Tesla,Model X P100D,Automatic (A1),89,83,85,,All-Wheel Drive,Electricity
 2018,Jaguar,XF (296 Hp),Automatic (S8),31,23,26,2,Rear-Wheel Drive,Premium
 2018,Mazda,6,Manual 6-spd,33,24,27,2.5,Front-Wheel Drive,Regular
 2018,Mazda,6,Automatic (S6),35,26,29,2.5,Front-Wheel Drive,Regular
@@ -32803,15 +32555,11 @@
 2018,Land Rover,Discovery Sport,Automatic (S9),25,21,22,2,All-Wheel Drive,Premium
 2018,Land Rover,Discovery Sport (286 Hp),Automatic (S9),25,20,22,2,All-Wheel Drive,Premium
 2018,Lexus,RX 350 L AWD,Automatic (S8),25,18,21,3.5,All-Wheel Drive,Regular
-2018,Mercedes-Benz,C350e,Automatic 7-spd,32,28,30,2,Rear-Wheel Drive,Premium and Electricity
-2018,BMW,i3 (94Ah),Automatic (A1),106,129,118,,Rear-Wheel Drive,Electricity
-2018,BMW,i3s (94Ah),Automatic (A1),99,126,112,,Rear-Wheel Drive,Electricity
 2018,Volkswagen,Golf,Manual 5-spd,34,25,29,1.8,Front-Wheel Drive,Regular
 2018,Volkswagen,Golf SportWagen,Manual 5-spd,34,25,29,1.8,Front-Wheel Drive,Regular
 2018,Volkswagen,Golf SportWagen 4motion,Automatic (AM-S6),29,22,24,1.8,All-Wheel Drive,Regular
 2018,Mercedes-Benz,"Metris (Cargo Van, LWB)",Automatic 7-spd,24,21,22,2,Rear-Wheel Drive,Premium
 1987,Dodge,Caravan/Grand Caravan/Ram Van 2WD,Manual 5-spd,26,19,22,2.2,Front-Wheel Drive,Regular
-2018,Nissan,Leaf,Automatic (A1),100,125,112,,Front-Wheel Drive,Electricity
 2019,Jeep,Cherokee FWD,Automatic 9-spd,29,20,23,3.2,Front-Wheel Drive,Regular
 2019,Jeep,Cherokee 4WD,Automatic 9-spd,27,19,22,3.2,All-Wheel Drive,Regular
 2019,Jeep,Cherokee 4WD Active Drive II,Automatic 9-spd,26,18,21,3.2,4-Wheel Drive,Regular
@@ -32823,7 +32571,6 @@
 2018,Ram,1500 4WD,Automatic 8-spd,27,19,22,3,4-Wheel Drive,Diesel
 1987,Dodge,Caravan/Grand Caravan/Ram Van 2WD,Automatic 3-spd,20,17,18,2.5,Front-Wheel Drive,Regular
 2018,Acura,MDX Hybrid AWD,Automatic (AM-S7),27,26,27,3,All-Wheel Drive,Premium
-2018,Volkswagen,e-Golf,Automatic (A1),111,126,119,,Front-Wheel Drive,Electricity
 2019,Chevrolet,Corvette,Manual 7-spd,25,16,19,6.2,Rear-Wheel Drive,Premium
 2019,Chevrolet,Corvette,Automatic (S8),25,15,18,6.2,Rear-Wheel Drive,Premium
 2019,Chevrolet,Corvette Z06,Automatic (S8),23,14,17,6.2,Rear-Wheel Drive,Premium
@@ -32833,9 +32580,6 @@
 2018,Toyota,Highlander Hybrid AWD,Automatic (AV-S6),27,29,28,3.5,All-Wheel Drive,Regular
 2018,Toyota,Highlander Hybrid AWD LE Plus,Automatic (AV-S6),28,30,29,3.5,All-Wheel Drive,Regular
 1987,Dodge,Caravan/Grand Caravan/Ram Van 2WD,Manual 5-spd,24,17,20,2.5,Front-Wheel Drive,Regular
-2018,BYD,e6,Automatic (A1),71,73,72,,Front-Wheel Drive,Electricity
-2018,Mercedes-Benz,GLC350e 4matic,Automatic 7-spd,27,24,25,2,4-Wheel Drive,Premium and Electricity
-2018,Toyota,Prius Prime,Automatic (variable gear ratios),53,55,54,1.8,Front-Wheel Drive,Regular Gas and Electricity
 2019,Infiniti,QX50,Automatic (AV-S8),31,24,27,2,Front-Wheel Drive,Premium
 2019,Kia,Sorento FWD,Automatic (S8),26,19,22,3.3,Front-Wheel Drive,Regular
 2019,Infiniti,QX50 AWD,Automatic (AV-S8),30,24,26,2,All-Wheel Drive,Premium
@@ -32884,7 +32628,6 @@
 2018,Land Rover,Range Rover,Automatic (S8),28,22,24,3,4-Wheel Drive,Diesel
 2018,Land Rover,Range Rover Sport,Automatic (S8),28,22,24,3,4-Wheel Drive,Diesel
 2018,Lexus,RX 450h L AWD,Automatic (AV-S6),28,29,29,3.5,All-Wheel Drive,Premium
-2018,Porsche,Cayenne S e-Hybrid,Automatic (AM8),24,21,22,3,All-Wheel Drive,Premium Gas or Electricity
 2019,Honda,Ridgeline FWD,Automatic 6-spd,26,19,22,3.5,Front-Wheel Drive,Regular
 1987,GMC,R15 Suburban 2WD,Automatic 4-spd,17,12,14,5,Rear-Wheel Drive,Regular
 2019,Honda,Ridgeline AWD,Automatic 6-spd,25,18,21,3.5,All-Wheel Drive,Regular
@@ -32918,9 +32661,7 @@
 2018,Fiat,500 Abarth,Automatic 6-spd,32,24,27,1.4,Front-Wheel Drive,Premium
 2018,Fiat,500 Abarth,Manual 5-spd,33,28,30,1.4,Front-Wheel Drive,Premium
 2018,Porsche,Panamera 4S ST,Automatic (AM-S8),26,20,22,2.9,4-Wheel Drive,Premium
-2018,Fiat,500e,Automatic (A1),103,121,112,,Front-Wheel Drive,Electricity
 1987,GMC,S15 Jimmy 2WD,Automatic 3-spd,21,17,19,2.5,Rear-Wheel Drive,Regular
-2018,Porsche,Panamera 4 e-Hybrid ST,Automatic (AM-S8),25,20,22,2.9,All-Wheel Drive,Premium Gas or Electricity
 2019,Chevrolet,Corvette ZR1,Manual 7-spd,19,13,15,6.2,Rear-Wheel Drive,Premium
 2019,Chevrolet,Corvette ZR1,Automatic (S8),20,12,15,6.2,Rear-Wheel Drive,Premium
 2019,MINI,Cooper Convertible,Automatic (S6),35,27,30,1.5,Front-Wheel Drive,Premium
@@ -33015,7 +32756,6 @@
 2018,Mercedes-Benz,AMG GLC63 S 4matic Coupe,Automatic 9-spd,22,15,18,4,4-Wheel Drive,Premium
 2018,Jeep,Grand Cherokee 2WD,Automatic 8-spd,30,22,25,3,Rear-Wheel Drive,Diesel
 2018,Jeep,Grand Cherokee 4WD,Automatic 8-spd,28,21,24,3,All-Wheel Drive,Diesel
-2018,Honda,Clarity EV,Automatic (A1),103,126,114,,Front-Wheel Drive,Electricity
 2019,Jaguar,F-Type Coupe,Automatic (S8),30,23,26,2,Rear-Wheel Drive,Premium
 2019,Jaguar,F-Type Convertible,Automatic (S8),30,23,26,2,Rear-Wheel Drive,Premium
 2019,Jaguar,XE,Automatic (S8),34,25,28,2,Rear-Wheel Drive,Premium
@@ -33027,9 +32767,6 @@
 2019,Land Rover,Range Rover Velar,Automatic (S8),27,21,23,2,All-Wheel Drive,Premium
 2019,Subaru,Ascent,Automatic (AV-S8),27,21,23,2.4,All-Wheel Drive,Regular
 2019,Subaru,Ascent Limited/Touring,Automatic (AV-S8),26,20,22,2.4,All-Wheel Drive,Regular
-2018,Porsche,Panamera Turbo S e-Hybrid,Automatic (AM-S8),23,19,21,4,All-Wheel Drive,Premium Gas or Electricity
-2018,Porsche,Panamera Turbo S e-Hybrid Executive,Automatic (AM-S8),23,19,21,4,All-Wheel Drive,Premium Gas or Electricity
-2018,Porsche,Panamera Turbo S e-Hybrid ST,Automatic (AM-S8),23,19,21,4,All-Wheel Drive,Premium Gas or Electricity
 2019,MINI,JCW Countryman All4,Automatic (S8),30,22,25,2,All-Wheel Drive,Premium
 2019,Genesis,G80 AWD,Automatic (S8),24,17,20,3.3,All-Wheel Drive,Premium
 1987,Jeep,Cherokee 2WD,Manual 5-spd,23,18,20,2.5,Rear-Wheel Drive,Regular
@@ -33039,7 +32776,6 @@
 2019,Genesis,G80 RWD,Automatic (S8),24,16,19,5,Rear-Wheel Drive,Premium
 2019,Honda,Odyssey,Automatic (S10),28,19,22,3.5,Front-Wheel Drive,Regular
 2019,Honda,Odyssey,Automatic (S9),28,19,22,3.5,Front-Wheel Drive,Regular
-2018,Hyundai,Sonata Plug-in Hybrid,Automatic (AM6),42,37,39,2,Front-Wheel Drive,Regular Gas and Electricity
 2019,Ferrari,488 GTB,Automatic (AM7),22,15,18,3.9,Rear-Wheel Drive,Premium
 2019,Ferrari,488 Spider,Automatic (AM7),22,15,18,3.9,Rear-Wheel Drive,Premium
 2019,Ferrari,812 Superfast,Automatic (AM7),16,12,13,6.5,Rear-Wheel Drive,Premium
@@ -33053,9 +32789,7 @@
 2019,Honda,Fit,Automatic (AV-S7),36,31,33,1.5,Front-Wheel Drive,Regular
 2019,Honda,Fit,Manual 6-spd,36,29,31,1.5,Front-Wheel Drive,Regular
 2019,BMW,X3 sDrive30i,Automatic (S8),30,23,26,2,Rear-Wheel Drive,Premium
-2019,BMW,I8 Coupe,Automatic 6-spd,29,26,27,1.5,All-Wheel Drive,Premium and Electricity
 1987,Jeep,Cherokee 2WD,Manual 5-spd,21,16,18,4,Rear-Wheel Drive,Regular
-2019,BMW,I8 Roadster,Automatic 6-spd,29,26,27,1.5,All-Wheel Drive,Premium and Electricity
 2019,Ferrari,488 GTB,Automatic (AM7),22,16,18,3.9,Rear-Wheel Drive,Premium
 2019,Ferrari,488 Spider,Automatic (AM7),22,16,18,3.9,Rear-Wheel Drive,Premium
 2019,Ferrari,488 Pista Spider,Automatic (AM7),19,15,17,3.9,Rear-Wheel Drive,Premium
@@ -33140,7 +32874,6 @@
 2019,Ford,Flex AWD,Automatic (S6),22,16,18,3.5,All-Wheel Drive,Regular
 2019,Ford,Flex AWD,Automatic (S6),21,15,17,3.5,All-Wheel Drive,Regular
 2019,Lincoln,MKT AWD,Automatic (S6),21,15,17,3.5,All-Wheel Drive,Regular
-2019,MINI,Cooper SE Countryman All4,Automatic (S6),27,28,27,1.5,All-Wheel Drive,Premium and Electricity
 2019,Aston Martin,Vantage V8,Automatic (S8),25,18,21,4,Rear-Wheel Drive,Premium
 2019,Nissan,370Z,Automatic (S7),26,19,22,3.7,Rear-Wheel Drive,Premium
 1987,American Motors Corporation,Eagle 4WD,Automatic 3-spd,17,15,16,4.2,4-Wheel or All-Wheel Drive,Regular
@@ -33216,8 +32949,6 @@
 2018,Ford,F150 Pickup 4WD,Automatic (S10),25,20,22,3,Part-time 4-Wheel Drive,Diesel
 2018,Ford,F150 Pickup 4WD XL/XLT,Automatic (S10),28,21,24,3,Part-time 4-Wheel Drive,Diesel
 2018,Ford,F150 4WD BASE PAYLOAD LT TIRE,Automatic (S10),25,20,22,3,Part-time 4-Wheel Drive,Diesel
-2018,Porsche,Panamera 4 e-Hybrid,Automatic (AM-S8),25,20,22,2.9,All-Wheel Drive,Premium Gas or Electricity
-2018,Porsche,Panamera 4 e-Hybrid Executive,Automatic (AM-S8),25,20,22,2.9,All-Wheel Drive,Premium Gas or Electricity
 2019,Fiat,124 Spider,Automatic 6-spd,36,25,29,1.4,Rear-Wheel Drive,Premium
 2019,Fiat,124 Spider,Manual 6-spd,35,26,30,1.4,Rear-Wheel Drive,Premium
 2019,Buick,Cascada,Automatic (S6),29,21,24,1.6,Rear-Wheel Drive,Premium
@@ -33392,9 +33123,6 @@
 2019,Subaru,Forester AWD,Automatic (AV-S7),33,26,29,2.5,All-Wheel Drive,Regular
 2019,Subaru,Outback AWD,Automatic (AV-S7),32,25,28,2.5,All-Wheel Drive,Regular
 2019,Subaru,Outback AWD,Automatic (AV-S6),27,20,22,3.6,All-Wheel Drive,Regular
-2019,Hyundai,Ioniq Electric,Automatic (A1),122,150,136,,Front-Wheel Drive,Electricity
-2018,Tesla,Model 3 Long Range  AWD,Automatic (A1),112,120,116,,All-Wheel Drive,Electricity
-2018,Tesla,Model 3 Long Range  AWD Performance,Automatic (A1),112,120,116,,All-Wheel Drive,Electricity
 2019,Chevrolet,Colorado 2WD,Automatic 6-spd,26,20,22,2.5,Rear-Wheel Drive,Regular
 2019,Chevrolet,Colorado 2WD,Manual 6-spd,26,20,22,2.5,Rear-Wheel Drive,Regular
 2019,GMC,Canyon 2WD,Automatic 6-spd,26,20,22,2.5,Rear-Wheel Drive,Regular
@@ -33416,9 +33144,6 @@
 2019,Honda,Pilot AWD,Automatic (S9),26,19,22,3.5,All-Wheel Drive,Regular
 2019,Honda,Pilot AWD,Automatic 6-spd,26,18,21,3.5,All-Wheel Drive,Regular
 2019,Hyundai,Santa Fe AWD,Automatic (S8),24,19,21,2,All-Wheel Drive,Regular
-2019,Volvo,S90 AWD PHEV,Automatic (S8),33,26,29,2,All-Wheel Drive,Premium and Electricity
-2019,Volvo,XC60 AWD PHEV,Automatic (S8),28,25,26,2,All-Wheel Drive,Premium and Electricity
-2019,Volvo,XC90 AWD PHEV,Automatic (S8),27,24,25,2,All-Wheel Drive,Premium and Electricity
 2019,Cadillac,ATS,Automatic (S8),29,19,23,3.6,Rear-Wheel Drive,Regular
 2019,Cadillac,ATS AWD,Automatic (S8),29,21,24,2,All-Wheel Drive,Premium
 1987,Dodge,Colt Vista 4WD,Manual 5-spd,23,17,19,2,4-Wheel or All-Wheel Drive,Regular
@@ -33542,7 +33267,6 @@
 2019,BMW,X6 sDrive35i,Automatic (S8),24,18,20,3,Rear-Wheel Drive,Premium
 2019,BMW,X6 xDrive35i,Automatic (S8),24,18,20,3,All-Wheel Drive,Premium
 1987,Ford,Bronco 4WD,Manual 4-spd,14,12,13,5,4-Wheel or All-Wheel Drive,Regular
-2019,Chevrolet,Bolt EV,Automatic (A1),110,128,119,,Front-Wheel Drive,Electricity
 2018,Mazda,CX-5 2WD,Automatic (S6),31,28,29,2.2,Front-Wheel Drive,Diesel
 2018,Mazda,CX-5 4WD,Automatic (S6),30,27,28,2.2,4-Wheel Drive,Diesel
 2019,Lamborghini,Aventador Coupe,Automatic (AM-S7),15,9,11,6.5,All-Wheel Drive,Premium
@@ -33581,9 +33305,6 @@
 2019,Jeep,Compass 4WD,Automatic 9-spd,30,22,25,2.4,All-Wheel Drive,Regular
 2019,Mercedes-Benz,GLA250 4matic,Automatic (AM7),31,23,26,2,4-Wheel Drive,Premium or E85
 2019,BMW,X6 xDrive50i,Automatic (S8),22,17,19,4.4,All-Wheel Drive,Premium
-2019,BMW,530e,Automatic (S8),30,27,29,2,Rear-Wheel Drive,Premium and Electricity
-2019,BMW,530e xDrive,Automatic (S8),31,27,28,2,All-Wheel Drive,Premium and Electricity
-2019,BMW,740e xDrive,Automatic (S8),29,25,27,2,All-Wheel Drive,Premium and Electricity
 2019,Subaru,BRZ,Manual 6-spd,29,21,24,2,Rear-Wheel Drive,Premium
 1987,GMC,T15 (S15) Jimmy 4WD,Manual 4-spd,23,19,21,2.5,4-Wheel or All-Wheel Drive,Regular
 2019,Subaru,BRZ,Automatic (S6),33,24,27,2,Rear-Wheel Drive,Premium
@@ -33613,7 +33334,6 @@
 2019,Land Rover,Discovery,Automatic (S8),26,21,23,3,4-Wheel Drive,Diesel
 2019,Maserati,Levante S,Automatic 8-spd,21,15,17,3,All-Wheel Drive,Premium
 2019,Maserati,Levante,Automatic 8-spd,21,15,17,3,All-Wheel Drive,Premium
-2019,Hyundai,Kona Electric,Automatic (A1),108,132,120,,Front-Wheel Drive,Electricity
 2019,Chevrolet,Cruze Premier Hatchback,Automatic (S6),37,28,31,1.4,Front-Wheel Drive,Regular
 2019,Cadillac,Escalade 2WD,Automatic 10-spd,23,14,17,6.2,Rear-Wheel Drive,Premium
 2019,Chevrolet,Suburban C1500 2WD,Automatic 10-spd,23,14,17,6.2,Rear-Wheel Drive,Premium
@@ -33816,8 +33536,6 @@
 2019,Toyota,Highlander AWD LE,Automatic (S8),27,20,23,3.5,All-Wheel Drive,Regular
 2019,Toyota,Highlander Hybrid AWD,Automatic (AV-S6),27,29,28,3.5,All-Wheel Drive,Regular
 2019,Toyota,Highlander Hybrid AWD LE Plus,Automatic (AV-S6),28,30,29,3.5,All-Wheel Drive,Regular
-2019,Kia,Soul Electric,Automatic (A1),93,124,108,,Front-Wheel Drive,Electricity
-2019,Volkswagen,e-Golf,Automatic (A1),111,126,119,,Front-Wheel Drive,Electricity
 1987,Jeep,Cherokee/Wagoneer 4WD,Manual 5-spd,21,16,18,4,4-Wheel or All-Wheel Drive,Regular
 2019,Jaguar,F-Type SVR AWD Coupe GEN2,Automatic (S8),24,16,18,5,All-Wheel Drive,Premium
 2019,Jaguar,F-Type SVR AWD Convertible GEN2,Automatic (S8),24,16,18,5,All-Wheel Drive,Premium
@@ -33862,11 +33580,7 @@
 2019,Ford,Explorer AWD FFV,Automatic (S6),22,16,18,3.5,All-Wheel Drive,Gasoline or E85
 2019,Ford,Explorer AWD,Automatic (S6),22,16,18,3.5,All-Wheel Drive,Regular
 2019,Lexus,RX 450h AWD,Automatic (AV-S6),28,31,30,3.5,All-Wheel Drive,Premium
-2019,Ford,Fusion Energi Plug-in Hybrid,Automatic (variable gear ratios),40,43,42,2,Front-Wheel Drive,Regular Gas and Electricity
 1987,Jeep,Wrangler 4WD,Manual 5-spd,19,16,17,2.5,4-Wheel or All-Wheel Drive,Regular
-2019,Hyundai,Ioniq Plug-in Hybrid,Automatic (AM6),52,53,52,1.6,Front-Wheel Drive,Regular Gas and Electricity
-2019,Kia,Optima Plug-in Hybrid,Automatic (AM6),43,38,40,2,Front-Wheel Drive,Regular Gas and Electricity
-2019,Nissan,Leaf (40 kW-hr battery pack),Automatic (A1),99,124,112,,Front-Wheel Drive,Electricity
 2019,Ford,Fiesta FWD,Automatic (AM-S6),37,27,31,1.6,Front-Wheel Drive,Regular
 2019,Ford,Fiesta FWD,Manual 5-spd,35,27,30,1.6,Front-Wheel Drive,Regular
 2019,Mercedes-Benz,S560 Convertible,Automatic 9-spd,26,17,20,4,Front-Wheel Drive,Premium
@@ -33886,7 +33600,6 @@
 2019,Ford,Explorer AWD,Automatic (S6),22,16,19,3.5,All-Wheel Drive,Regular
 2019,Jeep,Grand Cherokee SRT 4WD,Automatic 8-spd,19,13,15,6.4,All-Wheel Drive,Premium
 1987,Jeep,Wrangler 4WD,Manual 5-spd,20,15,17,4.2,4-Wheel or All-Wheel Drive,Regular
-2019,Chrysler,Pacifica Hybrid,Automatic (variable gear ratios),30,29,30,3.6,Front-Wheel Drive,Regular Gas and Electricity
 2019,Acura,NSX Hybrid,Automatic (AM-S9),22,21,21,3.5,All-Wheel Drive,Premium
 2019,Mercedes-Benz,AMG SL63,Automatic 7-spd,23,15,18,5.5,Rear-Wheel Drive,Premium
 2019,Lexus,LC 500,Automatic (S10),25,16,19,5,Rear-Wheel Drive,Premium
@@ -33922,7 +33635,6 @@
 2019,Nissan,Pathfinder 4WD,Automatic (variable gear ratios),26,19,22,3.5,4-Wheel Drive,Regular
 2019,Nissan,Pathfinder 4WD Platinum,Automatic (variable gear ratios),26,19,21,3.5,4-Wheel Drive,Regular
 2019,Volkswagen,Atlas 4motion,Automatic (S8),23,17,19,3.6,All-Wheel Drive,Regular
-2019,Kia,Niro Plug-in Hybrid,Automatic (AM6),44,48,46,1.6,Front-Wheel Drive,Regular Gas and Electricity
 2019,Ford,GT,Automatic (AM7),18,11,14,3.5,Rear-Wheel Drive,Premium
 2019,Aston Martin,DBS,Automatic (S8),22,14,17,5.2,Rear-Wheel Drive,Premium
 2019,Audi,A5 quattro,Automatic (AM-S7),34,23,27,2,All-Wheel Drive,Premium
@@ -33990,7 +33702,6 @@
 2019,Jeep,Grand Cherokee Trackhawk 4WD,Automatic 8-spd,17,11,13,6.2,All-Wheel Drive,Premium
 2019,Maserati,Levante GTS,Automatic 8-spd,18,14,15,3.8,All-Wheel Drive,Premium
 2019,Maserati,Levante Trofeo,Automatic 8-spd,18,14,15,3.8,All-Wheel Drive,Premium
-2019,Chevrolet,Volt,Automatic (variable gear ratios),42,43,42,1.5,Front-Wheel Drive,Regular Gas or Electricity
 2019,Mercedes-Benz,AMG GT R Coupe,Automatic (AM7),20,15,17,4,Rear-Wheel Drive,Premium
 2019,Lexus,RC 300 AWD,Automatic (S6),24,18,21,3.5,All-Wheel Drive,Premium
 2019,Lexus,RC 350,Automatic (S8),28,20,23,3.5,Rear-Wheel Drive,Premium
@@ -34058,7 +33769,6 @@
 2019,Mercedes-Benz,AMG GLE63,Automatic 7-spd,18,12,14,5.5,4-Wheel Drive,Premium
 2019,Mercedes-Benz,AMG GLS63,Automatic 7-spd,18,13,15,5.5,4-Wheel Drive,Premium
 2019,Mercedes-Benz,G550,Automatic 9-spd,17,13,14,4,4-Wheel Drive,Premium
-2019,Jaguar,I-Pace,Automatic (A1),72,80,76,,4-Wheel Drive,Electricity
 2019,Lamborghini,Huracan Spyder,Automatic (AM-S7),18,13,15,5.2,All-Wheel Drive,Premium
 2019,Lamborghini,Huracan,Automatic (AM-S7),18,13,15,5.2,All-Wheel Drive,Premium
 2019,Lamborghini,Huracan Spyder 2WD,Automatic (AM-S7),18,13,15,5.2,Rear-Wheel Drive,Premium
@@ -34135,14 +33845,10 @@
 2019,Mercedes-Benz,AMG GLC63 4matic,Automatic 9-spd,22,16,18,4,4-Wheel Drive,Premium
 2019,Mercedes-Benz,AMG GLC63 4matic Coupe,Automatic 9-spd,22,16,18,4,4-Wheel Drive,Premium
 2019,Mercedes-Benz,AMG GLC63 S 4matic Coupe,Automatic 9-spd,22,16,18,4,4-Wheel Drive,Premium
-2019,BMW,i3,Automatic (A1),102,124,113,,Rear-Wheel Drive,Electricity
-2019,BMW,i3s,Automatic (A1),102,124,113,,Rear-Wheel Drive,Electricity
-2018,Tesla,Model 3 Mid Range,Automatic (A1),117,128,123,,Rear-Wheel Drive,Electricity
 2018,McLaren Automotive,570S Coupe,Automatic 7-spd,23,16,19,3.8,Rear-Wheel Drive,Premium
 2018,Lincoln,MKT Hearse AWD,Automatic 6-spd,21,14,17,3.5,All-Wheel Drive,Regular
 2018,Lincoln,MKT Limo AWD,Automatic 6-spd,21,14,16,3.5,All-Wheel Drive,Regular
 1987,Chevrolet,S10 Cab Chassis 2WD,Automatic 4-spd,14,12,13,2.8,Rear-Wheel Drive,Regular
-2019,Kia,Niro Electric,Automatic (A1),102,123,112,,Front-Wheel Drive,Electricity
 2019,Mercedes-Benz,AMG GT S Coupe,Automatic (AM7),22,16,18,4,Rear-Wheel Drive,Premium
 2019,Mercedes-Benz,AMG GT Coupe,Automatic (AM7),22,16,18,4,Rear-Wheel Drive,Premium
 2019,Mercedes-Benz,AMG GT C Coupe,Automatic (AM7),21,15,17,4,Rear-Wheel Drive,Premium
@@ -34222,9 +33928,6 @@
 1987,GMC,S15 Cab Chassis 2WD,Automatic 4-spd,14,12,13,2.8,Rear-Wheel Drive,Regular
 2019,Porsche,Cayenne,Automatic (S8),23,19,21,3,All-Wheel Drive,Premium
 2019,Porsche,Cayenne S,Automatic (S8),23,18,20,2.9,All-Wheel Drive,Premium
-2019,Mercedes-Benz,GLC350e 4matic,Automatic 7-spd,27,24,25,2,4-Wheel Drive,Premium and Electricity
-2019,Mitsubishi,Outlander PHEV,Automatic (A1),26,25,25,2,All-Wheel Drive,Regular Gas and Electricity
-2019,Subaru,Crosstrek Hybrid AWD,Automatic (variable gear ratios),35,36,35,2,All-Wheel Drive,Regular Gas and Electricity
 2019,Nissan,GT-R,Automatic (AM6),22,16,18,3.8,All-Wheel Drive,Premium
 2019,Audi,A4,Automatic (AM-S7),34,27,30,2,Front-Wheel Drive,Premium
 2019,Mazda,2,Manual 6-spd,39,30,34,1.5,Front-Wheel Drive,Regular
@@ -34234,8 +33937,6 @@
 2019,Mercedes-Benz,AMG GT 63 S 4matic Plus,Automatic 9-spd,20,15,17,4,4-Wheel Drive,Premium
 2019,Nissan,Maxima,Automatic (AV-S7),30,20,24,3.5,Front-Wheel Drive,Premium
 2019,Lincoln,Navigator 4WD,Automatic (S10),21,16,18,3.5,Part-time 4-Wheel Drive,Regular
-2019,Fiat,500e,Automatic (A1),103,121,112,,Front-Wheel Drive,Electricity
-2019,Hyundai,Sonata Plug-in Hybrid,Automatic (AM6),42,37,39,2,Front-Wheel Drive,Regular Gas and Electricity
 2019,Audi,TT Roadster quattro,Automatic (AM-S7),31,23,26,2,All-Wheel Drive,Regular
 2019,BMW,Z4 sDrive30i,Automatic (S8),32,25,28,2,Rear-Wheel Drive,Premium
 2019,Aston Martin,Vanquish S,Automatic (S8),21,13,16,6,Rear-Wheel Drive,Premium
@@ -34275,22 +33976,7 @@
 1988,Aurora Cars Ltd,Aurora,Manual 5-spd,20,12,15,4.9,Rear-Wheel Drive,Regular
 2019,Jeep,Renegade 4WD,Automatic 9-spd,29,21,24,2.4,All-Wheel Drive,Regular
 2019,Land Rover,Range Rover SV Coupe,Automatic (S8),19,14,16,5,4-Wheel Drive,Premium
-2019,Honda,Clarity Plug-in Hybrid,Automatic (variable gear ratios),40,44,42,1.5,Front-Wheel Drive,Regular Gas and Electricity
-2019,Toyota,Prius Prime,Automatic (variable gear ratios),53,55,54,1.8,Front-Wheel Drive,Regular Gas and Electricity
-2019,Honda,Clarity EV,Automatic (A1),103,126,114,,Front-Wheel Drive,Electricity
-2019,smart,EQ fortwo (coupe),Automatic (A1),94,124,108,,Rear-Wheel Drive,Electricity
-2019,smart,EQ fortwo (convertible),Automatic (A1),91,112,102,,Rear-Wheel Drive,Electricity
-2019,Tesla,Model 3 Mid Range,Automatic (A1),117,128,123,,Rear-Wheel Drive,Electricity
-2019,Tesla,Model 3 Long Range,Automatic (A1),123,136,130,,Rear-Wheel Drive,Electricity
 1988,Bertone,X1/9,Manual 5-spd,26,20,22,1.5,Rear-Wheel Drive,Regular
-2019,Tesla,Model 3 Long Range AWD,Automatic (A1),112,120,116,,All-Wheel Drive,Electricity
-2019,Tesla,Model 3 Long Range AWD Performance,Automatic (A1),112,120,116,,All-Wheel Drive,Electricity
-2019,Tesla,Model S 75D,Automatic (A1),105,102,103,,All-Wheel Drive,Electricity
-2019,Tesla,Model S 100D,Automatic (A1),102,101,102,,All-Wheel Drive,Electricity
-2019,Tesla,Model S P100D,Automatic (A1),105,92,98,,All-Wheel Drive,Electricity
-2019,Tesla,Model X 75D,Automatic (A1),95,91,93,,All-Wheel Drive,Electricity
-2019,Tesla,Model X 100D,Automatic (A1),89,86,87,,All-Wheel Drive,Electricity
-2019,Tesla,Model X P100D,Automatic (A1),89,83,85,,All-Wheel Drive,Electricity
 2019,Mercedes-Benz,AMG SLC43,Automatic 9-spd,29,20,23,3,Rear-Wheel Drive,Premium
 2019,Audi,A3 quattro,Automatic (AM-S7),30,22,25,2,All-Wheel Drive,Regular
 1985,Volvo,240 DL/GL/turbo,Automatic 4-spd,19,15,17,2.1,Rear-Wheel Drive,Regular
@@ -34307,8 +33993,6 @@
 2019,Honda,Passport AWD,Automatic (S9),24,19,21,3.5,All-Wheel Drive,Regular
 1988,Cadillac,Allante,Automatic 4-spd,22,15,17,4.1,Front-Wheel Drive,Premium
 2019,Mercedes-Benz,AMG G63,Automatic 9-spd,15,13,14,4,4-Wheel Drive,Premium
-2019,BMW,i3 with Range Extender,Automatic (A1),31,30,31,0.6,Rear-Wheel Drive,Premium Gas or Electricity
-2019,BMW,i3s with Range Extender,Automatic (A1),31,30,31,0.6,Rear-Wheel Drive,Premium Gas or Electricity
 2020,Toyota,Corolla,Automatic (AV-S10),40,31,34,2,Front-Wheel Drive,Regular
 2020,Toyota,Corolla Hybrid,Automatic (variable gear ratios),52,53,52,1.8,Front-Wheel Drive,Regular
 2020,Toyota,Corolla,Manual 6-spd,36,29,32,2,Front-Wheel Drive,Regular
@@ -34323,7 +34007,6 @@
 2020,Kia,Soul,Automatic (AM-S7),32,27,29,1.6,Front-Wheel Drive,Regular
 2019,Ford,Shelby GT350 Mustang,Manual 6-spd,21,14,16,5.2,Rear-Wheel Drive,Premium
 2019,Mercedes-Benz,A220 4matic,Automatic 7-spd,34,24,28,2,4-Wheel Drive,Premium
-2019,Ford,Fusion Special Service Vehicle PHEV,Automatic (variable gear ratios),40,43,42,2,Front-Wheel Drive,Regular Gas and Electricity
 2020,Kia,Sportage FWD,Automatic (S6),30,23,26,2.4,Front-Wheel Drive,Regular
 2020,Kia,Sportage FWD,Automatic (S6),28,20,23,2,Front-Wheel Drive,Regular
 2020,Kia,Telluride FWD,Automatic (S8),26,20,23,3.8,Front-Wheel Drive,Regular
@@ -34353,7 +34036,6 @@
 2020,Land Rover,Range Rover Velar,Automatic (S8),27,21,23,2,All-Wheel Drive,Premium
 2020,Land Rover,Range Rover Velar P300,Automatic (S8),26,20,22,2,All-Wheel Drive,Premium
 2019,Mercedes-Benz,AMG GT 53 4matic Plus,Automatic 9-spd,24,19,21,3,4-Wheel Drive,Premium
-2019,Volvo,S60 AWD PHEV,Automatic (S8),34,29,31,2,All-Wheel Drive,Premium and Electricity
 2018,RUF Automobile,RUF TURBO 12/CTR3,Manual 7-spd,20,16,18,3.8,Rear-Wheel Drive,Premium
 2018,Lotus,Evora,Manual 6-spd,24,16,19,3.5,Rear-Wheel Drive,Premium
 2018,Lotus,Evora,Automatic (S6),24,17,20,3.5,Rear-Wheel Drive,Premium
@@ -34375,8 +34057,6 @@
 2019,Volkswagen,Arteon 4motion,Automatic (S8),27,20,23,2,All-Wheel Drive,Premium
 2019,Ram,1500 HFE 2WD,Automatic 8-spd,26,20,23,3.6,Rear-Wheel Drive,Regular
 2019,Porsche,Cayenne Turbo,Automatic (S8),19,15,17,4,All-Wheel Drive,Premium
-2019,Nissan,Leaf (62 kW-hr battery pack),Automatic (A1),97,118,108,,Front-Wheel Drive,Electricity
-2019,Nissan,Leaf SV/SL (62 kW-hr battery pack),Automatic (A1),94,114,104,,Front-Wheel Drive,Electricity
 2020,Jaguar,F-Type Coupe,Automatic (S8),28,20,23,3,Rear-Wheel Drive,Premium
 2020,Jaguar,F-Type Convertible,Automatic (S8),28,20,23,3,Rear-Wheel Drive,Premium
 1988,Nissan,300ZX,Manual 5-spd,23,15,18,3,Rear-Wheel Drive,Regular
@@ -34391,12 +34071,6 @@
 2020,Land Rover,Evoque,Automatic (S9),27,20,23,2,All-Wheel Drive,Premium
 1988,Nissan,300ZX,Manual 5-spd,23,15,18,3,Rear-Wheel Drive,Regular
 2020,Hyundai,Palisade AWD,Automatic (S8),24,19,21,3.8,All-Wheel Drive,Regular
-2019,Porsche,Panamera 4 e-Hybrid,Automatic (AM-S8),24,21,23,2.9,All-Wheel Drive,Premium Gas or Electricity
-2019,Porsche,Panamera 4 e-Hybrid Executive,Automatic (AM-S8),24,21,23,2.9,All-Wheel Drive,Premium Gas or Electricity
-2019,Porsche,Panamera 4 e-Hybrid ST,Automatic (AM-S8),24,21,23,2.9,All-Wheel Drive,Premium Gas or Electricity
-2019,Porsche,Panamera Turbo S e-Hybrid,Automatic (AM-S8),22,19,20,4,All-Wheel Drive,Premium Gas or Electricity
-2019,Porsche,Panamera Turbo S e-Hybrid Executive,Automatic (AM-S8),22,19,20,4,All-Wheel Drive,Premium Gas or Electricity
-2019,Porsche,Panamera Turbo S e-Hybrid ST,Automatic (AM-S8),22,19,20,4,All-Wheel Drive,Premium Gas or Electricity
 2020,BMW,230i Coupe,Automatic (S8),32,24,27,2,Rear-Wheel Drive,Premium
 2020,Hyundai,Elantra,Automatic (variable gear ratios),40,30,34,2,Front-Wheel Drive,Regular
 2020,Hyundai,Elantra SE,Automatic (variable gear ratios),41,31,35,2,Front-Wheel Drive,Regular
@@ -34482,7 +34156,6 @@
 2019,Porsche,Panamera 4 Executive,Automatic (AM-S8),26,19,22,3,4-Wheel Drive,Premium
 2019,Porsche,Panamera 4S,Automatic (AM-S8),26,18,21,2.9,4-Wheel Drive,Premium
 2019,Porsche,Panamera 4S Executive,Automatic (AM-S8),26,18,21,2.9,4-Wheel Drive,Premium
-2020,BMW,745e xDrive,Automatic (S8),26,19,22,3,All-Wheel Drive,Premium and Electricity
 2020,BMW,Z4 M40i,Automatic (S8),31,24,26,3,Rear-Wheel Drive,Premium
 2020,Nissan,370Z,Automatic (S7),26,19,22,3.7,Rear-Wheel Drive,Premium
 2020,Nissan,370Z,Manual 6-spd,26,17,20,3.7,Rear-Wheel Drive,Premium
@@ -34504,7 +34177,6 @@
 2019,Porsche,Panamera 4 ST,Automatic (AM-S8),26,19,22,3,4-Wheel Drive,Premium
 2019,Porsche,Panamera 4S ST,Automatic (AM-S8),24,18,20,2.9,4-Wheel Drive,Premium
 2019,Porsche,Macan S,Automatic (AM-S7),23,18,20,3,All-Wheel Drive,Premium
-2019,Audi,e-tron,Automatic (A1),73,74,74,,All-Wheel Drive,Electricity
 2020,Aston Martin,Vantage V8,Automatic (S8),24,18,20,4,Rear-Wheel Drive,Premium
 2020,Audi,R8 AWD,Automatic (AM-S7),20,13,16,5.2,All-Wheel Drive,Premium
 2020,Lamborghini,Huracan,Automatic (AM-S7),18,13,15,5.2,All-Wheel Drive,Premium
@@ -34525,13 +34197,7 @@
 2020,Acura,RDX AWD,Automatic (S10),27,21,23,2,All-Wheel Drive,Premium
 2020,Acura,RDX AWD A-SPEC,Automatic (S10),26,21,23,2,All-Wheel Drive,Premium
 2020,Hyundai,Kona AWD,Automatic (AM7),29,26,27,1.6,All-Wheel Drive,Regular
-2020,Jaguar,I-Pace,Automatic (A1),72,80,76,,4-Wheel Drive,Electricity
 2019,Audi,Q3 quattro,Automatic (S8),27,19,22,2,All-Wheel Drive,Regular
-2019,Tesla,Model 3 Standard Range,Automatic (A1),124,138,131,,Rear-Wheel Drive,Electricity
-2019,Tesla,Model 3 Standard Range Plus,Automatic (A1),124,140,133,,Rear-Wheel Drive,Electricity
-2019,Tesla,Model S Long Range,Automatic (A1),107,115,111,,All-Wheel Drive,Electricity
-2019,Tesla,Model S Performance (19in Wheels),Automatic (A1),104,104,104,,All-Wheel Drive,Electricity
-2019,Tesla,Model S Performance (21in Wheels),Automatic (A1),96,98,97,,All-Wheel Drive,Electricity
 1988,Lotus,Esprit Turbo,Manual 5-spd,25,15,18,2.2,Rear-Wheel Drive,Premium
 2020,Hyundai,Kona FWD,Automatic (AM7),32,28,30,1.6,Front-Wheel Drive,Regular
 2020,Hyundai,Kona FWD,Automatic (S6),33,27,30,2,Front-Wheel Drive,Regular
@@ -34608,7 +34274,6 @@
 2020,Lincoln,Aviator RWD,Automatic (S10),26,18,21,3,Rear-Wheel Drive,Regular
 2020,Ford,Explorer AWD,Automatic (S10),27,20,23,2.3,Part-time 4-Wheel Drive,Regular
 2020,Lincoln,Aviator AWD,Automatic (S10),24,17,20,3,Part-time 4-Wheel Drive,Regular
-2020,Toyota,Prius Prime,Automatic (variable gear ratios),53,55,54,1.8,Front-Wheel Drive,Regular Gas and Electricity
 1988,Panther Car Company Limited,Kallista,Manual 4-spd,24,18,20,2.3,Rear-Wheel Drive,Regular
 2020,Volvo,S60 FWD,Automatic (S8),34,23,27,2,Front-Wheel Drive,Premium
 2020,Volvo,S60 AWD,Automatic (S8),32,21,25,2,All-Wheel Drive,Premium
@@ -34636,9 +34301,6 @@
 2020,Volvo,XC90 FWD,Automatic (S8),30,21,25,2,Front-Wheel Drive,Premium
 2020,Ford,Explorer AWD,Automatic (S10),24,18,20,3,Part-time 4-Wheel Drive,Regular
 2020,Ford,Explorer FFV AWD,Automatic (S10),23,16,19,3.3,Part-time 4-Wheel Drive,Gasoline or E85
-2019,Tesla,Model S Standard Range,Automatic (A1),105,113,109,,All-Wheel Drive,Electricity
-2019,Tesla,Model X Long Range,Automatic (A1),93,99,96,,All-Wheel Drive,Electricity
-2019,Tesla,Model X Performance (22in Wheels),Automatic (A1),77,80,79,,All-Wheel Drive,Electricity
 2020,Mercedes-Benz,AMG GT Coupe,Automatic (AM7),22,16,18,4,Rear-Wheel Drive,Premium
 2020,Mercedes-Benz,AMG GT Roadster,Automatic (AM7),22,16,18,4,Rear-Wheel Drive,Premium
 2020,Buick,Encore FWD,Automatic (S6),30,25,27,1.4,Front-Wheel Drive,Regular
@@ -34652,7 +34314,6 @@
 2020,Buick,Enclave AWD,Automatic 9-spd,25,17,20,3.6,All-Wheel Drive,Regular
 2020,Chevrolet,Traverse AWD,Automatic 9-spd,25,17,20,3.6,All-Wheel Drive,Regular
 2020,Volvo,XC90 AWD,Automatic (S8),27,20,23,2,All-Wheel Drive,Premium
-2020,Kia,Optima Plug-in Hybrid,Automatic (AM6),44,39,41,2,Front-Wheel Drive,Regular Gas and Electricity
 1988,Pontiac,Fiero,Manual 5-spd,25,15,19,2.8,Rear-Wheel Drive,Regular
 2020,Alfa Romeo,4C,Automatic (AM6),34,24,28,1.8,Rear-Wheel Drive,Premium
 2020,Chevrolet,Sonic,Automatic (S6),34,26,29,1.4,Front-Wheel Drive,Regular
@@ -35061,11 +34722,8 @@
 2020,Honda,Odyssey,Automatic 10-spd,28,19,22,3.5,Front-Wheel Drive,Regular
 2020,Mercedes-Benz,GLC300 4matic Coupe,Automatic 9-spd,28,21,24,2,4-Wheel Drive,Premium
 2020,Volvo,XC90 AWD,Automatic (S8),26,18,21,2,All-Wheel Drive,Premium
-2020,Ford,Fusion Energi Plug-in Hybrid,Automatic (variable gear ratios),40,43,42,2,Front-Wheel Drive,Regular Gas and Electricity
 1985,Buick,Century,Automatic 3-spd,29,21,24,2.5,Front-Wheel Drive,Regular
 1988,Aston Martin,Saloon/Vantage/Volante,Manual 5-spd,10,8,9,5.3,Rear-Wheel Drive,Regular
-2020,Ford,Fusion Special Service PHEV,Automatic (variable gear ratios),40,43,42,2,Front-Wheel Drive,Regular Gas and Electricity
-2019,Porsche,Cayenne e-Hybrid,Automatic (S8),22,20,21,3,All-Wheel Drive,Premium Gas or Electricity
 2020,Aston Martin,DBS,Automatic (S8),22,14,17,5.2,Rear-Wheel Drive,Premium
 2020,Lotus,Evora,Manual 6-spd,24,16,19,3.5,Rear-Wheel Drive,Premium
 2020,Lotus,Evora,Automatic (S6),24,17,20,3.5,Rear-Wheel Drive,Premium
@@ -35111,12 +34769,6 @@
 2020,Toyota,4Runner 4WD,Automatic (S5),19,16,17,4,Part-time 4-Wheel Drive,Regular
 2020,Toyota,Land Cruiser Wagon 4WD,Automatic (S8),17,13,14,5.7,4-Wheel Drive,Regular
 2020,Toyota,4Runner 4WD,Automatic (S5),19,16,17,4,All-Wheel Drive,Regular
-2020,Chrysler,Pacifica Hybrid,Automatic (variable gear ratios),30,29,30,3.6,Front-Wheel Drive,Regular Gas and Electricity
-2020,Volvo,S60 AWD PHEV,Automatic (S8),33,28,30,2,All-Wheel Drive,Premium and Electricity
-2020,Volvo,S90 AWD PHEV,Automatic (S8),31,28,30,2,All-Wheel Drive,Premium and Electricity
-2020,Volvo,V60 AWD PHEV,Automatic (S8),33,28,30,2,All-Wheel Drive,Premium and Electricity
-2020,Volvo,XC60 AWD PHEV,Automatic (S8),28,26,27,2,All-Wheel Drive,Premium and Electricity
-2020,Volvo,XC90 AWD PHEV,Automatic (S8),28,26,27,2,All-Wheel Drive,Premium and Electricity
 2020,Toyota,86,Automatic (S6),32,24,27,2,Rear-Wheel Drive,Premium
 1988,BMW,3 Series,Manual 5-spd,26,15,18,2.3,Rear-Wheel Drive,Premium
 2020,Toyota,86,Manual 6-spd,28,21,24,2,Rear-Wheel Drive,Premium
@@ -35148,7 +34800,6 @@
 2020,Lexus,RX 450h AWD,Automatic (AV-S6),28,31,30,3.5,All-Wheel Drive,Premium
 2020,Lexus,RX 450h L AWD,Automatic (AV-S6),28,29,29,3.5,All-Wheel Drive,Premium
 2020,Lexus,LX 570,Automatic (S8),16,12,14,5.7,4-Wheel Drive,Premium
-2019,Karma,Revero,Automatic (A1),21,19,20,2,Rear-Wheel Drive,Premium Gas or Electricity
 2020,Audi,TT Roadster quattro,Automatic (AM-S7),31,23,26,2,All-Wheel Drive,Regular
 1988,BMW,3 Series,Automatic 4-spd,21,17,18,2.5,4-Wheel or All-Wheel Drive,Regular
 2020,Bentley,Continental GT Convertible,Automatic (AM-S8),26,16,19,4,All-Wheel Drive,Premium
@@ -35267,8 +34918,6 @@
 2020,Nissan,Pathfinder 4WD Platinum,Automatic (variable gear ratios),26,19,21,3.5,4-Wheel Drive,Regular
 2020,BMW,X5 sDrive40i,Automatic (S8),26,21,23,3,Rear-Wheel Drive,Premium
 2020,BMW,X6 sDrive40i,Automatic (S8),26,21,23,3,Rear-Wheel Drive,Premium
-2020,BYD,e6,Automatic (A1),71,73,72,,Front-Wheel Drive,Electricity
-2020,Hyundai,Kona Electric,Automatic (A1),108,132,120,,Front-Wheel Drive,Electricity
 1988,Chevrolet,Camaro,Automatic 4-spd,23,15,18,5,Rear-Wheel Drive,Premium
 2020,Mercedes-Benz,AMG GT R Coupe,Automatic (AM7),20,15,17,4,Rear-Wheel Drive,Premium
 2020,Mercedes-Benz,AMG GT R Roadster,Automatic (AM7),20,15,17,4,Rear-Wheel Drive,Premium
@@ -35289,13 +34938,7 @@
 2020,Volkswagen,Tiguan 4motion,Automatic (S8),27,20,23,2,All-Wheel Drive,Regular
 2020,Lexus,GX 460,Automatic (S6),19,15,16,4.6,4-Wheel Drive,Premium
 2019,Cadillac,CT6 AWD,Automatic (S10),25,14,17,4.2,All-Wheel Drive,Premium
-2020,BMW,530e,Automatic (S8),31,25,27,2,Rear-Wheel Drive,Premium and Electricity
-2020,BMW,530e xDrive,Automatic (S8),29,23,25,2,All-Wheel Drive,Premium and Electricity
 1988,Chevrolet,Camaro,Manual 5-spd,24,15,18,5,Rear-Wheel Drive,Premium
-2020,Mitsubishi,Outlander PHEV,Automatic (A1),26,25,25,2,All-Wheel Drive,Regular Gas and Electricity
-2020,Porsche,Panamera Turbo S e-Hybrid,Automatic (AM-S8),22,19,20,4,All-Wheel Drive,Premium Gas or Electricity
-2020,Porsche,Panamera Turbo S e-Hybrid Executive,Automatic (AM-S8),22,19,20,4,All-Wheel Drive,Premium Gas or Electricity
-2020,Porsche,Panamera Turbo S e-Hybrid ST,Automatic (AM-S8),22,19,20,4,All-Wheel Drive,Premium Gas or Electricity
 2020,Audi,A3,Automatic (AM-S7),36,27,30,2,Front-Wheel Drive,Regular
 2020,Mercedes-Benz,A220 4matic,Automatic 7-spd,34,24,28,2,4-Wheel Drive,Premium
 2020,Mercedes-Benz,A220,Automatic 7-spd,35,24,28,2,Front-Wheel Drive,Premium
@@ -35380,7 +35023,6 @@
 2020,Toyota,RAV4 AWD LE,Automatic (S8),34,27,30,2.5,All-Wheel Drive,Regular
 1988,Chevrolet,Sprint,Manual 5-spd,43,36,39,1,Front-Wheel Drive,Regular
 2020,Mercedes-Benz,AMG G63,Automatic 9-spd,15,13,14,4,4-Wheel Drive,Premium
-2020,Chevrolet,Bolt EV,Automatic (variable gear ratios),108,127,118,,Front-Wheel Drive,Electricity
 2020,Acura,NSX Hybrid,Automatic (AM-S9),22,21,21,3.5,All-Wheel Drive,Premium
 2020,Mercedes-Benz,S560 Convertible,Automatic 9-spd,26,17,20,4,Rear-Wheel Drive,Premium
 2020,Mercedes-Benz,AMG S63 4matic Plus Convertible,Automatic 9-spd,24,15,18,4,4-Wheel Drive,Premium
@@ -35400,7 +35042,6 @@
 2020,Mercedes-Benz,AMG GLC63 4matic Plus,Automatic 9-spd,22,16,18,4,4-Wheel Drive,Premium
 2020,Mercedes-Benz,AMG GLC63 4matic Plus Coupe,Automatic 9-spd,22,16,18,4,4-Wheel Drive,Premium
 2020,Mercedes-Benz,AMG GLC63 S 4matic Plus Coupe,Automatic 9-spd,22,16,18,4,4-Wheel Drive,Premium
-2019,Mercedes-Benz,S560e,Automatic 9-spd,26,21,23,3,Rear-Wheel Drive,Premium and Electricity
 1988,Chrysler,Conquest,Manual 5-spd,20,16,18,2.6,Rear-Wheel Drive,Premium
 2020,Bugatti,Chiron,Automatic (AM-S7),14,9,11,8,All-Wheel Drive,Premium
 2020,Mercedes-Benz,AMG SLC43,Automatic 9-spd,29,20,23,3,Rear-Wheel Drive,Premium
@@ -35471,28 +35112,8 @@
 2020,Ford,Expedition MAX 4WD,Automatic (S10),21,16,18,3.5,Part-time 4-Wheel Drive,Regular
 2020,Lincoln,Navigator 4WD,Automatic (S10),21,16,18,3.5,Part-time 4-Wheel Drive,Regular
 2020,Mercedes-Benz,G550,Automatic 9-spd,17,13,14,4,4-Wheel Drive,Premium
-2020,Hyundai,Ioniq Electric,Automatic (A1),121,145,133,,Front-Wheel Drive,Electricity
-2020,Tesla,Model 3 Long Range,Automatic (A1),123,136,130,,Rear-Wheel Drive,Electricity
-2020,Tesla,Model 3 Long Range AWD,Automatic (A1),116,124,121,,All-Wheel Drive,Electricity
-2020,Tesla,Model 3 Mid Range,Automatic (A1),117,128,123,,Rear-Wheel Drive,Electricity
-2020,Tesla,Model 3 Standard Range,Automatic (A1),124,138,131,,Rear-Wheel Drive,Electricity
-2020,Tesla,Model 3 Standard Range Plus,Automatic (A1),132,148,141,,Rear-Wheel Drive,Electricity
-2020,Tesla,Model 3 Long Range Performance AWD (18in),Automatic (A1),116,124,121,,All-Wheel Drive,Electricity
 1988,Nissan,Pulsar NX,Manual 5-spd,31,23,26,1.6,Front-Wheel Drive,Regular
-2020,Tesla,Model 3 Long Range Performance AWD (19in),Automatic (A1),112,119,116,,All-Wheel Drive,Electricity
-2020,Tesla,Model 3 Long Range Performance AWD (20in),Automatic (A1),107,118,113,,All-Wheel Drive,Electricity
-2020,Tesla,Model S Long Range,Automatic (A1),107,115,111,,All-Wheel Drive,Electricity
-2020,Tesla,Model S Performance (19in Wheels),Automatic (A1),104,104,104,,All-Wheel Drive,Electricity
-2020,Tesla,Model S Performance (21in Wheels),Automatic (A1),96,98,97,,All-Wheel Drive,Electricity
-2020,Tesla,Model S Standard Range,Automatic (A1),105,113,109,,All-Wheel Drive,Electricity
-2020,Tesla,Model X Long Range,Automatic (A1),93,99,96,,All-Wheel Drive,Electricity
-2020,Tesla,Model X Performance (20in Wheels),Automatic (A1),89,90,90,,All-Wheel Drive,Electricity
-2020,Tesla,Model X Performance (22in Wheels),Automatic (A1),77,80,79,,All-Wheel Drive,Electricity
-2020,Tesla,Model X Standard Range,Automatic (A1),98,105,101,,All-Wheel Drive,Electricity
 1988,Nissan,Pulsar NX,Automatic 4-spd,26,18,21,1.8,Front-Wheel Drive,Regular
-2020,Hyundai,Ioniq Plug-in Hybrid,Automatic (AM6),52,53,52,1.6,Front-Wheel Drive,Regular Gas and Electricity
-2020,Karma,Revero GT (21-inch wheels),Automatic (A1),25,27,26,1.5,Rear-Wheel Drive,Premium Gas or Electricity
-2020,Subaru,Crosstrek Hybrid AWD,Automatic (variable gear ratios),35,36,35,2,All-Wheel Drive,Regular Gas and Electricity
 2019,RUF Automobile,RUFTURBO12/CTR3/CTR2017,Manual 7-spd,20,16,18,3.8,Rear-Wheel Drive,Premium
 2020,Audi,A6 quattro,Automatic (AM-S7),29,22,24,3,All-Wheel Drive,Premium
 2020,Audi,A7 quattro,Automatic (AM-S7),29,22,24,3,All-Wheel Drive,Premium
@@ -35561,10 +35182,6 @@
 2020,GMC,Acadia AWD,Automatic 9-spd,27,21,23,2,All-Wheel Drive,Regular
 2020,Mercedes-Benz,GLE580 4matic,Automatic 9-spd,21,17,19,4,4-Wheel Drive,Premium
 2020,Mercedes-Benz,GLS580 4matic,Automatic 9-spd,21,16,18,4,4-Wheel Drive,Premium
-2020,Kia,Niro Plug-in Hybrid,Automatic (AM6),44,48,46,1.6,Front-Wheel Drive,Regular Gas and Electricity
-2020,Porsche,Panamera 4 e-Hybrid,Automatic (AM-S8),24,21,23,2.9,All-Wheel Drive,Premium Gas or Electricity
-2020,Porsche,Panamera 4 e-Hybrid Executive,Automatic (AM-S8),24,21,23,2.9,All-Wheel Drive,Premium Gas or Electricity
-2020,Porsche,Panamera 4 e-Hybrid ST,Automatic (AM-S8),24,21,23,2.9,All-Wheel Drive,Premium Gas or Electricity
 2020,Audi,A5 quattro,Automatic (AM-S7),32,24,27,2,All-Wheel Drive,Premium
 2020,Audi,A5 Cabriolet quattro,Automatic (AM-S7),31,23,26,2,All-Wheel Drive,Premium
 1988,Nissan,200SX,Manual 5-spd,24,17,19,3,Rear-Wheel Drive,Regular
@@ -35577,23 +35194,14 @@
 2020,Mazda,CX-30 2WD,Automatic (S6),33,25,28,2.5,Front-Wheel Drive,Regular
 2020,Mazda,CX-30 2WD,Automatic (S6),33,25,28,2.5,Front-Wheel Drive,Regular
 2020,Cadillac,XT5 AWD,Automatic (S9),26,21,23,2,All-Wheel Drive,Premium
-2020,BMW,I8 Coupe,Automatic 6-spd,29,26,27,1.5,All-Wheel Drive,Premium and Electricity
 1988,Nissan,300ZX 2x2,Automatic 4-spd,24,16,19,3,Rear-Wheel Drive,Regular
-2020,BMW,I8 Roadster,Automatic 6-spd,29,26,27,1.5,All-Wheel Drive,Premium and Electricity
-2020,MINI,Cooper SE Countryman All4,Automatic (S6),30,29,29,1.5,All-Wheel Drive,Premium and Electricity
 2019,Land Rover,Range Rover Sport MHEV,Automatic (S8),25,19,21,3,4-Wheel Drive,Premium
-2019,Land Rover,Range Rover PHEV,Automatic (S8),21,18,19,2,4-Wheel Drive,Premium and Electricity
-2019,Land Rover,Range Rover Sport PHEV,Automatic (S8),21,18,19,2,4-Wheel Drive,Premium and Electricity
-2020,Land Rover,Range Rover PHEV,Automatic (S8),21,18,19,2,4-Wheel Drive,Premium and Electricity
-2020,Land Rover,Range Rover Sport PHEV,Automatic (S8),21,18,19,2,4-Wheel Drive,Premium and Electricity
-2020,Lincoln,Aviator PHEV AWD,Automatic (S10),25,22,23,3,Part-time 4-Wheel Drive,Regular Gas and Electricity
 2020,Cadillac,CT6 AWD,Automatic (S10),25,14,17,4.2,All-Wheel Drive,Premium
 2020,Toyota,Highlander,Automatic (S8),28,20,23,3.5,Front-Wheel Drive,Regular
 1988,Nissan,300ZX 2x2,Manual 5-spd,23,15,18,3,Rear-Wheel Drive,Regular
 2020,Toyota,Highlander,Automatic (S8),29,21,24,3.5,Front-Wheel Drive,Regular
 2020,Toyota,Highlander AWD,Automatic (S8),27,20,23,3.5,All-Wheel Drive,Regular
 2020,Bentley,Bentayga,Automatic (S8),17,12,14,6,All-Wheel Drive,Premium
-2020,Porsche,Taycan Turbo,Automatic (A2),71,68,69,,All-Wheel Drive,Electricity
 2020,Ford,GT,Automatic (AM7),18,12,14,3.5,Rear-Wheel Drive,Premium
 2020,Mercedes-Benz,SLC300,Automatic 9-spd,32,23,27,2,Rear-Wheel Drive,Premium
 2020,Roush Performance,Stage 3 Mustang,Automatic (S10),18,12,14,5,Rear-Wheel Drive,Premium
@@ -35640,7 +35248,6 @@
 2020,Dodge,Grand Caravan,Automatic 6-spd,25,17,20,3.6,Front-Wheel Drive,Regular
 2020,Mazda,CX-30 4WD,Automatic (S6),31,24,26,2.5,4-Wheel Drive,Regular
 2020,Mazda,CX-30 4WD,Automatic (S6),32,25,27,2.5,4-Wheel Drive,Regular
-2020,Porsche,Taycan Turbo S,Automatic (A2),68,67,68,,All-Wheel Drive,Electricity
 2021,Kia,Seltos FWD,Automatic (AV-S8),34,29,31,2,Front-Wheel Drive,Regular
 2021,Kia,Seltos AWD,Automatic (AM-S7),30,25,27,1.6,All-Wheel Drive,Regular
 1988,Dodge,Colt,Manual 5-spd,29,22,25,1.6,Front-Wheel Drive,Regular
@@ -35662,8 +35269,6 @@
 2020,BMW,X5 M Competition,Automatic (S8),18,13,15,4.4,All-Wheel Drive,Premium
 2020,BMW,X6 M,Automatic (S8),18,13,15,4.4,All-Wheel Drive,Premium
 2020,BMW,X6 M Competition,Automatic (S8),18,13,15,4.4,All-Wheel Drive,Premium
-2020,Audi,A8 L,Automatic (S8),27,21,23,3,All-Wheel Drive,Premium and Electricity
-2020,Audi,Q5,Automatic (AM-S7),29,25,27,2,All-Wheel Drive,Premium and Electricity
 2020,Mazda,2,Manual 6-spd,39,30,34,1.5,Front-Wheel Drive,Regular
 1988,Dodge,Daytona,Manual 5-spd,26,18,21,2.2,Front-Wheel Drive,Premium
 2020,Mazda,2,Automatic (S6),40,32,35,1.5,Front-Wheel Drive,Regular
@@ -35692,14 +35297,12 @@
 2020,Cadillac,CT5 V,Automatic (S10),26,18,21,3,Rear-Wheel Drive,Premium
 2020,Nissan,Sentra,Automatic (variable gear ratios),39,29,33,2,Front-Wheel Drive,Regular
 2020,Nissan,Sentra SR,Automatic (variable gear ratios),37,28,32,2,Front-Wheel Drive,Regular
-2020,Tesla,Model Y Performance AWD,Automatic (A1),112,129,121,,All-Wheel Drive,Electricity
 2020,Hyundai,Sonata Hybrid,Automatic (AM-S6),51,45,47,2,Front-Wheel Drive,Regular
 2020,Hyundai,Sonata Hybrid Blue,Automatic (AM-S6),54,50,52,2,Front-Wheel Drive,Regular
 2020,Toyota,Highlander Hybrid,Automatic (AV-S6),35,36,36,2.5,Front-Wheel Drive,Regular
 2020,Toyota,Highlander Hybrid AWD,Automatic (AV-S6),35,35,35,2.5,All-Wheel Drive,Regular
 2020,Toyota,Highlander Hybrid AWD LTD/PLAT,Automatic (AV-S6),34,35,35,2.5,All-Wheel Drive,Regular
 1988,Ford,Festiva,Manual 4-spd,36,32,34,1.3,Front-Wheel Drive,Regular
-2020,Honda,Clarity Plug-in Hybrid,Automatic (variable gear ratios),40,44,42,1.5,Front-Wheel Drive,Regular Gas and Electricity
 2020,Cadillac,CT4 V,Automatic (S10),29,20,23,2.7,Rear-Wheel Drive,Premium
 2021,Jaguar,F-Type S Coupe,Automatic (S8),27,19,22,3,Rear-Wheel Drive,Premium
 2021,Jaguar,F-Type S Convertible,Automatic (S8),27,19,22,3,Rear-Wheel Drive,Premium
@@ -35728,14 +35331,10 @@
 2020,Porsche,Macan GTS,Automatic (AM-S7),22,17,19,2.9,All-Wheel Drive,Premium
 2020,Porsche,Macan Turbo,Automatic (AM-S7),22,17,19,2.9,All-Wheel Drive,Premium
 2020,Audi,RS Q8,Automatic (S8),19,13,15,4,All-Wheel Drive,Premium
-2020,MINI,Cooper SE Hardtop 2 door,Automatic (A1),100,115,108,,Front-Wheel Drive,Electricity
 2021,Chevrolet,Trailblazer AWD,Automatic 9-spd,30,26,28,1.3,All-Wheel Drive,Regular
 1988,Ford,Mustang,Manual 5-spd,27,22,24,2.3,Rear-Wheel Drive,Regular
 2020,Toyota,Camry AWD LE/SE,Automatic (S8),34,25,29,2.5,All-Wheel Drive,Regular
 2020,Toyota,Camry AWD XLE/XSE,Automatic (S8),34,25,28,2.5,All-Wheel Drive,Regular
-2020,BMW,i3,Automatic (A1),102,124,113,,Rear-Wheel Drive,Electricity
-2020,BMW,i3s,Automatic (A1),102,124,113,,Rear-Wheel Drive,Electricity
-2020,Kia,Niro Electric,Automatic (A1),102,123,112,,Front-Wheel Drive,Electricity
 2021,Genesis,G70 AWD,Automatic (S8),25,17,20,3.3,All-Wheel Drive,Premium
 2021,Genesis,G70 RWD,Automatic (S8),26,17,20,3.3,Rear-Wheel Drive,Premium
 2020,Ford,F150 Pickup 2WD,Automatic (S10),29,21,24,3,Rear-Wheel Drive,Diesel
@@ -35746,8 +35345,6 @@
 2021,Buick,Encore GX FWD,Automatic (variable gear ratios),31,28,29,1.2,Front-Wheel Drive,Regular
 2021,Chevrolet,Trailblazer FWD,Automatic (variable gear ratios),33,29,31,1.3,Front-Wheel Drive,Regular
 2021,Chevrolet,Trailblazer FWD,Automatic (variable gear ratios),31,28,29,1.2,Front-Wheel Drive,Regular
-2020,BMW,X3 xDrive30e,Automatic (S8),27,21,24,2,All-Wheel Drive,Premium and Electricity
-2020,Mercedes-Benz,S560e,Automatic 9-spd,26,21,23,3,Rear-Wheel Drive,Premium and Electricity
 2021,MINI,Cooper Convertible,Automatic (AM-S7),37,28,31,1.5,Front-Wheel Drive,Premium
 2021,MINI,Cooper S Convertible,Automatic (AM-S7),34,26,29,2,Front-Wheel Drive,Premium
 2021,MINI,Cooper S Convertible,Manual 6-spd,32,23,26,2,Front-Wheel Drive,Premium
@@ -35786,21 +35383,13 @@
 2020,Audi,SQ7,Automatic (S8),21,15,17,4,All-Wheel Drive,Premium
 2020,Audi,SQ8,Automatic (S8),21,15,17,4,All-Wheel Drive,Premium
 1988,Honda,Civic,Automatic 4-spd,30,24,27,1.5,Front-Wheel Drive,Regular
-2020,Bentley,Bentayga,Automatic (S8),21,17,19,3,All-Wheel Drive,Premium and Electricity
-2020,Nissan,Leaf (40 kW-hr battery pack),Automatic (A1),99,123,111,,Front-Wheel Drive,Electricity
-2020,Nissan,Leaf (62 kW-hr battery pack),Automatic (A1),97,118,108,,Front-Wheel Drive,Electricity
-2020,Nissan,Leaf SV/SL (62 kW-hr battery pack),Automatic (A1),94,114,104,,Front-Wheel Drive,Electricity
 2021,Toyota,GR Supra,Automatic (S8),30,22,25,3,Rear-Wheel Drive,Premium
 2021,MINI,Cooper S Hardtop 2 door,Automatic (AM-S7),35,26,30,2,Front-Wheel Drive,Premium
 2021,MINI,Cooper S Hardtop 4 door,Automatic (AM-S7),35,26,30,2,Front-Wheel Drive,Premium
 2021,Subaru,Ascent,Automatic (AV-S8),27,21,23,2.4,All-Wheel Drive,Regular
 2021,Subaru,Ascent Limited/Touring,Automatic (AV-S8),26,20,22,2.4,All-Wheel Drive,Regular
-2021,BMW,330e,Automatic (S8),33,25,28,2,Rear-Wheel Drive,Premium and Electricity
 1988,Honda,Civic,Manual 4-spd,35,30,32,1.5,Front-Wheel Drive,Regular
-2021,BMW,330e xDrive,Automatic (S8),30,22,25,2,All-Wheel Drive,Premium and Electricity
 2020,Audi,Q7,Automatic (S8),23,19,21,2,All-Wheel Drive,Premium
-2020,BMW,i3 with Range Extender,Automatic (A1),31,30,31,0.6,Rear-Wheel Drive,Premium Gas or Electricity
-2020,BMW,i3s with Range Extender,Automatic (A1),31,30,31,0.6,Rear-Wheel Drive,Premium Gas or Electricity
 2021,BMW,M760i xDrive,Automatic (S8),20,13,16,6.6,All-Wheel Drive,Premium
 2021,Honda,Pilot FWD,Automatic (S9),27,20,23,3.5,Front-Wheel Drive,Regular
 2021,Honda,Pilot AWD,Automatic (S9),26,19,22,3.5,All-Wheel Drive,Regular
@@ -35808,8 +35397,6 @@
 2020,Porsche,718 Cayman GT4,Manual 6-spd,23,16,19,4,Rear-Wheel Drive,Premium
 2020,Bentley,Mulsanne,Automatic (S8),16,10,12,6.8,Rear-Wheel Drive,Premium
 1988,Honda,Civic,Manual 4-spd,35,30,32,1.5,Front-Wheel Drive,Regular
-2020,Porsche,Cayenne e-Hybrid,Automatic (S8),22,20,21,3,All-Wheel Drive,Premium Gas or Electricity
-2020,Porsche,Cayenne e-Hybrid Coupe,Automatic (S8),22,20,21,3,All-Wheel Drive,Premium Gas or Electricity
 2021,Toyota,Corolla,Automatic (variable gear ratios),38,30,33,1.8,Front-Wheel Drive,Regular
 2021,Toyota,Corolla,Manual 6-spd,39,29,33,1.8,Front-Wheel Drive,Regular
 2021,Toyota,Corolla XLE,Automatic (variable gear ratios),37,29,32,1.8,Front-Wheel Drive,Regular
@@ -35818,7 +35405,6 @@
 2021,Toyota,Corolla,Manual 6-spd,36,29,32,2,Front-Wheel Drive,Regular
 2021,Toyota,Corolla XSE,Automatic (AV-S10),38,31,34,2,Front-Wheel Drive,Regular
 1988,Honda,Civic,Manual 5-spd,34,28,31,1.5,Front-Wheel Drive,Regular
-2020,Porsche,Taycan 4S Perf Battery Plus,Automatic (A2),71,68,69,,All-Wheel Drive,Electricity
 2021,Lexus,LC 500h,Automatic (AV-S10),34,26,29,3.5,Rear-Wheel Drive,Premium
 2021,Lexus,LC 500,Automatic (S10),25,16,19,5,Rear-Wheel Drive,Premium
 2021,Hyundai,Kona FWD,Automatic (AM7),32,28,30,1.6,Front-Wheel Drive,Regular
@@ -35867,7 +35453,6 @@
 2021,GMC,Yukon 4WD,Automatic 10-spd,19,14,16,6.2,4-Wheel Drive,Premium
 2021,GMC,Yukon XL 4WD,Automatic 10-spd,19,15,17,5.3,4-Wheel Drive,Regular
 2021,GMC,Yukon 4WD,Automatic 10-spd,20,16,18,5.3,4-Wheel Drive,Regular
-2021,MINI,Cooper SE Hardtop 2 door,Automatic (A1),100,115,108,,Front-Wheel Drive,Electricity
 2021,Kia,K5,Automatic (S8),38,29,32,1.6,Front-Wheel Drive,Regular
 2021,Kia,K5,Automatic (S8),37,27,31,1.6,Front-Wheel Drive,Regular
 2021,Buick,Encore FWD,Automatic (S6),30,25,27,1.4,Front-Wheel Drive,Regular
@@ -35881,7 +35466,6 @@
 2021,Land Rover,Range Rover LWB SVA,Automatic (S8),19,13,15,5,4-Wheel Drive,Premium
 2021,Land Rover,Range Rover Sport,Automatic (S8),22,17,19,5,4-Wheel Drive,Premium
 2021,Land Rover,Range Rover Sport SVR,Automatic (S8),20,15,16,5,4-Wheel Drive,Premium
-2021,BMW,745e xDrive,Automatic (S8),26,19,22,3,All-Wheel Drive,Premium and Electricity
 2020,McLaren Automotive,720S Coupe,Automatic (AM-S7),22,15,18,4,Rear-Wheel Drive,Premium
 2020,McLaren Automotive,720S Spider,Automatic (AM-S7),22,15,18,4,Rear-Wheel Drive,Premium
 1988,Hyundai,Excel,Automatic 3-spd,29,23,26,1.5,Front-Wheel Drive,Regular
@@ -35911,7 +35495,6 @@
 2020,McLaren Automotive,600LT Spider,Automatic (AM-S7),22,15,18,3.8,Rear-Wheel Drive,Premium
 2020,McLaren Automotive,620R Coupe,Automatic (AM-S7),22,15,18,3.8,Rear-Wheel Drive,Premium
 2020,McLaren Automotive,Speedtail,Automatic (AM-S7),20,12,15,4,Rear-Wheel Drive,Premium
-2020,Audi,e-tron Sportback,Automatic (A1),78,76,77,,All-Wheel Drive,Electricity
 2021,Volvo,S60 FWD,Automatic (S8),34,23,27,2,Front-Wheel Drive,Premium
 2021,Volvo,S60 AWD,Automatic (S8),32,21,25,2,All-Wheel Drive,Premium
 2021,Volvo,S90 AWD,Automatic (S8),32,21,25,2,All-Wheel Drive,Premium
@@ -35981,8 +35564,6 @@
 2020,Porsche,Boxster T,Automatic (AM-S7),27,21,23,2,Rear-Wheel Drive,Premium
 2020,Porsche,Cayman T,Manual 6-spd,26,20,22,2,Rear-Wheel Drive,Premium
 2020,Porsche,Cayman T,Automatic (AM-S7),27,21,23,2,Rear-Wheel Drive,Premium
-2020,Ford,Escape FWD PHEV,Automatic (variable gear ratios),38,43,41,2.5,Front-Wheel Drive,Regular Gas and Electricity
-2020,Polestar,1,Automatic (S8),31,22,26,2,All-Wheel Drive,Premium and Electricity
 2021,Toyota,Corolla Hatchback,Manual 6-spd,37,28,31,2,Front-Wheel Drive,Regular
 2021,Toyota,Corolla Hatchback,Automatic (AM-S10),41,32,35,2,Front-Wheel Drive,Regular
 2021,Toyota,Corolla Hatchback XSE,Automatic (AM-S10),38,30,33,2,Front-Wheel Drive,Regular
@@ -35994,8 +35575,6 @@
 2021,Infiniti,QX80 2WD,Automatic (S7),20,14,16,5.6,Rear-Wheel Drive,Premium
 2021,Infiniti,QX80 4WD,Automatic (S7),19,13,15,5.6,4-Wheel Drive,Premium
 2021,Infiniti,QX80 4WD,Automatic (S7),19,13,15,5.6,4-Wheel Drive,Premium
-2020,Tesla,Model S Long Range Plus,Automatic (A1),112,121,117,,All-Wheel Drive,Electricity
-2020,Mercedes-Benz,GLC350e 4matic,Automatic 9-spd,28,23,25,2,4-Wheel Drive,Premium and Electricity
 2021,Audi,R8,Automatic (AM-S7),20,13,16,5.2,All-Wheel Drive,Premium
 2021,Audi,R8 Spyder,Automatic (AM-S7),20,13,16,5.2,All-Wheel Drive,Premium
 1988,Jaguar,XJ-S,Automatic 3-spd,16,11,13,5.3,Rear-Wheel Drive,Regular
@@ -36034,7 +35613,6 @@
 2021,Hyundai,Sonata,Automatic (S8),37,27,30,1.6,Front-Wheel Drive,Regular
 2021,Audi,A6 Allroad,Automatic (AM-S7),26,20,22,3,All-Wheel Drive,Premium
 2021,Subaru,Forester AWD,Automatic (AV-S7),33,26,29,2.5,All-Wheel Drive,Regular
-2021,Toyota,RAV4 Prime 4WD,Automatic (AV-S6),36,40,38,2.5,All-Wheel Drive,Regular Gas and Electricity
 2020,Land Rover,Range Rover MHEV,Automatic (S8),24,19,21,3,4-Wheel Drive,Premium
 2021,Lexus,LC 500 Convertible,Automatic (S10),25,15,18,5,Rear-Wheel Drive,Premium
 2021,Hyundai,Sonata,Automatic (S8),37,27,31,2.5,Front-Wheel Drive,Regular
@@ -36047,10 +35625,6 @@
 2021,Acura,RDX AWD,Automatic (S10),27,21,23,2,All-Wheel Drive,Premium
 2021,Acura,RDX AWD A-SPEC,Automatic (S10),26,21,23,2,All-Wheel Drive,Premium
 2021,Infiniti,QX50 AWD,Automatic (AV-S8),28,22,25,2,All-Wheel Drive,Premium
-2021,Volvo,XC90 AWD PHEV,Automatic (S8),28,26,27,2,All-Wheel Drive,Premium and Electricity
-2020,Porsche,Cayenne Turbo S e-Hybrid,Automatic (S8),20,16,18,4,All-Wheel Drive,Premium Gas or Electricity
-2020,Porsche,Cayenne Turbo S e-Hybrid Coupe,Automatic (S8),20,16,18,4,All-Wheel Drive,Premium Gas or Electricity
-2021,BMW,X5 xDrive45e,Automatic (S8),22,19,20,3,All-Wheel Drive,Premium and Electricity
 2021,Toyota,Prius,Automatic (variable gear ratios),50,54,52,1.8,Front-Wheel Drive,Regular
 2021,Toyota,Prius AWD,Automatic (variable gear ratios),47,51,49,1.8,Part-time 4-Wheel Drive,Regular
 1988,Mercedes-Benz,190E 2.6,Manual 5-spd,24,16,19,2.6,Rear-Wheel Drive,Premium
@@ -36058,9 +35632,7 @@
 2021,Chevrolet,Colorado 2WD,Automatic 6-spd,30,20,23,2.8,Rear-Wheel Drive,Diesel
 2021,GMC,Canyon 2WD,Automatic 6-spd,30,20,23,2.8,Rear-Wheel Drive,Diesel
 2021,Volkswagen,Atlas Cross Sport,Automatic (S8),23,18,20,3.6,Front-Wheel Drive,Regular
-2021,Toyota,Prius Prime,Automatic (variable gear ratios),53,55,54,1.8,Front-Wheel Drive,Regular Gas and Electricity
 2020,Aston Martin,Vantage Manual,Manual 7-spd,21,14,17,4,Rear-Wheel Drive,Premium
-2020,Tesla,Model Y Performance AWD (21in Wheels),Automatic (A1),106,116,111,,All-Wheel Drive,Electricity
 2021,BMW,230i xDrive Coupe,Automatic (S8),30,21,24,2,All-Wheel Drive,Premium
 2021,BMW,228i xDrive Gran Coupe,Automatic (S8),33,23,27,2,All-Wheel Drive,Premium
 2021,BMW,M235i xDrive Gran Coupe,Automatic (S8),32,23,26,2,All-Wheel Drive,Premium
@@ -36171,7 +35743,6 @@
 2021,GMC,Acadia FWD,Automatic 9-spd,27,21,23,2.5,Front-Wheel Drive,Regular
 2021,GMC,Acadia FWD,Automatic 9-spd,29,22,25,2,Front-Wheel Drive,Regular
 2021,GMC,Acadia AWD,Automatic 9-spd,27,22,24,2,All-Wheel Drive,Regular
-2020,Tesla,Model Y Long Range AWD,Automatic (A1),114,127,121,,All-Wheel Drive,Electricity
 2021,BMW,Z4 M40i,Automatic (S8),30,22,25,3,Rear-Wheel Drive,Premium
 2021,BMW,230i Convertible,Automatic (S8),33,23,27,2,Rear-Wheel Drive,Premium
 2021,BMW,M2 Competition Coupe,Automatic (AM-S7),23,16,19,3,Rear-Wheel Drive,Premium
@@ -36245,9 +35816,6 @@
 2021,Mercedes-Benz,AMG GLS63 4matic Plus,Automatic 9-spd,18,14,16,4,4-Wheel Drive,Premium
 2021,Toyota,4Runner 4WD,Automatic (S5),19,16,17,4,Part-time 4-Wheel Drive,Regular
 2021,Toyota,4Runner 4WD,Automatic (S5),19,16,17,4,All-Wheel Drive,Regular
-2021,Honda,Clarity Plug-in Hybrid,Automatic (variable gear ratios),40,44,42,1.5,Front-Wheel Drive,Regular Gas and Electricity
-2021,Volvo,S90 AWD PHEV,Automatic (S8),31,28,30,2,All-Wheel Drive,Premium and Electricity
-2021,Volvo,V60 AWD PHEV,Automatic (S8),33,28,30,2,All-Wheel Drive,Premium and Electricity
 2020,Chrysler,Pacifica AWD,Automatic 9-spd,25,17,20,3.6,All-Wheel Drive,Regular
 2021,Aston Martin,Vantage V8,Automatic (S8),24,18,20,4,Rear-Wheel Drive,Premium
 2021,BMW,Z4 sDrive30i,Automatic (S8),32,25,28,2,Rear-Wheel Drive,Premium
@@ -36302,7 +35870,6 @@
 2021,Lamborghini,Urus,Automatic (S8),17,12,14,4,All-Wheel Drive,Premium
 2021,Lexus,LX 570,Automatic (S8),16,12,14,5.7,4-Wheel Drive,Premium
 2021,Toyota,Land Cruiser Wagon 4WD,Automatic (S8),17,13,14,5.7,4-Wheel Drive,Regular
-2021,Audi,A8 L,Automatic (S8),26,21,23,3,All-Wheel Drive,Premium and Electricity
 2021,BMW,430i Coupe,Automatic (S8),34,26,29,2,Rear-Wheel Drive,Premium
 2021,BMW,430i xDrive Coupe,Automatic (S8),33,24,27,2,All-Wheel Drive,Premium
 2021,Mercedes-Benz,A220 4matic,Automatic (AM7),34,25,28,2,4-Wheel Drive,Premium
@@ -36424,9 +35991,6 @@
 2021,Lexus,RX 450h AWD,Automatic (AV-S6),28,31,30,3.5,All-Wheel Drive,Premium
 2021,Toyota,Highlander Hybrid AWD,Automatic (AV-S6),35,35,35,2.5,All-Wheel Drive,Regular
 2021,Toyota,Highlander Hybrid AWD LTD/PLAT,Automatic (AV-S6),34,35,35,2.5,All-Wheel Drive,Regular
-2021,MINI,Cooper SE Countryman All4,Automatic (S6),30,29,29,1.5,All-Wheel Drive,Premium and Electricity
-2021,Polestar,1,Automatic (S8),31,22,26,2,All-Wheel Drive,Premium and Electricity
-2021,Volvo,XC60 AWD PHEV,Automatic (S8),28,26,27,2,All-Wheel Drive,Premium and Electricity
 2021,BMW,M440i xDrive Coupe,Automatic (S8),31,22,25,3,All-Wheel Drive,Premium
 2021,BMW,M850i xDrive Convertible,Automatic (S8),24,17,19,4.4,All-Wheel Drive,Premium
 2021,Mercedes-Benz,AMG A35 4matic,Automatic (AM7),29,22,25,2,4-Wheel Drive,Premium
@@ -36502,8 +36066,6 @@
 2021,Maserati,Levante GTS,Automatic 8-spd,20,13,16,3.8,All-Wheel Drive,Premium
 2021,Maserati,Levante Trofeo,Automatic 8-spd,20,13,16,3.8,All-Wheel Drive,Premium
 2021,Toyota,Sequoia 4WD,Automatic (S6),17,13,14,5.7,Part-time 4-Wheel Drive,Regular
-2021,Audi,A7 quattro,Automatic (AM-S7),34,26,29,2,All-Wheel Drive,Premium and Electricity
-2021,Lincoln,Aviator PHEV AWD,Automatic (S10),25,22,23,3,Part-time 4-Wheel Drive,Regular Gas and Electricity
 2021,Aston Martin,Vantage Manual,Manual 7-spd,21,14,17,4,Rear-Wheel Drive,Premium
 2021,Porsche,718 Boxster,Manual 6-spd,26,20,22,2,Rear-Wheel Drive,Premium
 2021,Porsche,718 Boxster,Automatic (AM-S7),27,21,24,2,Rear-Wheel Drive,Premium
@@ -36590,9 +36152,6 @@
 2021,Ford,Explorer HEV AWD,Automatic (S10),26,23,25,3.3,Part-time 4-Wheel Drive,Regular
 2021,Ford,Explorer AWD,Automatic 10-spd,27,20,23,2.3,Part-time 4-Wheel Drive,Regular
 2021,Lincoln,Aviator AWD,Automatic (S10),24,17,20,3,Part-time 4-Wheel Drive,Regular
-2021,Polestar,2,Automatic (A1),88,96,92,,All-Wheel Drive,Electricity
-2021,Volvo,XC40 AWD BEV,Automatic (A1),72,85,79,,All-Wheel Drive,Electricity
-2021,Ferrari,SF90 Stradale Coupe,Automatic (AM8),20,16,18,3.9,All-Wheel Drive,Premium and Electricity
 2021,Acura,ILX,Automatic (AM-S8),34,24,28,2.4,Front-Wheel Drive,Premium
 2021,Toyota,Corolla APEX,Automatic (AV-S10),38,31,34,2,Front-Wheel Drive,Regular
 2021,Toyota,Corolla APEX,Manual 6-spd,36,28,31,2,Front-Wheel Drive,Regular
@@ -36621,8 +36180,6 @@
 2021,Dodge,Durango RWD,Automatic 8-spd,22,14,17,5.7,Rear-Wheel Drive,Midgrade
 1988,Suzuki,Forsa,Automatic 3-spd,36,32,34,1,Front-Wheel Drive,Regular
 2021,Dodge,Durango AWD,Automatic 8-spd,22,14,17,5.7,All-Wheel Drive,Midgrade
-2021,Land Rover,Range Rover PHEV,Automatic (S8),21,18,19,2,4-Wheel Drive,Premium and Electricity
-2021,Land Rover,Range Rover Sport PHEV,Automatic (S8),21,18,19,2,4-Wheel Drive,Premium and Electricity
 2021,Audi,R8 2WD,Automatic (AM-S7),23,14,17,5.2,Rear-Wheel Drive,Premium
 2021,Audi,R8 Spyder 2WD,Automatic (AM-S7),23,14,17,5.2,Rear-Wheel Drive,Premium
 2021,Audi,TT Roadster quattro,Automatic (AM-S7),31,23,26,2,All-Wheel Drive,Regular
@@ -36710,20 +36267,10 @@
 1985,Cadillac,Eldorado,Automatic 4-spd,26,17,20,5.7,Front-Wheel Drive,Diesel
 1988,Toyota,Corolla,Automatic 4-spd,31,23,26,1.6,Front-Wheel Drive,Regular
 2021,Jeep,Grand Cherokee SRT 4WD,Automatic 8-spd,19,13,15,6.4,All-Wheel Drive,Premium
-2021,Tesla,Model 3 Long Range AWD,Automatic (A1),127,141,134,,All-Wheel Drive,Electricity
-2021,Tesla,Model 3 Performance AWD,Automatic (A1),107,118,113,,All-Wheel Drive,Electricity
-2021,Tesla,Model X Long Range Plus,Automatic (A1),101,109,105,,All-Wheel Drive,Electricity
-2021,Tesla,Model X Performance (20in Wheels),Automatic (A1),95,100,97,,All-Wheel Drive,Electricity
-2021,Tesla,Model X Performance (22in Wheels),Automatic (A1),83,89,86,,All-Wheel Drive,Electricity
-2021,Tesla,Model Y Long Range AWD,Automatic (A1),117,131,125,,All-Wheel Drive,Electricity
-2021,Tesla,Model Y Performance AWD,Automatic (A1),106,115,111,,All-Wheel Drive,Electricity
-2021,Volvo,S60 AWD PHEV,Automatic (S8),33,28,30,2,All-Wheel Drive,Premium and Electricity
 2020,Lamborghini,Aventador Sian Roadster,Automatic (AM-S7),14,8,10,6.5,All-Wheel Drive,Premium
 1988,Toyota,Corolla,Manual 5-spd,32,26,28,1.6,Front-Wheel Drive,Regular
 2020,Lamborghini,Aventador Sian Coupe,Automatic (AM-S7),14,8,10,6.5,All-Wheel Drive,Premium
 2020,RUF Automobile,TURBO12/CTR3/CTR ANNIVERSARY,Manual 7-spd,20,16,18,3.8,Rear-Wheel Drive,Premium
-2020,Kia,Soul Electric,Automatic (A1),101,127,114,,Front-Wheel Drive,Electricity
-2020,Tesla,Model X Long Range Plus,Automatic (A1),101,108,105,,All-Wheel Drive,Electricity
 2021,Bentley,Continental GT,Automatic (AM-S8),26,16,19,4,All-Wheel Drive,Premium
 2021,Ram,1500 HFE 2WD,Automatic 8-spd,26,20,23,3.6,Rear-Wheel Drive,Regular
 2021,Ram,1500 TRX 4WD,Automatic 8-spd,14,10,12,6.2,4-Wheel Drive,Premium
@@ -36735,7 +36282,6 @@
 2021,Hyundai,Santa Fe FWD,Automatic (AM-S8),28,22,25,2.5,Front-Wheel Drive,Regular
 2021,Hyundai,Santa Fe AWD,Automatic (S8),25,22,24,2.5,All-Wheel Drive,Regular
 2021,Hyundai,Santa Fe AWD,Automatic (AM-S8),28,21,24,2.5,All-Wheel Drive,Regular
-2021,Audi,Q5,Automatic (AM-S7),29,25,27,2,All-Wheel Drive,Premium and Electricity
 2021,Chevrolet,Corvette,Automatic (S8),27,15,19,6.2,Rear-Wheel Drive,Premium
 2021,Lotus,Evora GT,Manual 6-spd,26,17,20,3.5,Rear-Wheel Drive,Premium
 2021,Lotus,Evora GT,Automatic (S6),24,17,20,3.5,Rear-Wheel Drive,Premium
@@ -36813,9 +36359,6 @@
 2021,Chevrolet,Suburban 2WD,Automatic 10-spd,27,21,23,3,Rear-Wheel Drive,Diesel
 2021,GMC,Yukon 2WD,Automatic 10-spd,27,21,23,3,Rear-Wheel Drive,Diesel
 2021,GMC,Yukon XL 2WD,Automatic 10-spd,27,21,23,3,Rear-Wheel Drive,Diesel
-2021,Chrysler,Pacifica Hybrid,Automatic (variable gear ratios),30,29,30,3.6,Front-Wheel Drive,Regular Gas and Electricity
-2021,Audi,e-tron,Automatic (A1),77,78,78,,All-Wheel Drive,Electricity
-2021,Audi,e-tron Sportback,Automatic (A1),78,76,77,,All-Wheel Drive,Electricity
 1985,Cadillac,Seville,Automatic 4-spd,20,15,17,4.1,Front-Wheel Drive,Regular
 1988,Toyota,Supra,Manual 5-spd,22,16,18,3,Rear-Wheel Drive,Premium
 2021,Porsche,911 Carrera,Automatic (AM-S8),24,18,20,3,Rear-Wheel Drive,Premium
@@ -36835,8 +36378,6 @@
 2021,Porsche,911 Targa 4S,Manual 7-spd,24,17,20,3,All-Wheel Drive,Premium
 2021,Porsche,911 Targa 4S,Automatic (AM-S8),23,18,20,3,All-Wheel Drive,Premium
 2021,Mercedes-Benz,C300,Automatic 9-spd,35,23,27,2,Rear-Wheel Drive,Premium
-2021,Tesla,Model S Performance (19in Wheels),Automatic (A1),106,114,110,,All-Wheel Drive,Electricity
-2021,Tesla,Model S Performance (21in Wheels),Automatic (A1),93,98,96,,All-Wheel Drive,Electricity
 2021,Mercedes-Benz,AMG GT Coupe,Automatic (AM7),20,15,17,4,Rear-Wheel Drive,Premium
 2021,Mercedes-Benz,AMG GT C Coupe,Automatic (AM7),19,15,17,4,Rear-Wheel Drive,Premium
 1988,Toyota,Tercel,Manual 4-spd,32,26,29,1.5,Front-Wheel Drive,Regular
@@ -36880,8 +36421,6 @@
 2021,Mercedes-Benz,GLE580 4matic,Automatic 9-spd,22,17,19,4,4-Wheel Drive,Premium
 2021,Mercedes-Benz,GLS580 4matic,Automatic 9-spd,21,16,18,4,4-Wheel Drive,Premium
 2021,Mercedes-Benz,AMG G63,Automatic 9-spd,16,13,14,4,4-Wheel Drive,Premium
-2021,Volkswagen,ID.4 1st,Automatic (A1),89,104,97,,Rear-Wheel Drive,Electricity
-2021,Volkswagen,ID.4 Pro S,Automatic (A1),89,104,97,,Rear-Wheel Drive,Electricity
 2021,BMW,M4 Coupe,Manual 6-spd,23,16,19,3,Rear-Wheel Drive,Premium
 1988,Volkswagen,Fox,Manual 5-spd,26,21,23,1.8,Front-Wheel Drive,Regular
 2021,BMW,M4 Competition Coupe,Automatic (S8),23,16,19,3,Rear-Wheel Drive,Premium
@@ -36930,12 +36469,6 @@
 1988,Acura,Legend,Automatic 4-spd,21,16,18,2.7,Front-Wheel Drive,Regular
 2021,GMC,Yukon 4WD,Automatic 10-spd,26,20,22,3,4-Wheel Drive,Diesel
 2021,Lincoln,Navigator 4WD,Automatic (S10),20,16,17,3.5,Part-time 4-Wheel Drive,Regular
-2021,Ford,Mustang Mach-E AWD,Automatic (A1),86,100,93,,All-Wheel Drive,Electricity
-2021,Ford,Mustang Mach-E AWD Extended,Automatic (A1),84,96,90,,All-Wheel Drive,Electricity
-2021,Ford,Mustang Mach-E RWD,Automatic (A1),93,105,100,,Rear-Wheel Drive,Electricity
-2021,Ford,Mustang Mach-E RWD Extended,Automatic (A1),90,104,97,,Rear-Wheel Drive,Electricity
-2021,Karma,GS-6 (21-inch wheels),Automatic (A1),25,27,26,1.5,Rear-Wheel Drive,Premium Gas or Electricity
-2021,Karma,GS-6 (22-inch wheels),Automatic (A1),21,22,22,1.5,Rear-Wheel Drive,Premium Gas or Electricity
 2021,Ford,GT,Automatic (AM7),18,12,14,3.5,Rear-Wheel Drive,Premium
 2021,BMW,230i xDrive Convertible,Automatic (S8),30,21,24,2,All-Wheel Drive,Premium
 1988,Acura,Legend,Manual 5-spd,22,17,19,2.7,Front-Wheel Drive,Regular
@@ -36972,7 +36505,6 @@
 2021,Land Rover,Defender 110,Automatic (S8),20,17,18,2,4-Wheel Drive,Premium
 2021,Land Rover,Defender 90,Automatic (S8),21,18,19,2,4-Wheel Drive,Premium
 1988,Sterling,827,Automatic 4-spd,21,16,18,2.7,Front-Wheel Drive,Regular
-2021,Kandi,K27,Automatic (A1),102,127,114,,Front-Wheel Drive,Electricity
 2021,BMW,M850i xDrive Coupe,Automatic (S8),25,17,20,4.4,All-Wheel Drive,Premium
 2021,Bentley,Flying Spur,Automatic (AM-S8),20,15,17,4,All-Wheel Drive,Premium
 2021,Honda,Civic 5Dr,Manual 6-spd,28,22,25,2,Front-Wheel Drive,Premium
@@ -36996,11 +36528,6 @@
 1988,BMW,5 Series,Automatic 4-spd,22,17,19,2.7,Rear-Wheel Drive,Regular
 2021,Dodge,Durango SRT AWD,Automatic 8-spd,17,12,13,6.2,All-Wheel Drive,Premium
 2021,Jeep,Grand Cherokee Trackhawk 4WD,Automatic 8-spd,17,11,13,6.2,All-Wheel Drive,Premium
-2021,BMW,i3s,Automatic (A1),102,124,113,,Rear-Wheel Drive,Electricity
-2021,Chevrolet,Bolt EV,Automatic (variable gear ratios),108,127,118,,Front-Wheel Drive,Electricity
-2021,Nissan,Leaf (40 kW-hr battery pack),Automatic (A1),99,123,111,,Front-Wheel Drive,Electricity
-2021,Nissan,Leaf (62 kW-hr battery pack),Automatic (A1),97,118,108,,Front-Wheel Drive,Electricity
-2021,Nissan,Leaf SV/SL (62 kW-hr battery pack),Automatic (A1),94,114,104,,Front-Wheel Drive,Electricity
 2021,Ford,Mustang,Manual 6-spd,29,21,24,2.3,Rear-Wheel Drive,Regular
 2021,Ford,Mustang HO Coupe,Manual 6-spd,27,20,22,2.3,Rear-Wheel Drive,Regular
 2021,Ford,Mustang,Automatic (S10),32,21,25,2.3,Rear-Wheel Drive,Regular
@@ -37019,11 +36546,6 @@
 2021,Ford,Mustang,Automatic 10-spd,32,21,25,2.3,Rear-Wheel Drive,Regular
 2021,Ford,Mustang Convertible,Automatic 10-spd,28,20,23,2.3,Rear-Wheel Drive,Regular
 2021,Jeep,Wrangler 4dr 4WD,Automatic 8-spd,17,13,14,6.4,4-Wheel Drive,Premium
-2021,Ford,Mustang Mach-E RWD California Route 1,Automatic (A1),94,108,101,,Rear-Wheel Drive,Electricity
-2021,Porsche,Taycan 4S Perf Battery,Automatic (A2),80,79,79,,All-Wheel Drive,Electricity
-2021,Porsche,Taycan 4S Perf Battery Plus,Automatic (A2),81,75,77,,All-Wheel Drive,Electricity
-2021,Kia,Niro Plug-in Hybrid,Automatic (AM-S6),44,48,46,1.6,Front-Wheel Drive,Regular Gas and Electricity
-2021,Subaru,Crosstrek Hybrid AWD,Automatic (variable gear ratios),35,36,35,2,All-Wheel Drive,Regular Gas and Electricity
 2021,Nissan,Frontier 2WD,Automatic (S9),24,18,20,3.8,Rear-Wheel Drive,Regular
 2021,Nissan,Frontier 4WD,Automatic (S9),23,17,19,3.8,Part-time 4-Wheel Drive,Regular
 1988,BMW,5 Series,Manual 5-spd,19,14,16,3.4,Rear-Wheel Drive,Regular
@@ -37064,9 +36586,6 @@
 2021,Nissan,Kicks,Automatic (variable gear ratios),36,31,33,1.6,Front-Wheel Drive,Regular
 2021,Ram,1500 HFE 2WD,Automatic 8-spd,33,23,26,3,Rear-Wheel Drive,Diesel
 2021,Honda,Ridgeline AWD,Automatic (S9),24,18,21,3.5,All-Wheel Drive,Regular
-2021,Bentley,Bentayga,Automatic (S8),21,17,19,3,All-Wheel Drive,Premium and Electricity
-2021,Hyundai,Ioniq Plug-in Hybrid,Automatic (AM-S6),51,52,52,1.6,Front-Wheel Drive,Regular Gas and Electricity
-2021,Mitsubishi,Outlander PHEV,Automatic (A1),26,26,26,2.4,All-Wheel Drive,Regular Gas and Electricity
 2021,Porsche,Panamera,Automatic (AM-S8),24,18,20,2.9,Rear-Wheel Drive,Premium
 2021,Porsche,Panamera 4,Automatic (AM-S8),24,18,20,2.9,All-Wheel Drive,Premium
 2021,Porsche,Panamera 4 Executive,Automatic (AM-S8),23,17,19,2.9,All-Wheel Drive,Premium
@@ -37079,17 +36598,11 @@
 2021,Porsche,Panamera Turbo S ST,Automatic (AM-S8),21,15,17,4,All-Wheel Drive,Premium
 2021,Nissan,Rogue Sport AWD,Automatic (AV-S8),30,24,27,2,All-Wheel Drive,Regular
 2021,Nissan,Rogue Sport,Automatic (AV-S8),32,25,28,2,Front-Wheel Drive,Regular
-2021,BMW,530e,Automatic (S8),29,24,26,2,Rear-Wheel Drive,Premium and Electricity
-2021,BMW,530e xDrive,Automatic (S8),28,22,25,2,All-Wheel Drive,Premium and Electricity
 1988,Buick,Skyhawk,Manual 5-spd,34,23,27,2,Front-Wheel Drive,Regular
-2021,BMW,X3 xDrive30e,Automatic (S8),27,21,24,2,All-Wheel Drive,Premium and Electricity
 2021,Mercedes-Benz,AMG GT Black Series,Automatic (AM7),20,15,17,4,Rear-Wheel Drive,Premium
 2021,Lexus,LS 500h,Automatic (AV-S10),33,25,28,3.5,Rear-Wheel Drive,Premium
 2021,Lexus,LS 500h AWD,Automatic (AV-S10),29,23,26,3.5,All-Wheel Drive,Premium
 2021,Jaguar,E-Pace MHEV,Automatic (S9),26,21,23,2,All-Wheel Drive,Premium
-2021,BMW,i3 with Range Extender,Automatic (A1),31,30,31,0.6,Rear-Wheel Drive,Premium Gas or Electricity
-2021,BMW,i3s with Range Extender,Automatic (A1),31,30,31,0.6,Rear-Wheel Drive,Premium Gas or Electricity
-2021,Hyundai,Kona Electric,Automatic (A1),108,132,120,,Front-Wheel Drive,Electricity
 2022,Genesis,G70 RWD,Automatic (S8),27,18,21,3.3,Rear-Wheel Drive,Premium
 2022,Kia,Sportage FWD,Automatic (S6),28,20,23,2,Front-Wheel Drive,Regular
 1988,Buick,Skylark,Automatic 3-spd,31,21,25,2.3,Front-Wheel Drive,Regular
@@ -37119,11 +36632,6 @@
 2021,Nissan,Rogue FWD SL/Platinum,Automatic (AV-S8),36,30,32,1.5,Front-Wheel Drive,Regular
 2021,Nissan,Rogue AWD,Automatic (AV-S8),36,30,33,1.5,All-Wheel Drive,Regular
 2021,Nissan,Rogue AWD SL/Platinum,Automatic (AV-S8),35,29,32,1.5,All-Wheel Drive,Regular
-2021,Lincoln,Corsair AWD PHEV,Automatic (variable gear ratios),32,34,33,2.5,Part-time 4-Wheel Drive,Regular Gas and Electricity
-2021,Porsche,Cayenne e-Hybrid,Automatic (S8),22,20,21,3,All-Wheel Drive,Premium and Electricity
-2021,Porsche,Cayenne e-Hybrid Coupe,Automatic (S8),22,20,21,3,All-Wheel Drive,Premium and Electricity
-2021,Porsche,Cayenne Turbo S e-Hybrid,Automatic (S8),20,17,18,4,All-Wheel Drive,Premium and Electricity
-2021,Porsche,Cayenne Turbo S e-Hybrid Coupe,Automatic (S8),20,17,18,4,All-Wheel Drive,Premium and Electricity
 2022,MINI,Cooper Convertible,Automatic (AM-S7),38,29,32,1.5,Front-Wheel Drive,Premium
 1988,Buick,Skylark,Automatic 3-spd,24,17,20,3,Front-Wheel Drive,Regular
 2022,MINI,Cooper Convertible,Manual 6-spd,37,27,31,1.5,Front-Wheel Drive,Premium
@@ -37150,9 +36658,6 @@
 1985,Chevrolet,Celebrity,Manual 4-spd,29,21,24,2.5,Front-Wheel Drive,Regular
 1988,Cadillac,Cimarron,Manual 5-spd,27,18,21,2.8,Front-Wheel Drive,Regular
 2022,Hyundai,Tucson Hybrid Blue,Automatic (AM-S6),38,38,38,1.6,All-Wheel Drive,Regular
-2021,Jeep,Wrangler 4dr 4xe,Automatic 8-spd,20,20,20,2,4-Wheel Drive,Regular Gas and Electricity
-2021,Porsche,Taycan Perf Battery,Automatic (A2),84,76,79,,Rear-Wheel Drive,Electricity
-2021,Porsche,Taycan Perf Battery Plus,Automatic (A2),80,71,75,,Rear-Wheel Drive,Electricity
 2022,BMW,M850i xDrive Coupe,Automatic (S8),25,17,20,4.4,All-Wheel Drive,Premium
 2022,BMW,M850i xDrive Convertible,Automatic (S8),24,17,19,4.4,All-Wheel Drive,Premium
 2022,BMW,M850i xDrive Gran Coupe,Automatic (S8),24,17,19,4.4,All-Wheel Drive,Premium
@@ -37169,10 +36674,7 @@
 2021,Chevrolet,Silverado 2WD,Automatic 6-spd,21,14,16,5.3,Rear-Wheel Drive,Regular
 2021,GMC,Sierra 2WD,Automatic 6-spd,21,14,16,5.3,Rear-Wheel Drive,Regular
 2021,GMC,Sierra 4WD,Automatic 6-spd,20,14,16,5.3,4-Wheel Drive,Regular
-2021,BMW,i3,Automatic (A1),102,124,113,,Rear-Wheel Drive,Electricity
 1988,Chevrolet,Beretta,Manual 5-spd,32,22,25,2,Front-Wheel Drive,Regular
-2021,Kia,Niro Electric,Automatic (A1),102,123,112,,Front-Wheel Drive,Electricity
-2021,Tesla,Model 3 Standard Range Plus RWD,Automatic (A1),133,150,142,,Rear-Wheel Drive,Electricity
 2022,MINI,Cooper S Convertible,Automatic (AM-S7),36,27,30,2,Front-Wheel Drive,Premium
 2022,MINI,John Cooper Works Convertible,Automatic (S8),33,24,28,2,Front-Wheel Drive,Premium
 2022,BMW,840i Coupe,Automatic (S8),30,23,25,3,Rear-Wheel Drive,Premium
@@ -37231,12 +36733,9 @@
 2021,Chevrolet,Silverado Cab Chassis 2WD,Automatic 6-spd,18,13,14,5.3,Rear-Wheel Drive,Regular
 2021,GMC,Sierra Cab Chassis 4WD,Automatic 6-spd,17,13,14,5.3,4-Wheel Drive,Regular
 2021,GMC,Sierra Cab Chassis 2WD,Automatic 6-spd,18,13,14,5.3,Rear-Wheel Drive,Regular
-2021,Hyundai,Ioniq Electric,Automatic (A1),121,145,133,,Front-Wheel Drive,Electricity
 1988,Chevrolet,Cavalier,Automatic 3-spd,25,18,20,2.8,Front-Wheel Drive,Regular
-2021,Tesla,Model Y Standard Range RWD,Automatic (A1),119,140,129,,Rear-Wheel Drive,Electricity
 2022,BMW,M760i xDrive Sedan,Automatic (S8),20,13,16,6.6,All-Wheel Drive,Premium
 2022,Infiniti,QX55 AWD,Automatic (AV-S8),28,22,25,2,All-Wheel Drive,Premium
-2021,Jaguar,I-Pace EV400,Automatic (A1),72,80,76,,4-Wheel Drive,Electricity
 1988,Chevrolet,Cavalier,Manual 5-spd,27,18,21,2.8,Front-Wheel Drive,Regular
 2020,McLaren Automotive,Sabre,Automatic (AM-S7),22,15,18,4,Rear-Wheel Drive,Premium
 2020,Rolls-Royce,Dawn Black Badge,Automatic (S8),18,12,14,6.6,Rear-Wheel Drive,Premium
@@ -37261,19 +36760,7 @@
 2022,Land Rover,Defender 90 MHEV,Automatic (S8),22,17,19,3,4-Wheel Drive,Premium
 2022,Land Rover,Defender 110,Automatic (S8),19,14,16,5,4-Wheel Drive,Premium
 1988,Chevrolet,Corsica,Manual 5-spd,32,22,25,2,Front-Wheel Drive,Regular
-2021,Porsche,Taycan Turbo,Automatic (A2),75,71,73,,All-Wheel Drive,Electricity
-2021,Porsche,Taycan Turbo S,Automatic (A2),71,69,70,,All-Wheel Drive,Electricity
-2021,Ford,Escape FWD PHEV,Automatic (variable gear ratios),38,43,40,2.5,Front-Wheel Drive,Regular Gas and Electricity
-2021,Porsche,Panamera 4 e-Hybrid,Automatic (AM-S8),24,21,22,2.9,All-Wheel Drive,Premium and Electricity
-2021,Porsche,Panamera 4 e-Hybrid Executive,Automatic (AM-S8),24,21,22,2.9,All-Wheel Drive,Premium and Electricity
-2021,Porsche,Panamera 4 e-Hybrid ST,Automatic (AM-S8),24,21,22,2.9,All-Wheel Drive,Premium and Electricity
-2021,Porsche,Panamera 4S e-Hybrid,Automatic (AM-S8),23,21,22,2.9,All-Wheel Drive,Premium and Electricity
-2021,Porsche,Panamera 4S e-Hybrid Executive,Automatic (AM-S8),23,21,22,2.9,All-Wheel Drive,Premium and Electricity
-2021,Porsche,Panamera 4S e-Hybrid ST,Automatic (AM-S8),23,21,22,2.9,All-Wheel Drive,Premium and Electricity
-2021,Porsche,Panamera Turbo S e-Hybrid,Automatic (AM-S8),22,18,19,4,All-Wheel Drive,Premium and Electricity
 1988,Chevrolet,Corsica,Automatic 3-spd,24,18,20,2.8,Front-Wheel Drive,Regular
-2021,Porsche,Panamera Turbo S e-Hybrid Executive,Automatic (AM-S8),22,18,19,4,All-Wheel Drive,Premium and Electricity
-2021,Porsche,Panamera Turbo S e-Hybrid ST,Automatic (AM-S8),22,18,19,4,All-Wheel Drive,Premium and Electricity
 2022,Chevrolet,Spark,Automatic (variable gear ratios),38,30,33,1.4,Front-Wheel Drive,Regular
 2022,Chevrolet,Spark ACTIV,Automatic (variable gear ratios),37,30,33,1.4,Front-Wheel Drive,Regular
 2022,Chevrolet,Spark,Manual 5-spd,38,29,33,1.4,Front-Wheel Drive,Regular
@@ -37303,9 +36790,6 @@
 2022,Nissan,Pathfinder 4WD,Automatic (S9),27,21,23,3.5,4-Wheel Drive,Regular
 2022,Land Rover,Discovery MHEV,Automatic (S8),24,18,21,3,4-Wheel Drive,Premium
 2022,Nissan,Pathfinder 4WD Platinum,Automatic (S9),25,20,22,3.5,4-Wheel Drive,Regular
-2022,MINI,Cooper SE Hardtop 2 door,Automatic (A1),100,119,110,,Front-Wheel Drive,Electricity
-2022,Chevrolet,Bolt EUV,Automatic (variable gear ratios),104,125,115,,Front-Wheel Drive,Electricity
-2022,Chevrolet,Bolt EV,Automatic (variable gear ratios),109,131,120,,Front-Wheel Drive,Electricity
 2022,Hyundai,Sonata Hybrid,Automatic (AM-S6),51,45,47,2,Front-Wheel Drive,Regular
 2022,Hyundai,Sonata Hybrid Blue,Automatic (AM-S6),54,50,52,2,Front-Wheel Drive,Regular
 2022,Buick,Envision FWD,Automatic (S9),31,24,26,2,Front-Wheel Drive,Regular
@@ -37316,7 +36800,6 @@
 2022,Cadillac,XT4 AWD,Automatic (S9),29,22,24,2,All-Wheel Drive,Premium
 2022,Hyundai,Palisade FWD,Automatic (S8),26,19,22,3.8,Front-Wheel Drive,Regular
 2022,Hyundai,Palisade AWD,Automatic (S8),24,19,21,3.8,All-Wheel Drive,Regular
-2022,MINI,Cooper SE Countryman All4,Automatic (S6),30,29,29,1.5,All-Wheel Drive,Premium and Electricity
 2021,Acura,TLX Type-S,Automatic (S10),25,19,21,3,All-Wheel Drive,Premium
 2021,Acura,TLX Type-S Perf Tire,Automatic (S10),24,19,21,3,All-Wheel Drive,Premium
 2021,Jeep,Grand Cherokee L 4WD,Automatic 8-spd,22,14,17,5.7,All-Wheel Drive,Midgrade
@@ -37383,7 +36866,6 @@
 2022,GMC,Acadia FWD,Automatic 9-spd,27,19,22,3.6,Front-Wheel Drive,Regular
 2022,GMC,Acadia AWD,Automatic 9-spd,26,19,21,3.6,All-Wheel Drive,Regular
 2022,GMC,Acadia AWD,Automatic 9-spd,27,22,24,2,All-Wheel Drive,Regular
-2022,Hyundai,Santa Fe Plug-in Hybrid,Automatic (AM-S6),32,33,33,1.6,All-Wheel Drive,Regular Gas and Electricity
 2021,Chevrolet,Silverado 4WD,Automatic 10-spd,20,15,17,6.2,4-Wheel Drive,Premium
 2021,Chevrolet,Silverado 4WD TrailBoss,Automatic 10-spd,19,14,16,6.2,4-Wheel Drive,Premium
 2021,Chevrolet,Silverado 4WD,Automatic 10-spd,21,15,18,5.3,4-Wheel Drive,Regular
@@ -37413,8 +36895,6 @@
 2021,GMC,Yukon 4WD,Automatic 10-spd,20,15,17,5.3,4-Wheel Drive,Regular
 1988,Nissan,Maxima,Manual 5-spd,24,16,19,3,Front-Wheel Drive,Regular
 2021,GMC,Yukon XL 4WD,Automatic 10-spd,19,15,16,5.3,4-Wheel Drive,Regular
-2021,Tesla,Model S Long Range,Automatic (A1),115,124,120,,All-Wheel Drive,Electricity
-2021,Volkswagen,ID.4 Pro,Automatic (A1),91,107,99,,Rear-Wheel Drive,Electricity
 2022,Jaguar,F-Type R AWD Coupe,Automatic (S8),24,16,18,5,All-Wheel Drive,Premium
 2022,Jaguar,F-Type R AWD Convertible,Automatic (S8),24,16,18,5,All-Wheel Drive,Premium
 2022,Cadillac,CT5 V,Manual 6-spd,21,13,15,6.2,Rear-Wheel Drive,Premium
@@ -37432,7 +36912,6 @@
 2022,Cadillac,XT5 Hearse FWD,Automatic (S9),23,20,21,2,Front-Wheel Drive,Premium
 2022,Jeep,Grand Wagoneer 2WD,Automatic 8-spd,19,13,15,6.4,Rear-Wheel Drive,Premium
 2022,Jeep,Grand Wagoneer 4WD,Automatic 8-spd,18,13,15,6.4,All-Wheel Drive,Premium
-2021,Tesla,Model S Plaid (21in Wheels),Automatic (A1),99,102,101,,All-Wheel Drive,Electricity
 1988,Nissan,Sentra,Manual 4-spd,32,25,28,1.6,Front-Wheel Drive,Regular
 2022,Toyota,Corolla,Automatic (variable gear ratios),38,30,33,1.8,Front-Wheel Drive,Regular
 2022,Toyota,Corolla,Manual 6-spd,39,29,33,1.8,Front-Wheel Drive,Regular
@@ -37531,10 +37010,7 @@
 2022,Audi,Q8 quattro,Automatic (S8),23,18,20,3,All-Wheel Drive,Premium
 2022,Bentley,Bentayga,Automatic (S8),24,15,18,4,All-Wheel Drive,Premium
 2022,Lamborghini,Urus,Automatic (S8),17,12,14,4,All-Wheel Drive,Premium
-2022,Audi,A7 TFSI e quattro,Automatic (AM-S7),31,25,27,2,All-Wheel Drive,Premium and Electricity
-2022,Audi,Q5 TFSI e quattro,Automatic (AM-S7),27,25,26,2,All-Wheel Drive,Premium and Electricity
 1988,Dodge,Shadow,Manual 5-spd,26,18,21,2.2,Front-Wheel Drive,Premium
-2022,Hyundai,Ioniq Plug-in Hybrid,Automatic (AM-S6),51,52,52,1.6,Front-Wheel Drive,Regular Gas and Electricity
 2021,Roush Performance,Mustang,Automatic (S10),19,12,15,5,Rear-Wheel Drive,Premium
 2021,Mercedes-Benz,S580 4matic Maybach,Automatic 9-spd,24,16,19,4,4-Wheel Drive,Premium
 2021,Mercedes-Benz,S580 4matic,Automatic 9-spd,25,17,20,4,4-Wheel Drive,Premium
@@ -37591,8 +37067,6 @@
 2022,Volvo,XC90 T5 AWD,Automatic (S8),28,20,23,2,All-Wheel Drive,Premium
 1988,Ford,Escort,Manual 5-spd,29,22,25,1.9,Front-Wheel Drive,Regular
 2022,Volvo,XC90 T6 AWD,Automatic (S8),27,19,22,2,All-Wheel Drive,Premium
-2022,Kia,Niro Plug-in Hybrid,Automatic (AM-S6),44,48,46,1.6,Front-Wheel Drive,Regular Gas and Electricity
-2022,Land Rover,Range Rover Sport PHEV,Automatic (S8),21,18,19,2,4-Wheel Drive,Premium and Electricity
 2022,Chevrolet,Camaro,Manual 6-spd,29,19,22,2,Rear-Wheel Drive,Premium
 2022,Chevrolet,Camaro,Automatic (S8),30,22,25,2,Rear-Wheel Drive,Premium
 2022,Cadillac,CT5,Automatic (S10),33,23,27,2,Rear-Wheel Drive,Premium
@@ -37647,10 +37121,6 @@
 2022,Lexus,RX 450h L AWD,Automatic (AV-S6),28,29,29,3.5,All-Wheel Drive,Premium
 2022,Subaru,Ascent,Automatic (AV-S8),27,21,23,2.4,All-Wheel Drive,Regular
 2022,Subaru,Ascent Limited/Touring/Onyx AWD,Automatic (AV-S8),26,20,22,2.4,All-Wheel Drive,Regular
-2022,Volvo,S60 T8 AWD Recharge,Automatic (S8),33,28,30,2,All-Wheel Drive,Premium and Electricity
-2022,Volvo,S90 T8 AWD Recharge,Automatic (S8),31,28,30,2,All-Wheel Drive,Premium and Electricity
-2022,Volvo,XC60 T8 AWD Recharge,Automatic (S8),27,24,25,2,All-Wheel Drive,Premium and Electricity
-2022,Volvo,XC90 T8 AWD Recharge,Automatic (S8),28,26,27,2,All-Wheel Drive,Premium and Electricity
 1988,Ford,Tempo AWD,Automatic 3-spd,22,17,19,2.3,4-Wheel or All-Wheel Drive,Regular
 2022,Maserati,MC20,Automatic (S8),25,15,18,3,Rear-Wheel Drive,Premium
 2022,Subaru,BRZ,Manual 6-spd,27,20,22,2.4,Rear-Wheel Drive,Premium
@@ -37750,10 +37220,6 @@
 2022,Toyota,Sequoia 2WD,Automatic (S6),17,13,15,5.7,Rear-Wheel Drive,Regular
 2022,Toyota,Sequoia 4WD,Automatic (S6),17,13,14,5.7,Part-time 4-Wheel Drive,Regular
 1988,Jaguar,XJ6,Automatic 4-spd,22,15,18,3.6,Rear-Wheel Drive,Regular
-2022,Hyundai,Tucson Plug-in Hybrid,Automatic (AM-S6),35,35,35,1.6,All-Wheel Drive,Regular Gas and Electricity
-2022,Kia,Sorento Plug-in Hybrid,Automatic (AM-S6),33,35,34,1.6,All-Wheel Drive,Regular Gas and Electricity
-2022,Toyota,Prius Prime,Automatic (variable gear ratios),53,55,54,1.8,Front-Wheel Drive,Regular Gas and Electricity
-2022,Volvo,V60 T8 AWD Recharge,Automatic (S8),33,28,30,2,All-Wheel Drive,Premium and Electricity
 2021,Ford,F150 Pickup 2WD,Automatic (S10),24,17,20,3.5,Rear-Wheel Drive,Regular
 2021,Ford,F150 Pickup 2WD FFV,Automatic (S10),24,17,19,5,Rear-Wheel Drive,Gasoline or E85
 2021,Ford,F150 Pickup Tremor 4WD,Automatic (S10),20,16,18,3.5,Part-time 4-Wheel Drive,Regular
@@ -37841,16 +37307,7 @@
 1988,Mercury,Tracer,Manual 5-spd,32,24,27,1.6,Front-Wheel Drive,Regular
 2022,Toyota,4Runner 4WD,Automatic (S5),19,16,17,4,Part-time 4-Wheel Drive,Regular
 2022,Toyota,4Runner 4WD,Automatic (S5),19,16,17,4,All-Wheel Drive,Regular
-2022,Porsche,Cayenne/Coupe E-Hybrid,Automatic (S8),22,20,21,3,All-Wheel Drive,Premium and Electricity
-2022,Porsche,Cayenne Turbo S/Coupe E-Hybrid,Automatic (S8),20,17,18,4,All-Wheel Drive,Premium and Electricity
-2022,Hyundai,Kona Electric,Automatic (A1),108,132,120,,Front-Wheel Drive,Electricity
-2022,Kia,Niro Electric,Automatic (A1),102,123,112,,Front-Wheel Drive,Electricity
-2022,Nissan,Leaf (40 kW-hr battery pack),Automatic (A1),99,123,111,,Front-Wheel Drive,Electricity
-2022,Nissan,Leaf (62 kW-hr battery pack),Automatic (A1),97,118,108,,Front-Wheel Drive,Electricity
-2022,Nissan,Leaf SV/SL (62 kW-hr battery pack),Automatic (A1),94,114,104,,Front-Wheel Drive,Electricity
-2022,Polestar,2 Dual Motor,Automatic (A1),84,94,89,,All-Wheel Drive,Electricity
 1988,Merkur,XR4Ti,Automatic 3-spd,20,16,17,2.3,Rear-Wheel Drive,Regular
-2022,Volvo,XC40 Recharge twin,Automatic (A1),79,92,85,,All-Wheel Drive,Electricity
 2022,Chevrolet,Corvette,Automatic (S8),24,16,19,6.2,Rear-Wheel Drive,Premium
 2022,Ferrari,F8 Tributo,Automatic (AM7),19,15,16,3.9,Rear-Wheel Drive,Premium
 2022,Ferrari,812 Competizione,Automatic (AM7),16,12,14,6.5,Rear-Wheel Drive,Premium
@@ -37861,9 +37318,6 @@
 2022,Nissan,Frontier 2WD,Automatic (S9),24,18,20,3.8,Rear-Wheel Drive,Regular
 2022,Nissan,Frontier 4WD,Automatic (S9),22,17,19,3.8,Part-time 4-Wheel Drive,Regular
 1988,Merkur,XR4Ti,Manual 5-spd,23,18,20,2.3,Rear-Wheel Drive,Regular
-2022,Mitsubishi,Outlander PHEV,Automatic (A1),26,26,26,2.4,All-Wheel Drive,Regular Gas and Electricity
-2022,Rivian,R1S,Automatic (A1),65,73,69,,Part-time 4-Wheel Drive,Electricity
-2022,Rivian,R1T,Automatic (A1),66,74,70,,Part-time 4-Wheel Drive,Electricity
 2022,Ferrari,Portofino M,Automatic (AM8),23,16,19,3.9,Rear-Wheel Drive,Premium
 2022,Mercedes-Benz,A220 4matic,Automatic (AM7),35,25,28,2,All-Wheel Drive,Premium
 2022,Mercedes-Benz,A220,Automatic (AM7),35,24,28,2,Front-Wheel Drive,Premium
@@ -37895,13 +37349,6 @@
 2022,Infiniti,QX80 4WD,Automatic (S7),19,13,15,5.6,4-Wheel Drive,Premium
 1988,Mazda,323,Manual 5-spd,22,19,20,1.6,4-Wheel or All-Wheel Drive,Premium
 2022,Lincoln,Aviator AWD,Automatic (S10),24,17,20,3,Part-time 4-Wheel Drive,Regular
-2022,Lucid,Air Dream P AWD w/19in wheels,Automatic (A1),114,117,116,,All-Wheel Drive,Electricity
-2022,Lucid,Air Dream P AWD w/21in wheels,Automatic (A1),111,110,111,,All-Wheel Drive,Electricity
-2022,Lucid,Air Dream R AWD w/19in wheels,Automatic (A1),125,126,125,,All-Wheel Drive,Electricity
-2022,Lucid,Air Dream R AWD w/21in wheels,Automatic (A1),117,115,116,,All-Wheel Drive,Electricity
-2022,Lucid,Air G Touring AWD w/19in wheels,Automatic (A1),132,130,131,,All-Wheel Drive,Electricity
-2022,Lucid,Air G Touring AWD w/21in wheels,Automatic (A1),122,121,121,,All-Wheel Drive,Electricity
-2022,Lincoln,Aviator PHEV AWD,Automatic (S10),25,22,23,3,Part-time 4-Wheel Drive,Regular Gas and Electricity
 2022,Bugatti,Chiron,Automatic (AM-S7),14,9,11,8,All-Wheel Drive,Premium
 2022,Bugatti,Chiron Super Sport,Automatic (AM-S7),11,8,9,8,All-Wheel Drive,Premium
 1985,Chevrolet,Citation II,Manual 4-spd,31,21,25,2.5,Front-Wheel Drive,Regular
@@ -38023,8 +37470,6 @@
 2022,GMC,Yukon 4WD,Automatic 10-spd,26,20,22,3,4-Wheel Drive,Diesel
 2022,Mercedes-Benz,GLE450 4matic,Automatic 9-spd,25,20,22,3,All-Wheel Drive,Premium
 2022,Mercedes-Benz,GLS450 4matic,Automatic 9-spd,24,18,20,3,4-Wheel Drive,Premium
-2022,Porsche,Panamera 4 E-Hybrid/Exec/ST,Automatic (AM-S8),24,21,22,2.9,All-Wheel Drive,Premium and Electricity
-2022,Porsche,Panamera 4S E-Hybrid/Exec/ST,Automatic (AM-S8),23,21,22,2.9,All-Wheel Drive,Premium and Electricity
 1988,Oldsmobile,Cutlass Calais,Automatic 3-spd,31,21,25,2.3,Front-Wheel Drive,Regular
 2022,McLaren Automotive,720S Coupe,Automatic (AM-S7),22,15,18,4,Rear-Wheel Drive,Premium
 2022,McLaren Automotive,720S Spider,Automatic (AM-S7),22,15,18,4,Rear-Wheel Drive,Premium
@@ -38147,12 +37592,6 @@
 2022,Mercedes-Benz,GLC300 4matic Coupe,Automatic 9-spd,27,21,23,2,All-Wheel Drive,Premium
 1988,Peugeot,505 Sedan,Automatic 4-spd,20,17,19,2.2,Rear-Wheel Drive,Regular
 2022,GMC,Yukon XL 2WD,Automatic 10-spd,20,15,17,5.3,Rear-Wheel Drive,Regular
-2021,Porsche,Taycan 4 Cross Turismo,Automatic (A2),77,76,76,,All-Wheel Drive,Electricity
-2021,Porsche,Taycan 4S Cross Turismo,Automatic (A2),75,75,75,,All-Wheel Drive,Electricity
-2021,Porsche,Taycan Turbo S Cross Turismo,Automatic (A2),73,74,73,,All-Wheel Drive,Electricity
-2021,Porsche,Taycan Turbo Cross Turismo,Automatic (A2),72,72,72,,All-Wheel Drive,Electricity
-2021,Volkswagen,ID.4 AWD Pro,Automatic (A1),90,102,97,,All-Wheel Drive,Electricity
-2021,Volkswagen,ID.4 AWD Pro S,Automatic (A1),88,98,93,,All-Wheel Drive,Electricity
 2022,Chevrolet,Silverado 2WD,Automatic 8-spd,21,16,18,5.3,Rear-Wheel Drive,Regular
 2022,Chevrolet,Silverado 2WD,Automatic 8-spd,22,19,20,2.7,Rear-Wheel Drive,Regular
 2022,Chevrolet,Silverado 2WD,Automatic 8-spd,22,19,20,2.7,Rear-Wheel Drive,Regular
@@ -38207,30 +37646,8 @@
 2022,Jeep,Grand Cherokee L 2WD,Automatic 8-spd,26,19,21,3.6,Rear-Wheel Drive,Regular
 2022,Jeep,Grand Cherokee L 4WD,Automatic 8-spd,25,18,21,3.6,4-Wheel Drive,Regular
 2022,Jeep,Grand Cherokee L 4WD,Automatic 8-spd,22,14,17,5.7,All-Wheel Drive,Midgrade
-2022,Audi,e-tron GT,Automatic (A2),83,81,82,,All-Wheel Drive,Electricity
-2022,Audi,e-tron S (20in wheels),Automatic (A1),75,72,73,,All-Wheel Drive,Electricity
-2022,Audi,e-tron S (21in or 22in wheels),Automatic (A1),64,62,63,,All-Wheel Drive,Electricity
-2022,Audi,e-tron S Sportback (20in wheels),Automatic (A1),78,73,75,,All-Wheel Drive,Electricity
 1988,Plymouth,Sundance,Automatic 3-spd,23,18,20,2.2,Front-Wheel Drive,Premium
-2022,Audi,e-tron S Sportback (21/22in wheels),Automatic (A1),66,64,65,,All-Wheel Drive,Electricity
-2022,Audi,Q4 e-tron quattro,Automatic (A1),89,100,95,,All-Wheel Drive,Electricity
-2022,Audi,Q4 e-tron Sportback quattro,Automatic (A1),89,100,95,,All-Wheel Drive,Electricity
-2022,Audi,RS e-tron GT,Automatic (A2),82,79,81,,All-Wheel Drive,Electricity
-2022,Mazda,MX-30,Automatic (A1),85,98,92,,Front-Wheel Drive,Electricity
-2022,Mercedes-Benz,EQS 450 Plus,Automatic (A1),97,97,97,,Rear-Wheel Drive,Electricity
-2022,Porsche,Taycan 4S Perf Battery,Automatic (A2),80,79,79,,All-Wheel Drive,Electricity
-2022,Porsche,Taycan 4S Perf Battery Plus,Automatic (A2),81,75,77,,All-Wheel Drive,Electricity
-2022,Porsche,Taycan Perf Battery,Automatic (A2),84,76,79,,Rear-Wheel Drive,Electricity
 1988,Plymouth,Sundance,Automatic 3-spd,26,21,23,2.2,Front-Wheel Drive,Regular
-2022,Porsche,Taycan Perf Battery Plus,Automatic (A2),80,71,75,,Rear-Wheel Drive,Electricity
-2022,Porsche,Taycan Turbo,Automatic (A2),75,71,73,,All-Wheel Drive,Electricity
-2022,Porsche,Taycan Turbo S,Automatic (A2),71,69,70,,All-Wheel Drive,Electricity
-2022,Porsche,Taycan 4 Cross Turismo,Automatic (A2),77,76,76,,All-Wheel Drive,Electricity
-2022,Porsche,Taycan 4S Cross Turismo,Automatic (A2),75,75,75,,All-Wheel Drive,Electricity
-2022,Porsche,Taycan Turbo Cross Turismo,Automatic (A2),72,72,72,,All-Wheel Drive,Electricity
-2022,Porsche,Taycan Turbo S Cross Turismo,Automatic (A2),73,74,73,,All-Wheel Drive,Electricity
-2021,Ford,Mustang Mach-E GT,Automatic (A1),77,90,84,,All-Wheel Drive,Electricity
-2021,Ford,Mustang Mach-E GT Performance,Automatic (A1),75,88,82,,All-Wheel Drive,Electricity
 2022,Mercedes-Benz,AMG E53 4matic Plus Coupe,Automatic 9-spd,28,20,23,3,4-Wheel Drive,Premium
 1985,Chevrolet,Citation II,Automatic 3-spd,24,18,20,2.8,Front-Wheel Drive,Regular
 1988,Plymouth,Sundance,Manual 5-spd,30,22,25,2.2,Front-Wheel Drive,Regular
@@ -38267,7 +37684,6 @@
 2022,Chevrolet,Silverado Mud Terrain Tires 4WD,Automatic 10-spd,17,14,15,5.3,4-Wheel Drive,Regular
 2022,GMC,Sierra 4WD,Automatic 10-spd,19,15,17,5.3,4-Wheel Drive,Regular
 1988,Plymouth,Sundance,Manual 5-spd,28,20,23,2.5,Front-Wheel Drive,Regular
-2022,Porsche,Panamera TurboS E-Hybrid/Exec/ST,Automatic (AM-S8),22,18,19,4,All-Wheel Drive,Premium and Electricity
 2022,Mercedes-Benz,AMG GT 43 4matic Plus,Automatic 9-spd,25,19,21,3,4-Wheel Drive,Premium
 2022,Ford,Explorer Platinum HEV RWD,Automatic (S10),26,25,26,3.3,Rear-Wheel Drive,Regular
 2022,Ford,Explorer HEV RWD,Automatic (S10),28,27,27,3.3,Rear-Wheel Drive,Regular
@@ -38367,22 +37783,7 @@
 2022,Mercedes-Benz,AMG GLC43 4matic,Automatic 9-spd,25,18,21,3,All-Wheel Drive,Premium
 2022,Dodge,Durango AWD,Automatic 8-spd,22,14,17,5.7,All-Wheel Drive,Midgrade
 1988,Pontiac,Lemans,Manual 5-spd,36,27,30,1.6,Front-Wheel Drive,Regular
-2022,Audi,e-tron quattro,Automatic (A1),77,78,78,,All-Wheel Drive,Electricity
-2022,Audi,e-tron Sportback quattro,Automatic (A1),78,76,77,,All-Wheel Drive,Electricity
-2022,Hyundai,Ioniq 5 AWD (Long Range),Automatic (A1),87,110,98,,All-Wheel Drive,Electricity
-2022,Hyundai,Ioniq 5 RWD (Long Range),Automatic (A1),98,132,114,,Rear-Wheel Drive,Electricity
-2022,Hyundai,Ioniq 5 RWD (Standard Range),Automatic (A1),94,127,110,,Rear-Wheel Drive,Electricity
-2022,Kia,EV6 AWD (Long Range),Automatic (A1),94,116,105,,All-Wheel Drive,Electricity
-2022,Kia,EV6 RWD (Long Range),Automatic (A1),101,134,117,,Rear-Wheel Drive,Electricity
-2022,Kia,EV6 RWD (Standard Range),Automatic (A1),100,136,117,,Rear-Wheel Drive,Electricity
-2022,Polestar,2 Single Motor,Automatic (A1),100,113,107,,Front-Wheel Drive,Electricity
-2022,Volvo,C40 Recharge twin,Automatic (A1),80,94,87,,All-Wheel Drive,Electricity
 1988,Pontiac,Lemans,Manual 5-spd,27,21,24,2,Front-Wheel Drive,Regular
-2022,Chrysler,Pacifica Hybrid,Automatic (variable gear ratios),30,29,30,3.6,Front-Wheel Drive,Regular Gas and Electricity
-2022,Ford,Escape FWD PHEV,Automatic (variable gear ratios),38,43,40,2.5,Front-Wheel Drive,Regular Gas and Electricity
-2022,Jeep,Wrangler 4dr 4xe,Automatic 8-spd,20,20,20,2,4-Wheel Drive,Regular Gas and Electricity
-2022,Lexus,NX 450h Plus AWD,Automatic (AV-S6),33,38,36,2.5,All-Wheel Drive,Premium and Electricity
-2022,Lincoln,Corsair AWD PHEV,Automatic (variable gear ratios),32,34,33,2.5,Part-time 4-Wheel Drive,Regular Gas and Electricity
 2022,Aston Martin,Vantage V8,Automatic 8-spd,24,18,20,4,Rear-Wheel Drive,Premium
 2022,Aston Martin,DBS,Automatic (S8),22,14,17,5.2,Rear-Wheel Drive,Premium
 2022,Aston Martin,DB11 V12,Automatic (S8),22,14,17,5.2,Rear-Wheel Drive,Premium
@@ -38436,8 +37837,6 @@
 2022,GMC,Yukon 4WD,Automatic 10-spd,20,15,17,5.3,4-Wheel Drive,Regular
 2022,GMC,Yukon XL 4WD,Automatic 10-spd,19,14,16,6.2,4-Wheel Drive,Premium
 2022,GMC,Yukon 4WD,Automatic 10-spd,19,14,16,6.2,4-Wheel Drive,Premium
-2022,Ferrari,SF90 Stradale,Automatic (AM8),20,16,18,3.9,All-Wheel Drive,Premium and Electricity
-2022,Toyota,RAV4 Prime 4WD,Automatic (AV-S6),36,40,38,2.5,All-Wheel Drive,Regular Gas and Electricity
 2022,Toyota,C-HR,Automatic (AV-S7),31,27,29,2,Front-Wheel Drive,Regular
 2022,Ford,Ranger 2WD,Automatic (S10),26,21,23,2.3,Rear-Wheel Drive,Regular
 2022,Ford,F150 Pickup 2WD HEV,Automatic (S10),25,25,25,3.5,Rear-Wheel Drive,Regular
@@ -38469,20 +37868,7 @@
 2022,Toyota,RAV4 Hybrid AWD,Automatic (AV-S6),38,41,40,2.5,All-Wheel Drive,Regular
 1988,Saab,900,Manual 5-spd,25,19,21,2,Front-Wheel Drive,Regular
 2022,Lexus,LX 600,Automatic (S10),22,17,19,3.4,All-Wheel Drive,Premium
-2022,Tesla,Model 3 Long Range AWD,Automatic (A1),126,134,131,,All-Wheel Drive,Electricity
-2022,Tesla,Model 3 Performance AWD,Automatic (A1),107,118,113,,All-Wheel Drive,Electricity
-2022,Tesla,Model 3 RWD,Automatic (A1),126,138,132,,Rear-Wheel Drive,Electricity
-2022,Tesla,Model S,Automatic (A1),115,124,120,,All-Wheel Drive,Electricity
-2022,Tesla,Model S Plaid (19in Wheels),Automatic (A1),112,119,116,,All-Wheel Drive,Electricity
-2022,Tesla,Model S Plaid (21in Wheels),Automatic (A1),99,102,101,,All-Wheel Drive,Electricity
-2022,Tesla,Model Y RWD,Automatic (A1),119,140,129,,Rear-Wheel Drive,Electricity
-2022,Tesla,Model Y Long Range AWD,Automatic (A1),117,127,122,,All-Wheel Drive,Electricity
-2022,Tesla,Model Y Performance AWD,Automatic (A1),106,115,111,,All-Wheel Drive,Electricity
 1988,Saab,900,Manual 5-spd,24,19,21,2,Front-Wheel Drive,Premium
-2022,Tesla,Model X,Automatic (A1),97,107,102,,All-Wheel Drive,Electricity
-2022,Tesla,Model X Plaid (20in Wheels),Automatic (A1),93,103,98,,All-Wheel Drive,Electricity
-2022,Tesla,Model X Plaid (22in Wheels),Automatic (A1),88,94,91,,All-Wheel Drive,Electricity
-2022,Mercedes-Benz,EQS 580 4matic,Automatic (A1),99,92,95,,All-Wheel Drive,Electricity
 2022,Lamborghini,Aventador Roadster,Automatic (AM-S7),16,9,11,6.5,All-Wheel Drive,Premium
 2022,Lamborghini,Aventador Countach,Automatic (AM-S7),16,9,11,6.5,All-Wheel Drive,Premium
 2022,Mazda,MX-5,Manual 6-spd,34,26,29,2,Rear-Wheel Drive,Premium
@@ -38585,10 +37971,6 @@
 2022,Nissan,Titan 4WD PRO4X,Automatic (S9),20,15,17,5.6,Part-time 4-Wheel Drive,Premium
 2022,Mazda,CX-30 4WD,Automatic (S6),31,24,26,2.5,4-Wheel Drive,Regular
 2022,Mazda,CX-30 4WD,Automatic (S6),30,22,25,2.5,4-Wheel Drive,Regular
-2022,BMW,330e Sedan,Automatic (S8),33,25,28,2,Rear-Wheel Drive,Premium and Electricity
-2022,BMW,530e Sedan,Automatic (S8),29,24,26,2,Rear-Wheel Drive,Premium and Electricity
-2022,BMW,530e xDrive Sedan,Automatic (S8),28,22,25,2,All-Wheel Drive,Premium and Electricity
-2022,BMW,X5 xDrive45e,Automatic (S8),22,19,20,3,All-Wheel Drive,Premium and Electricity
 1988,Toyota,Camry,Manual 5-spd,24,19,21,2,4-Wheel or All-Wheel Drive,Regular
 2022,Porsche,911 Carrera GTS,Manual 7-spd,24,17,20,3,Rear-Wheel Drive,Premium
 2022,Porsche,911 Carrera 4 GTS,Automatic (AM-S8),23,17,19,3,All-Wheel Drive,Premium
@@ -38602,25 +37984,7 @@
 2022,Chevrolet,Silverado 4WD ZR2,Automatic 10-spd,17,14,15,6.2,4-Wheel Drive,Premium
 1988,Toyota,Camry,Manual 5-spd,29,23,25,2,Front-Wheel Drive,Regular
 2022,Porsche,Cayenne,Automatic (S8),22,17,19,3,All-Wheel Drive,Premium
-2022,BMW,i4 M50 Gran Coupe (19in Wheels),Automatic (A1),98,94,96,,All-Wheel Drive,Electricity
-2022,BMW,i4 M50 Gran Coupe (20in Wheels),Automatic (A1),80,79,80,,All-Wheel Drive,Electricity
-2022,BMW,i4 eDrive40 Gran Coupe (18in Wheels),Automatic (A1),108,109,109,,Rear-Wheel Drive,Electricity
-2022,BMW,i4 eDrive40 Gran Coupe (19in Wheels),Automatic (A1),98,100,99,,Rear-Wheel Drive,Electricity
-2022,BMW,iX xDrive50 (20in Wheels),Automatic (A1),87,86,86,,All-Wheel Drive,Electricity
-2022,BMW,iX xDrive50 (21in Wheels),Automatic (A1),84,82,83,,All-Wheel Drive,Electricity
-2022,BMW,iX xDrive50 (22in Wheels),Automatic (A1),85,86,86,,All-Wheel Drive,Electricity
-2022,Ford,Mustang Mach-E AWD,Automatic (A1),86,99,93,,All-Wheel Drive,Electricity
-2022,Ford,Mustang Mach-E AWD Extended,Automatic (A1),84,97,91,,All-Wheel Drive,Electricity
 1988,Toyota,Camry,Automatic 4-spd,22,17,19,2.5,Front-Wheel Drive,Regular
-2022,Ford,MUSTANG MACH-E CAL RT 1 ER AWD,Automatic (A1),91,105,98,,All-Wheel Drive,Electricity
-2022,Ford,MUSTANG MACH-E CAL RT 1 ER RWD,Automatic (A1),94,108,101,,Rear-Wheel Drive,Electricity
-2022,Ford,Mustang Mach-E GT,Automatic (A1),77,90,84,,All-Wheel Drive,Electricity
-2022,Ford,Mustang Mach-E GT Performance,Automatic (A1),75,88,82,,All-Wheel Drive,Electricity
-2022,Ford,Mustang Mach-E RWD,Automatic (A1),96,110,103,,Rear-Wheel Drive,Electricity
-2022,Ford,Mustang Mach-E RWD Extended,Automatic (A1),90,104,97,,Rear-Wheel Drive,Electricity
-2022,BMW,330e xDrive Sedan,Automatic (S8),30,22,25,2,All-Wheel Drive,Premium and Electricity
-2022,BMW,745e xDrive,Automatic (S8),26,19,22,3,All-Wheel Drive,Premium and Electricity
-2022,Jeep,Grand Cherokee 4xe,Automatic 8-spd,24,23,23,2,4-Wheel Drive,Regular Gas and Electricity
 2022,Ford,Expedition 2WD,Automatic (S10),23,17,19,3.5,Rear-Wheel Drive,Regular
 1988,Toyota,Camry,Manual 5-spd,22,17,19,2.5,Front-Wheel Drive,Regular
 2022,Ford,Expedition 2WD,Automatic (S10),23,16,19,3.5,Rear-Wheel Drive,Regular
@@ -38654,7 +38018,6 @@
 2022,GMC,Sierra Cab Chassis 4WD,Automatic 10-spd,17,13,15,5.3,4-Wheel Drive,Regular
 2022,GMC,Sierra Cab Chassis 2WD,Automatic 10-spd,18,15,17,5.3,Rear-Wheel Drive,Regular
 2022,GMC,Sierra Cab Chassis 4WD,Automatic 10-spd,17,15,16,5.3,4-Wheel Drive,Regular
-2022,Ferrari,SF90 Spider,Automatic (AM8),19,16,17,3.9,All-Wheel Drive,Premium and Electricity
 1988,Volkswagen,Golf,Manual 5-spd,30,22,25,1.8,Front-Wheel Drive,Regular
 2023,Jaguar,F-Type R AWD Coupe,Automatic (S8),24,16,18,5,All-Wheel Drive,Premium
 2023,Jaguar,F-Type R AWD Convertible,Automatic (S8),24,16,18,5,All-Wheel Drive,Premium
@@ -38673,14 +38036,8 @@
 2022,McLaren Automotive,765LT Spider,Automatic (AM-S7),18,14,16,4,Rear-Wheel Drive,Premium
 2022,McLaren Automotive,GT,Automatic (AM-S7),22,15,18,4,Rear-Wheel Drive,Premium
 2022,Chevrolet,Silverado 4WD,Automatic 10-spd,26,22,23,3,4-Wheel Drive,Diesel
-2022,Tesla,Model Y AWD,Automatic (A1),116,129,123,,All-Wheel Drive,Electricity
-2022,Volvo,S60 T8 AWD Recharge ext. Range,Automatic (S8),33,30,31,2,All-Wheel Drive,Premium and Electricity
-2022,Volvo,S90 T8 AWD Recharge ext. Range,Automatic (S8),31,28,29,2,All-Wheel Drive,Premium and Electricity
-2022,Volvo,V60 T8 AWD Recharge ext. Range,Automatic (S8),33,30,31,2,All-Wheel Drive,Premium and Electricity
 1985,Chevrolet,Monte Carlo,Automatic 3-spd,20,15,17,5,Rear-Wheel Drive,Regular
 1988,Volkswagen,Jetta,Automatic 3-spd,26,21,23,1.8,Front-Wheel Drive,Regular
-2022,Volvo,XC60 T8 AWD Recharge ext. Range,Automatic (S8),28,28,28,2,All-Wheel Drive,Premium and Electricity
-2022,Volvo,XC90 T8 AWD Recharge ext. Range,Automatic (S8),27,25,26,2,All-Wheel Drive,Premium and Electricity
 2023,Genesis,G70 AWD,Automatic (S8),28,20,23,2,All-Wheel Drive,Premium
 2023,Honda,Odyssey,Automatic (S10),28,19,22,3.5,Front-Wheel Drive,Regular
 2023,Genesis,GV70 AWD,Automatic (S8),26,19,22,2.5,All-Wheel Drive,Premium
@@ -38741,9 +38098,6 @@
 2022,Audi,RS 3,Automatic (AM-S7),29,20,23,2.5,All-Wheel Drive,Premium
 2022,Land Rover,New Range Rover,Automatic (S8),21,16,18,4.4,4-Wheel Drive,Premium
 2022,Land Rover,New Range Rover LWB,Automatic (S8),21,16,18,4.4,4-Wheel Drive,Premium
-2022,Volkswagen,ID.4 AWD Pro,Automatic (A1),96,106,101,,All-Wheel Drive,Electricity
-2022,Volkswagen,ID.4 AWD Pro S,Automatic (A1),90,100,95,,All-Wheel Drive,Electricity
-2022,Volkswagen,ID.4 Pro,Automatic (A1),98,116,107,,Rear-Wheel Drive,Electricity
 1988,Volvo,240 DL/240 GL,Manual 5-spd,25,19,21,2.3,Rear-Wheel Drive,Regular
 2023,MINI,Cooper S Convertible,Automatic (AM-S7),36,27,30,2,Front-Wheel Drive,Premium
 2023,MINI,Cooper S Convertible,Manual 6-spd,33,23,27,2,Front-Wheel Drive,Premium
@@ -38771,7 +38125,6 @@
 2023,MINI,Cooper S Countryman All4,Automatic (S8),31,23,26,2,All-Wheel Drive,Premium
 2023,MINI,Cooper S Clubman All4,Automatic (S8),32,23,27,2,All-Wheel Drive,Premium
 2023,Genesis,G90 MHEV,Automatic (S8),24,17,20,3.5,All-Wheel Drive,Premium
-2022,Bentley,Flying Spur Hybrid,Automatic (AM-S8),22,17,19,2.9,All-Wheel Drive,Premium and Electricity
 2023,Subaru,BRZ,Manual 6-spd,27,20,22,2.4,Rear-Wheel Drive,Premium
 2023,Subaru,BRZ,Automatic (S6),30,21,25,2.4,Rear-Wheel Drive,Premium
 1988,Audi,5000 CS Turbo,Automatic 3-spd,20,16,18,2.2,Front-Wheel Drive,Regular
@@ -38804,9 +38157,6 @@
 2023,Hyundai,Santa Fe Hybrid,Automatic (AM-S6),30,33,32,1.6,All-Wheel Drive,Regular
 2023,Hyundai,Santa Fe Hybrid Blue,Automatic (AM-S6),31,36,34,1.6,All-Wheel Drive,Regular
 2022,Mercedes-Benz,C300,Automatic 9-spd,35,25,29,2,Rear-Wheel Drive,Premium
-2022,Ford,F-150 Lightning Platinum 4WD,Automatic (A1),60,73,66,,All-Wheel Drive,Electricity
-2022,Ford,F-150 Lightning 4WD Extended Range,Automatic (A1),63,78,70,,All-Wheel Drive,Electricity
-2022,Ford,F-150 Lightning 4WD,Automatic (A1),61,76,68,,All-Wheel Drive,Electricity
 2023,Aston Martin,Vantage V8,Automatic 8-spd,24,18,20,4,Rear-Wheel Drive,Premium
 1988,Audi,5000 S,Manual 5-spd,23,18,20,2.3,Front-Wheel Drive,Regular
 2023,Aston Martin,DB11 V8,Automatic 8-spd,24,18,20,4,Rear-Wheel Drive,Premium
@@ -38815,13 +38165,7 @@
 2023,Hyundai,Kona FWD,Automatic (AV-S1),35,30,32,2,Front-Wheel Drive,Regular
 2023,Hyundai,Kona AWD,Automatic (AM-S7),32,27,29,1.6,All-Wheel Drive,Regular
 2023,Hyundai,Kona AWD,Automatic (AV-S1),33,28,30,2,All-Wheel Drive,Regular
-2023,BMW,iX M60 (21in Wheels),Automatic (A1),80,76,77,,All-Wheel Drive,Electricity
-2023,BMW,iX M60 (22in Wheels),Automatic (A1),80,77,78,,All-Wheel Drive,Electricity
-2023,Genesis,GV60 ADVANCE,Automatic (A1),86,103,95,,All-Wheel Drive,Electricity
-2023,Genesis,GV60 PERFORMANCE,Automatic (A1),82,97,90,,All-Wheel Drive,Electricity
 1988,Audi,5000 S quattro,Manual 5-spd,22,16,18,2.3,4-Wheel or All-Wheel Drive,Regular
-2023,MINI,Cooper SE Hardtop 2 door,Automatic (A1),100,119,110,,Front-Wheel Drive,Electricity
-2023,MINI,Cooper SE Countryman All4,Automatic (S6),30,29,29,1.5,All-Wheel Drive,Premium and Electricity
 2022,Ford,Bronco Raptor 4WD,Automatic (S10),16,15,15,3,Part-time 4-Wheel Drive,Regular
 2023,Lamborghini,Huracan Coupe,Automatic (AM-S7),18,13,15,5.2,All-Wheel Drive,Premium
 2023,Lamborghini,Huracan Coupe 2WD,Automatic (AM-S7),18,13,15,5.2,Rear-Wheel Drive,Premium
@@ -38891,10 +38235,8 @@
 2023,Maserati,Levante GT,Automatic 8-spd,22,16,18,3,All-Wheel Drive,Premium
 2023,Maserati,Levante Modena V8,Automatic 8-spd,20,13,16,3.8,All-Wheel Drive,Premium
 2023,Maserati,Levante Trofeo,Automatic 8-spd,20,13,16,3.8,All-Wheel Drive,Premium
-2023,McLaren Automotive,Artura,Automatic (AM-S8),21,17,18,3,Rear-Wheel Drive,Premium and Electricity
 2022,Mercedes-Benz,AMG SL63 4matic Plus,Automatic 9-spd,21,14,16,4,All-Wheel Drive,Premium
 2022,Mercedes-Benz,AMG SL55 4matic Plus,Automatic 9-spd,21,14,16,4,All-Wheel Drive,Premium
-2022,Ferrari,296 GTB,Automatic (AM-S8),22,16,18,2.9,Rear-Wheel Drive,Premium and Electricity
 2023,Nissan,Z,Manual 6-spd,24,18,20,3,Rear-Wheel Drive,Premium
 1985,Chrysler,Executive Sedan/Limousine,Automatic 3-spd,21,18,19,2.6,Front-Wheel Drive,Regular
 1988,Buick,Regal,Automatic 4-spd,26,18,21,2.8,Front-Wheel Drive,Regular
@@ -38912,7 +38254,6 @@
 2023,Subaru,Outback Wilderness AWD,Automatic (AV-S8),26,21,23,2.4,All-Wheel Drive,Regular
 2023,GMC,Acadia FWD,Automatic 9-spd,29,22,25,2,Front-Wheel Drive,Regular
 2023,GMC,Acadia AWD,Automatic 9-spd,27,22,24,2,All-Wheel Drive,Regular
-2022,Volkswagen,ID.4 Pro S,Automatic (A1),93,110,102,,Rear-Wheel Drive,Electricity
 2023,Volkswagen,Golf-R,Manual 6-spd,28,20,23,2,All-Wheel Drive,Premium
 2023,Volkswagen,GTI,Automatic (AM-S7),34,24,28,2,Front-Wheel Drive,Regular
 2023,Volkswagen,GTI,Manual 6-spd,32,23,27,2,Front-Wheel Drive,Regular
@@ -39247,8 +38588,6 @@
 2023,Porsche,Cayenne Turbo Coupe,Automatic (S8),20,15,17,4,All-Wheel Drive,Premium
 2023,Porsche,Cayenne GTS,Automatic (S8),19,15,17,4,All-Wheel Drive,Premium
 2023,Porsche,Cayenne GTS Coupe,Automatic (S8),19,15,17,4,All-Wheel Drive,Premium
-2022,Porsche,Taycan GTS,Automatic (A2),82,83,83,,All-Wheel Drive,Electricity
-2022,Porsche,Taycan GTS ST,Automatic (A2),80,80,80,,All-Wheel Drive,Electricity
 2023,Mercedes-Benz,CLA250 4matic,Automatic (AM7),33,24,27,2,All-Wheel Drive,Premium
 2023,Mercedes-Benz,CLA250,Automatic (AM7),36,25,29,2,Front-Wheel Drive,Premium
 2023,Toyota,Camry,Automatic (S8),33,22,26,3.5,Front-Wheel Drive,Regular
@@ -39284,21 +38623,8 @@
 2023,Chevrolet,Tahoe 4WD,Automatic 10-spd,20,15,17,5.3,4-Wheel Drive,Regular
 2023,Chevrolet,Tahoe 4WD,Automatic 10-spd,18,14,16,5.3,4-Wheel Drive,Regular
 2023,Toyota,Sequoia 4WD,Automatic (S10),22,19,20,3.4,Part-time 4-Wheel Drive,Regular
-2023,Cadillac,LYRIQ,Automatic (A1),82,97,89,,Rear-Wheel Drive,Electricity
 1988,Dodge,600,Automatic 3-spd,23,18,20,2.2,Front-Wheel Drive,Premium
-2023,Chevrolet,Bolt EUV,Automatic (A1),104,125,115,,Front-Wheel Drive,Electricity
-2023,Chevrolet,Bolt EV,Automatic (A1),109,131,120,,Front-Wheel Drive,Electricity
-2023,Polestar,2 BST edition,Automatic (A1),91,98,96,,All-Wheel Drive,Electricity
-2023,Polestar,2 Dual Motor,Automatic (A1),96,105,100,,All-Wheel Drive,Electricity
-2023,Polestar,2 Dual Motor Perf Pack,Automatic (A1),96,105,100,,All-Wheel Drive,Electricity
-2023,Polestar,2 Single Motor,Automatic (A1),100,113,107,,Front-Wheel Drive,Electricity
-2023,Toyota,bZ4X,Automatic (A1),107,131,119,,Front-Wheel Drive,Electricity
-2023,Toyota,bZ4X LIMITED,Automatic (A1),103,125,114,,Front-Wheel Drive,Electricity
-2023,Toyota,bZ4X AWD,Automatic (A1),94,114,104,,All-Wheel Drive,Electricity
-2023,Toyota,bZ4X LIMITED AWD,Automatic (A1),92,112,102,,All-Wheel Drive,Electricity
 1988,Dodge,600,Automatic 3-spd,26,21,23,2.2,Front-Wheel Drive,Regular
-2023,Volvo,C40 Recharge twin,Automatic (A1),80,94,87,,All-Wheel Drive,Electricity
-2023,Volvo,XC40 Recharge twin,Automatic (A1),79,92,85,,All-Wheel Drive,Electricity
 2023,Maserati,MC20,Automatic (S8),25,15,18,3,Rear-Wheel Drive,Premium
 2023,Maserati,MC20 Spyder,Automatic (S8),25,15,18,3,Rear-Wheel Drive,Premium
 2023,BMW,M235i xDrive Gran Coupe,Automatic (S8),33,24,27,2,All-Wheel Drive,Premium
