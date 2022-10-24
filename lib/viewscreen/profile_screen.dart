@@ -342,7 +342,7 @@ class _Controller {
         .collection(Constant.savings)
         .orderBy(DocKeySavings.amount.name, descending: false)
         .get();
-    String tmp = ' ';
+    String tmp = '  ';
     Map<String, dynamic> data = {};
 
     querySnapshot.docs.forEach((e) {
