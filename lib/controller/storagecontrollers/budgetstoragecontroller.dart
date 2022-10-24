@@ -1,6 +1,7 @@
 import 'package:cap_project/model/budgetAmount.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:oktoast/oktoast.dart';
 
 import '../../model/budget.dart';
 import '../../model/catergories.dart';
@@ -11,9 +12,8 @@ import '../auth_controller.dart';
 class BudgetStorageController {
   static Future<String> addBudget({required Budget budget}) async {
     try {
-      DocumentReference ref =  FirebaseFirestore.instance
-          .collection(Constant.budgets)
-          .doc();
+      DocumentReference ref =
+          FirebaseFirestore.instance.collection(Constant.budgets).doc();
 
       budget.budgetId = ref.id;
       await ref.set(budget.serialize());
@@ -29,9 +29,11 @@ class BudgetStorageController {
         .collection(Constant.budgets)
         .where('ownerUID', isEqualTo: AuthController.currentUser!.uid)
         .get();
-  print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!hello from getbudgetList');
-   print(querySnapshot.docs.length);
-   print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%afterdoclenght');
+    print(
+        '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!hello from getbudgetList');
+    print(querySnapshot.docs.length);
+    print(
+        '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%afterdoclenght');
 
     var result = <Budget>[];
     for (var doc in querySnapshot.docs) {
@@ -41,7 +43,8 @@ class BudgetStorageController {
         if (temp != null) result.add(temp);
       }
     }
-    print('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%beforereturn');
+    print(
+        '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%beforereturn');
     print(result);
     return result;
   }
@@ -121,17 +124,48 @@ class BudgetStorageController {
 
   static Future<bool> deleteSubCategories(SubCategory subCategory) async {
     try {
-      await FirebaseFirestore.instance
+      print('hello form delete sub line 127!!!!!!!!!');
+      final batch = FirebaseFirestore.instance.batch();
+      final docref = FirebaseFirestore.instance
           .collection(Constant.categories)
           .doc(subCategory.categoryid)
           .collection(subCategory.userid!)
-          .doc(subCategory.subcategoryid)
-          .delete();
+          .doc(subCategory.subcategoryid);
+      batch.delete(docref);
 
+      QuerySnapshot subCatBudgeAmount = await FirebaseFirestore.instance
+          .collection(Constant.budgetAmount)
+          .where("CategoryId", isEqualTo: subCategory.categoryid)
+          .get();
+      subCatBudgeAmount.docs.forEach((element) async {
+        print(element.data());
+        BudgetAmount budgetAmount =
+            BudgetAmount.fromJson(element.data() as Map<String,dynamic>);
+            print('hello from line 144!!!!!!!!!!!!!!!!!');
+       final docref2 = FirebaseFirestore.instance
+            .collection(Constant.budgetAmount)
+            .doc(budgetAmount.budgetAmountId)
+            .collection(budgetAmount.SubCategory!)
+            .doc(subCategory.label);
+        batch.delete(docref2);
+
+        DocumentSnapshot getamountref = await FirebaseFirestore.instance
+            .collection(Constant.budgetAmount)
+            .doc(budgetAmount.budgetAmountId)
+            .collection(budgetAmount.SubCategory!)
+            .doc(subCategory.label)
+            .get();
+        
+        double amount = (getamountref.data() as Map)["amount"];
+        final budgetamountref = FirebaseFirestore.instance.collection(Constant.budgetAmount).doc(budgetAmount.budgetAmountId);
+        batch.set(budgetamountref, budgetAmount.toJsonForDeleting(amount));
+      });
+      
       return true;
     } catch (e) {
-      print(e);
 
+      print(e);
+      print('helllo from delete sub cate exception !!!!!!!');
       throw (e);
     }
   }
@@ -195,34 +229,84 @@ class BudgetStorageController {
     }
   }
 
-  static Future<bool> addBudgetAmount( BudgetAmount budgetAmount, String budgetId) async {
+  static Future<bool> addBudgetAmount(
+      BudgetAmount budgetAmount, String budgetId) async {
     try {
-      DocumentReference? ref1 = null;
-      DocumentReference documentReference = FirebaseFirestore.instance
-          .collection(Constant.budgetAmount)
-          .doc();
-    if(budgetAmount.SubCategory != null){
-      ref1 = documentReference.collection(Constant.subcatagory).doc(budgetAmount.SubCategoryLabel);
-    }
-    
-      budgetAmount.budgetAmountId = documentReference.id;
-      await documentReference.set(budgetAmount.toJson());
-      await ref1?.set(budgetAmount.toJsonforSubCat());
+      final batch = FirebaseFirestore.instance.batch();
 
-      return true;
+      QuerySnapshot budgetAmountdoc = await FirebaseFirestore.instance
+          .collection(Constant.budgetAmount)
+          .where("CategoryId", isEqualTo: budgetAmount.CategoryId)
+          .where("budgetId", isEqualTo: budgetId)
+          .get();
+      if (budgetAmountdoc.docs.isNotEmpty) {
+        if (budgetAmount.SubCategory == null) {
+          final collection = await FirebaseFirestore.instance
+              .collection(Constant.budgetAmount)
+              .doc(budgetAmountdoc.docs.first.id)
+              .collection(Constant.subcatagory)
+              .get();
+
+          collection.docs.forEach((element) {
+            batch.delete(element.reference);
+          });
+          await batch.commit();
+          await FirebaseFirestore.instance
+              .collection(Constant.budgetAmount)
+              .doc(budgetAmountdoc.docs.first.id)
+              .set(budgetAmount.toJson());
+        } else {
+          final docRefrence = await FirebaseFirestore.instance
+              .collection(Constant.budgetAmount)
+              .doc(budgetAmountdoc.docs.first.id)
+              .collection(Constant.subcatagory)
+              .doc(budgetAmount.SubCategoryLabel);
+          batch.set(docRefrence, budgetAmount.toJsonforSubCat());
+          final docRefrence2 = await FirebaseFirestore.instance
+              .collection(Constant.budgetAmount)
+              .doc(budgetAmountdoc.docs.first.id);
+          batch.set(
+              docRefrence2,
+              budgetAmount.toJsonForUpdating(
+                  (budgetAmountdoc.docs.first.data() as Map)["amount"]));
+          batch.commit();
+        }
+      } else {
+        DocumentReference? ref1 = null;
+        DocumentReference documentReference =
+            FirebaseFirestore.instance.collection(Constant.budgetAmount).doc();
+        if (budgetAmount.SubCategory != null) {
+          ref1 = documentReference
+              .collection(Constant.subcatagory)
+              .doc(budgetAmount.SubCategoryLabel);
+        }
+
+        budgetAmount.budgetAmountId = documentReference.id;
+        await documentReference.set(budgetAmount.toJson());
+        await ref1?.set(budgetAmount.toJsonforSubCat());
+      }
     } catch (e) {
       throw (e);
     }
+
+    return true;
   }
 
   static Future<bool> deleteCategory(String categoryid) async {
-    print(categoryid);
     try {
-      await FirebaseFirestore.instance
+      final batch = FirebaseFirestore.instance.batch();
+      final docref = FirebaseFirestore.instance
           .collection(Constant.categories)
-          .doc(categoryid)
-          .delete();
-
+          .doc(categoryid);
+      batch.delete(docref);
+      QuerySnapshot budgetAmountref = await FirebaseFirestore.instance
+          .collection(Constant.budgetAmount)
+          .where("CategoryId", isEqualTo: categoryid)
+          .get();
+      budgetAmountref.docs.forEach((element) {
+        batch.delete(element.reference);
+      });
+      await batch.commit();
       return true;
     } catch (e) {
       throw (e);
