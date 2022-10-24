@@ -241,8 +241,8 @@ class _Controller {
     currentState.save();
 
     try {
-      FirestoreController.adjustBalance(
-          state.widget.user.uid, amount!, state.widget.wallet.docId!);
+      FirestoreController.adjustBalance(state.widget.user.uid,
+          state.eachUser!.uid, amount!, state.widget.wallet.docId!);
       UserTransaction tran = new UserTransaction(
           from_email: state.widget.user.email!,
           from_uid: state.widget.user.uid,

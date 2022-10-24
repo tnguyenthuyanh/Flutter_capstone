@@ -410,11 +410,31 @@ class FirestoreController {
     return result;
   }
 
-  static Future<String> saveWallet(Wallet wallet) async {
-    var ref = await FirebaseFirestore.instance
+  static Future<void> initWallet({
+    required User user,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.WALLET_COLLECTION)
-        .add(wallet.toFirestoreDoc());
-    return ref.id;
+        .where(Wallet.UID, isEqualTo: user.uid)
+        .get();
+    if (querySnapshot.size == 0) {
+      Wallet newWallet = new Wallet();
+      newWallet.uid = user.uid;
+      newWallet.email = user.email!;
+      await FirebaseFirestore.instance
+          .collection(Constant.WALLET_COLLECTION)
+          .add(newWallet.toFirestoreDoc());
+    }
+  }
+
+  static Future<void> saveWallet(
+    String docId,
+    Map<String, dynamic> updateInfo,
+  ) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.WALLET_COLLECTION)
+        .doc(docId)
+        .update(updateInfo);
   }
 
   static Future<Wallet> getWallet(String uid) async {
@@ -452,8 +472,8 @@ class FirestoreController {
   }
 
   static Future<void> adjustBalance(
-      String uid, double amount, String docId) async {
-    Wallet wallet = await getWallet(uid);
+      String uid_send, String uid_receive, double amount, String docId) async {
+    Wallet wallet = await getWallet(uid_send);
     double newBalance = wallet.balance - amount;
     double roundedBalance = double.parse((newBalance).toStringAsFixed(2));
 
@@ -461,6 +481,17 @@ class FirestoreController {
         .collection(Constant.WALLET_COLLECTION)
         .doc(docId)
         .update({Wallet.BALANCE: roundedBalance});
+
+    // adjust balance for receiver
+    Wallet wallet_receive = await getWallet(uid_receive);
+    double newBalance_receive = wallet_receive.balance + amount;
+    double roundedBalance_receive =
+        double.parse((newBalance_receive).toStringAsFixed(2));
+
+    await FirebaseFirestore.instance
+        .collection(Constant.WALLET_COLLECTION)
+        .doc(wallet_receive.docId)
+        .update({Wallet.BALANCE: roundedBalance_receive});
   }
 
   static Future<String> saveTransaction(UserTransaction tran) async {
@@ -476,6 +507,7 @@ class FirestoreController {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.TRANSACTION_COLLECTION)
         .where(UserTransaction.FROM_UID, isEqualTo: currentUID)
+        .orderBy(UserTransaction.TIMESTAMP, descending: true)
         .get();
 
     var result = <UserTransaction>[];

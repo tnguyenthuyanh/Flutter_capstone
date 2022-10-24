@@ -10,8 +10,9 @@ import '../model/constant.dart';
 class AddCardScreen extends StatefulWidget {
   static const routeName = '/addCardScreen';
   final User user;
+  final Wallet wallet;
 
-  AddCardScreen({required this.user});
+  AddCardScreen({required this.user, required this.wallet});
 
   @override
   State<StatefulWidget> createState() {
@@ -238,15 +239,15 @@ class _Controller {
     startCircularProgress(state.context);
     try {
       String exp = month! + '/' + year!;
-      Wallet wallet = new Wallet(
-          uid: state.widget.user.uid,
-          email: state.widget.user.email!,
-          exp: exp,
-          holder_name: holderName!,
-          card_number: cardNumber!,
-          cvv: cvv!,
-          card_saved: 1);
-      await FirestoreController.saveWallet(wallet);
+      Map<String, dynamic> updateInfo = {};
+      updateInfo[Wallet.CARD_NUMBER] = cardNumber;
+      updateInfo[Wallet.CVV] = cvv;
+      updateInfo[Wallet.EXP] = exp;
+      updateInfo[Wallet.HOLDER_NAME] = holderName;
+      updateInfo[Wallet.CARD_SAVED] = 1;
+
+      await FirestoreController.saveWallet(
+          state.widget.wallet.docId!, updateInfo);
       stopCircularProgress(state.context);
       Navigator.of(state.context).pop();
       //Navigator.of(state.context).pop();

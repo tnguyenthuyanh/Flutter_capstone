@@ -201,6 +201,7 @@ class _Controller {
       await Navigator.pushNamed(state.context, AddCardScreen.routeName,
           arguments: {
             ArgKey.user: state.widget.user,
+            ArgKey.wallet: state.widget.wallet,
           });
       Navigator.of(state.context).pop();
       Navigator.of(state.context).pop();

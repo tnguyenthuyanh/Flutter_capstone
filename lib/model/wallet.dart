@@ -7,6 +7,8 @@ class Wallet {
   static const BALANCE = 'balance';
   static const UID = 'uid';
   static const EMAIL = 'email';
+  static const REQUEST_PAID = 'request_paid';
+  static const REQUEST_AMOUNT = 'request_amount';
 
   String? docId; //firestore auto generated id
   late String card_number;
@@ -17,6 +19,8 @@ class Wallet {
   late double balance;
   late String uid;
   late String email;
+  late int request_paid;
+  late double request_amount;
 
   Wallet({
     this.docId,
@@ -28,6 +32,8 @@ class Wallet {
     this.balance = 0,
     this.uid = '',
     this.email = '',
+    this.request_paid = 0,
+    this.request_amount = 0,
   });
 
   Map<String, dynamic> toFirestoreDoc() {
@@ -40,6 +46,8 @@ class Wallet {
       BALANCE: this.balance,
       UID: this.uid,
       EMAIL: this.email,
+      REQUEST_PAID: this.request_paid,
+      REQUEST_AMOUNT: this.request_amount,
     };
   }
 
@@ -60,6 +68,8 @@ class Wallet {
       balance: doc[BALANCE],
       uid: doc[UID],
       email: doc[EMAIL],
+      request_amount: doc[REQUEST_AMOUNT],
+      request_paid: doc[REQUEST_PAID],
     );
   }
 }
