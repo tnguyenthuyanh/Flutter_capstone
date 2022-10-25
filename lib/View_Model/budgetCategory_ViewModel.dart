@@ -196,7 +196,8 @@ class BudgetCategoryViewModel extends ChangeNotifier {
         showToast("please select the categories");
       }
     } catch (e) {
-      print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!hello from inside catch');
+      print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!hello from inside catch inside viewmodel of add budget amount');
+      print(e);
       isCategoriesAdding = false;
 
       showToast(e.toString());

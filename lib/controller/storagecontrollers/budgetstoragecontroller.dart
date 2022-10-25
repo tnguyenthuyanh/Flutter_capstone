@@ -137,31 +137,37 @@ class BudgetStorageController {
           .collection(Constant.budgetAmount)
           .where("CategoryId", isEqualTo: subCategory.categoryid)
           .get();
-      subCatBudgeAmount.docs.forEach((element) async {
+          
+      for (var element in subCatBudgeAmount.docs)  {
         print(element.data());
+        print('*************hello from 142');
         BudgetAmount budgetAmount =
             BudgetAmount.fromJson(element.data() as Map<String,dynamic>);
             print('hello from line 144!!!!!!!!!!!!!!!!!');
+            print(budgetAmount.toJson());
        final docref2 = FirebaseFirestore.instance
             .collection(Constant.budgetAmount)
             .doc(budgetAmount.budgetAmountId)
-            .collection(budgetAmount.SubCategory!)
+            .collection(Constant.subcatagory)
             .doc(subCategory.label);
         batch.delete(docref2);
 
         DocumentSnapshot getamountref = await FirebaseFirestore.instance
             .collection(Constant.budgetAmount)
             .doc(budgetAmount.budgetAmountId)
-            .collection(budgetAmount.SubCategory!)
+            .collection(Constant.subcatagory)
             .doc(subCategory.label)
             .get();
         
         double amount = (getamountref.data() as Map)["amount"];
         final budgetamountref = FirebaseFirestore.instance.collection(Constant.budgetAmount).doc(budgetAmount.budgetAmountId);
+        print('hello from 163 in budget storage');
         batch.set(budgetamountref, budgetAmount.toJsonForDeleting(amount));
-      });
-      
+        print('hello from 165 in budget storage');
+      }
+      await batch.commit();
       return true;
+
     } catch (e) {
 
       print(e);
@@ -240,6 +246,8 @@ class BudgetStorageController {
           .where("budgetId", isEqualTo: budgetId)
           .get();
       if (budgetAmountdoc.docs.isNotEmpty) {
+        print('hello from line 246 storage cont');
+        
         if (budgetAmount.SubCategory == null) {
           final collection = await FirebaseFirestore.instance
               .collection(Constant.budgetAmount)
@@ -248,14 +256,17 @@ class BudgetStorageController {
               .get();
 
           collection.docs.forEach((element) {
+
             batch.delete(element.reference);
           });
+          budgetAmount.budgetAmountId = budgetAmountdoc.docs.first.id;
           await batch.commit();
           await FirebaseFirestore.instance
               .collection(Constant.budgetAmount)
               .doc(budgetAmountdoc.docs.first.id)
               .set(budgetAmount.toJson());
         } else {
+          print('hello from line 263 storage cont');
           final docRefrence = await FirebaseFirestore.instance
               .collection(Constant.budgetAmount)
               .doc(budgetAmountdoc.docs.first.id)
@@ -272,6 +283,7 @@ class BudgetStorageController {
           batch.commit();
         }
       } else {
+        print('hello from line 283 storage cont');
         DocumentReference? ref1 = null;
         DocumentReference documentReference =
             FirebaseFirestore.instance.collection(Constant.budgetAmount).doc();
@@ -282,6 +294,8 @@ class BudgetStorageController {
         }
 
         budgetAmount.budgetAmountId = documentReference.id;
+        print('hello form line 288 budgetstoragecontroller');
+        print(budgetAmount.toJson());
         await documentReference.set(budgetAmount.toJson());
         await ref1?.set(budgetAmount.toJsonforSubCat());
       }
