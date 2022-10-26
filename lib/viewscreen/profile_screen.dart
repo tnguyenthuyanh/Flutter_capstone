@@ -12,11 +12,13 @@ class ProfileScreen extends StatefulWidget {
   final String currentUID;
   final UserInfo profile;
   final String isFriendAdded;
+  final UserProfile userP;
 
   ProfileScreen({
     required this.currentUID,
     required this.profile,
     required this.isFriendAdded,
+    required this.userP,
   });
 
   @override
@@ -217,6 +219,33 @@ class _ProfileState extends State<ProfileScreen> {
                                           ),
                                         )
                                       : SizedBox(),
+                  widget.userP.hasSpouse.compareTo('false') == 0
+                      ? Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Container(
+                            height: 40,
+                            width: 110,
+                            decoration: BoxDecoration(
+                              border: Border.all(color: Colors.white),
+                              gradient: LinearGradient(colors: [
+                                Color.fromARGB(255, 205, 91, 129),
+                                Color.fromARGB(255, 102, 192, 94)
+                              ]),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50.0)),
+                            ),
+                            child: ElevatedButton(
+                              onPressed: con.addSpouse,
+                              child: Text('Add Spouse',
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.white)),
+                              style: ElevatedButton.styleFrom(
+                                  primary: Colors.transparent,
+                                  shadowColor: Colors.transparent),
+                            ),
+                          ),
+                        )
+                      : SizedBox(),
                   Divider(
                     color: Colors.yellow,
                     height: 30.0, // space betwen top or bottom item

@@ -10,10 +10,12 @@ import 'view/view_util.dart';
 class UserListScreen extends StatefulWidget {
   final List<UserInfo> userList;
   final String currentUID;
+  final UserProfile userP;
 
   UserListScreen({
     required this.currentUID,
     required this.userList,
+    required this.userP,
   });
 
   static const routeName = '/userListScreen';
@@ -248,6 +250,7 @@ class _Controller {
             ArgKey.profile: profile,
             ArgKey.currentUID: currentUID,
             ArgKey.isFriendAdded: isFriendAdded,
+            ArgKey.userProfile: state.widget.userP,
           });
       await filter(state.filterValue);
       // Navigator.of(state.context).pop();

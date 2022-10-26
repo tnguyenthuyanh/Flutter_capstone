@@ -6,6 +6,7 @@ enum DocKeyUserprof {
   savings,
   plans,
   number,
+  hasSpouse
 }
 
 class UserProfile {
@@ -13,6 +14,7 @@ class UserProfile {
   String? docId;
   late String email;
   late String number;
+  late String hasSpouse;
   late List<dynamic> debts;
   late List<dynamic> purchases;
   late List<dynamic> plans;
@@ -22,6 +24,7 @@ class UserProfile {
     this.uid,
     this.docId,
     this.email = '',
+    this.hasSpouse = 'false',
     List<dynamic>? debts,
     List<dynamic>? purchases,
     List<dynamic>? plans,
@@ -43,6 +46,7 @@ class UserProfile {
     docId = p.docId;
     email = p.email;
     number = p.number;
+    hasSpouse = p.hasSpouse;
     debts = [...debts];
     purchases = [...purchases];
     plans = [...plans];
@@ -55,6 +59,7 @@ class UserProfile {
     docId = p.docId;
     email = p.email;
     number = p.number;
+    hasSpouse = p.hasSpouse;
     debts.clear();
     debts.addAll(p.debts);
     purchases.clear();
@@ -70,6 +75,7 @@ class UserProfile {
       DocKeyUserprof.email.name: email,
       DocKeyUserprof.number.name: number,
       DocKeyUserprof.uid.name: uid,
+      DocKeyUserprof.hasSpouse.name: hasSpouse,
     };
   }
 
@@ -84,6 +90,7 @@ class UserProfile {
       purchases: doc[DocKeyUserprof.purchases.name] ??= [],
       plans: doc[DocKeyUserprof.plans.name] ??= [],
       savings: doc[DocKeyUserprof.savings.name] ??= [],
+      hasSpouse: doc[DocKeyUserprof.hasSpouse.name] ??= [],
     );
   }
 }

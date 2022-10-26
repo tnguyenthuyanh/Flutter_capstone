@@ -235,12 +235,15 @@ class _Controller {
 
   void seeUserList() async {
     try {
+      userP = await FirestoreController.getUser(email: state.email);
+
       List<usr.UserInfo> userList = await FirestoreController.getUserList(
           currentUID: state.widget.user.uid);
       await Navigator.pushNamed(state.context, UserListScreen.routeName,
           arguments: {
             ArgKey.currentUID: state.widget.user.uid,
             ArgKey.userList: userList,
+            ArgKey.userProfile: userP,
           });
       // close the drawer
       Navigator.of(state.context).pop();
