@@ -208,6 +208,9 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                     (value) {
                       setState(() {
                         isSwitched = value;
+                        con.pickedVehicle = Vehicle();
+                        con.cityMpg = 1;
+                        con.highwayMpg = 1;
                       });
                     },
                     // widget 1
@@ -219,6 +222,7 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                           "City Mpg",
                           1,
                           100,
+                          99,
                           con.cityMpg,
                           (value) {
                             setState(() {
@@ -231,6 +235,7 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                           "Hwy Mpg",
                           1,
                           100,
+                          99,
                           con.highwayMpg,
                           (value) {
                             setState(() {
@@ -249,12 +254,15 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                               children: [
                                 Row(
                                   children: [
+                                    Expanded(flex: 2, child: Text("Browse: ... ")),
                                     Expanded(
-                                      flex: 1,
+                                      flex: 4,
                                       child: SizedBox(
-                                          width: MediaQuery.of(context).size.width,
+                                          // width: MediaQuery.of(context).size.width,
+                                          width: 200,
                                           child: DropdownButtonHideUnderline(
                                             child: DropdownButton<Vehicle>(
+                                              isExpanded: true,
                                               icon: const Icon(Icons.arrow_drop_down),
                                               elevation: 16,
                                               style: const TextStyle(color: Colors.white),
@@ -289,15 +297,16 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                                 ),
                                 Column(
                                   children: [
-                                    if (con.pickedVehicle.year != null)
-                                      Text(
-                                        con.pickedVehicle.year.toString() +
-                                            " " +
-                                            con.pickedVehicle.make.toString() +
-                                            " " +
-                                            con.pickedVehicle.model.toString(),
-                                        style: TextStyle(fontSize: 14),
-                                      ),
+                                    (con.pickedVehicle.year != null)
+                                        ? Text(
+                                            con.pickedVehicle.year.toString() +
+                                                " " +
+                                                con.pickedVehicle.make.toString() +
+                                                " " +
+                                                con.pickedVehicle.model.toString(),
+                                            style: TextStyle(fontSize: 14),
+                                          )
+                                        : Text("Default", style: TextStyle(fontSize: 14)),
                                     Text(
                                       con.cityMpg.toInt().toString() +
                                           " City - " +
@@ -476,7 +485,10 @@ class _Controller {
     fuelCostCalc.cityMpg = cityMpg.toInt();
     fuelCostCalc.highwayMpg = highwayMpg.toInt();
     fuelCostCalc.cityOverHighway = cityDriveOverHighway.toInt();
-    fuelCostCalc.combinedMpg = Vehicle.getCombinedMPG(highwayMpg, cityMpg).toInt();
+
+    fuelCostCalc.combinedMpg = state.isSwitched
+        ? Vehicle.getCombinedMPG(highwayMpg, cityMpg).toInt()
+        : pickedVehicle.combinedMpg;
     fuelCostCalc.fuelPrice = fuelPrice;
 
     fuelCostCalc.estimate();
@@ -545,23 +557,26 @@ class _Controller {
           ),
         ),
       ),
-      Center(
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(40.0),
-          ),
-          color: Colors.cyan.shade500.withAlpha(90),
-          child: InkWell(
-            splashColor: Colors.red.shade500.withAlpha(50),
-            onTap: () => saveFuelCostCalc(context),
-            child: SizedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("Save "),
-                  SizedBox(width: 5),
-                  Icon(Icons.cloud_upload),
-                ],
+      Padding(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+        child: Center(
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40.0),
+            ),
+            color: Colors.cyan.shade500.withAlpha(90),
+            child: InkWell(
+              splashColor: Colors.red.shade500.withAlpha(50),
+              onTap: () => saveFuelCostCalc(context),
+              child: SizedBox(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text("Save "),
+                    SizedBox(width: 5),
+                    Icon(Icons.cloud_upload),
+                  ],
+                ),
               ),
             ),
           ),
@@ -732,7 +747,7 @@ class _Controller {
     late String selectedYear = "";
     late String selectedMake = "";
     late String selectedModel = "";
-    late Vehicle pickedVehicle;
+    late Vehicle picked;
 
     state.vehicleCSVDatabase.forEach((vehicle) {
       yearSet.add(int.parse(vehicle.year!));
@@ -785,7 +800,7 @@ class _Controller {
                         setState(
                           () {
                             selectedModel = "";
-                            pickedVehicle = Vehicle();
+                            picked = Vehicle();
                             modelSet.clear();
                             selectedMake = value.toString();
                             if (selectedYear != "" && selectedMake != "") {
@@ -820,7 +835,7 @@ class _Controller {
                                   vehicle.displ == el[1] &&
                                   vehicle.drive == el[2] &&
                                   vehicle.trany == el[3]) {
-                                pickedVehicle = vehicle;
+                                picked = vehicle;
                               }
                             });
                           });
@@ -830,51 +845,55 @@ class _Controller {
                 ),
               ),
               FuelCostWidgets.resultContentsContainer(
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Column(
                   children: [
-                    if (selectedYear != "")
-                      FuelCostWidgets.vehicleLabel(yearColor, selectedYear, 10),
-                    if (selectedMake != "")
-                      FuelCostWidgets.vehicleLabel(makeColor, selectedMake, 10),
-                    if (selectedModel != "")
-                      FuelCostWidgets.vehicleLabel(modelColor, selectedModel, 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (selectedYear != "")
+                          FuelCostWidgets.vehicleLabel(yearColor, selectedYear, 10),
+                        if (selectedMake != "")
+                          FuelCostWidgets.vehicleLabel(makeColor, selectedMake, 10),
+                        if (selectedModel != "")
+                          FuelCostWidgets.vehicleLabel(modelColor, selectedModel, 10),
+                      ],
+                    ),
+                    selectedModel != ""
+                        ? Center(
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40.0),
+                              ),
+                              color: Colors.cyan.shade500.withAlpha(90),
+                              child: InkWell(
+                                splashColor: Colors.red.shade500.withAlpha(50),
+                                onTap: () {
+                                  saveVehicle(context, picked);
+                                  setState(() {
+                                    state.savedPersonalVehicle.insert(0, picked);
+                                    selectedYear = "";
+                                    selectedMake = "";
+                                    selectedModel = "";
+                                    modelSet.clear();
+                                  });
+                                },
+                                child: SizedBox(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Text("Add "),
+                                      SizedBox(width: 5),
+                                      Icon(Icons.plus_one),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        : SizedBox(),
                   ],
                 ),
               ),
-              selectedModel != ""
-                  ? Center(
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        color: Colors.cyan.shade500.withAlpha(90),
-                        child: InkWell(
-                          splashColor: Colors.red.shade500.withAlpha(50),
-                          onTap: () {
-                            saveVehicle(context, pickedVehicle);
-                            setState(() {
-                              state.savedPersonalVehicle.insert(0, pickedVehicle);
-                              selectedYear = "";
-                              selectedMake = "";
-                              selectedModel = "";
-                              modelSet.clear();
-                            });
-                          },
-                          child: SizedBox(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text("Add "),
-                                SizedBox(width: 5),
-                                Icon(Icons.plus_one),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  : SizedBox(),
               if (state.savedPersonalVehicle.isNotEmpty)
                 Container(
                   height: MediaQuery.of(context).size.height * 0.4,
@@ -927,13 +946,13 @@ class _Controller {
                                   child: InkWell(
                                     splashColor: Colors.red.shade500.withAlpha(50),
                                     onTap: () {
-                                      deleteSavedVehicle(
-                                          context,
-                                          state.savedPersonalVehicle[index].docId
-                                              .toString());
-                                      setState(() =>
-                                          state.savedPersonalVehicle.removeAt(index));
-                                      state.setState(() {});
+                                      setState(() {
+                                        deleteSavedVehicle(
+                                            context,
+                                            state.savedPersonalVehicle[index].docId
+                                                .toString());
+                                        state.savedPersonalVehicle.removeAt(index);
+                                      });
                                     },
                                     child: SizedBox(
                                       child: Icon(Icons.close),
@@ -1002,9 +1021,7 @@ class _Controller {
       state.setState(() {
         cityMpg = 1;
         highwayMpg = 1;
-        pickedVehicle.make = "";
-        pickedVehicle.year = null;
-        pickedVehicle.model = "";
+        pickedVehicle = Vehicle();
       });
     } catch (e) {
       PopupDialog.info(

@@ -77,6 +77,7 @@ class FuelCostWidgets {
     String title,
     double minValue,
     double maxValue,
+    int divisions,
     double mpgValue,
     Function f,
   ) {
@@ -110,6 +111,7 @@ class FuelCostWidgets {
                       : Colors.green,
               min: minValue,
               max: maxValue,
+              divisions: divisions,
               label: mpgValue.round().toString(),
               value: mpgValue,
               onChanged: (value) {
