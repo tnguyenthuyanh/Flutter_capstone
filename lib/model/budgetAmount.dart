@@ -56,7 +56,7 @@ class BudgetAmount {
       CategoryLabel: json[budgetCats.CategoryLabel.toShortString()],
       SubCategory: json[budgetCats.SubCategory.toShortString()],
       SubCategoryLabel: json[budgetCats.SubCategoryLabel.toShortString()],
-      amount: json[budgetCats.amount.toShortString()],
+      amount: double.parse(json[budgetCats.amount.toShortString()].toString()),
       budgetAmountId: json[budgetCats.BudgetAmount_id.toShortString()],
       budgetId: json[budgetCats.budgetId.toShortString()],
     );
@@ -74,25 +74,25 @@ class BudgetAmount {
         budgetCats.budgetId.toShortString(): budgetId,
       };
 
-  Map<String, dynamic> toJsonForUpdating(double amount1) => {
+  Map<String, dynamic> toJsonForUpdating(double amount1, {double oldAmount=0}) => {
         budgetCats.owner_id.toShortString(): ownerId,
         budgetCats.CategoryId.toShortString(): CategoryId,
         budgetCats.CategoryLabel.toShortString(): CategoryLabel,
         budgetCats.SubCategory.toShortString(): SubCategory,
         budgetCats.SubCategoryLabel.toShortString(): SubCategoryLabel,
-        budgetCats.amount.toShortString(): amount + amount1,
-        budgetCats.BudgetAmount_id.toShortString(): budgetAmountId,
+        budgetCats.amount.toShortString(): (amount + amount1) - oldAmount,
+        // budgetCats.BudgetAmount_id.toShortString(): budgetAmountId,
         budgetCats.budgetId.toShortString(): budgetId,
       };
 
   Map<String, dynamic> toJsonForDeleting(double amount1) => {
-        budgetCats.CategoryId.toShortString(): ownerId,
+        budgetCats.owner_id.toShortString(): ownerId,
         budgetCats.CategoryId.toShortString(): CategoryId,
         budgetCats.CategoryLabel.toShortString(): CategoryLabel,
         budgetCats.SubCategory.toShortString(): SubCategory,
         budgetCats.SubCategoryLabel.toShortString(): SubCategoryLabel,
         budgetCats.amount.toShortString(): amount - amount1,
-        budgetCats.BudgetAmount_id.toShortString(): budgetAmountId,
+        // budgetCats.BudgetAmount_id.toShortString(): budgetAmountId,
         budgetCats.budgetId.toShortString(): budgetId,
       };
 

@@ -137,15 +137,15 @@ class BudgetStorageController {
           .collection(Constant.budgetAmount)
           .where("CategoryId", isEqualTo: subCategory.categoryid)
           .get();
-          
-      for (var element in subCatBudgeAmount.docs)  {
+
+      for (var element in subCatBudgeAmount.docs) {
         print(element.data());
         print('*************hello from 142');
         BudgetAmount budgetAmount =
-            BudgetAmount.fromJson(element.data() as Map<String,dynamic>);
-            print('hello from line 144!!!!!!!!!!!!!!!!!');
-            print(budgetAmount.toJson());
-       final docref2 = FirebaseFirestore.instance
+            BudgetAmount.fromJson(element.data() as Map<String, dynamic>);
+        print('hello from line 144!!!!!!!!!!!!!!!!!');
+        print(budgetAmount.toJson());
+        final docref2 = FirebaseFirestore.instance
             .collection(Constant.budgetAmount)
             .doc(budgetAmount.budgetAmountId)
             .collection(Constant.subcatagory)
@@ -158,18 +158,21 @@ class BudgetStorageController {
             .collection(Constant.subcatagory)
             .doc(subCategory.label)
             .get();
-        
-        double amount = (getamountref.data() as Map)["amount"];
-        final budgetamountref = FirebaseFirestore.instance.collection(Constant.budgetAmount).doc(budgetAmount.budgetAmountId);
+        double amount = 0;
+        if (getamountref.exists){
+          amount = double.parse((getamountref.data() as Map<String,dynamic>)["amount"].toString());
+        }
+         
+        final budgetamountref = FirebaseFirestore.instance
+            .collection(Constant.budgetAmount)
+            .doc(budgetAmount.budgetAmountId);
         print('hello from 163 in budget storage');
-        batch.set(budgetamountref, budgetAmount.toJsonForDeleting(amount));
+        batch.set(budgetamountref, budgetAmount.toJsonForDeleting(amount), SetOptions(merge: true));
         print('hello from 165 in budget storage');
       }
       await batch.commit();
       return true;
-
     } catch (e) {
-
       print(e);
       print('helllo from delete sub cate exception !!!!!!!');
       throw (e);
@@ -247,7 +250,7 @@ class BudgetStorageController {
           .get();
       if (budgetAmountdoc.docs.isNotEmpty) {
         print('hello from line 246 storage cont');
-        
+
         if (budgetAmount.SubCategory == null) {
           final collection = await FirebaseFirestore.instance
               .collection(Constant.budgetAmount)
@@ -256,7 +259,6 @@ class BudgetStorageController {
               .get();
 
           collection.docs.forEach((element) {
-
             batch.delete(element.reference);
           });
           budgetAmount.budgetAmountId = budgetAmountdoc.docs.first.id;
@@ -272,6 +274,17 @@ class BudgetStorageController {
               .doc(budgetAmountdoc.docs.first.id)
               .collection(Constant.subcatagory)
               .doc(budgetAmount.SubCategoryLabel);
+          final docRefrenceOld = await FirebaseFirestore.instance
+              .collection(Constant.budgetAmount)
+              .doc(budgetAmountdoc.docs.first.id)
+              .collection(Constant.subcatagory)
+              .doc(budgetAmount.SubCategoryLabel)
+              .get();
+          double oldAmount = 0.0;
+          if (docRefrenceOld.exists) {
+            oldAmount = double.parse(
+                (docRefrenceOld.data() as Map<String,dynamic>)["amount"].toString());
+          }
           batch.set(docRefrence, budgetAmount.toJsonforSubCat());
           final docRefrence2 = await FirebaseFirestore.instance
               .collection(Constant.budgetAmount)
@@ -279,7 +292,8 @@ class BudgetStorageController {
           batch.set(
               docRefrence2,
               budgetAmount.toJsonForUpdating(
-                  (budgetAmountdoc.docs.first.data() as Map)["amount"]));
+                  (budgetAmountdoc.docs.first.data() as Map<String,dynamic>)["amount"],oldAmount: oldAmount),
+              SetOptions(merge: true));
           batch.commit();
         }
       } else {
