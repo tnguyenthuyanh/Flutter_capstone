@@ -264,12 +264,14 @@ class _ProfileState extends State<ProfileScreen> {
                     color: Colors.yellow,
                     height: 30.0, // space betwen top or bottom item
                   ),
-                  const Text('Friend\'s Saving Badge'),
-                  SizedBox(
-                    height: 100.0,
-                    width: 100.0,
-                    child: Image.network(con.getBadge()),
-                  ),
+                  if (con.isFriendAdded == 'isFriend')
+                    const Text('Friend\'s Saving Badge'),
+                  if (con.isFriendAdded == 'isFriend')
+                    SizedBox(
+                      height: 100.0,
+                      width: 100.0,
+                      child: Image.network(con.getBadge()),
+                    ),
                 ],
               ),
             ),
