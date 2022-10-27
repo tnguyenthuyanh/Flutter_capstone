@@ -301,9 +301,11 @@ class _ProfileState extends State<ProfileScreen> {
 class _Controller {
   late _ProfileState state;
   late String isFriendAdded;
+  //late UserProfile tempProfile;
 
   _Controller(this.state) {
     isFriendAdded = state.widget.isFriendAdded;
+    // tempProfile = UserProfile.clone(state.widget.userP);
   }
 
   void edit() async {
@@ -347,5 +349,35 @@ class _Controller {
     state.render(() {
       isFriendAdded = 'isFriend';
     });
+  }
+
+  void addSpouse() async {
+    state.widget.userP.spouseID = state.widget.profile.uid;
+    state.widget.userP.hasSpouse = 'true';
+
+    print(state.widget.userP.hasSpouse);
+
+    try {
+      Map<String, dynamic> update = {};
+      //update Firestore doc
+      update[DocKeyUserprof.spouseID.name] = state.widget.userP.spouseID;
+      update[DocKeyUserprof.hasSpouse.name] = state.widget.userP.hasSpouse;
+
+      if (update.isNotEmpty) {
+        //change has been made
+        await FirestoreController.updateUserProfile(
+            userP: state.widget.userP,
+            docId: state.widget.userP.docId!,
+            update: update);
+      }
+
+      stopCircularProgress(state.context);
+      state.render({});
+    } catch (e) {
+      stopCircularProgress(state.context);
+      if (Constant.devMode) print('======== failed to get update: $e');
+      showSnackBar(
+          context: state.context, seconds: 20, message: 'failed to update: $e');
+    }
   }
 }

@@ -6,7 +6,8 @@ enum DocKeyUserprof {
   savings,
   plans,
   number,
-  hasSpouse
+  hasSpouse,
+  spouseID,
 }
 
 class UserProfile {
@@ -15,6 +16,7 @@ class UserProfile {
   late String email;
   late String number;
   late String hasSpouse;
+  late String spouseID;
   late List<dynamic> debts;
   late List<dynamic> purchases;
   late List<dynamic> plans;
@@ -24,7 +26,9 @@ class UserProfile {
     this.uid,
     this.docId,
     this.email = '',
+    this.number = '',
     this.hasSpouse = 'false',
+    this.spouseID = '',
     List<dynamic>? debts,
     List<dynamic>? purchases,
     List<dynamic>? plans,
@@ -39,6 +43,15 @@ class UserProfile {
   UserProfile.set(String email, String number) {
     this.email = email;
     this.number = number;
+
+    this.uid;
+    this.docId;
+    this.hasSpouse = 'false';
+    this.spouseID = '';
+    List<dynamic>? debts;
+    List<dynamic>? purchases;
+    List<dynamic>? plans;
+    List<dynamic>? savings;
   }
 
   UserProfile.clone(UserProfile p) {
@@ -47,6 +60,7 @@ class UserProfile {
     email = p.email;
     number = p.number;
     hasSpouse = p.hasSpouse;
+    spouseID = p.spouseID;
     debts = [...debts];
     purchases = [...purchases];
     plans = [...plans];
@@ -60,6 +74,7 @@ class UserProfile {
     email = p.email;
     number = p.number;
     hasSpouse = p.hasSpouse;
+    spouseID = p.spouseID;
     debts.clear();
     debts.addAll(p.debts);
     purchases.clear();
@@ -76,6 +91,7 @@ class UserProfile {
       DocKeyUserprof.number.name: number,
       DocKeyUserprof.uid.name: uid,
       DocKeyUserprof.hasSpouse.name: hasSpouse,
+      DocKeyUserprof.spouseID.name: spouseID,
     };
   }
 
@@ -91,6 +107,7 @@ class UserProfile {
       plans: doc[DocKeyUserprof.plans.name] ??= [],
       savings: doc[DocKeyUserprof.savings.name] ??= [],
       hasSpouse: doc[DocKeyUserprof.hasSpouse.name] ??= [],
+      spouseID: doc[DocKeyUserprof.spouseID.name] ??= [],
     );
   }
 }

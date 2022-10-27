@@ -445,6 +445,17 @@ class FirestoreController {
         .update(update);
   }
 
+  static Future<void> updateUserProfile({
+    required UserProfile userP,
+    required String docId,
+    required Map<String, dynamic> update,
+  }) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(userP.docId)
+        .update(update);
+  }
+
   // delete saved tip calc
   static Future<void> deleteSavedTipCalcItem(String docId) async {
     await FirebaseFirestore.instance
