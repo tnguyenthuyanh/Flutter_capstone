@@ -17,6 +17,7 @@ class Constant {
   static const plans = 'Plans';
   static const savedTipCalc = 'SavedTipCalc';
   static const savedFuelCostCalc = 'SavedFuelCostCalc';
+  static const savedVehicle = 'SavedVehicle';
 
   static const List<DropdownMenuItem<String>> menuItems = [
     DropdownMenuItem(child: Text('Mortgage'), value: 'Mortgage'),
