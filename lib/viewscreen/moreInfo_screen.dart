@@ -28,6 +28,9 @@ class _MoreInfoState extends State<MoreInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Financial Terminology'),
+      ),
       body: Center(
         child: Container(
           constraints: const BoxConstraints(maxWidth: 400),
