@@ -1,41 +1,43 @@
 import 'dart:collection';
+import 'package:cap_project/model/account.dart';
 import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'package:cap_project/viewscreen/components/texts/listviewheadertext.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
-import '../model/budget.dart';
-import '../model/constant.dart';
-import '../View_Model/budget_data.dart';
 import 'package:cap_project/viewscreen/budgetCategory.dart';
 import 'package:cap_project/viewscreen/components/texts/ohnoeserrortext.dart';
-import 'components/budgetdetailfield.dart';
-import 'components/buttons/modebuttons/editcancelmode_button.dart';
-import 'components/buttons/mysizedbutton.dart';
-import 'components/textfields/budgettitle_textfield.dart';
-import 'components/texts/titletext.dart';
+import '../../View_Model/account_data.dart';
+import '../components/buttons/modebuttons/editcancelmode_button.dart';
+import '../components/buttons/mysizedbutton.dart';
+import '../components/textfields/account_textfields.dart';
+import '../components/texts/detail_text.dart';
+import '../components/texts/titletext.dart';
 
 // TODO: add copy to functionality
-class BudgetDetailScreen extends StatefulWidget {
-  static const routeName = '/budgetDetailScreen';
-  static const _screenName = "Budget Detail";
+class AccountDetailScreen extends StatefulWidget {
+  static const routeName = '/accountDetailScreen';
+  static const _screenName = "Account Detail";
 
-  const BudgetDetailScreen({Key? key}) : super(key: key);
+  const AccountDetailScreen({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _BudgetDetailState();
+  State<StatefulWidget> createState() => _AccountDetailState();
 }
 
-class _BudgetDetailState extends State<BudgetDetailScreen> {
+class _AccountDetailState extends State<AccountDetailScreen> {
   DebugPrinter printer = DebugPrinter(className: "BudgetDetailState");
 
   late _Controller _con;
 
   // state vars
-  Budget? _selected;
-  Budget? _current;
+  Account? _selected;
+  Account? _current;
   bool _editMode = false;
   String? newTitle;
+  String? newAccountNumber;
+  String? newRate;
+  String? newWebsite;
 
   var _formKey = GlobalKey<FormState>();
 
@@ -51,41 +53,14 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _selected = Provider.of<BudgetData>(context).selectedBudget;
-    _current = Provider.of<BudgetData>(context).currentBudget;
+    _selected = Provider.of<AccountData>(context).selected;
+    _current = Provider.of<AccountData>(context).current;
 
     return Scaffold(
       appBar: AppBar(
-        title: TitleText(title: BudgetDetailScreen._screenName),
+        title: TitleText(title: AccountDetailScreen._screenName),
         //          ACTIONS     ------------------------------------------------
         actions: [
-          //              CATEGORIES DROPDOWN    --------------------------------
-          DropdownButton<String>(
-            value: "Categories",
-            icon: const Icon(Icons.arrow_downward),
-            elevation: 16,
-            style: const TextStyle(color: Colors.deepPurple),
-            underline: Container(
-              height: 2,
-              color: Colors.deepPurpleAccent,
-            ),
-            onChanged: (String? value) {
-              // This is called when the user selects an item.
-              if (value == "Set Budget Categories") {
-                Navigator.pushNamed(context, AddCategory.routeName);
-              }
-              setState(() {
-                //dropdownValue = value!;
-              });
-            },
-            items: ["Set Budget Categories", "placeholder1", "Categories"]
-                .map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-              );
-            }).toList(),
-          ),
           //              EDIT/CANCEL & SAVE BUTTONS   ---------------------------
           EditCancelModeButton(
             editMode: _editMode,
@@ -108,29 +83,31 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
               child: _selected == null
                   ? OhNoesErrorText(
                       message:
-                          'There has been a mistake. Selected Budget is null')
+                          'There has been a mistake. Selected Account is null')
                   : Column(
                       children: [
-                        _editMode
-                            ? BudgetTitleTextField(onSaved: _con.onSaveTitle)
-                            : BudgetDetailField(
-                                titleText: "Title",
-                                fieldText: _selected!.title),
+                        AccountTextFields.titleTextField(
+                            onSaved: _con.onSaveTitle,
+                            mode: _editMode,
+                            account: _selected),
+                        AccountTextFields.accountNumberTextField(
+                            mode: _editMode,
+                            onSaved: _con.onSaveAccountNumber,
+                            account: _selected),
+                        AccountTextFields.rateTextField(
+                            mode: _editMode,
+                            onSaved: _con.onSaveRate,
+                            account: _selected),
+                        AccountTextFields.websiteTextField(
+                            mode: _editMode,
+                            onSaved: _con.onSaveWebsite,
+                            account: _selected),
                         MySizedButton(
                           buttonText: "Use",
                           onPressedCallback: _selected! == _current
                               ? null
                               : _con.onUseButtonPressed,
                         ),
-                        // ListViewHeaderText(listViewTitle: "Categories"),
-                        // ListView.builder(
-                        //   itemCount: 12,
-                        //   itemBuilder: (BuildContext context, int index) {
-                        //     return ListTile(
-                        //       leading: Text("yay"),
-                        //     );
-                        //   },
-                        // ),
                       ],
                     ),
             ),
@@ -143,21 +120,21 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
 
 class _Controller {
   DebugPrinter printer =
-      DebugPrinter(className: "BudgetDetailScreen Controller");
+      DebugPrinter(className: "AccountDetailScreen Controller");
 
-  final _BudgetDetailState _state;
+  final _AccountDetailState _state;
   _Controller(this._state);
 
   // button events
   //---------------------------------------------------------------------------
   void onUseButtonPressed() {
-    Provider.of<BudgetData>(_state.context, listen: false)
-        .setCurrentBudget(_state._selected!);
+    Provider.of<AccountData>(_state.context, listen: false)
+        .setCurrent(_state._selected!);
   }
 
   void save() {
     printer.setMethodName(methodName: "save");
-    printer.debugPrint("saving budget");
+    printer.debugPrint("saving account");
 
     FormState? currentState = _state._formKey.currentState;
     if (!isFormStateValid()) {
@@ -168,10 +145,10 @@ class _Controller {
     currentState!.save();
 
     // save the budget, slap some good toast, and navigate to budgets list
-    Provider.of<BudgetData>(_state.context, listen: false)
-        .updateSelectedBudget(_state.newTitle!);
+    Provider.of<AccountData>(_state.context, listen: false)
+        .updateSelected(_state.newTitle!);
 
-    showToast("Budget Updated");
+    showToast("Account Updated");
 
     onEditPressed();
   }
@@ -190,6 +167,24 @@ class _Controller {
   void onSaveTitle(String? value) {
     _state.render(() {
       _state.newTitle = value;
+    });
+  }
+
+  void onSaveAccountNumber(String? value) {
+    _state.render(() {
+      _state.newAccountNumber = value;
+    });
+  }
+
+  void onSaveRate(String? value) {
+    _state.render(() {
+      _state.newRate = value;
+    });
+  }
+
+  void onSaveWebsite(String? value) {
+    _state.render(() {
+      _state.newWebsite = value;
     });
   }
 }

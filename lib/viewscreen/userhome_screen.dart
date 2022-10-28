@@ -13,6 +13,7 @@ import 'package:cap_project/viewscreen/savings_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
+import 'package:cap_project/viewscreen/wallet_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,6 +23,7 @@ import '../controller/auth_controller.dart';
 import '../controller/firestore_controller.dart';
 import '../model/budget.dart';
 import '../model/constant.dart';
+import '../model/wallet.dart';
 import 'view/view_util.dart';
 
 class UserHomeScreen extends StatefulWidget {
@@ -138,6 +140,12 @@ class _UserHomeState extends State<UserHomeScreen> {
                 leading: Icon(Icons.people),
                 title: Text('Users List'),
                 onTap: con.seeUserList,
+              ),
+              //        Wallet     --------------------------------------------
+              ListTile(
+                leading: Icon(Icons.wallet),
+                title: Text('My Wallet'),
+                onTap: con.seeWallet,
               ),
               //        SIGN OUT      --------------------------------------------------
               ListTile(
@@ -307,6 +315,26 @@ class _Controller {
     }
   }
 
+  void seeWallet() async {
+    try {
+      Wallet wallet =
+          await FirestoreController.getWallet(state.widget.user.uid);
+      await Navigator.pushNamed(state.context, WalletScreen.routeName,
+          arguments: {
+            ArgKey.wallet: wallet,
+            ArgKey.user: state.widget.user,
+          });
+      // close the drawer
+      Navigator.of(state.context).pop();
+    } catch (e) {
+      if (Constant.devMode) print('====== WalletScreen error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed to get walletScreen: $e',
+      );
+    }
+  }
+
   void purchasePage() async {
     try {
       userP = await FirestoreController.getUser(email: state.email);
@@ -336,7 +364,6 @@ class _Controller {
     try {
       userP = await FirestoreController.getUser(email: state.email);
       userP.savings = await FirestoreController.getSavings(user: userP);
-      print('TEST_TEST_TEST_TEST IN ');
       await Navigator.pushNamed(state.context, SavingsScreen.routeName,
           arguments: {
             ArgKey.savings: userP.savings,

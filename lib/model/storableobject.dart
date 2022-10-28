@@ -1,6 +1,6 @@
 abstract class StorableInterface {
   String? docId;
-  final String title;
+  String title;
   final String ownerUid;
   bool _dirty = false;
   bool? isCurrent = false;

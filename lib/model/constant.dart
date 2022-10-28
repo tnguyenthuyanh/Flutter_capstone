@@ -1,3 +1,4 @@
+import 'package:cap_project/model/subcategories.dart';
 import 'package:flutter/material.dart';
 
 class Constant {
@@ -5,6 +6,8 @@ class Constant {
   static const users = 'Users';
   static const USERPROFILE_COLLECTION = 'userProfile';
   static const USERFRIENDS_COLLECTION = 'UserFriends';
+  static const WALLET_COLLECTION = 'VirtualWallet';
+  static const TRANSACTION_COLLECTION = 'UserTransactions';
   static const DARKMODE = true;
   static const debts = 'Debts';
   static const budgets = 'budgets';
@@ -15,6 +18,9 @@ class Constant {
   static const plans = 'Plans';
   static const savedTipCalc = 'SavedTipCalc';
   static const savedFuelCostCalc = 'SavedFuelCostCalc';
+  static const budgetAmount = 'budgetAmount';
+  static const subcatagory = 'subcatagory';
+  static const savedVehicle = 'SavedVehicle';
 
   static const List<DropdownMenuItem<String>> menuItems = [
     DropdownMenuItem(child: Text('Mortgage'), value: 'Mortgage'),
@@ -40,6 +46,8 @@ enum ArgKey {
   currentUID,
   singleDebt,
   isFriendAdded,
+  wallet,
+  transactionList
 }
 
 enum Filter {
@@ -51,6 +59,11 @@ enum Filter {
 enum SearchOption {
   email,
   name,
+}
+
+enum Transfer {
+  Send,
+  Request,
 }
 
 List<DropdownMenuItem<String>> menuItems = [
@@ -74,6 +87,8 @@ class ValidationError {
   static String budgetTitleLengthError = 'Minimum 4 characters';
   static String titleLengthError = 'Title can not be empty';
   static String dateOutOfBoundsError = 'Date Due not valid';
+  static String accountNumberLengthError =
+      'Account number must be at least 8 digits';
   static String amountLengthError = 'Amount can not be empty';
   static String monthTooLongError = 'Must be 1 or 2 characters';
   static String monthValueError = 'Must be a valid number for a month';
@@ -83,4 +98,8 @@ class ValidationError {
   static String yearRangeError = 'Really? You a budget THAT year?';
   static String invalidEmailLengthError = 'Email must be at least 8 characters';
   static String invalidEmailFormatError = 'Invalid Email Address';
+  static String accountRateError = 'Rate must be at least 1 digit';
+  static String accountRateNANError = 'Rate must be a number';
+  static String websiteLengthError = 'Website must be at least 5 characters';
+  static String websiteFormatError = 'Not a valid website';
 }

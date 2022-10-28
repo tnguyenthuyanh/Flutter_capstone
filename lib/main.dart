@@ -1,6 +1,9 @@
 import 'package:cap_project/View_Model/account_data.dart';
 import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
+import 'package:cap_project/viewscreen/accounts/accountdetail_screen.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
+import 'package:cap_project/viewscreen/addBalance_screen.dart';
+import 'package:cap_project/viewscreen/addCard_screen.dart';
 import 'package:cap_project/viewscreen/debtDetail_screen.dart';
 import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/viewscreen/addPlan_screen.dart';
@@ -17,12 +20,15 @@ import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/savings_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/fuelcostestimator_screen.dart';
+import 'package:cap_project/viewscreen/transactionHistory_screen.dart';
+import 'package:cap_project/viewscreen/transferMoney_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
 import 'package:cap_project/View_Model/auth_viewModel.dart';
 import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
 import 'package:cap_project/viewscreen/budgetCategory.dart';
+import 'package:cap_project/viewscreen/wallet_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -187,6 +193,79 @@ class Capstone extends StatelessWidget {
               );
             }
           },
+          WalletScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at WalletScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var wallet = argument[ArgKey.wallet];
+              return WalletScreen(
+                user: user,
+                wallet: wallet,
+              );
+            }
+          },
+          TransferMoneyScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at TransferMoneyScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var friendList = argument[ArgKey.userList];
+              var wallet = argument[ArgKey.wallet];
+              return TransferMoneyScreen(
+                user: user,
+                friendList: friendList,
+                wallet: wallet,
+              );
+            }
+          },
+          AddCardScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at AddCardScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var wallet = argument[ArgKey.wallet];
+              return AddCardScreen(
+                user: user,
+                wallet: wallet,
+              );
+            }
+          },
+          AddBalanceScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at AddBalanceScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var wallet = argument[ArgKey.wallet];
+              return AddBalanceScreen(
+                user: user,
+                wallet: wallet,
+              );
+            }
+          },
+          TransactionHistoryScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen(
+                  'args is null at TransactionHistoryScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var transList = argument[ArgKey.transactionList];
+              return TransactionHistoryScreen(
+                user: user,
+                transList: transList,
+              );
+            }
+          },
           ToolsScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
@@ -225,6 +304,8 @@ class Capstone extends StatelessWidget {
           AddCategory.routeName: (context) => AddCategory(),
           AccountsScreen.routeName: (context) => const AccountsScreen(),
           AddAccountScreen.routeName: (context) => const AddAccountScreen(),
+          AccountDetailScreen.routeName: (context) =>
+              const AccountDetailScreen(),
           PurchasesScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {

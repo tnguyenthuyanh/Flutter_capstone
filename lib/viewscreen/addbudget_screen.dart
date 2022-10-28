@@ -43,10 +43,7 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // _current = Provider.of<BudgetData>(context).numberOfBudgets == 0;
-
     return Scaffold(
-      //        APPBAR      ----------------------------------------------------
       appBar: AppBar(
         title: TitleText(title: _screenTitle),
       ),
@@ -103,24 +100,23 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
 
 class _Controller {
   _AddBudgetScreenState _state;
+
   _Controller(this._state);
 
   void save() {
     FormState? currentState = _state._formKey.currentState;
-    // return if not validated
-    if (currentState == null || !currentState.validate()) return;
-    currentState.save();
+    if (!isFormStateValid()) return;
 
-    // check the current user id. If null or empty, slap some toast on the screen
-    // and return
+    currentState!.save();
+
+    // if current user id is null or empty, slap toast and return
     String? uid = getCurrentUserID();
     if (uid == null || uid.isEmpty) {
       showToast("I'm sorry, but I've made a mistake. Your Id is borked");
       return;
     }
 
-    // if uid is ok, save the budget, slap some good toast on the screen
-    // and navigate to the budgets list
+    // save the budget, slap some good toast, and navigate to budgets list
     Provider.of<BudgetData>(_state.context, listen: false).add(
       Budget(
         title: _state._title!,
@@ -132,6 +128,11 @@ class _Controller {
     showToast("Budget created!");
 
     Navigator.pop(_state.context);
+  }
+
+  bool isFormStateValid() {
+    FormState? currentState = _state._formKey.currentState;
+    return !(currentState == null || !currentState.validate());
   }
 
   void onCurrentChanged(bool? value) {

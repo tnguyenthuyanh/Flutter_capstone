@@ -20,7 +20,7 @@ class CategoryListViewTile extends StatelessWidget {
 
     return MyListViewTile(
       middleValue: category.type,
-      rightValue: category.isSelected! ? "Current" : "",
+      rightValue: category.isSelected ? "Current" : "",
       backgroundColor:
           // _stagedForDeletion ? _selectedForDeleteColor : _normalColor,
           _normalColor,
