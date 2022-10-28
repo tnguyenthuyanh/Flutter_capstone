@@ -103,4 +103,33 @@ final List<Terms> termList = [
       def:
           'FICO Score is a three digit number used to measure your ability to pay back loans or debts',
       img: 'https://bankruptcylawnetwork.com/wp-content/uploads/FICO.jpg'),
+  Terms(
+      title: 'Income',
+      def:
+          'Income is the amount of money you or an entity earns for services rendered.',
+      img:
+          'https://guinncenter.org/wp-content/uploads/2016/06/income-blog-1.jpeg'),
+  Terms(
+      title: 'Budget',
+      def:
+          'A budget is considered a financial plan tha determines how much money will be spent within a specific time frame',
+      img:
+          'https://gibsons.ca/wp-content/uploads/2020/05/budget-spelled-out-1024x683.jpg'),
+  Terms(
+      title: 'Loan',
+      def:
+          'A loan is a sum of money that one entity lets another entity borrow',
+      img:
+          'https://www.investopedia.com/thmb/5oPGxn23VPptX9PRbnff8Fp5spQ=/5894x3901/filters:fill(auto,1)/loan-text-written-on-wooden-block-with-stacked-coins-955530262-08c17c0eb3634e6daf780bdd9ac1d194.jpg'),
+  Terms(
+      title: 'Balance sheet',
+      def:
+          'A balance sheet is a financial document created by a business to capture the current dollar value of assets, liabilities and equity',
+      img:
+          'https://cameonetwork.org/wp-content/uploads/2015/10/Balance-Sheet-00a01.png'),
+  Terms(
+      title: 'Capital Gains',
+      def:
+          'Capital gains are the increase in value of an asset or investment above its initial purchase price',
+      img: 'https://rpg.co.uk/wp-content/uploads/2020/10/1.jpg'),
 ];
