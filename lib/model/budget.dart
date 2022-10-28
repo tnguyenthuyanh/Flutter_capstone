@@ -4,12 +4,14 @@ class Budget {
   String? docID; // the firebase docID of the budget
   bool? isCurrent; // is this budget the budget currently selected by the user
   bool dirty = false;
+  String budgetId;
 
   Budget({
     required this.ownerUID,
     required this.title,
     this.docID,
     this.isCurrent,
+    this.budgetId = "",
   });
 
   Budget copyToNew({required String title}) =>
@@ -20,6 +22,7 @@ class Budget {
       'ownerUID': ownerUID,
       'title': title,
       'isCurrent': isCurrent,
+      'budgetId': budgetId,
     };
   }
 
@@ -29,7 +32,10 @@ class Budget {
         docID: docId,
         ownerUID: doc['ownerUID'],
         title: doc['title'],
-        isCurrent: doc['isCurrent']);
+        isCurrent: doc['isCurrent'],
+        budgetId: doc['budgetId']??'',
+        );
+        
   }
 
   bool equals(Budget budget) {

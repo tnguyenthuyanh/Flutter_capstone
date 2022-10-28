@@ -161,22 +161,24 @@ class BudgetCategoryViewModel extends ChangeNotifier {
     try {
       Iterable<Category> categorytemp =
           categoriess.where((element) => element.isSelected == true);
-      if (categories.isNotEmpty) {}
       Iterable<SubCategory> subcategorytemp =
           subCategoriess.where((element) => element.isSelected == true);
+      print('!!!!!!!!!!!!!!!!!!!!!!hello from line 168');
       if (categorytemp.isNotEmpty && selectedBudgetId != null) {
         BudgetAmount budgetAmount = await BudgetAmount(
+            budgetId: selectedBudgetId!,
             ownerId: FirebaseAuth.instance.currentUser!.uid,
             CategoryId: categorytemp.first.categoryid,
             CategoryLabel: categorytemp.first.label,
             amount: double.parse(budgetController.text),
             budgetAmountId: "",
+            // ignore: prefer_null_aware_operators
             SubCategory: subcategorytemp.isEmpty
                 ? null
                 : subcategorytemp.first.subcategoryid,
             SubCategoryLabel:
                 subcategorytemp.isEmpty ? null : subcategorytemp.first.label);
-        //BudgetAmount budgetAmount = await BudgetAmount(ownerId: FirebaseAuth.instance.currentUser!.uid, CategoryId: categorytemp.first.categoryid, CategoryLabel: categorytemp.first.label, amount: double.parse(budgetController.text), budgetAmountId: "",SubCategory: "",SubCategoryLabel: "");
+        print('hello from line 183!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
         budgetController.clear();
         isBudgetAdding = true;
         notifyListeners();
@@ -266,18 +268,9 @@ class BudgetCategoryViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  deleteSubCategory(int index) {
-    if (categoriess[index].type.toLowerCase() == "global") {
-      showToast("Global category can't be deleted");
-    } else {
-      subcategories[getSelectedCategory()].removeAt(index);
-    }
-    notifyListeners();
-  }
-
   validateBudget(String? value) {
     if (value == null) return "Number is not valid";
-    if (value.isEmpty == null) return "Number is not valid";
+    if (value.isEmpty) return "Number is not valid";
 
     try {
       double.parse(value);

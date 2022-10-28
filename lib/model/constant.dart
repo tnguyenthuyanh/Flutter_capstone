@@ -1,3 +1,4 @@
+import 'package:cap_project/model/subcategories.dart';
 import 'package:flutter/material.dart';
 
 class Constant {
@@ -17,6 +18,8 @@ class Constant {
   static const plans = 'Plans';
   static const savedTipCalc = 'SavedTipCalc';
   static const savedFuelCostCalc = 'SavedFuelCostCalc';
+  static const budgetAmount = 'budgetAmount';
+  static const subcatagory = 'subcatagory';
   static const savedVehicle = 'SavedVehicle';
 
   static const List<DropdownMenuItem<String>> menuItems = [
