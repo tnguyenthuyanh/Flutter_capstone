@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../View_Model/account_data.dart';
 import '../../model/account.dart';
 import '../../model/constant.dart';
+import '../accounts/accountdetail_screen.dart';
 import 'my_listview_tile.dart';
 
 class AccountListViewTile extends StatelessWidget {
@@ -34,10 +35,8 @@ class AccountListViewTile extends StatelessWidget {
                 .stageForDeletion(object);
           }
         } else {
-          showToast("I'm afraid I can't do that Dave");
-          // Provider.of<AccountData>(context, listen: false)
-          //     .setSelected(object);
-          // Navigator.pushNamed(context, AccountDetailScreen.routeName);
+          Provider.of<AccountData>(context, listen: false).setSelected(object);
+          Navigator.pushNamed(context, AccountDetailScreen.routeName);
         }
       },
     );

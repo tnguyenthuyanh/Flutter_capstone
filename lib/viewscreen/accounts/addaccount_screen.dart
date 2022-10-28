@@ -7,6 +7,7 @@ import '../../View_Model/account_data.dart';
 import '../../model/account.dart';
 import '../components/buttons/savebutton.dart';
 import '../components/sizedboxes/fullwidth_sizedbox.dart';
+import '../components/textfields/account_textfields.dart';
 import '../components/textfields/accouttitle_textfield.dart';
 import '../components/texts/titletext.dart';
 
@@ -28,6 +29,11 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
   // state vars
   late _Controller _con;
   String? _title;
+  String? _accountNumber;
+  String? _rate;
+  String? _website;
+  String? _type;
+
   bool _current = false;
   var _formKey = GlobalKey<FormState>();
 
@@ -65,6 +71,35 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                       onSaved: _con.onSaveTitle,
                     ),
                   ),
+                  FullWidthSizedBox(
+                    child: AccountTextFields.accountNumberTextField(
+                      onSaved: _con.onSaveAccountNumber,
+                      mode: true,
+                    ),
+                  ),
+                  DropdownButton<String>(
+                    value: _type,
+                    icon: const Icon(Icons.arrow_downward),
+                    elevation: 16,
+                    underline: Container(
+                      height: 2,
+                    ),
+                    onChanged: _con.onTypeChanged,
+                    items: _con.getTypeItems(),
+                  ),
+                  FullWidthSizedBox(
+                    child: AccountTextFields.rateTextField(
+                      onSaved: _con.onSaveRate,
+                      mode: true,
+                    ),
+                  ),
+                  FullWidthSizedBox(
+                    child: AccountTextFields.websiteTextField(
+                      onSaved: _con.onSaveWebsite,
+                      mode: true,
+                    ),
+                  ),
+
                   //        IS CURRENT      ------------------------------------
                   // if this is the first account added for the user, it should
                   // be set to current
@@ -119,6 +154,16 @@ class _Controller {
       return;
     }
 
+    double? rate = double.tryParse(_state._rate!);
+    if (rate == null) {
+      showToast("There's been an error involving your rate. Please fix it");
+      return;
+    }
+    String? tempType = _state._type;
+    if (tempType == null) {
+      showToast("Please select a type");
+      return;
+    }
     // if uid is ok, save, slap some good toast on the screen
     // and navigate to the accounts list
     Provider.of<AccountData>(_state.context, listen: false).add(
@@ -126,6 +171,10 @@ class _Controller {
         title: _state._title!,
         ownerUid: uid,
         isCurrent: _state._current,
+        accountNumber: _state._accountNumber!,
+        website: _state._website!,
+        rate: rate,
+        type: _state._type!,
       ),
     );
 
@@ -145,8 +194,48 @@ class _Controller {
     });
   }
 
+  void onSaveAccountNumber(String? value) {
+    _state.render(() {
+      _state._accountNumber = value;
+    });
+  }
+
+  void onSaveRate(String? value) {
+    _state.render(() {
+      _state._rate = value;
+    });
+  }
+
+  void onSaveWebsite(String? value) {
+    _state.render(() {
+      _state._website = value;
+    });
+  }
+
   String? getCurrentUserID() {
     // get information from user manager
     return AuthController.currentUser?.uid;
+  }
+
+  onTypeChanged(String? value) {
+    _state.render(() {
+      _state._type = value;
+    });
+  }
+
+  getTypeItems() {
+    return [
+      "Type",
+      "Checking",
+      "Savings",
+      "Credit Card",
+      "Retirement",
+      "Flexible Spending Account"
+    ].map<DropdownMenuItem<String>>((String value) {
+      return DropdownMenuItem<String>(
+        value: value,
+        child: Text(value),
+      );
+    }).toList();
   }
 }

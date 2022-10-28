@@ -4,6 +4,7 @@ import 'package:cap_project/model/constant.dart';
 import 'package:cap_project/model/storableobject.dart';
 import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'package:flutter/material.dart';
+import 'package:oktoast/oktoast.dart';
 import '../model/account.dart';
 import '../model/accountlist.dart';
 
@@ -78,6 +79,25 @@ class AccountData extends ChangeNotifier {
   void setSelected(Account object) {
     _selected = object;
     notifyListeners();
+  }
+
+  void updateSelected(String newTitle) {
+    printer.setMethodName(methodName: "updateSelected");
+
+    if (_selected != null) {
+      printer.debugPrint("Updating title");
+
+      _selected!.title = newTitle;
+    } else {
+      showToast("Budget was not updated. Selected budget is null");
+      return;
+    }
+
+    try {
+      fsUpdate(_selected!);
+    } catch (e) {
+      printer.debugPrint(e.toString());
+    }
   }
 
 // // ---- Deletion Related Methods -----------------------------------------------
