@@ -168,7 +168,7 @@ class _Controller {
       user = await AuthController.signIn(email: email!, password: password!);
 
       await FirestoreController.initProfile(user: user!);
-      await FirestoreController.initWallet(user: user!);
+      await FirestoreController.initWallet(user: user);
 
       Navigator.pushNamed(
         state.context,
