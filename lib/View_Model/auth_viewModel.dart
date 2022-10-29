@@ -12,7 +12,7 @@ class AuthViewModel extends ChangeNotifier {
   var formKeySignup = GlobalKey<FormState>();
   bool load = false;
   bool load_forget_password = false;
-  late UserProfile userprof;
+  UserProfile userprof = UserProfile();
   String? validateEmail(String? input) {
     print("in validate email");
     if (input == null || input.isEmpty) {
@@ -55,10 +55,10 @@ class AuthViewModel extends ChangeNotifier {
       load = true;
       notifyListeners();
       await auth.AuthController.createAccountTest(
-              //changed from createAccountTest to createAccount
-              password: passCon.text.trim(),
-              userProf: userprof);
-         
+          //changed from createAccountTest to createAccount
+          password: passCon.text.trim(),
+          userProf: userprof);
+
       load = false;
       emailCon.clear();
       passCon.clear();
@@ -93,4 +93,3 @@ class AuthViewModel extends ChangeNotifier {
     }
   }
 }
-

@@ -79,8 +79,10 @@ class Capstone extends StatelessWidget {
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
+              var userP = argument[ArgKey.userProfile];
               return UserHomeScreen(
                 user: user,
+                userP: userP,
               );
             }
           },

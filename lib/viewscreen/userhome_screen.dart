@@ -22,9 +22,14 @@ import '../model/constant.dart';
 import 'view/view_util.dart';
 
 class UserHomeScreen extends StatefulWidget {
-  const UserHomeScreen({required this.user, Key? key}) : super(key: key);
+  const UserHomeScreen({
+    required this.user,
+    required this.userP,
+    Key? key,
+  }) : super(key: key);
 
   final User user;
+  final UserProfile userP;
 
   static const routeName = '/userHomeScreen';
 
@@ -36,7 +41,7 @@ class UserHomeScreen extends StatefulWidget {
 
 class _UserHomeState extends State<UserHomeScreen> {
   late _Controller con;
-  late UserProfile userP;
+  //late UserProfile userP;
   late String email;
 
   var formKey = GlobalKey<FormState>();
@@ -59,6 +64,13 @@ class _UserHomeState extends State<UserHomeScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text("$email's feed"),
+          actions: [
+            widget.userP.hasSpouse.compareTo('true') == 0 &&
+                    widget.userP.shareBudget.compareTo('false') == 0
+                ? IconButton(
+                    onPressed: con.shareBudget, icon: const Icon(Icons.share))
+                : const SizedBox()
+          ],
         ),
         //        DRAWER      ------------------------------------------------
         drawer: Drawer(
@@ -126,8 +138,8 @@ class _UserHomeState extends State<UserHomeScreen> {
               ),
               //        PROFILE      ----------------------------------------
               ListTile(
-                leading: Icon(Icons.account_box_outlined),
-                title: Text('My Profile'),
+                leading: const Icon(Icons.account_box_outlined),
+                title: const Text('My Profile'),
                 onTap: con.seeProfile,
               ),
               //        USERS     --------------------------------------------
@@ -265,6 +277,7 @@ class _Controller {
             ArgKey.profile: profile,
             ArgKey.currentUID: state.widget.user.uid,
             ArgKey.isFriendAdded: 'N/A',
+            ArgKey.userProfile: state.widget.userP,
           });
       // close the drawer
       Navigator.of(state.context).pop();
@@ -322,4 +335,6 @@ class _Controller {
       );
     }
   }
+
+  void shareBudget() {}
 }//end of controller

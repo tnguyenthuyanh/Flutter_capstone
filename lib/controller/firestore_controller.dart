@@ -17,7 +17,7 @@ import 'storagecontrollers/accountstoragecontroller.dart';
 
 class FirestoreController {
   static addUser({
-    required usr.UserProfile userProf,
+    required UserProfile userProf,
   }) async {
     try {
       DocumentReference ref = await FirebaseFirestore.instance
@@ -446,13 +446,12 @@ class FirestoreController {
   }
 
   static Future<void> updateUserProfile({
-    required UserProfile userP,
     required String docId,
     required Map<String, dynamic> update,
   }) async {
     await FirebaseFirestore.instance
         .collection(Constant.users)
-        .doc(userP.docId)
+        .doc(docId)
         .update(update);
   }
 
