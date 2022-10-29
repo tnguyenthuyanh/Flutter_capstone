@@ -6,6 +6,10 @@ enum DocKeyUserprof {
   savings,
   plans,
   number,
+  hasSpouse,
+  spouseEmail,
+  shareBudget,
+  shareBudgetEmail,
 }
 
 class UserProfile {
@@ -13,6 +17,10 @@ class UserProfile {
   String? docId;
   late String email;
   late String number;
+  late String hasSpouse;
+  late String spouseEmail;
+  late String shareBudget;
+  late String shareBudgetEmail;
   late List<dynamic> debts;
   late List<dynamic> purchases;
   late List<dynamic> plans;
@@ -22,6 +30,11 @@ class UserProfile {
     this.uid,
     this.docId,
     this.email = '',
+    this.number = '',
+    this.hasSpouse = 'false',
+    this.shareBudget = 'false',
+    this.shareBudgetEmail = '',
+    this.spouseEmail = '',
     List<dynamic>? debts,
     List<dynamic>? purchases,
     List<dynamic>? plans,
@@ -36,6 +49,17 @@ class UserProfile {
   UserProfile.set(String email, String number) {
     this.email = email;
     this.number = number;
+
+    this.uid;
+    this.docId;
+    this.hasSpouse = 'false';
+    this.shareBudget = 'false';
+    this.shareBudgetEmail = '';
+    this.spouseEmail = '';
+    List<dynamic>? debts = [];
+    List<dynamic>? purchases = [];
+    List<dynamic>? plans = [];
+    List<dynamic>? savings = [];
   }
 
   UserProfile.clone(UserProfile p) {
@@ -43,10 +67,14 @@ class UserProfile {
     docId = p.docId;
     email = p.email;
     number = p.number;
-    debts = [...debts];
-    purchases = [...purchases];
-    plans = [...plans];
-    savings = [...savings];
+    hasSpouse = p.hasSpouse;
+    shareBudget = p.shareBudget;
+    shareBudgetEmail = p.shareBudgetEmail;
+    spouseEmail = p.spouseEmail;
+    debts = debts == null ? [] : [...debts];
+    purchases = purchases == null ? [] : [...purchases];
+    plans = plans == null ? [] : [...plans];
+    savings = savings == null ? [] : [...savings];
   }
 
   //a.copyFrom(b) ==> a = b
@@ -55,6 +83,10 @@ class UserProfile {
     docId = p.docId;
     email = p.email;
     number = p.number;
+    hasSpouse = p.hasSpouse;
+    shareBudget = p.shareBudget;
+    shareBudgetEmail = p.shareBudgetEmail;
+    spouseEmail = p.spouseEmail;
     debts.clear();
     debts.addAll(p.debts);
     purchases.clear();
@@ -70,6 +102,14 @@ class UserProfile {
       DocKeyUserprof.email.name: email,
       DocKeyUserprof.number.name: number,
       DocKeyUserprof.uid.name: uid,
+      DocKeyUserprof.hasSpouse.name: hasSpouse,
+      DocKeyUserprof.spouseEmail.name: spouseEmail,
+      DocKeyUserprof.shareBudget.name: shareBudget,
+      DocKeyUserprof.shareBudgetEmail.name: shareBudgetEmail,
+      DocKeyUserprof.debts.name: debts,
+      DocKeyUserprof.purchases.name: purchases,
+      DocKeyUserprof.savings.name: savings,
+      DocKeyUserprof.plans.name: plans,
     };
   }
 
@@ -80,10 +120,15 @@ class UserProfile {
       uid: docId,
       docId: docId,
       email: doc[DocKeyUserprof.email.name] ??= 'N/A',
+      number: doc[DocKeyUserprof.number.name] ??= 'N/A',
+      shareBudget: doc[DocKeyUserprof.shareBudget.name] ??= 'N/A',
+      shareBudgetEmail: doc[DocKeyUserprof.shareBudgetEmail.name] ??= 'N/A',
       debts: doc[DocKeyUserprof.debts.name] ??= [],
       purchases: doc[DocKeyUserprof.purchases.name] ??= [],
       plans: doc[DocKeyUserprof.plans.name] ??= [],
       savings: doc[DocKeyUserprof.savings.name] ??= [],
+      hasSpouse: doc[DocKeyUserprof.hasSpouse.name] ??= [],
+      spouseEmail: doc[DocKeyUserprof.spouseEmail.name] ??= [],
     );
   }
 }

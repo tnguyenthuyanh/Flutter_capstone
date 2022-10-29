@@ -20,7 +20,7 @@ import 'storagecontrollers/accountstoragecontroller.dart';
 
 class FirestoreController {
   static addUser({
-    required usr.UserProfile userProf,
+    required UserProfile userProf,
   }) async {
     try {
       DocumentReference ref = await FirebaseFirestore.instance
@@ -553,7 +553,30 @@ class FirestoreController {
     return result;
   }
 
-  // tools - delete saved tip calc
+  static Future<void> updateDebt({
+    required UserProfile userP,
+    required String docId,
+    required Map<String, dynamic> update,
+  }) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(userP.docId)
+        .collection(Constant.debts)
+        .doc(docId)
+        .update(update);
+  }
+
+  static Future<void> updateUserProfile({
+    required String docId,
+    required Map<String, dynamic> update,
+  }) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(docId)
+        .update(update);
+  }
+
+  // delete saved tip calc
   static Future<void> deleteSavedTipCalcItem(String docId) async {
     await FirebaseFirestore.instance
         .collection(Constant.savedTipCalc)

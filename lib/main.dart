@@ -85,8 +85,10 @@ class Capstone extends StatelessWidget {
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
+              var userP = argument[ArgKey.userProfile];
               return UserHomeScreen(
                 user: user,
+                userP: userP,
               );
             }
           },
@@ -159,10 +161,12 @@ class Capstone extends StatelessWidget {
               var currentUID = argument[ArgKey.currentUID];
               var profile = argument[ArgKey.profile];
               var isFriendAdded = argument[ArgKey.isFriendAdded];
+              var userP = argument[ArgKey.userProfile];
               return ProfileScreen(
                 currentUID: currentUID,
                 profile: profile,
                 isFriendAdded: isFriendAdded,
+                userP: userP,
               );
             }
           },
@@ -184,9 +188,11 @@ class Capstone extends StatelessWidget {
               var argument = args as Map;
               var userList = argument[ArgKey.userList];
               var currentUID = argument[ArgKey.currentUID];
+              var userP = argument[ArgKey.userProfile];
               return UserListScreen(
                 currentUID: currentUID,
                 userList: userList,
+                userP: userP,
               );
             }
           },
