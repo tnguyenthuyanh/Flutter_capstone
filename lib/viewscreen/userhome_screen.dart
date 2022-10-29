@@ -5,15 +5,18 @@ import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/budgets_screen.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/model/user.dart' as usr;
+import 'package:cap_project/viewscreen/moreInfo_screen.dart';
 import 'package:cap_project/viewscreen/plan_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/savings_screen.dart';
+import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen.dart';
 import 'package:cap_project/viewscreen/wallet_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../View_Model/budget_data.dart';
 import '../controller/auth_controller.dart';
@@ -162,6 +165,16 @@ class _UserHomeState extends State<UserHomeScreen> {
                 title: const Text('Sign Out'),
                 onTap: con.signOut,
               ),
+              ListTile(
+                leading: const FaIcon(FontAwesomeIcons.google),
+                title: const Text('Sign Out with Google'),
+                onTap: () {
+                  final provider =
+                      Provider.of<GoogleSignInProvider>(context, listen: false);
+                  provider.logout();
+                  Navigator.pushNamed(context, SignInScreen.routeName);
+                },
+              ),
             ],
           ),
         ),
@@ -173,6 +186,26 @@ class _UserHomeState extends State<UserHomeScreen> {
                     'Viewing: ' + selectedBudget.title,
                     style: Theme.of(context).textTheme.headline6,
                   ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(bottom: 20),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, MoreInfoScreen.routeName);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  'Confused on specific term? Click here to learn more',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

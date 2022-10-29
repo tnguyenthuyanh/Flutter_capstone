@@ -57,7 +57,7 @@ class _AddCardState extends State<AddCardScreen> {
                         child: Column(
                           children: [
                             TextFormField(
-                              maxLength: 12,
+                              maxLength: 16,
                               validator: con.validateCardNumber,
                               onSaved: con.saveCardNumber,
                               keyboardType: TextInputType.number,
@@ -178,7 +178,7 @@ class _Controller {
   _Controller(this.state);
 
   String? validateCardNumber(String? value) {
-    if (value == null || value.isEmpty || value.length != 12) {
+    if (value == null || value.isEmpty || value.length != 16) {
       return 'Please enter 12-digit card number';
     }
     return null;

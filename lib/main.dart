@@ -10,6 +10,7 @@ import 'package:cap_project/viewscreen/addPlan_screen.dart';
 import 'package:cap_project/viewscreen/addPurchase_screen.dart';
 import 'package:cap_project/viewscreen/addSavings_screen.dart';
 import 'package:cap_project/viewscreen/editprofile_screen.dart';
+import 'package:cap_project/viewscreen/moreInfo_screen.dart';
 import 'package:cap_project/viewscreen/plan_screen.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:cap_project/viewscreen/addDebt_screen.dart';
@@ -36,6 +37,7 @@ import 'View_Model/budgetlistmode_data.dart';
 import 'firebase_options.dart';
 import 'package:oktoast/oktoast.dart';
 import 'model/constant.dart';
+import 'model/terms.dart';
 import 'viewscreen/accounts/addaccount_screen.dart';
 import 'viewscreen/addbudget_screen.dart';
 import 'viewscreen/budgetdetail_screen.dart';
@@ -78,6 +80,7 @@ class Capstone extends StatelessWidget {
           SignInScreen.routeName: (context) => const SignInScreen(),
           SignUpScreen.routeName: (context) => const SignUpScreen(),
           ForgotSignIn.routeName: (context) => const ForgotSignIn(),
+          MoreInfoScreen.routeName: (context) => const MoreInfoScreen(),
           UserHomeScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
