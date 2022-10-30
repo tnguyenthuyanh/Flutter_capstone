@@ -56,10 +56,10 @@ class UserProfile {
     this.shareBudget = 'false';
     this.shareBudgetEmail = '';
     this.spouseEmail = '';
-    List<dynamic>? debts = [];
-    List<dynamic>? purchases = [];
-    List<dynamic>? plans = [];
-    List<dynamic>? savings = [];
+    debts = [];
+    purchases = [];
+    plans = [];
+    savings = [];
   }
 
   UserProfile.clone(UserProfile p) {
