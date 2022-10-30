@@ -128,7 +128,7 @@ class UserProfile {
       plans: doc[DocKeyUserprof.plans.name] ??= [],
       savings: doc[DocKeyUserprof.savings.name] ??= [],
       hasSpouse: doc[DocKeyUserprof.hasSpouse.name] ??= [],
-      spouseEmail: doc[DocKeyUserprof.spouseEmail.name] ??= [],
+      spouseEmail: doc[DocKeyUserprof.spouseEmail.name] ??= 'N/A',
     );
   }
 }
