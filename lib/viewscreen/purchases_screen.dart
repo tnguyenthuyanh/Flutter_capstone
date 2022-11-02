@@ -81,10 +81,32 @@ class _PurchasesState extends State<PurchasesScreen> {
                 );
               },
             ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: con.addButton,
-      ),
+      bottomNavigationBar:
+          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+        ElevatedButton(
+          style:  ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+          onPressed: () {
+            con.addButton("debt");
+          },
+          child: const Text(
+            'debt',
+          ),
+        ),
+        ElevatedButton(
+          style:  ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green)),
+          onPressed: () {
+            con.addButton("credit");
+          },
+          child: const Text(
+            'credit',
+          ),
+          
+        ),
+      ]),
+      // floatingActionButton: FloatingActionButton(
+      //   child: const Icon(Icons.add),
+      //   onPressed: con.addButton,
+      // ),
     );
   }
 }
@@ -110,12 +132,13 @@ class _Controller {
     selected = -1;
   }
 
-  void addButton() async {
+  void addButton(String transType) async {
     await Navigator.pushNamed(state.context, AddPurchaseScreen.routeName,
         arguments: {
           ArgKey.purchaseList: state.widget.userP.purchases,
           ArgKey.user: state.widget.user,
           ArgKey.userProfile: state.widget.userP,
+          ArgKey.transType: transType,
         });
     state.render(() {}); //rerender the screen
   }

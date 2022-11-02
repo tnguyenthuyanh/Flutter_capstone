@@ -6,6 +6,7 @@ import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
 import '../model/constant.dart';
 
 class AddPurchaseScreen extends StatefulWidget {
@@ -13,13 +14,14 @@ class AddPurchaseScreen extends StatefulWidget {
       {required this.userP,
       required this.user,
       required this.purchaseList,
+      required this.transType,
       Key? key})
       : super(key: key);
 
   final List<Purchase> purchaseList;
   final User user;
   final UserProfile userP;
-
+  final String transType;
   static const routeName = '/addPurchaseScreen';
 
   @override
@@ -33,12 +35,14 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
   late String email;
   var formKey = GlobalKey<FormState>();
   String? dropValue = null;
+  late String transType;
 
   @override
   void initState() {
     super.initState();
     con = _Controller(this);
     email = widget.user.email ?? 'No email';
+    transType = widget.transType;
   }
 
   void render(fn) => setState(fn);
@@ -113,6 +117,7 @@ class _Controller {
     startCircularProgress(state.context);
 
     try {
+      tempPurchase.transactionType = state.transType;
       String docId = await FirestoreController.addPurchase(
         user: state.widget.userP,
         purchase: tempPurchase,

@@ -650,6 +650,7 @@ class FirestoreController {
   static addPurchase({
     required UserProfile user,
     required Purchase purchase,
+    
   }) async {
     DocumentReference ref = await FirebaseFirestore.instance
         .collection(Constant.users)

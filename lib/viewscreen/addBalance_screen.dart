@@ -110,7 +110,7 @@ class _AddBalanceState extends State<AddBalanceScreen> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      backgroundColor:
+                                      primary:
                                           Color.fromARGB(255, 74, 125, 193),
                                     ),
                                     child: Container(
@@ -132,7 +132,7 @@ class _AddBalanceState extends State<AddBalanceScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      backgroundColor: Color.fromARGB(255, 74, 125, 193),
+                      primary: Color.fromARGB(255, 74, 125, 193),
                     ),
                     child: Container(
                       margin: const EdgeInsets.all(12),
