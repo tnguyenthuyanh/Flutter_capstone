@@ -10,6 +10,7 @@ import '../model/constant.dart';
 import '../model/userTransaction.dart';
 import '../model/wallet.dart';
 import 'addBalance_screen.dart';
+import 'moneyRequests_screen.dart';
 
 class WalletScreen extends StatefulWidget {
   static const routeName = '/walletScreen';
@@ -168,7 +169,7 @@ class _WalletState extends State<WalletScreen> {
                       children: [
                         Container(
                           height: 40,
-                          width: 130,
+                          width: 157,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.white),
                             gradient: LinearGradient(colors: [
@@ -215,6 +216,24 @@ class _WalletState extends State<WalletScreen> {
                     Divider(
                       color: Colors.yellow,
                       height: 30.0, // space betwen top or bottom item
+                    ),
+                    Center(
+                      child: OutlinedButton.icon(
+                        onPressed: con.seeRequests,
+                        label: Text('Friend Requests',
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Color.fromARGB(255, 175, 229, 124))),
+                        style: OutlinedButton.styleFrom(
+                          side: BorderSide(
+                            color: Colors.transparent,
+                          ),
+                        ),
+                        icon: Icon(
+                          Icons.info_rounded,
+                          color: Colors.amber,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -305,6 +324,34 @@ class _Controller {
       showSnackBar(
         context: state.context,
         message: 'Failed to get TransactionHistoryScreen: $e',
+      );
+    }
+  }
+
+  void seeRequests() async {
+    try {
+      List<UserTransaction> requestList =
+          await FirestoreController.getMoneyRequest(
+              currentUID: state.widget.user.uid);
+
+      await Navigator.pushNamed(state.context, MoneyRequestsScreen.routeName,
+          arguments: {
+            ArgKey.requestList: requestList,
+            ArgKey.user: state.widget.user,
+            ArgKey.wallet: wallet,
+          });
+
+      Wallet newWallet =
+          await FirestoreController.getWallet(state.widget.user.uid);
+
+      state.render(() {
+        state.widget.wallet.balance = newWallet.balance;
+      });
+    } catch (e) {
+      if (Constant.devMode) print('====== MoneyRequestsScreen error: $e');
+      showSnackBar(
+        context: state.context,
+        message: 'Failed to get MoneyRequestsScreen: $e',
       );
     }
   }

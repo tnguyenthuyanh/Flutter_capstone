@@ -47,43 +47,6 @@ class _TransactionHistoryState extends State<TransactionHistoryScreen> {
       ),
       body: Column(
         children: [
-          // Align(
-          //   alignment: Alignment.centerRight,
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(6.0),
-          //     child: Container(
-          //       //width: 130,
-          //       height: 30,
-          //       padding: const EdgeInsets.only(left: 10.0),
-          //       decoration: BoxDecoration(
-          //         borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-          //         border: Border.all(
-          //           color: Colors.black,
-          //           width: 1,
-          //         ),
-          //         color: Colors.grey.withAlpha(100),
-          //       ),
-          //       child: DropdownButtonHideUnderline(
-          //         child: DropdownButton<Filter>(
-          //           value: filterValue,
-          //           onChanged: con.filter,
-          //           items: [
-          //             for (var c in Filter.values)
-          //               DropdownMenuItem<Filter>(
-          //                 child: Text(
-          //                   c.toString().split('.')[1].replaceFirst('_', ' '),
-          //                   style: TextStyle(
-          //                     fontSize: 11,
-          //                   ),
-          //                 ),
-          //                 value: c,
-          //               ),
-          //           ],
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
           Expanded(
             child: con.transList.isEmpty
                 ? Text(
@@ -107,8 +70,8 @@ class _TransactionHistoryState extends State<TransactionHistoryScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  con.transList[index].to_email == ""
-                                      ? "N/A"
+                                  con.transList[index].to_uid == widget.user.uid
+                                      ? con.transList[index].from_email
                                       : con.transList[index].to_email,
                                   style: TextStyle(
                                     fontSize: 20.0,
@@ -116,14 +79,27 @@ class _TransactionHistoryState extends State<TransactionHistoryScreen> {
                                   ),
                                 ),
                                 Text(
-                                  con.transList[index].type ==
-                                          Transfer.Send.toString()
+                                  ((con.transList[index].type ==
+                                                  Transfer.Send.toString() &&
+                                              con.transList[index].from_uid ==
+                                                  widget.user.uid) ||
+                                          (con.transList[index].type ==
+                                                  Transfer.Request.toString() &&
+                                              con.transList[index].to_uid ==
+                                                  widget.user.uid))
                                       ? '- \$${con.transList[index].amount}'
                                       : '+ \$${con.transList[index].amount}',
                                   style: TextStyle(
                                     fontSize: 19.0,
-                                    color: con.transList[index].type ==
-                                            Transfer.Send.toString()
+                                    color: ((con.transList[index].type ==
+                                                    Transfer.Send.toString() &&
+                                                con.transList[index].from_uid ==
+                                                    widget.user.uid) ||
+                                            (con.transList[index].type ==
+                                                    Transfer.Request
+                                                        .toString() &&
+                                                con.transList[index].to_uid ==
+                                                    widget.user.uid))
                                         ? Color.fromARGB(255, 233, 78, 67)
                                         : Colors.blue,
                                   ),
@@ -156,6 +132,4 @@ class _Controller {
   _Controller(this.state) {
     transList = state.widget.transList;
   }
-
-  void filter(String? value) {}
 }

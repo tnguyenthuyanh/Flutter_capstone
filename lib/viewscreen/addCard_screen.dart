@@ -179,7 +179,7 @@ class _Controller {
 
   String? validateCardNumber(String? value) {
     if (value == null || value.isEmpty || value.length != 16) {
-      return 'Please enter 12-digit card number';
+      return 'Please enter 16-digit card number';
     }
     return null;
   }

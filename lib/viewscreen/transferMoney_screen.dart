@@ -207,12 +207,11 @@ class _Controller {
         return 'Please enter value in correct format ###.##';
       }
     }
-    // if ((state.widget.wallet.balance - double.parse(value)).round() < 1) {
-    //   return 'Please leave at least \$1 in your balance!';
-    // }
-    if (double.parse(value) > state.widget.wallet.balance) {
+    if (state.transfer == Transfer.Send &&
+        double.parse(value) > state.widget.wallet.balance) {
       return 'The amount cannot exceed the current balance\n';
     }
+
     return null;
   }
 
@@ -241,8 +240,6 @@ class _Controller {
     currentState.save();
 
     try {
-      FirestoreController.adjustBalance(state.widget.user.uid,
-          state.eachUser!.uid, amount!, state.widget.wallet.docId!);
       UserTransaction tran = new UserTransaction(
           from_email: state.widget.user.email!,
           from_uid: state.widget.user.uid,
@@ -252,13 +249,22 @@ class _Controller {
           amount: amount!,
           timestamp: DateTime.now());
 
+      if (state.transfer == Transfer.Send) {
+        // send
+        FirestoreController.adjustBalance(state.widget.user.uid,
+            state.eachUser!.uid, amount!, state.widget.wallet.docId!);
+      } else {
+        // request
+        tran.request_amount = amount!;
+        tran.is_request_paid = 0;
+      }
+
       await FirestoreController.saveTransaction(tran);
       showSnackBar(
         context: state.context,
         message:
             '${state.transfer.toString().split('.')[1].replaceFirst('_', ' ')} submitted',
       );
-
       Navigator.of(state.context).pop();
     } catch (e) {
       if (Constant.devMode) print('====== error: $e');

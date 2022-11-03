@@ -43,7 +43,9 @@ import 'viewscreen/addbudget_screen.dart';
 import 'viewscreen/budgetdetail_screen.dart';
 import 'viewscreen/budgets_screen.dart';
 import 'viewscreen/error_screen.dart';
+import 'viewscreen/moneyRequests_screen.dart';
 import 'viewscreen/payoffSchedule_screen.dart';
+import 'viewscreen/seeRequest_screen.dart';
 import 'viewscreen/signup_screen.dart';
 import 'viewscreen/userhome_screen.dart';
 
@@ -269,6 +271,38 @@ class Capstone extends StatelessWidget {
               return TransactionHistoryScreen(
                 user: user,
                 transList: transList,
+              );
+            }
+          },
+          MoneyRequestsScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at MoneyRequestsScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var requestList = argument[ArgKey.requestList];
+              var wallet = argument[ArgKey.wallet];
+              return MoneyRequestsScreen(
+                user: user,
+                requestList: requestList,
+                wallet: wallet,
+              );
+            }
+          },
+          SeeRequestScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at SeeRequestScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var request = argument[ArgKey.request];
+              var wallet = argument[ArgKey.wallet];
+              return SeeRequestScreen(
+                user: user,
+                request: request,
+                wallet: wallet,
               );
             }
           },

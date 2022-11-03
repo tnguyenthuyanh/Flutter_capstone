@@ -47,7 +47,9 @@ enum ArgKey {
   singleDebt,
   isFriendAdded,
   wallet,
-  transactionList
+  transactionList,
+  request,
+  requestList,
 }
 
 enum Filter {

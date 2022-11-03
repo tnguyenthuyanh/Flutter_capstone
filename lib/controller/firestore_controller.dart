@@ -280,6 +280,32 @@ class FirestoreController {
             .doc(docId)
             .delete();
       }
+
+    querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERFRIENDS_COLLECTION)
+        .where(UserFriends.UID_RECEIVE, isEqualTo: uid)
+        .get();
+
+    for (int i = querySnapshot.size - 1; i >= 0; i--) {
+      String docId = querySnapshot.docs[i].id;
+      await FirebaseFirestore.instance
+          .collection(Constant.USERFRIENDS_COLLECTION)
+          .doc(docId)
+          .delete();
+    }
+
+    querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.USERFRIENDS_COLLECTION)
+        .where(UserFriends.UID_SEND, isEqualTo: uid)
+        .get();
+
+    for (int i = querySnapshot.size - 1; i >= 0; i--) {
+      String docId = querySnapshot.docs[i].id;
+      await FirebaseFirestore.instance
+          .collection(Constant.USERFRIENDS_COLLECTION)
+          .doc(docId)
+          .delete();
+    }
   }
 
   static Future<void> addFriend({
@@ -521,12 +547,82 @@ class FirestoreController {
           docId: querySnapshot.docs[i].id,
         );
         if (p != null) {
+          if (!(p.type == Transfer.Request.toString() &&
+              p.is_request_paid == 0)) {
+            result.add(p);
+          }
+        }
+      }
+    }
+
+    querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.TRANSACTION_COLLECTION)
+        .where(UserTransaction.TO_UID, isEqualTo: currentUID)
+        .orderBy(UserTransaction.TIMESTAMP, descending: true)
+        .get();
+
+    for (int i = 0; i < querySnapshot.size; i++) {
+      if (querySnapshot.docs[i] != null) {
+        var document = querySnapshot.docs[i].data() as Map<String, dynamic>;
+        var p = UserTransaction.fromFirestoreDoc(
+          doc: document,
+          docId: querySnapshot.docs[i].id,
+        );
+        if (p != null) {
+          if (!(p.type == Transfer.Request.toString() &&
+              p.is_request_paid == 0)) {
+            result.add(p);
+          }
+        }
+      }
+    }
+
+    result.sort((a, b) {
+      if (a.timestamp!.isBefore(b.timestamp!))
+        return 1; // descending order
+      else if (a.timestamp!.isAfter(b.timestamp!))
+        return -1;
+      else
+        return 0;
+    });
+
+    return result;
+  }
+
+  static Future<List<UserTransaction>> getMoneyRequest({
+    required String currentUID,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.TRANSACTION_COLLECTION)
+        .where(UserTransaction.TO_UID, isEqualTo: currentUID)
+        .where(UserTransaction.TYPE, isEqualTo: Transfer.Request.toString())
+        .where(UserTransaction.IS_REQUEST_PAID, isEqualTo: 0)
+        .get();
+
+    var result = <UserTransaction>[];
+
+    for (int i = 0; i < querySnapshot.size; i++) {
+      if (querySnapshot.docs[i] != null) {
+        var document = querySnapshot.docs[i].data() as Map<String, dynamic>;
+        var p = UserTransaction.fromFirestoreDoc(
+          doc: document,
+          docId: querySnapshot.docs[i].id,
+        );
+        if (p != null) {
           result.add(p);
         }
       }
     }
 
     return result;
+  }
+
+  static Future<void> payRequest(
+      String docId, Map<String, dynamic> updateInfo) async {
+    await FirebaseFirestore.instance
+        .collection(Constant.TRANSACTION_COLLECTION)
+        .doc(docId)
+        .update({UserTransaction.IS_REQUEST_PAID: 1});
   }
 
   // tools - save tip calc

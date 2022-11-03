@@ -6,6 +6,8 @@ class UserTransaction {
   static const TYPE = 'type';
   static const AMOUNT = 'amount';
   static const TIMESTAMP = 'timestamp';
+  static const IS_REQUEST_PAID = 'is_request_paid';
+  static const REQUEST_AMOUNT = 'request_amount';
 
   String? docId; //firestore auto generated id
   late String from_uid;
@@ -15,6 +17,8 @@ class UserTransaction {
   late double amount;
   late String type;
   DateTime? timestamp;
+  late int is_request_paid;
+  late double request_amount;
 
   UserTransaction({
     this.docId,
@@ -25,6 +29,8 @@ class UserTransaction {
     this.type = '',
     this.amount = 0,
     this.timestamp,
+    this.is_request_paid = 0,
+    this.request_amount = 0,
   });
 
   Map<String, dynamic> toFirestoreDoc() {
@@ -36,6 +42,8 @@ class UserTransaction {
       TYPE: this.type,
       AMOUNT: this.amount,
       TIMESTAMP: this.timestamp,
+      IS_REQUEST_PAID: this.is_request_paid,
+      REQUEST_AMOUNT: this.request_amount,
     };
   }
 
@@ -54,6 +62,8 @@ class UserTransaction {
       to_uid: doc[TO_UID],
       type: doc[TYPE],
       amount: doc[AMOUNT],
+      request_amount: doc[REQUEST_AMOUNT],
+      is_request_paid: doc[IS_REQUEST_PAID],
       timestamp: DateTime.fromMillisecondsSinceEpoch(
           doc[TIMESTAMP].millisecondsSinceEpoch),
     );
