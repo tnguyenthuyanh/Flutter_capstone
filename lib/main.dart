@@ -1,3 +1,4 @@
+
 import 'package:cap_project/View_Model/account_data.dart';
 import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
 import 'package:cap_project/viewscreen/accounts/accountdetail_screen.dart';
@@ -34,6 +35,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'View_Model/budget_data.dart';
 import 'View_Model/budgetlistmode_data.dart';
+import 'View_Model/purchases_viewModal.dart';
 import 'firebase_options.dart';
 import 'package:oktoast/oktoast.dart';
 import 'model/constant.dart';
@@ -61,6 +63,8 @@ void main() async {
     ChangeNotifierProvider(create: (context) => BudgetListModeData()),
     ChangeNotifierProvider(create: (context) => BudgetCategoryViewModel()),
     ChangeNotifierProvider(create: (context) => AccountData()),
+    ChangeNotifierProvider(create: ((context) => PurchaseViewModal()),
+    ),
   ], child: const Capstone()));
 }
 

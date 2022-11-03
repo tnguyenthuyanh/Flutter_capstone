@@ -7,6 +7,8 @@ import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:provider/provider.dart';
+import '../View_Model/purchases_viewModal.dart';
 import '../model/constant.dart';
 
 class AddPurchaseScreen extends StatefulWidget {
@@ -36,6 +38,8 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
   var formKey = GlobalKey<FormState>();
   String? dropValue = null;
   late String transType;
+  late PurchaseViewModal purchaseViewModel;
+
 
   @override
   void initState() {
@@ -43,12 +47,14 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
     con = _Controller(this);
     email = widget.user.email ?? 'No email';
     transType = widget.transType;
+  
   }
 
   void render(fn) => setState(fn);
 
   @override
   Widget build(BuildContext context) {
+    purchaseViewModel = Provider.of<PurchaseViewModal>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add A Purchase'),
@@ -69,12 +75,14 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
                 decoration: const InputDecoration(hintText: 'Amount'),
                 autocorrect: false,
                 onSaved: con.saveAmount,
+                validator: purchaseViewModel.validateAmount,
               ),
               TextFormField(
                 decoration: const InputDecoration(hintText: 'Note'),
                 autocorrect: false,
                 onSaved: con.saveNote,
               ),
+              DropdownButton(items: purchaseViewModel.categories.map((e) => DropdownMenuItem(value: e,child: Text(e),)).toList(), onChanged: (value){})
             ],
           ),
         )),
@@ -127,7 +135,6 @@ class _Controller {
       state.widget.userP.purchases.insert(0, tempPurchase);
 
       stopCircularProgress(state.context);
-      Navigator.of(state.context).pop();
       Navigator.of(state.context).pop();
       //return to home
       // await Navigator.pushNamed(

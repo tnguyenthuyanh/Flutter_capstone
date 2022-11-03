@@ -1,3 +1,4 @@
+import 'package:cap_project/View_Model/purchases_viewModal.dart';
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/addPurchase_screen.dart';
@@ -31,6 +32,7 @@ class _PurchasesState extends State<PurchasesScreen> {
   late _Controller con;
   late String email;
   var formKey = GlobalKey<FormState>();
+  
 
   @override
   void initState() {
@@ -75,6 +77,9 @@ class _PurchasesState extends State<PurchasesScreen> {
                   child: ListTile(
                     title: Text(widget.userP.purchases[index].amount),
                     subtitle: Text(widget.userP.purchases[index].note),
+                    trailing:  widget.userP.purchases[index].transactionType == "debt"  
+                              ? Icon(Icons.arrow_downward, color: Colors.red,)
+                              : Icon(Icons.arrow_upward, color: Colors.green,),
                     //onLongPress: () => con.delete(index),
                     onTap: () => con.onTap(index),
                   ),
