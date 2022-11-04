@@ -1,4 +1,5 @@
 import 'package:cap_project/controller/firestore_controller.dart';
+import 'package:cap_project/model/catergories.dart';
 import 'package:cap_project/model/purchase.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
@@ -40,14 +41,15 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
   late String transType;
   late PurchaseViewModal purchaseViewModel;
 
-
   @override
   void initState() {
     super.initState();
     con = _Controller(this);
     email = widget.user.email ?? 'No email';
     transType = widget.transType;
-  
+    Future.delayed(Duration.zero, () {
+      purchaseViewModel.getCategories();
+    });
   }
 
   void render(fn) => setState(fn);
@@ -82,7 +84,20 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
                 autocorrect: false,
                 onSaved: con.saveNote,
               ),
-              DropdownButton(items: purchaseViewModel.categories.map((e) => DropdownMenuItem(value: e,child: Text(e),)).toList(), onChanged: (value){})
+              Text('Main Categories:'),
+              purchaseViewModel.load == false
+                  ? DropdownButton(
+                      items: purchaseViewModel.categoriess
+                          .map((e) => DropdownMenuItem(
+                                value: e,
+                                child: Text(e.label),
+                              ))
+                          .toList(),
+                      value: purchaseViewModel.selectedCategories,
+                      onChanged: (value) {
+                        purchaseViewModel.onChangedDropDownFn(value);
+                      })
+                  : const CircularProgressIndicator(),
             ],
           ),
         )),
