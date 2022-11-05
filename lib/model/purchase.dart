@@ -3,6 +3,8 @@ enum DocKeyPurchase {
   amount,
   note,
   transactionType,
+  category,
+  subCategory,
 }
 
 class Purchase {
@@ -11,6 +13,8 @@ class Purchase {
   late String amount;
   late String note;
   late String transactionType;
+  late String category;
+  late String subCategory;
 
   Purchase({
     this.docId,
@@ -18,6 +22,8 @@ class Purchase {
     this.amount = '',
     this.note = '',
     this.transactionType = '',
+    this.category = '',
+    this.subCategory = '',
   });
 
   //serialization
@@ -27,6 +33,8 @@ class Purchase {
       DocKeyPurchase.createdby.name: createdBy,
       DocKeyPurchase.note.name: note,
       DocKeyPurchase.transactionType.name: transactionType,
+      DocKeyPurchase.category.name: category,
+      DocKeyPurchase.subCategory.name: subCategory,
     };
   }
 
@@ -39,6 +47,8 @@ class Purchase {
       amount: doc[DocKeyPurchase.amount.name] ??= 'N/A',
       note: doc[DocKeyPurchase.note.name] ??= 'N/A',
       transactionType: doc[DocKeyPurchase.transactionType.name] ??='N/A',
+      category: doc[DocKeyPurchase.category.name] ??='N/A',
+      subCategory: doc[DocKeyPurchase.subCategory.name] ??='N/A',
     );
   }
 

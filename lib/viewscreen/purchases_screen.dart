@@ -76,7 +76,8 @@ class _PurchasesState extends State<PurchasesScreen> {
                   margin: const EdgeInsets.all(17.0),
                   child: ListTile(
                     title: Text(widget.userP.purchases[index].amount),
-                    subtitle: Text(widget.userP.purchases[index].note),
+                    subtitle: Text(widget.userP.purchases[index].note + "\n" + widget.userP.purchases[index].category+ "\n" + widget.userP.purchases[index].subCategory),
+                    
                     trailing:  widget.userP.purchases[index].transactionType == "debt"  
                               ? Icon(Icons.arrow_downward, color: Colors.red,)
                               : Icon(Icons.arrow_upward, color: Colors.green,),

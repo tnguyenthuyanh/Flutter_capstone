@@ -1,6 +1,7 @@
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/catergories.dart';
 import 'package:cap_project/model/purchase.dart';
+import 'package:cap_project/model/subcategories.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/userhome_screen.dart';
@@ -67,46 +68,83 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
           )
         ],
       ),
-      body: Form(
-        key: formKey,
-        child: SingleChildScrollView(
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Form(
+          key: formKey,
+          child: SingleChildScrollView(
             child: Center(
-          child: Column(
-            children: [
-              TextFormField(
-                decoration: const InputDecoration(hintText: 'Amount'),
-                autocorrect: false,
-                onSaved: con.saveAmount,
-                validator: purchaseViewModel.validateAmount,
+              child: Column(
+                children: [
+                  TextFormField(
+                    decoration: const InputDecoration(hintText: 'Amount'),
+                    autocorrect: false,
+                    onSaved: con.saveAmount,
+                    validator: purchaseViewModel.validateAmount,
+                  ),
+                  TextFormField(
+                    decoration: const InputDecoration(hintText: 'Note'),
+                    autocorrect: false,
+                    onSaved: con.saveNote,
+                  ),
+                  Row(
+                    children: [
+                      Text('Main Categories:'),
+                      const SizedBox(
+                        width: 15.0,
+                      ),
+                      purchaseViewModel.load == false
+                          ? DropdownButton(
+                              items: purchaseViewModel.categoriess
+                                  .map((e) => DropdownMenuItem(
+                                        value: e,
+                                        child: Text(e.label),
+                                      ))
+                                  .toList(),
+                              value: purchaseViewModel.selectedCategories,
+                              onChanged: (value) {
+                                purchaseViewModel.onChangedDropDownFn(value);
+                              })
+                          : const CircularProgressIndicator(),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Text('Sub Categories:'),
+                      const SizedBox(
+                        width: 15.0,
+                      ),
+                      purchaseViewModel.subcatLoad == false
+                          ? purchaseViewModel.subcategoriess.length <= 1
+                              ? Text('No subcategories exists')
+                              : DropdownButton(
+                                  items: purchaseViewModel.subcategoriess
+                                      .map((e) => DropdownMenuItem(
+                                            value: e,
+                                            child: Text(e.label),
+                                          ))
+                                      .toList(),
+                                  value:
+                                      purchaseViewModel.selectedsubCategories,
+                                  onChanged: (value) {
+                                    purchaseViewModel
+                                        .onChangedSubCatDropDownFn(value);
+                                  })
+                          : const CircularProgressIndicator(),
+                    ],
+                  ),
+                ],
               ),
-              TextFormField(
-                decoration: const InputDecoration(hintText: 'Note'),
-                autocorrect: false,
-                onSaved: con.saveNote,
-              ),
-              Text('Main Categories:'),
-              purchaseViewModel.load == false
-                  ? DropdownButton(
-                      items: purchaseViewModel.categoriess
-                          .map((e) => DropdownMenuItem(
-                                value: e,
-                                child: Text(e.label),
-                              ))
-                          .toList(),
-                      value: purchaseViewModel.selectedCategories,
-                      onChanged: (value) {
-                        purchaseViewModel.onChangedDropDownFn(value);
-                      })
-                  : const CircularProgressIndicator(),
-            ],
+            ),
           ),
-        )),
+        ),
       ),
     );
   }
 }
 
 class _Controller {
+ 
   _AddPurchaseState state;
   late List<Purchase> purchaseList;
   Purchase tempPurchase = Purchase();
@@ -141,6 +179,11 @@ class _Controller {
 
     try {
       tempPurchase.transactionType = state.transType;
+      tempPurchase.category = state.purchaseViewModel.selectedCategories.label;
+      if (state.purchaseViewModel.selectedsubCategories != state.purchaseViewModel.subcategoriess.first){
+        tempPurchase.subCategory = state.purchaseViewModel.selectedsubCategories.label;
+      }
+      
       String docId = await FirestoreController.addPurchase(
         user: state.widget.userP,
         purchase: tempPurchase,

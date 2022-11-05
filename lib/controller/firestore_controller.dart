@@ -657,6 +657,7 @@ class FirestoreController {
         .doc(user.docId)
         .collection(Constant.purchases)
         .add(purchase.toFirestoreDoc());
+        
     return ref.id; // doc is auto-generated.
   }
 
