@@ -38,7 +38,7 @@ class _AccountDetailState extends State<AccountDetailScreen> {
   String? newAccountNumber;
   String? newRate;
   String? newWebsite;
-  bool? isCurrent;
+  bool? _isCurrent;
 
   var _formKey = GlobalKey<FormState>();
 
@@ -56,6 +56,7 @@ class _AccountDetailState extends State<AccountDetailScreen> {
   Widget build(BuildContext context) {
     _selected = Provider.of<AccountData>(context).selected;
     _current = Provider.of<AccountData>(context).current;
+    _selected != null ? _isCurrent = _selected!.isCurrent : _isCurrent = false;
 
     return Scaffold(
       appBar: AppBar(
@@ -132,7 +133,7 @@ class _Controller {
     Provider.of<AccountData>(_state.context, listen: false)
         .setCurrent(_state._selected!);
     _state.render(() {
-      _state._selected!.isCurrent = true;
+      _state._isCurrent = !_state._isCurrent!;
     });
   }
 
@@ -154,7 +155,7 @@ class _Controller {
       "rate": double.tryParse(_state.newRate!),
       "accountNumber": _state.newAccountNumber,
       "website": _state.newWebsite,
-      "current": _state.isCurrent
+      "current": _state._isCurrent
     });
 
     showToast("Account Updated");
