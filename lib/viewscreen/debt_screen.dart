@@ -1,6 +1,7 @@
 import 'package:cap_project/model/custom_icons_icons.dart';
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
+import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -58,43 +59,346 @@ class _DebtState extends State<DebtScreen> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () => con.onTap(index),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16.0)),
-                    elevation: 8.0,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          widget.userP.debts[index].category == 'Mortgage'
-                              ? const Icon(Icons.house)
-                              : widget.userP.debts[index].category == 'Car loan'
-                                  ? const Icon(CustomIcons.cab)
-                                  : widget.userP.debts[index].category ==
-                                          'Credit Card'
-                                      ? const Icon(CustomIcons.money_check)
-                                      : const Icon(Icons.medical_services),
-                          SizedBox(width: 20),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.userP.debts[index].title,
-                                style: Theme.of(context).textTheme.headline6,
-                              ),
-                              Text(widget.userP.debts[index].category),
-                            ],
+                  child: double.parse(widget.userP.debts[index].balance) /
+                              double.parse(widget.userP.debts[index].original) *
+                              100 >=
+                          80
+                      ? Card(
+                          color: Color.fromARGB(255, 141, 10, 10),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16.0)),
+                          elevation: 8.0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                widget.userP.debts[index].category == 'Mortgage'
+                                    ? const Icon(
+                                        Icons.house,
+                                        color: Colors.black,
+                                      )
+                                    : widget.userP.debts[index].category ==
+                                            'Car loan'
+                                        ? const Icon(
+                                            CustomIcons.cab,
+                                            color: Colors.black,
+                                          )
+                                        : widget.userP.debts[index].category ==
+                                                'Credit Card'
+                                            ? const Icon(
+                                                CustomIcons.money_check,
+                                                color: Colors.black,
+                                              )
+                                            : const Icon(
+                                                Icons.medical_services,
+                                                color: Colors.black,
+                                              ),
+                                SizedBox(width: 20),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(widget.userP.debts[index].title,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline6!
+                                            .merge(
+                                              TextStyle(color: Colors.black),
+                                            )),
+                                    Text(
+                                      widget.userP.debts[index].category,
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
+                        )
+                      : double.parse(widget.userP.debts[index].balance) /
+                                  double.parse(
+                                      widget.userP.debts[index].original) *
+                                  100 >=
+                              60
+                          ? Card(
+                              color: Color.fromARGB(255, 255, 166, 0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16.0)),
+                              elevation: 8.0,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  children: [
+                                    widget.userP.debts[index].category ==
+                                            'Mortgage'
+                                        ? const Icon(
+                                            Icons.house,
+                                            color: Colors.black,
+                                          )
+                                        : widget.userP.debts[index].category ==
+                                                'Car loan'
+                                            ? const Icon(
+                                                CustomIcons.cab,
+                                                color: Colors.black,
+                                              )
+                                            : widget.userP.debts[index]
+                                                        .category ==
+                                                    'Credit Card'
+                                                ? const Icon(
+                                                    CustomIcons.money_check,
+                                                    color: Colors.black,
+                                                  )
+                                                : const Icon(
+                                                    Icons.medical_services,
+                                                    color: Colors.black,
+                                                  ),
+                                    SizedBox(width: 20),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(widget.userP.debts[index].title,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline6!
+                                                .merge(
+                                                  TextStyle(
+                                                      color: Colors.black),
+                                                )),
+                                        Text(
+                                          widget.userP.debts[index].category,
+                                          style: TextStyle(color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          : double.parse(widget.userP.debts[index].balance) /
+                                      double.parse(
+                                          widget.userP.debts[index].original) *
+                                      100 >=
+                                  40
+                              ? Card(
+                                  color: Color.fromARGB(255, 251, 255, 0),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(16.0)),
+                                  elevation: 8.0,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        widget.userP.debts[index].category ==
+                                                'Mortgage'
+                                            ? const Icon(
+                                                Icons.house,
+                                                color: Colors.black,
+                                              )
+                                            : widget.userP.debts[index]
+                                                        .category ==
+                                                    'Car loan'
+                                                ? const Icon(
+                                                    CustomIcons.cab,
+                                                    color: Colors.black,
+                                                  )
+                                                : widget.userP.debts[index]
+                                                            .category ==
+                                                        'Credit Card'
+                                                    ? const Icon(
+                                                        CustomIcons.money_check,
+                                                        color: Colors.black,
+                                                      )
+                                                    : const Icon(
+                                                        Icons.medical_services,
+                                                        color: Colors.black,
+                                                      ),
+                                        SizedBox(width: 20),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                                widget.userP.debts[index].title,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .headline6!
+                                                    .merge(
+                                                      TextStyle(
+                                                          color: Colors.black),
+                                                    )),
+                                            Text(
+                                              widget
+                                                  .userP.debts[index].category,
+                                              style: TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : double.parse(widget
+                                              .userP.debts[index].balance) /
+                                          double.parse(widget
+                                              .userP.debts[index].original) *
+                                          100 >=
+                                      20
+                                  ? Card(
+                                      color: Color.fromARGB(255, 179, 255, 0),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(16.0)),
+                                      elevation: 8.0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            widget.userP.debts[index]
+                                                        .category ==
+                                                    'Mortgage'
+                                                ? const Icon(
+                                                    Icons.house,
+                                                    color: Colors.black,
+                                                  )
+                                                : widget.userP.debts[index]
+                                                            .category ==
+                                                        'Car loan'
+                                                    ? const Icon(
+                                                        CustomIcons.cab,
+                                                        color: Colors.black,
+                                                      )
+                                                    : widget.userP.debts[index]
+                                                                .category ==
+                                                            'Credit Card'
+                                                        ? const Icon(
+                                                            CustomIcons
+                                                                .money_check,
+                                                            color: Colors.black,
+                                                          )
+                                                        : const Icon(
+                                                            Icons
+                                                                .medical_services,
+                                                            color: Colors.black,
+                                                          ),
+                                            SizedBox(width: 20),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                    widget.userP.debts[index]
+                                                        .title,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline6!
+                                                        .merge(
+                                                          TextStyle(
+                                                              color:
+                                                                  Colors.black),
+                                                        )),
+                                                Text(
+                                                  widget.userP.debts[index]
+                                                      .category,
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  : Card(
+                                      color: Color.fromARGB(255, 0, 255, 0),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(16.0)),
+                                      elevation: 8.0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            widget.userP.debts[index]
+                                                        .category ==
+                                                    'Mortgage'
+                                                ? const Icon(
+                                                    Icons.house,
+                                                    color: Colors.black,
+                                                  )
+                                                : widget.userP.debts[index]
+                                                            .category ==
+                                                        'Car loan'
+                                                    ? const Icon(
+                                                        CustomIcons.cab,
+                                                        color: Colors.black,
+                                                      )
+                                                    : widget.userP.debts[index]
+                                                                .category ==
+                                                            'Credit Card'
+                                                        ? const Icon(
+                                                            CustomIcons
+                                                                .money_check,
+                                                            color: Colors.black,
+                                                          )
+                                                        : const Icon(
+                                                            Icons
+                                                                .medical_services,
+                                                            color: Colors.black,
+                                                          ),
+                                            SizedBox(width: 20),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                    widget.userP.debts[index]
+                                                        .title,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .headline6!
+                                                        .merge(
+                                                          TextStyle(
+                                                              color:
+                                                                  Colors.black),
+                                                        )),
+                                                Text(
+                                                  widget.userP.debts[index]
+                                                      .category,
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                 );
               },
             ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: con.addButton,
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: GestureDetector(
+          onTap: con.colorKey,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                'Confused by the colors? Click here to see what they mean',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -126,5 +430,13 @@ class _Controller {
           ArgKey.userProfile: state.widget.userP,
         });
     state.render(() {});
+  }
+
+  void colorKey() {
+    showSnackBar(
+        context: state.context,
+        seconds: 30,
+        message:
+            'Color Key: \n If tile is red balance is 100-80% of the orginal amount or limit \n If tile is orange balance is 79-60% of the orginal amount or limit \n If tile is yellow balance is 59-40% of the orginal amount or limit \n If tile is lime green balance is 39-20% of the orginal amount or limit \n If tile is green balance is lessthan 20% of the orginal amount or limit \n ');
   }
 }

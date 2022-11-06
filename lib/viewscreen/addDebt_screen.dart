@@ -68,6 +68,14 @@ class _AddDebtState extends State<AddDebtScreen> {
                   onSaved: con.saveTitle,
                 ),
                 TextFormField(
+                  decoration: const InputDecoration(
+                      hintText: 'Original amount/Credit limit'),
+                  autocorrect: true,
+                  keyboardType: TextInputType.numberWithOptions(),
+                  validator: Debt.validateOriginal,
+                  onSaved: con.saveOriginal,
+                ),
+                TextFormField(
                   decoration: const InputDecoration(hintText: 'Balance'),
                   autocorrect: true,
                   keyboardType: TextInputType.numberWithOptions(),
@@ -115,6 +123,12 @@ class _Controller {
   void saveBalance(String? value) {
     if (value != null) {
       tempDebt.balance = value;
+    }
+  }
+
+  void saveOriginal(String? value) {
+    if (value != null) {
+      tempDebt.original = value;
     }
   }
 

@@ -74,6 +74,18 @@ class _DebtDetailState extends State<DebtDetailScreen> {
                   enabled: editmode,
                   style: Theme.of(context).textTheme.bodyText1,
                   decoration: const InputDecoration(
+                    hintText: 'Enter Original amount/Credit limit',
+                  ),
+                  initialValue: "Original/Limit: \$" + con.tempDebt.original,
+                  keyboardType: const TextInputType.numberWithOptions(),
+                  maxLines: 1,
+                  validator: Debt.validateEditOriginal,
+                  onSaved: con.saveBalance,
+                ),
+                TextFormField(
+                  enabled: editmode,
+                  style: Theme.of(context).textTheme.bodyText1,
+                  decoration: const InputDecoration(
                     hintText: 'Enter Balance',
                   ),
                   initialValue: "Balance: \$" + con.tempDebt.balance,
