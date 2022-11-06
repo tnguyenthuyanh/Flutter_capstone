@@ -61,7 +61,7 @@ class _DebtState extends State<DebtScreen> {
                   onTap: () => con.onTap(index),
                   child: double.parse(widget.userP.debts[index].balance) /
                               double.parse(widget.userP.debts[index].original) *
-                              100 >=
+                              100 >
                           80
                       ? Card(
                           shape: RoundedRectangleBorder(
@@ -124,7 +124,7 @@ class _DebtState extends State<DebtScreen> {
                       : double.parse(widget.userP.debts[index].balance) /
                                   double.parse(
                                       widget.userP.debts[index].original) *
-                                  100 >=
+                                  100 >
                               60
                           ? Card(
                               shape: RoundedRectangleBorder(
@@ -191,7 +191,7 @@ class _DebtState extends State<DebtScreen> {
                           : double.parse(widget.userP.debts[index].balance) /
                                       double.parse(
                                           widget.userP.debts[index].original) *
-                                      100 >=
+                                      100 >
                                   40
                               ? Card(
                                   shape: RoundedRectangleBorder(
@@ -264,7 +264,7 @@ class _DebtState extends State<DebtScreen> {
                                               .userP.debts[index].balance) /
                                           double.parse(widget
                                               .userP.debts[index].original) *
-                                          100 >=
+                                          100 >
                                       20
                                   ? Card(
                                       shape: RoundedRectangleBorder(
@@ -494,10 +494,10 @@ class _Controller {
         context: state.context,
         seconds: 30,
         message:
-            'If tile is red balance is 100-80% of the orginal amount or limit \n'
-            'If tile is orange balance is 79-60% of the orginal amount or limit \n'
-            'If tile is yellow balance is 59-40% of the orginal amount or limit \n'
-            'If tile is lime green balance is 39-20% of the orginal amount or limit \n'
-            'If tile is green balance is lessthan 20% of the orginal amount or limit \n ');
+            'If tile content is red balance is 100-81% of the orginal amount or limit \n'
+            'If tile content is orange balance is 80-61% of the orginal amount or limit \n'
+            'If tile content is yellow balance is 60-41% of the orginal amount or limit \n'
+            'If tile content is lime green balance is 40-21% of the orginal amount or limit \n'
+            'If tile content is green balance is less than or equal to 20% of the orginal amount or limit \n ');
   }
 }
