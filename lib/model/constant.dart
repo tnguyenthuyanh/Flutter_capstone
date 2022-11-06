@@ -49,6 +49,7 @@ enum ArgKey {
   wallet,
   transactionList,
   transType,
+  selected,
 }
 
 enum Filter {

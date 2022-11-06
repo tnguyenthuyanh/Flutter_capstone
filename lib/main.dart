@@ -340,11 +340,13 @@ class Capstone extends StatelessWidget {
               var user = argument[ArgKey.user];
               var userP = argument[ArgKey.userProfile];
               var transType = argument[ArgKey.transType];
+              var selected = argument[ArgKey.selected];
               return AddPurchaseScreen(
                 user: user,
                 userP: userP,
-                purchaseList: [],
+                purchaseList: argument[ArgKey.purchaseList],
                 transType: transType,
+                selected: selected,
               );
             }
           },

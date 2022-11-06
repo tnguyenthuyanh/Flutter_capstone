@@ -1,3 +1,4 @@
+import 'package:cap_project/View_Model/auth_viewModel.dart';
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/catergories.dart';
 import 'package:cap_project/model/purchase.dart';
@@ -19,6 +20,7 @@ class AddPurchaseScreen extends StatefulWidget {
       required this.user,
       required this.purchaseList,
       required this.transType,
+      required this.selected,
       Key? key})
       : super(key: key);
 
@@ -26,6 +28,7 @@ class AddPurchaseScreen extends StatefulWidget {
   final User user;
   final UserProfile userP;
   final String transType;
+  final int selected;
   static const routeName = '/addPurchaseScreen';
 
   @override
@@ -48,8 +51,43 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
     con = _Controller(this);
     email = widget.user.email ?? 'No email';
     transType = widget.transType;
-    Future.delayed(Duration.zero, () {
-      purchaseViewModel.getCategories();
+
+    Future.delayed(Duration.zero, () async {
+      purchaseViewModel =
+          Provider.of<PurchaseViewModal>(context, listen: false);
+      purchaseViewModel.amountController.clear();
+      purchaseViewModel.noteController.clear();
+      await purchaseViewModel.getCategories();
+
+      if (widget.selected != -1) {
+        dynamic transaction = widget.purchaseList[widget.selected];
+        purchaseViewModel.amountController.text = transaction.amount;
+        purchaseViewModel.noteController.text = transaction.note;
+        if (purchaseViewModel.categoriess.contains(transaction.category)) {
+          purchaseViewModel.selectedCategories =
+              Category(type: "", label: transaction.category, categoryid: "");
+        } else if (transaction.category.isNotEmpty) {
+          purchaseViewModel.selectedCategories =
+              Category(type: "", label: transaction.category, categoryid: "");
+          purchaseViewModel.categoriess
+              .add(purchaseViewModel.selectedCategories);
+        }
+
+        if (purchaseViewModel.subcategoriess
+            .contains(transaction.subCategory)) {
+          purchaseViewModel.selectedsubCategories = SubCategory(
+              subcategoryid: "",
+              label: transaction.subCategory,
+              categoryid: "");
+        } else if (transaction.subCategory.isNotEmpty) {
+          purchaseViewModel.selectedsubCategories = SubCategory(
+              subcategoryid: "",
+              label: transaction.subCategory,
+              categoryid: "");
+          purchaseViewModel.subcategoriess
+              .add(purchaseViewModel.selectedsubCategories);
+        }
+      }
     });
   }
 
@@ -81,11 +119,13 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
                     autocorrect: false,
                     onSaved: con.saveAmount,
                     validator: purchaseViewModel.validateAmount,
+                    controller: purchaseViewModel.amountController,
                   ),
                   TextFormField(
                     decoration: const InputDecoration(hintText: 'Note'),
                     autocorrect: false,
                     onSaved: con.saveNote,
+                    controller: purchaseViewModel.noteController,
                   ),
                   Row(
                     children: [
@@ -144,7 +184,6 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
 }
 
 class _Controller {
- 
   _AddPurchaseState state;
   late List<Purchase> purchaseList;
   Purchase tempPurchase = Purchase();
@@ -180,10 +219,12 @@ class _Controller {
     try {
       tempPurchase.transactionType = state.transType;
       tempPurchase.category = state.purchaseViewModel.selectedCategories.label;
-      if (state.purchaseViewModel.selectedsubCategories != state.purchaseViewModel.subcategoriess.first){
-        tempPurchase.subCategory = state.purchaseViewModel.selectedsubCategories.label;
+      if (state.purchaseViewModel.selectedsubCategories !=
+          state.purchaseViewModel.subcategoriess.first) {
+        tempPurchase.subCategory =
+            state.purchaseViewModel.selectedsubCategories.label;
       }
-      
+
       String docId = await FirestoreController.addPurchase(
         user: state.widget.userP,
         purchase: tempPurchase,

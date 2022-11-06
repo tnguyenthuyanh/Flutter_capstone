@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
 class PurchaseViewModal extends ChangeNotifier {
+
+  TextEditingController  noteController = TextEditingController();
+  TextEditingController  amountController = TextEditingController();
+
   List<Category> categoriess = [];
   List<SubCategory> subcategoriess = [];
   bool load = false;
@@ -30,7 +34,7 @@ class PurchaseViewModal extends ChangeNotifier {
     // }
   }
 
-  void getCategories() async {
+  Future<void> getCategories() async {
     try {
       print('hello from getcats');
       load = true;
@@ -39,7 +43,7 @@ class PurchaseViewModal extends ChangeNotifier {
       selectedCategories = categoriess.first;
       notifyListeners();
       load = false;
-      getSubCategories();
+     await getSubCategories();
     } catch (e) {
       load = false;
       notifyListeners();
@@ -47,7 +51,7 @@ class PurchaseViewModal extends ChangeNotifier {
     }
   }
 
-  void getSubCategories() async {
+  Future <void> getSubCategories() async {
     try {
       subcatLoad = true;
       selectedsubCategories = SubCategory(subcategoryid: "", label: "Select", categoryid: "");
@@ -84,6 +88,10 @@ class PurchaseViewModal extends ChangeNotifier {
 
   void onChangedSubCatDropDownFn(value) {
     selectedsubCategories = value;
+    notifyListeners();
+  }
+
+  void render(){
     notifyListeners();
   }
 }
