@@ -66,7 +66,7 @@ class _PayoffScheduleState extends State<PayoffScheduleScreen> {
                 !showSchedule
                     ? Column(
                         children: [
-                          TextFormField(
+                          /*TextFormField(
                             style: Theme.of(context).textTheme.bodyText1,
                             decoration: const InputDecoration(
                                 hintText: 'Enter payment amount',
@@ -74,10 +74,10 @@ class _PayoffScheduleState extends State<PayoffScheduleScreen> {
                             keyboardType: TextInputType.number,
                             validator: Debt.validatePayment,
                             onSaved: con.savePayment,
-                          ),
+                          ),*/
                           SleekCircularSlider(
                             appearance: CircularSliderAppearance(
-                              size: 200,
+                              size: 250,
                               infoProperties: InfoProperties(
                                 topLabelText: 'payment \n amount',
                                 topLabelStyle: TextStyle(
@@ -114,7 +114,7 @@ class _PayoffScheduleState extends State<PayoffScheduleScreen> {
                                     Colors.red.shade900,
                                   ])),
                             ),
-                            key: formKey,
+                            // key: formKey,
                             initialValue: double.parse(con.setMinPayment()) +
                                 double.parse(widget.debt.balance) / 2,
                             min: double.parse(con.setMinPayment()),
@@ -129,7 +129,7 @@ class _PayoffScheduleState extends State<PayoffScheduleScreen> {
                       )
                     : Column(
                         children: [
-                          TextFormField(
+                          /*TextFormField(
                             style: Theme.of(context).textTheme.bodyText1,
                             decoration: const InputDecoration(
                                 hintText: 'Enter payment amount',
@@ -137,7 +137,7 @@ class _PayoffScheduleState extends State<PayoffScheduleScreen> {
                             keyboardType: TextInputType.number,
                             validator: Debt.validatePayment,
                             onSaved: con.savePayment,
-                          ),
+                          ),*/
                           TextFormField(
                               enabled: false,
                               style: Theme.of(context).textTheme.bodyText1,
@@ -148,6 +148,52 @@ class _PayoffScheduleState extends State<PayoffScheduleScreen> {
                             style: Theme.of(context).textTheme.bodyText1,
                             initialValue: 'Total interest paid: \$' +
                                 con.interestPaid.toStringAsFixed(2),
+                          ),
+                          SleekCircularSlider(
+                            appearance: CircularSliderAppearance(
+                              size: 250,
+                              infoProperties: InfoProperties(
+                                topLabelText: 'payment \n amount',
+                                topLabelStyle: TextStyle(
+                                  fontSize: 20,
+                                ),
+                                mainLabelStyle: TextStyle(
+                                  color: Colors.green.shade800,
+                                  fontSize: 30,
+                                ),
+                                modifier: con.showDollar,
+                              ),
+                              customColors: (CustomSliderColors(
+                                  trackColor: Colors.white,
+                                  progressBarColors: [
+                                    Colors.green.shade900,
+                                    Colors.green.shade800,
+                                    Colors.green.shade700,
+                                    Colors.green.shade600,
+                                    Colors.green,
+                                    Colors.yellow,
+                                    Colors.yellow.shade600,
+                                    Colors.yellow.shade700,
+                                    Colors.yellow.shade800,
+                                    Colors.yellow.shade900,
+                                    Colors.orange,
+                                    Colors.orange.shade600,
+                                    Colors.orange.shade700,
+                                    Colors.orange.shade800,
+                                    Colors.orange.shade900,
+                                    Colors.red,
+                                    Colors.red.shade600,
+                                    Colors.red.shade700,
+                                    Colors.red.shade800,
+                                    Colors.red.shade900,
+                                  ])),
+                            ),
+                            // key: formKey,
+                            initialValue: double.parse(con.setMinPayment()) +
+                                double.parse(widget.debt.balance) / 2,
+                            min: double.parse(con.setMinPayment()),
+                            max: double.parse(widget.debt.balance),
+                            onChangeEnd: con.savePayment2,
                           ),
                           ElevatedButton(
                             onPressed: con.generateSchedule,
@@ -191,8 +237,15 @@ class _Controller {
   }
 
   void savePayment2(double? value) {
+    FormState? currentState = state.formKey.currentState;
+    if (currentState == null || !currentState.validate()) {
+      return;
+    }
     if (value != null) {
       paymentAmount = value;
+      state.showSchedule = false;
+      interestPaid = 0;
+      payments = 0;
     }
   }
 
