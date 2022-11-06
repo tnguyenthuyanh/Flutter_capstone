@@ -64,7 +64,6 @@ class _DebtState extends State<DebtScreen> {
                               100 >=
                           80
                       ? Card(
-                          color: Color.fromARGB(255, 141, 10, 10),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(16.0)),
                           elevation: 8.0,
@@ -75,23 +74,26 @@ class _DebtState extends State<DebtScreen> {
                                 widget.userP.debts[index].category == 'Mortgage'
                                     ? const Icon(
                                         Icons.house,
-                                        color: Colors.black,
+                                        color: Color.fromARGB(255, 212, 7, 7),
                                       )
                                     : widget.userP.debts[index].category ==
                                             'Car loan'
                                         ? const Icon(
                                             CustomIcons.cab,
-                                            color: Colors.black,
+                                            color:
+                                                Color.fromARGB(255, 212, 7, 7),
                                           )
                                         : widget.userP.debts[index].category ==
                                                 'Credit Card'
                                             ? const Icon(
                                                 CustomIcons.money_check,
-                                                color: Colors.black,
+                                                color: Color.fromARGB(
+                                                    255, 212, 7, 7),
                                               )
                                             : const Icon(
                                                 Icons.medical_services,
-                                                color: Colors.black,
+                                                color: Color.fromARGB(
+                                                    255, 212, 7, 7),
                                               ),
                                 SizedBox(width: 20),
                                 Column(
@@ -102,11 +104,16 @@ class _DebtState extends State<DebtScreen> {
                                             .textTheme
                                             .headline6!
                                             .merge(
-                                              TextStyle(color: Colors.black),
+                                              TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 212, 7, 7),
+                                              ),
                                             )),
                                     Text(
                                       widget.userP.debts[index].category,
-                                      style: TextStyle(color: Colors.black),
+                                      style: TextStyle(
+                                        color: Color.fromARGB(255, 212, 7, 7),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -120,7 +127,6 @@ class _DebtState extends State<DebtScreen> {
                                   100 >=
                               60
                           ? Card(
-                              color: Color.fromARGB(255, 255, 166, 0),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(16.0)),
                               elevation: 8.0,
@@ -132,24 +138,28 @@ class _DebtState extends State<DebtScreen> {
                                             'Mortgage'
                                         ? const Icon(
                                             Icons.house,
-                                            color: Colors.black,
+                                            color: Color.fromARGB(
+                                                255, 255, 166, 0),
                                           )
                                         : widget.userP.debts[index].category ==
                                                 'Car loan'
                                             ? const Icon(
                                                 CustomIcons.cab,
-                                                color: Colors.black,
+                                                color: Color.fromARGB(
+                                                    255, 255, 166, 0),
                                               )
                                             : widget.userP.debts[index]
                                                         .category ==
                                                     'Credit Card'
                                                 ? const Icon(
                                                     CustomIcons.money_check,
-                                                    color: Colors.black,
+                                                    color: Color.fromARGB(
+                                                        255, 255, 166, 0),
                                                   )
                                                 : const Icon(
                                                     Icons.medical_services,
-                                                    color: Colors.black,
+                                                    color: Color.fromARGB(
+                                                        255, 255, 166, 0),
                                                   ),
                                     SizedBox(width: 20),
                                     Column(
@@ -162,11 +172,15 @@ class _DebtState extends State<DebtScreen> {
                                                 .headline6!
                                                 .merge(
                                                   TextStyle(
-                                                      color: Colors.black),
+                                                      color: Color.fromARGB(
+                                                          255, 255, 166, 0)),
                                                 )),
                                         Text(
                                           widget.userP.debts[index].category,
-                                          style: TextStyle(color: Colors.black),
+                                          style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 255, 166, 0),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -180,7 +194,6 @@ class _DebtState extends State<DebtScreen> {
                                       100 >=
                                   40
                               ? Card(
-                                  color: Color.fromARGB(255, 251, 255, 0),
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.circular(16.0)),
@@ -193,25 +206,29 @@ class _DebtState extends State<DebtScreen> {
                                                 'Mortgage'
                                             ? const Icon(
                                                 Icons.house,
-                                                color: Colors.black,
+                                                color: Color.fromARGB(
+                                                    255, 251, 255, 0),
                                               )
                                             : widget.userP.debts[index]
                                                         .category ==
                                                     'Car loan'
                                                 ? const Icon(
                                                     CustomIcons.cab,
-                                                    color: Colors.black,
+                                                    color: Color.fromARGB(
+                                                        255, 251, 255, 0),
                                                   )
                                                 : widget.userP.debts[index]
                                                             .category ==
                                                         'Credit Card'
                                                     ? const Icon(
                                                         CustomIcons.money_check,
-                                                        color: Colors.black,
+                                                        color: Color.fromARGB(
+                                                            255, 251, 255, 0),
                                                       )
                                                     : const Icon(
                                                         Icons.medical_services,
-                                                        color: Colors.black,
+                                                        color: Color.fromARGB(
+                                                            255, 251, 255, 0),
                                                       ),
                                         SizedBox(width: 20),
                                         Column(
@@ -225,13 +242,17 @@ class _DebtState extends State<DebtScreen> {
                                                     .headline6!
                                                     .merge(
                                                       TextStyle(
-                                                          color: Colors.black),
+                                                        color: Color.fromARGB(
+                                                            255, 251, 255, 0),
+                                                      ),
                                                     )),
                                             Text(
                                               widget
                                                   .userP.debts[index].category,
                                               style: TextStyle(
-                                                  color: Colors.black),
+                                                color: Color.fromARGB(
+                                                    255, 251, 255, 0),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -246,7 +267,6 @@ class _DebtState extends State<DebtScreen> {
                                           100 >=
                                       20
                                   ? Card(
-                                      color: Color.fromARGB(255, 123, 255, 0),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(16.0)),
@@ -260,14 +280,16 @@ class _DebtState extends State<DebtScreen> {
                                                     'Mortgage'
                                                 ? const Icon(
                                                     Icons.house,
-                                                    color: Colors.black,
+                                                    color: Color.fromARGB(
+                                                        255, 123, 255, 0),
                                                   )
                                                 : widget.userP.debts[index]
                                                             .category ==
                                                         'Car loan'
                                                     ? const Icon(
                                                         CustomIcons.cab,
-                                                        color: Colors.black,
+                                                        color: Color.fromARGB(
+                                                            255, 123, 255, 0),
                                                       )
                                                     : widget.userP.debts[index]
                                                                 .category ==
@@ -275,12 +297,22 @@ class _DebtState extends State<DebtScreen> {
                                                         ? const Icon(
                                                             CustomIcons
                                                                 .money_check,
-                                                            color: Colors.black,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    123,
+                                                                    255,
+                                                                    0),
                                                           )
                                                         : const Icon(
                                                             Icons
                                                                 .medical_services,
-                                                            color: Colors.black,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    123,
+                                                                    255,
+                                                                    0),
                                                           ),
                                             SizedBox(width: 20),
                                             Column(
@@ -295,14 +327,21 @@ class _DebtState extends State<DebtScreen> {
                                                         .headline6!
                                                         .merge(
                                                           TextStyle(
-                                                              color:
-                                                                  Colors.black),
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    123,
+                                                                    255,
+                                                                    0),
+                                                          ),
                                                         )),
                                                 Text(
                                                   widget.userP.debts[index]
                                                       .category,
                                                   style: TextStyle(
-                                                      color: Colors.black),
+                                                    color: Color.fromARGB(
+                                                        255, 123, 255, 0),
+                                                  ),
                                                 ),
                                               ],
                                             ),
@@ -311,7 +350,6 @@ class _DebtState extends State<DebtScreen> {
                                       ),
                                     )
                                   : Card(
-                                      color: Color.fromARGB(255, 6, 150, 6),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(16.0)),
@@ -325,14 +363,16 @@ class _DebtState extends State<DebtScreen> {
                                                     'Mortgage'
                                                 ? const Icon(
                                                     Icons.house,
-                                                    color: Colors.black,
+                                                    color: Color.fromARGB(
+                                                        255, 6, 150, 6),
                                                   )
                                                 : widget.userP.debts[index]
                                                             .category ==
                                                         'Car loan'
                                                     ? const Icon(
                                                         CustomIcons.cab,
-                                                        color: Colors.black,
+                                                        color: Color.fromARGB(
+                                                            255, 6, 150, 6),
                                                       )
                                                     : widget.userP.debts[index]
                                                                 .category ==
@@ -340,12 +380,22 @@ class _DebtState extends State<DebtScreen> {
                                                         ? const Icon(
                                                             CustomIcons
                                                                 .money_check,
-                                                            color: Colors.black,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    6,
+                                                                    150,
+                                                                    6),
                                                           )
                                                         : const Icon(
                                                             Icons
                                                                 .medical_services,
-                                                            color: Colors.black,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    6,
+                                                                    150,
+                                                                    6),
                                                           ),
                                             SizedBox(width: 20),
                                             Column(
@@ -360,14 +410,21 @@ class _DebtState extends State<DebtScreen> {
                                                         .headline6!
                                                         .merge(
                                                           TextStyle(
-                                                              color:
-                                                                  Colors.black),
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    6,
+                                                                    150,
+                                                                    6),
+                                                          ),
                                                         )),
                                                 Text(
                                                   widget.userP.debts[index]
                                                       .category,
                                                   style: TextStyle(
-                                                      color: Colors.black),
+                                                    color: Color.fromARGB(
+                                                        255, 6, 150, 6),
+                                                  ),
                                                 ),
                                               ],
                                             ),
