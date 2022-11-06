@@ -246,7 +246,7 @@ class _DebtState extends State<DebtScreen> {
                                           100 >=
                                       20
                                   ? Card(
-                                      color: Color.fromARGB(255, 179, 255, 0),
+                                      color: Color.fromARGB(255, 123, 255, 0),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(16.0)),
@@ -311,7 +311,7 @@ class _DebtState extends State<DebtScreen> {
                                       ),
                                     )
                                   : Card(
-                                      color: Color.fromARGB(255, 0, 255, 0),
+                                      color: Color.fromARGB(255, 6, 150, 6),
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(16.0)),
@@ -388,11 +388,11 @@ class _DebtState extends State<DebtScreen> {
           onTap: con.colorKey,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Text(
-                'Confused by the colors? Click here to see what they mean',
+                'Color Key',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.blue.shade800,
                   fontSize: 16,
                 ),
               ),
@@ -437,6 +437,10 @@ class _Controller {
         context: state.context,
         seconds: 30,
         message:
-            'Color Key: \n If tile is red balance is 100-80% of the orginal amount or limit \n If tile is orange balance is 79-60% of the orginal amount or limit \n If tile is yellow balance is 59-40% of the orginal amount or limit \n If tile is lime green balance is 39-20% of the orginal amount or limit \n If tile is green balance is lessthan 20% of the orginal amount or limit \n ');
+            'If tile is red balance is 100-80% of the orginal amount or limit \n'
+            'If tile is orange balance is 79-60% of the orginal amount or limit \n'
+            'If tile is yellow balance is 59-40% of the orginal amount or limit \n'
+            'If tile is lime green balance is 39-20% of the orginal amount or limit \n'
+            'If tile is green balance is lessthan 20% of the orginal amount or limit \n ');
   }
 }
