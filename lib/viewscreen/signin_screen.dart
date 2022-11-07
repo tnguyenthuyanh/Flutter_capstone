@@ -38,6 +38,9 @@ class _SignInState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: remove or uncomment before merging
+    con.signIn();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lets get started'),
@@ -154,32 +157,37 @@ class _Controller {
   late UserProfile userP;
 
   void signIn() async {
-    FormState? currentState = state.formKey.currentState;
-    if (currentState == null || !currentState.validate()) return;
-    currentState.save();
+    // FormState? currentState = state.formKey.currentState;
+    // if (currentState == null || !currentState.validate()) return;
+    // currentState.save();
 
     User? user;
     //userP = await FirestoreController.getUser(email: email!);
 
-    try {
-      if (email == null || password == null) {
-        throw 'Email or password is null';
-      }
-      user = await AuthController.signIn(email: email!, password: password!);
+    // try {
+    //   if (email == null || password == null) {
+    //     throw 'Email or password is null';
+    //   }
 
-      await FirestoreController.initProfile(user: user!);
+    // TODO: remove or comment before merging again
+    user = await AuthController.signIn(
+        email: "nerdyned@narly.com", password: "111111");
 
-      Navigator.pushNamed(
-        state.context,
-        UserHomeScreen.routeName,
-        arguments: {
-          ArgKey.user: user,
-          //ArgKey.userProfile: userP,
-        },
-      );
-    } catch (e) {
-      if (Constant.devMode) print('=== signIn error: $e');
-    }
+    // user = await AuthController.signIn(email: email!, password: password!);
+
+    await FirestoreController.initProfile(user: user!);
+
+    Navigator.pushNamed(
+      state.context,
+      UserHomeScreen.routeName,
+      arguments: {
+        ArgKey.user: user,
+        //ArgKey.userProfile: userP,
+      },
+    );
+    // } catch (e) {
+    //   if (Constant.devMode) print('=== signIn error: $e');
+    // }
   }
 
   String? validateEmail(String? value) {

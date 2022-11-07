@@ -81,7 +81,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                   ),
                   DropdownButton<String>(
                     value: _type,
-                    icon: const Icon(Icons.arrow_downward),
+                    icon: const Icon(Icons.expand_more),
                     elevation: 16,
                     underline: Container(
                       height: 2,

@@ -9,6 +9,7 @@ class Constant {
   static const debts = 'Debts';
   static const budgets = 'budgets';
   static const accounts = 'accounts';
+  static const months = 'months';
   static const categories = 'categories';
   static const purchases = 'Purchases';
   static const savings = "Savings";

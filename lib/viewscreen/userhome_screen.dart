@@ -1,8 +1,10 @@
+import 'package:cap_project/View_Model/homescreen_viewmodel.dart';
 import 'package:cap_project/model/custom_icons_icons.dart';
 import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/budgets_screen.dart';
+import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/model/user.dart' as usr;
 import 'package:cap_project/viewscreen/plan_screen.dart';
@@ -19,6 +21,7 @@ import '../controller/auth_controller.dart';
 import '../controller/firestore_controller.dart';
 import '../model/budget.dart';
 import '../model/constant.dart';
+import 'components/sizedboxes/fullwidth_sizedbox.dart';
 import 'view/view_util.dart';
 
 class UserHomeScreen extends StatefulWidget {
@@ -38,6 +41,7 @@ class _UserHomeState extends State<UserHomeScreen> {
   late _Controller con;
   late UserProfile userP;
   late String email;
+  String? _selectedMonth;
 
   var formKey = GlobalKey<FormState>();
 
@@ -60,7 +64,7 @@ class _UserHomeState extends State<UserHomeScreen> {
         appBar: AppBar(
           title: Text("$email's feed"),
         ),
-        //        DRAWER      ------------------------------------------------
+        //        DRAWER      --------------------------------------------------
         drawer: Drawer(
           child: ListView(
             children: [
@@ -145,14 +149,61 @@ class _UserHomeState extends State<UserHomeScreen> {
             ],
           ),
         ),
-        body: selectedBudget == null
-            ? const Text("You haven't picked a budget to use")
-            : Provider.of<BudgetData>(context).numberOfBudgets == 0
-                ? const Text("You have no budgets! Better make some!!")
-                : Text(
-                    'Viewing: ' + selectedBudget.title,
-                    style: Theme.of(context).textTheme.headline6,
+        //
+        //  BODY
+        //----------------------------------------------------------------------
+        body: Consumer<HomeScreenViewModel>(
+          builder: (context, view, child) {
+            // If the user hasn't added any templates
+            // TOOD: Change to ask to add, then below if user selects no
+            if (view.noTemplates) {
+              return EmptyContentText(message: "No Templates. Please add one.");
+            }
+            // User has templates
+            else {
+              return Column(
+                children: [
+                  //  View Month Drop Down
+                  //---------------------------------------------------------------
+                  FullWidthSizedBox(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text("View month: "),
+                          DropdownButton<String>(
+                            value: _selectedMonth,
+                            icon: const Icon(Icons.expand_more),
+                            underline: Container(
+                              height: 2,
+                            ),
+                            onChanged: view.newMonthSelected,
+                            items: view.getMonthsMenuItems(),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
+                  //  Month title display
+                  //------------------------------------------------------------
+                  FullWidthSizedBox(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text("Viewing budget for "),
+                          Text(view.getCurrentMonthString()),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            }
+          },
+        ),
       ),
     );
   }
@@ -319,4 +370,4 @@ class _Controller {
       );
     }
   }
-}//end of controller
+} //end of controller

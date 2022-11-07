@@ -39,8 +39,7 @@ class AccountStorageController {
             isEqualTo: AuthController.currentUser!.uid)
         .get();
 
-    printer.debugPrint(
-        "query returned " + querySnapshot.size.toString() + " results");
+    printer.debugPrint("Returned ${querySnapshot.size.toString()} results");
     var result = <Account>[];
 
     for (var doc in querySnapshot.docs) {
