@@ -75,6 +75,9 @@ class _PayoffScheduleState extends State<PayoffScheduleScreen> {
                             validator: Debt.validatePayment,
                             onSaved: con.savePayment,
                           ),*/
+                          Divider(
+                            height: 20,
+                          ),
                           SleekCircularSlider(
                             appearance: CircularSliderAppearance(
                               size: 250,
@@ -243,9 +246,9 @@ class _Controller {
     }
     if (value != null) {
       paymentAmount = value;
-      state.showSchedule = false;
       interestPaid = 0;
       payments = 0;
+      state.render(() => state.showSchedule = false);
     }
   }
 
@@ -304,8 +307,7 @@ class _Controller {
         payments++;
       }
       print(payments);
-      state.showSchedule = true;
-      state.render(() {});
+      state.render(() => state.showSchedule = true);
     }
   }
 }
