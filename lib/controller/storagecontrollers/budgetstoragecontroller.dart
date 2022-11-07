@@ -15,7 +15,7 @@ class BudgetStorageController {
       DocumentReference ref =
           FirebaseFirestore.instance.collection(Constant.budgets).doc();
 
-      budget.budgetId = ref.id;
+      //budget.budgetId = ref.id;
       await ref.set(budget.serialize());
       return ref.id;
     } catch (e) {
@@ -159,15 +159,18 @@ class BudgetStorageController {
             .doc(subCategory.label)
             .get();
         double amount = 0;
-        if (getamountref.exists){
-          amount = double.parse((getamountref.data() as Map<String,dynamic>)["amount"].toString());
+        if (getamountref.exists) {
+          amount = double.parse(
+              (getamountref.data() as Map<String, dynamic>)["amount"]
+                  .toString());
         }
-         
+
         final budgetamountref = FirebaseFirestore.instance
             .collection(Constant.budgetAmount)
             .doc(budgetAmount.budgetAmountId);
         print('hello from 163 in budget storage');
-        batch.set(budgetamountref, budgetAmount.toJsonForDeleting(amount), SetOptions(merge: true));
+        batch.set(budgetamountref, budgetAmount.toJsonForDeleting(amount),
+            SetOptions(merge: true));
         print('hello from 165 in budget storage');
       }
       await batch.commit();
@@ -283,7 +286,8 @@ class BudgetStorageController {
           double oldAmount = 0.0;
           if (docRefrenceOld.exists) {
             oldAmount = double.parse(
-                (docRefrenceOld.data() as Map<String,dynamic>)["amount"].toString());
+                (docRefrenceOld.data() as Map<String, dynamic>)["amount"]
+                    .toString());
           }
           batch.set(docRefrence, budgetAmount.toJsonforSubCat());
           final docRefrence2 = await FirebaseFirestore.instance
@@ -292,7 +296,9 @@ class BudgetStorageController {
           batch.set(
               docRefrence2,
               budgetAmount.toJsonForUpdating(
-                  (budgetAmountdoc.docs.first.data() as Map<String,dynamic>)["amount"],oldAmount: oldAmount),
+                  (budgetAmountdoc.docs.first.data()
+                      as Map<String, dynamic>)["amount"],
+                  oldAmount: oldAmount),
               SetOptions(merge: true));
           batch.commit();
         }
