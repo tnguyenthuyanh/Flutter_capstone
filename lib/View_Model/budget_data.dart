@@ -140,6 +140,9 @@ class BudgetData extends ChangeNotifier {
 
 // ---- Firestore Related Methods ----------------------------------------------
   void fsLoadBudgets() async {
+    printer.setMethodName(methodName: "fsLoadBudgets");
+
+    printer.debugPrint("getting Budget List");
     List<Budget> _tempBudgets = await FirestoreController.getBudgetList();
 
     // load all the budgets into the provider's budget list

@@ -1,4 +1,5 @@
 import 'package:cap_project/model/budgetAmount.dart';
+import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -9,30 +10,47 @@ import '../../model/subcategories.dart';
 import '../auth_controller.dart';
 
 class BudgetStorageController {
+  static DebugPrinter printer =
+      DebugPrinter(className: "BudgetStorageController");
+
   static Future<String> addBudget({required Budget budget}) async {
+    printer.setMethodName(methodName: "addBudget");
+
     try {
       DocumentReference ref = await FirebaseFirestore.instance
           .collection(Constant.budgets)
           .add(budget.serialize());
       return ref.id;
     } catch (e) {
-      print(e.toString());
+      printer.debugPrint("Error adding Budget: $e");
       return "errawr";
     }
   }
 
   static Future<List<Budget>> getBudgetList() async {
+    printer.setMethodName(methodName: "getBudgetList");
+
+    printer.debugPrint("getting budget list");
+    var result = <Budget>[];
+
+    printer.debugPrint("User id: ${AuthController.currentUser!.uid}");
+
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.budgets)
-        .where('ownerUID', isEqualTo: AuthController.currentUser!.uid)
+        .where('ownerUIDs', arrayContains: AuthController.currentUser!.uid)
         .get();
 
-    var result = <Budget>[];
     for (var doc in querySnapshot.docs) {
       if (doc.data() != null) {
+        printer.debugPrint("Document: ${doc.data()}");
+
         var document = doc.data() as Map<String, dynamic>;
         Budget? temp = Budget.deserialize(doc: document, docId: doc.id);
-        if (temp != null) result.add(temp);
+
+        if (temp != null) {
+          result.add(temp);
+          printer.debugPrint("Adding Budget ${temp.title} to budget list");
+        }
       }
     }
     return result;
@@ -56,63 +74,55 @@ class BudgetStorageController {
         .delete();
   }
 
-
-  static Future<List<Category>> getCategories()  async{
-    try{
-      QuerySnapshot<Map<String,dynamic>> data = await FirebaseFirestore.instance
+  static Future<List<Category>> getCategories() async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> data = await FirebaseFirestore
+          .instance
           .collection(Constant.categories)
-          .where("userid",isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+          .where("userid", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
           .get();
 
       List<Category> categories = [];
 
-      categories = data.docs.map((
-          DocumentSnapshot document) {
-        Map<String, dynamic> data = document.data()! as Map<
-            String,
-            dynamic>;
+      categories = data.docs.map((DocumentSnapshot document) {
+        Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
         return Category.fromJson(data);
       }).toList();
 
       data = await FirebaseFirestore.instance
           .collection(Constant.categories)
-          .where("type",isEqualTo:"global")
+          .where("type", isEqualTo: "global")
           .get();
-      categories.addAll(data.docs.map((
-          DocumentSnapshot document) {
-        Map<String, dynamic> data = document.data()! as Map<
-            String,
-            dynamic>;
+      categories.addAll(data.docs.map((DocumentSnapshot document) {
+        Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
         return Category.fromJson(data);
       }).toList());
       return categories;
-    }catch(e){
+    } catch (e) {
       throw (e);
     }
   }
 
-  static Future<List<SubCategory>> getSubCategories(String categoryid)  async{
-    try{
+  static Future<List<SubCategory>> getSubCategories(String categoryid) async {
+    try {
       print("error1");
 
-      QuerySnapshot<Map<String,dynamic>> data = await FirebaseFirestore.instance
+      QuerySnapshot<Map<String, dynamic>> data = await FirebaseFirestore
+          .instance
           .collection(Constant.categories)
           .doc(categoryid)
-          .collection(FirebaseAuth.instance.currentUser!.uid).get();
-  // /categories/121389128391/userid
+          .collection(FirebaseAuth.instance.currentUser!.uid)
+          .get();
+      // /categories/121389128391/userid
       List<SubCategory> subcategories = [];
 
-      subcategories = data.docs.map((
-          DocumentSnapshot document) {
-        Map<String, dynamic> data = document.data()! as Map<
-            String,
-            dynamic>;
+      subcategories = data.docs.map((DocumentSnapshot document) {
+        Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
         return SubCategory.fromJson(data);
       }).toList();
 
-
       return subcategories;
-    }catch(e){
+    } catch (e) {
       print("error");
       print(e);
 
@@ -120,36 +130,34 @@ class BudgetStorageController {
     }
   }
 
-  static Future<bool> deleteSubCategories(SubCategory subCategory)  async{
-    try{
-
-       await FirebaseFirestore.instance
+  static Future<bool> deleteSubCategories(SubCategory subCategory) async {
+    try {
+      await FirebaseFirestore.instance
           .collection(Constant.categories)
           .doc(subCategory.categoryid)
           .collection(subCategory.userid!)
           .doc(subCategory.subcategoryid)
           .delete();
 
-
       return true;
-    }catch(e){
+    } catch (e) {
       print(e);
 
       throw (e);
     }
   }
 
-
-  static Future<bool> addSubCategory(SubCategory subCategory)  async{
-    try{
-      QuerySnapshot<Map<String,dynamic>> data = await  FirebaseFirestore.instance
+  static Future<bool> addSubCategory(SubCategory subCategory) async {
+    try {
+      QuerySnapshot<Map<String, dynamic>> data = await FirebaseFirestore
+          .instance
           .collection(Constant.categories)
           .doc(subCategory.categoryid)
           .collection(subCategory.userid!)
-          .where("label",isEqualTo: subCategory.label).get();
-      if(data.docs.isNotEmpty){
+          .where("label", isEqualTo: subCategory.label)
+          .get();
+      if (data.docs.isNotEmpty) {
         throw ("sub category already exist with this name");
-
       }
 
       DocumentReference documentReference = FirebaseFirestore.instance
@@ -157,60 +165,52 @@ class BudgetStorageController {
           .doc(subCategory.categoryid)
           .collection(subCategory.userid!)
           .doc();
-      subCategory.subcategoryid  = documentReference.id;
+      subCategory.subcategoryid = documentReference.id;
 
       await documentReference.set(subCategory.toJson());
 
-
       return true;
-
-    }catch(e){
-
+    } catch (e) {
       throw (e);
     }
   }
 
-
-
-
-  static Future<bool> addCategory(Category category)  async{
-    try{
+  static Future<bool> addCategory(Category category) async {
+    try {
       print("hello");
-      QuerySnapshot<Map<String,dynamic>> data = await  FirebaseFirestore.instance
-          .collection(Constant.categories).where("label",isEqualTo: category.label).where("type",isEqualTo: "global").get();
-      if(data.docs.isNotEmpty){
+      QuerySnapshot<Map<String, dynamic>> data = await FirebaseFirestore
+          .instance
+          .collection(Constant.categories)
+          .where("label", isEqualTo: category.label)
+          .where("type", isEqualTo: "global")
+          .get();
+      if (data.docs.isNotEmpty) {
         throw ("Global category already exist with this name");
-
-      }
-
-      else{
-        data = await  FirebaseFirestore.instance
-            .collection(Constant.categories).where("label",isEqualTo: category.label).where("userid",isEqualTo: FirebaseAuth.instance.currentUser?.uid).get();
-        if(data.docs.isNotEmpty){
+      } else {
+        data = await FirebaseFirestore.instance
+            .collection(Constant.categories)
+            .where("label", isEqualTo: category.label)
+            .where("userid", isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+            .get();
+        if (data.docs.isNotEmpty) {
           throw ("category already exist with this name");
-
-
         }
       }
-      DocumentReference documentReference = FirebaseFirestore.instance
-          .collection(Constant.categories)
-      .doc();
-      category.categoryid =  documentReference.id;
+      DocumentReference documentReference =
+          FirebaseFirestore.instance.collection(Constant.categories).doc();
+      category.categoryid = documentReference.id;
       await documentReference.set(category.toJson());
       print("hello1");
 
-
       return true;
-
-    }catch(e){
-
+    } catch (e) {
       throw (e);
     }
   }
 
-
-  static Future<bool> addBudgetAmount(BudgetAmount budgetAmount,String budgetId)  async{
-    try{
+  static Future<bool> addBudgetAmount(
+      BudgetAmount budgetAmount, String budgetId) async {
+    try {
       print("hello");
 
       DocumentReference documentReference = FirebaseFirestore.instance
@@ -219,32 +219,26 @@ class BudgetStorageController {
           .collection(budgetAmount.ownerId)
           .doc();
 
-      budgetAmount.budgetAmountId =  documentReference.id;
+      budgetAmount.budgetAmountId = documentReference.id;
       await documentReference.set(budgetAmount.toJson());
 
-
       return true;
-
-    }catch(e){
-
+    } catch (e) {
       throw (e);
     }
   }
 
-
-
-  static Future<bool> deleteCategory(String categoryid)  async{
+  static Future<bool> deleteCategory(String categoryid) async {
     print(categoryid);
-    try{
-       await  FirebaseFirestore.instance
-          .collection(Constant.categories).doc(categoryid).delete();
+    try {
+      await FirebaseFirestore.instance
+          .collection(Constant.categories)
+          .doc(categoryid)
+          .delete();
 
       return true;
-
-    }catch(e){
-
+    } catch (e) {
       throw (e);
     }
   }
-
 }

@@ -41,9 +41,14 @@ class Budget {
 
   static Budget? deserialize(
       {required Map<String, dynamic> doc, required docId}) {
+    List<String> ownerIds = [];
+    for (String id in doc['ownerUIDs']) {
+      ownerIds.add(id);
+    }
+
     return Budget(
         docID: docId,
-        ownerUID: doc['ownerUIDs'],
+        ownerUID: ownerIds,
         title: doc['title'],
         isCurrent: doc['isCurrent']);
   }
