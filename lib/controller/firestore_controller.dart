@@ -1,4 +1,5 @@
 import 'package:cap_project/controller/storagecontrollers/budgetstoragecontroller.dart';
+import 'package:cap_project/controller/storagecontrollers/monthsstoragecontroller.dart';
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/fuelcostcalc.dart';
 import 'package:cap_project/model/savings.dart';
@@ -9,6 +10,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../model/account.dart';
 import '../model/budget.dart';
+import '../model/budgetmonth.dart';
 import '../model/constant.dart';
 import '../model/plan.dart';
 import '../model/purchase.dart';
@@ -111,6 +113,22 @@ class FirestoreController {
 
   static Future<void> updateAccount({required Account object}) async {
     await AccountStorageController.update(object: object);
+  }
+
+  static Future<String> addBudgetMonth({required BudgetMonth object}) async {
+    return await MonthsStorageController.add(object: object);
+  }
+
+  static deleteBudgetMonth({required BudgetMonth object}) async {
+    await MonthsStorageController.delete(object: object);
+  }
+
+  static Future<List<BudgetMonth>> getMonthsList({required templateId}) async {
+    return await MonthsStorageController.getList(templateId: templateId);
+  }
+
+  static Future<void> updateBudgetMonth({required BudgetMonth object}) async {
+    await MonthsStorageController.update(object: object);
   }
 
   static Future<List<Debt>> getDebtList({

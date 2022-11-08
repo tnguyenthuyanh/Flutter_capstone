@@ -1,5 +1,6 @@
 import 'package:cap_project/View_Model/account_data.dart';
 import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
+import 'package:cap_project/View_Model/homescreen_viewmodel.dart';
 import 'package:cap_project/viewscreen/accounts/accountdetail_screen.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/addBalance_screen.dart';
@@ -61,6 +62,7 @@ void main() async {
     ChangeNotifierProvider(create: (context) => BudgetListModeData()),
     ChangeNotifierProvider(create: (context) => BudgetCategoryViewModel()),
     ChangeNotifierProvider(create: (context) => AccountData()),
+    ChangeNotifierProvider(create: (context) => HomeScreenViewModel()),
   ], child: const Capstone()));
 }
 

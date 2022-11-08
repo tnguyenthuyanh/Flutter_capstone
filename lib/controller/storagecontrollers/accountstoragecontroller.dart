@@ -20,7 +20,7 @@ class AccountStorageController {
           .add(object.serialize());
 
       object.docId = ref.id;
-      await update(object: object);
+      // await update(object: object);
 
       printer.debugPrint("returning " + ref.id);
       return ref.id;
@@ -39,8 +39,7 @@ class AccountStorageController {
             isEqualTo: AuthController.currentUser!.uid)
         .get();
 
-    printer.debugPrint(
-        "query returned " + querySnapshot.size.toString() + " results");
+    printer.debugPrint("Returned ${querySnapshot.size.toString()} results");
     var result = <Account>[];
 
     for (var doc in querySnapshot.docs) {
@@ -48,12 +47,18 @@ class AccountStorageController {
         printer.debugPrint("found objects");
 
         var document = doc.data() as Map<String, dynamic>;
-        Account? temp = Account.deserialize(doc: document, docId: doc.id);
+        printer.debugPrint("doc.id: ${doc.id}");
+
+        Account? temp = Account.deserialize(doc: document, docID: doc.id);
         if (temp != null) {
           result.add(temp);
 
-          printer.debugPrint(
-              "added " + temp.serialize().toString() + " to result list");
+          printer.debugPrint("added " +
+              "id: " +
+              temp.docId! +
+              ", " +
+              temp.serialize().toString() +
+              " to result list");
         }
       }
     }
@@ -62,12 +67,6 @@ class AccountStorageController {
 
   static Future<void> update({required Account object}) async {
     printer.setMethodName(methodName: "update");
-
-    String? docId = object.docId;
-    if (docId == null) {
-      printer.debugPrint("shit");
-    }
-    // printer.debugPrint("Object: " + object.title + " , " + object.docId);
 
     try {
       await FirebaseFirestore.instance
@@ -85,6 +84,9 @@ class AccountStorageController {
   }
 
   static Future<void> delete({required Account object}) async {
+    printer.setMethodName(methodName: "delete");
+    printer.debugPrint("deleting ${object.title}");
+
     await FirebaseFirestore.instance
         .collection(_collectionName)
         .doc(object.docId)

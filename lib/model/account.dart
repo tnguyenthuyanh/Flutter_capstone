@@ -16,7 +16,11 @@ class Account extends StorableInterface {
     this.type = 'Checking',
     this.website = '',
     this.rate = 0.0,
-  }) : super(ownerUid: ownerUid, title: title, isCurrent: isCurrent);
+  }) : super(
+            ownerUid: ownerUid,
+            title: title,
+            isCurrent: isCurrent,
+            docId: docId);
 
   Account copyToNew({required String title, required String accountNumber}) =>
       Account(
@@ -32,7 +36,6 @@ class Account extends StorableInterface {
   @override
   Map<String, dynamic> serialize() {
     return {
-      DocKeyStorable.docId: docId,
       DocKeyStorable.ownerUid: ownerUid,
       DocKeyStorable.title: title,
       DocKeyStorable.isCurrent: isCurrent,
@@ -44,9 +47,9 @@ class Account extends StorableInterface {
   }
 
   static Account? deserialize(
-      {required Map<String, dynamic> doc, required docId}) {
+      {required Map<String, dynamic> doc, required docID}) {
     return Account(
-      docId: docId,
+      docId: docID,
       ownerUid: doc[DocKeyStorable.ownerUid],
       title: doc[DocKeyStorable.title],
       isCurrent: doc[DocKeyStorable.isCurrent],

@@ -38,6 +38,9 @@ class _SignInState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: remove or uncomment before merging
+    con.signIn();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lets get started'),
@@ -154,9 +157,9 @@ class _Controller {
   late UserProfile userP;
 
   void signIn() async {
-    FormState? currentState = state.formKey.currentState;
-    if (currentState == null || !currentState.validate()) return;
-    currentState.save();
+    // FormState? currentState = state.formKey.currentState;
+    // if (currentState == null || !currentState.validate()) return;
+    // currentState.save();
 
     User? user;
     userP = await FirestoreController.getUser(email: email!);
