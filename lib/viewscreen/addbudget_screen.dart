@@ -122,7 +122,7 @@ class _Controller {
       return;
     }
 
-    //see if users shares budgets
+    //see if users shares budgets if so add spouses uid to list
     if (tempProfile.shareBudget.compareTo('true') == 0) {
       uids.add(tempProfile.spouseUid);
     }
