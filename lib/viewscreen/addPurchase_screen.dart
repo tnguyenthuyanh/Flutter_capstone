@@ -39,6 +39,7 @@ class AddPurchaseScreen extends StatefulWidget {
 
 class _AddPurchaseState extends State<AddPurchaseScreen> {
   late _Controller con;
+
   late String email;
   var formKey = GlobalKey<FormState>();
   String? dropValue = null;
@@ -64,21 +65,40 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
         purchaseViewModel.amountController.text = transaction.amount;
         purchaseViewModel.noteController.text = transaction.note;
         if (purchaseViewModel.categoriess.contains(transaction.category)) {
-          purchaseViewModel.selectedCategories =
-              Category(type: "", label: transaction.category, categoryid: "");
+          purchaseViewModel.selectedCategories = Category(
+              type: "",
+              label: transaction.category,
+              categoryid: transaction.docId);
         } else if (transaction.category.isNotEmpty) {
-          purchaseViewModel.selectedCategories =
-              Category(type: "", label: transaction.category, categoryid: "");
+          purchaseViewModel.selectedCategories = Category(
+              type: "",
+              label: transaction.category,
+              categoryid: transaction.docId);
           purchaseViewModel.categoriess
               .add(purchaseViewModel.selectedCategories);
         }
-
+        purchaseViewModel.subcategoriess.forEach((element) {
+          print(element.label);
+        });
+        print('******************************************');
+        await purchaseViewModel.getSubCategories();
+        purchaseViewModel.subcategoriess.forEach((element) {
+          print(element.label);
+        });
+        print('******************************************');
         if (purchaseViewModel.subcategoriess
             .contains(transaction.subCategory)) {
-          purchaseViewModel.selectedsubCategories = SubCategory(
-              subcategoryid: "",
-              label: transaction.subCategory,
-              categoryid: "");
+          purchaseViewModel.subcategoriess.forEach((element) {
+            print(element.label);
+          });
+
+          purchaseViewModel.selectedsubCategories =
+              purchaseViewModel.subcategoriess.firstWhere(
+                  (element) => element.label == transaction.subCategory);
+          // SubCategory(
+          //     subcategoryid: "",
+          //     label: transaction.subCategory,
+          //     categoryid: "");
         } else if (transaction.subCategory.isNotEmpty) {
           purchaseViewModel.selectedsubCategories = SubCategory(
               subcategoryid: "",
@@ -219,19 +239,30 @@ class _Controller {
     try {
       tempPurchase.transactionType = state.transType;
       tempPurchase.category = state.purchaseViewModel.selectedCategories.label;
+      tempPurchase.docId =
+          state.widget.purchaseList[state.widget.selected].docId;
       if (state.purchaseViewModel.selectedsubCategories !=
           state.purchaseViewModel.subcategoriess.first) {
         tempPurchase.subCategory =
             state.purchaseViewModel.selectedsubCategories.label;
       }
-
-      String docId = await FirestoreController.addPurchase(
-        user: state.widget.userP,
-        purchase: tempPurchase,
-      );
-      tempPurchase.docId = docId;
-
-      state.widget.userP.purchases.insert(0, tempPurchase);
+      if (state.widget.selected == -1) {
+        String docId = await FirestoreController.addPurchase(
+          user: state.widget.userP,
+          purchase: tempPurchase,
+        );
+        tempPurchase.docId = docId;
+        state.widget.userP.purchases.insert(0, tempPurchase);
+      } else {
+        String docId = await FirestoreController.updatePurchase(
+          user: state.widget.userP,
+          purchase: tempPurchase,
+        );
+        tempPurchase.docId = docId;
+        state.widget.userP.purchases.removeAt(state.widget.selected);
+        state.widget.userP.purchases
+            .insert(state.widget.selected, tempPurchase);
+      }
 
       stopCircularProgress(state.context);
       Navigator.of(state.context).pop();
