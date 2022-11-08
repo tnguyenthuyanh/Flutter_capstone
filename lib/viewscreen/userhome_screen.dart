@@ -260,8 +260,6 @@ class _Controller {
   _Controller(this.state);
   late UserProfile userP;
 
-  //void addButton() async {}
-
   Future<void> signOut() async {
     try {
       await AuthController.signOut();

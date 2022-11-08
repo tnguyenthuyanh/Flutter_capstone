@@ -182,6 +182,24 @@ class FirestoreController {
     return UserProfile();
   }
 
+  static Future<UserProfile> getUserWithUid({
+    required String uid,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .where(DocKeyUserprof.uid.name, isEqualTo: uid)
+        .get();
+
+    for (var doc in querySnapshot.docs) {
+      if (doc.data() != null) {
+        var document = doc.data() as Map<String, dynamic>;
+        var u = UserProfile.fromFirestoreDoc(doc: document, docId: doc.id);
+        if (u != null) return u;
+      }
+    }
+    return UserProfile();
+  }
+
   static Future<void> initProfile({
     required User user,
   }) async {

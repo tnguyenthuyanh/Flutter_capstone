@@ -16,7 +16,7 @@ class Budget {
   }
 
   Budget({
-    required ownerUID,
+    required ownerUIDs,
     required this.title,
     this.docID,
     this.isCurrent,
@@ -29,7 +29,7 @@ class Budget {
   }
 
   Budget copyToNew({required String title}) =>
-      Budget(ownerUID: ownerUIDs, title: title, isCurrent: false);
+      Budget(ownerUIDs: ownerUIDs, title: title, isCurrent: false);
 
   Map<String, dynamic> serialize() {
     return {
@@ -43,7 +43,7 @@ class Budget {
       {required Map<String, dynamic> doc, required docId}) {
     return Budget(
         docID: docId,
-        ownerUID: doc['ownerUIDs'],
+        ownerUIDs: doc['ownerUIDs'],
         title: doc['title'],
         isCurrent: doc['isCurrent']);
   }

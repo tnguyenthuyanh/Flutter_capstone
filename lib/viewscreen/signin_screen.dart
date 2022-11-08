@@ -157,9 +157,9 @@ class _Controller {
   late UserProfile userP;
 
   void signIn() async {
-    // FormState? currentState = state.formKey.currentState;
-    // if (currentState == null || !currentState.validate()) return;
-    // currentState.save();
+    FormState? currentState = state.formKey.currentState;
+    if (currentState == null || !currentState.validate()) return;
+    currentState.save();
 
     User? user;
     userP = await FirestoreController.getUser(email: email!);
