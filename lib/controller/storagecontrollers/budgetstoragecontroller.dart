@@ -12,11 +12,9 @@ import '../auth_controller.dart';
 class BudgetStorageController {
   static Future<String> addBudget({required Budget budget}) async {
     try {
-      DocumentReference ref =
-          FirebaseFirestore.instance.collection(Constant.budgets).doc();
-
-      //budget.budgetId = ref.id;
-      await ref.set(budget.serialize());
+      DocumentReference ref = await FirebaseFirestore.instance
+          .collection(Constant.budgets)
+          .add(budget.serialize());
       return ref.id;
     } catch (e) {
       print(e.toString());

@@ -1,5 +1,6 @@
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
+import 'package:cap_project/viewscreen/components/textfields/my_textfield.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -60,52 +61,31 @@ class _DebtDetailState extends State<DebtDetailScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                TextFormField(
-                  enabled: editmode,
-                  style: Theme.of(context).textTheme.headline6,
-                  decoration: const InputDecoration(
+                DebtTextField(
                     hintText: 'Enter title',
-                  ),
-                  initialValue: con.tempDebt.title,
-                  validator: Debt.validateTitle,
-                  onSaved: con.saveTitle,
-                ),
-                TextFormField(
-                  enabled: editmode,
-                  style: Theme.of(context).textTheme.bodyText1,
-                  decoration: const InputDecoration(
+                    validator: Debt.validateTitle,
+                    onSaved: con.saveTitle,
+                    editable: editmode,
+                    initialvalue: con.tempDebt.title),
+                DebtTextField(
                     hintText: 'Enter Original amount/Credit limit',
-                  ),
-                  initialValue: "Original/Limit: \$" + con.tempDebt.original,
-                  keyboardType: const TextInputType.numberWithOptions(),
-                  maxLines: 1,
-                  validator: Debt.validateEditOriginal,
-                  onSaved: con.saveBalance,
-                ),
-                TextFormField(
-                  enabled: editmode,
-                  style: Theme.of(context).textTheme.bodyText1,
-                  decoration: const InputDecoration(
+                    validator: Debt.validateEditOriginal,
+                    onSaved: con.saveOriginal,
+                    editable: editmode,
+                    initialvalue: "Original/Limit: \$" + con.tempDebt.original),
+                DebtTextField(
                     hintText: 'Enter Balance',
-                  ),
-                  initialValue: "Balance: \$" + con.tempDebt.balance,
-                  keyboardType: const TextInputType.numberWithOptions(),
-                  maxLines: 1,
-                  validator: Debt.validateEditBalance,
-                  onSaved: con.saveBalance,
-                ),
-                TextFormField(
-                  enabled: editmode,
-                  style: Theme.of(context).textTheme.bodyText1,
-                  decoration: const InputDecoration(
+                    validator: Debt.validateEditBalance,
+                    onSaved: con.saveBalance,
+                    editable: editmode,
+                    initialvalue: "Balance: \$" + con.tempDebt.balance),
+                DebtTextField(
                     hintText: 'Enter Interest Rate',
-                  ),
-                  initialValue: "Interest Rate: " + con.tempDebt.interest + '%',
-                  keyboardType: TextInputType.number,
-                  maxLines: 1,
-                  validator: Debt.validateEditInterest,
-                  onSaved: con.saveInterest,
-                ),
+                    validator: Debt.validateEditInterest,
+                    onSaved: con.saveInterest,
+                    editable: editmode,
+                    initialvalue:
+                        "Interest Rate: " + con.tempDebt.interest + '%'),
                 editmode
                     ? DropdownButton(
                         value: con.tempDebt.category,
@@ -190,6 +170,13 @@ class _Controller {
     if (value != null) {
       String tempVal = value.substring(10);
       tempDebt.balance = tempVal;
+    }
+  }
+
+  void saveOriginal(String? value) {
+    if (value != null) {
+      String tempVal = value.substring(17);
+      tempDebt.original = tempVal;
     }
   }
 

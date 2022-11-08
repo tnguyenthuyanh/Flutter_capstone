@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../model/debt.dart';
+
 class MyTextField extends StatelessWidget {
   final String hintText;
   final String? Function(String?)? validator;
@@ -7,13 +9,12 @@ class MyTextField extends StatelessWidget {
   final TextInputType textInputType;
   final int flexValue;
 
-  MyTextField({
-    required this.hintText,
-    required this.validator,
-    required this.onSaved,
-    this.textInputType = TextInputType.text,
-    this.flexValue = 1
-  });
+  MyTextField(
+      {required this.hintText,
+      required this.validator,
+      required this.onSaved,
+      this.textInputType = TextInputType.text,
+      this.flexValue = 1});
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,38 @@ class MyTextField extends StatelessWidget {
         onSaved: onSaved,
         keyboardType: textInputType,
       ),
+    );
+  }
+}
+
+class DebtTextField extends StatelessWidget {
+  final String hintText;
+  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
+  final TextInputType textInputType;
+  final bool editable;
+  final String initialvalue;
+
+  DebtTextField({
+    required this.hintText,
+    required this.validator,
+    required this.onSaved,
+    this.textInputType = TextInputType.text,
+    required this.editable,
+    required this.initialvalue,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      enabled: editable,
+      style: Theme.of(context).textTheme.headline6,
+      decoration: InputDecoration(
+        hintText: hintText,
+      ),
+      initialValue: initialvalue,
+      validator: validator,
+      onSaved: onSaved,
     );
   }
 }
