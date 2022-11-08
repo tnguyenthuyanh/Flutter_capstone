@@ -1,9 +1,12 @@
 import 'package:cap_project/viewscreen/tools_screen/fuelcostestimator_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/paycheckcalculator_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/tipcalculator_screen.dart';
+import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../model/constant.dart';
+import 'tools_screen/assets/fedtax.dart';
+import 'tools_screen/assets/statetax.dart';
 
 class ToolsScreen extends StatefulWidget {
   static const routeName = '/toolsScreen';
@@ -72,10 +75,23 @@ class _ToolsState extends State<ToolsScreen> {
                   context,
                   Icons.credit_card,
                   20,
-                  'Paycheck Calculator',
-                  () {
-                    Navigator.pushNamed(context, PaycheckCalculatorScreen.routeName,
-                        arguments: {ArgKey.user: widget.user});
+                  'Paycheck Estimator',
+                  () async {
+                    try {
+                      var fedTaxDatabase = await FedTax.getFedTaxDatabase();
+                      var stateTaxDatabase = await StateTax.getStateTaxDatabase();
+                      await Navigator.pushNamed(
+                        context,
+                        PaycheckCalculatorScreen.routeName,
+                        arguments: {
+                          ArgKey.user: widget.user,
+                          Tools.fedTaxDatabase: fedTaxDatabase,
+                          Tools.stateTaxDatabase: stateTaxDatabase,
+                        },
+                      );
+                    } catch (e) {
+                      showSnackBar(context: context, message: 'Error: $e');
+                    }
                   },
                 )
               ],

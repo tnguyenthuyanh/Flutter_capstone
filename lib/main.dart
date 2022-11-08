@@ -19,6 +19,8 @@ import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/savings_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
+import 'package:cap_project/viewscreen/tools_screen/assets/fedtax.dart';
+import 'package:cap_project/viewscreen/tools_screen/assets/statetax.dart';
 import 'package:cap_project/viewscreen/tools_screen/fuelcostestimator_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/paycheckcalculator_screen.dart';
 import 'package:cap_project/viewscreen/transactionHistory_screen.dart';
@@ -309,7 +311,14 @@ class Capstone extends StatelessWidget {
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
-              return PaycheckCalculatorScreen(user: user);
+              var fedTaxDatabase = argument[Tools.fedTaxDatabase];
+              var stateTaxDatabase = argument[Tools.stateTaxDatabase];
+
+              return PaycheckCalculatorScreen(
+                user: user,
+                fedTaxDatabase: fedTaxDatabase,
+                stateTaxDatabase: stateTaxDatabase,
+              );
             }
           },
           BudgetsScreen.routeName: (context) => const BudgetsScreen(),
