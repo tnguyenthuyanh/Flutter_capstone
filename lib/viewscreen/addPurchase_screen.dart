@@ -239,8 +239,7 @@ class _Controller {
     try {
       tempPurchase.transactionType = state.transType;
       tempPurchase.category = state.purchaseViewModel.selectedCategories.label;
-      tempPurchase.docId =
-          state.widget.purchaseList[state.widget.selected].docId;
+      
       if (state.purchaseViewModel.selectedsubCategories !=
           state.purchaseViewModel.subcategoriess.first) {
         tempPurchase.subCategory =
@@ -254,6 +253,8 @@ class _Controller {
         tempPurchase.docId = docId;
         state.widget.userP.purchases.insert(0, tempPurchase);
       } else {
+        tempPurchase.docId =
+          state.widget.purchaseList[state.widget.selected].docId;
         String docId = await FirestoreController.updatePurchase(
           user: state.widget.userP,
           purchase: tempPurchase,
