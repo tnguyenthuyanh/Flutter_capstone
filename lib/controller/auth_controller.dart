@@ -82,6 +82,8 @@ class GoogleSignInProvider extends ChangeNotifier {
   GoogleSignInAccount? _user;
   GoogleSignInAccount get user => _user!;
 
+  late UserProfile userP;
+
   Future googleLogin(context) async {
     User? user;
     final googleUser = await googleSignIn.signIn();
@@ -99,11 +101,17 @@ class GoogleSignInProvider extends ChangeNotifier {
         await FirebaseAuth.instance.signInWithCredential(credential);
     user = userCredential.user;
 
+    userP = await FirestoreController.getUser(email: email!);
+
+    await FirestoreController.initProfile(user: user!);
+    await FirestoreController.initWallet(user: user);
+
     notifyListeners();
 
 //used context from the sign in page
     Navigator.pushNamed(context, UserHomeScreen.routeName, arguments: {
       ArgKey.user: user,
+      ArgKey.userProfile: userP,
     });
   }
 
