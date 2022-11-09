@@ -79,7 +79,7 @@ class _PaycheckCalculatorState extends State<PaycheckCalculatorScreen> {
                           const Text("Gross Pay"),
                           TextFormField(
                             decoration: const InputDecoration(
-                              hintText: "0.0",
+                              hintText: "\$ 0.0",
                             ),
                             keyboardType: TextInputType.number,
                             maxLines: 1,
