@@ -222,7 +222,7 @@ class _Controller {
     PopupDialog.statefulPopUpWithoutSetState(
       context: context,
       title: 'Estimated Pay Check',
-      animationTransitionDelay: 50,
+      animationTransitionDelay: 500,
       widgetList: <Widget>[
         PaycheckWidgets.resultContentsContainer(
           Colors.cyan.shade900,
