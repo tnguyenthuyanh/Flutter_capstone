@@ -3,6 +3,7 @@ import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/budgets_screen.dart';
+import 'package:cap_project/viewscreen/currency_screen.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/model/user.dart' as usr;
 import 'package:cap_project/viewscreen/moreInfo_screen.dart';
@@ -161,6 +162,12 @@ class _UserHomeState extends State<UserHomeScreen> {
               ),
               //        SIGN OUT      --------------------------------------------------
               ListTile(
+                leading: Icon(Icons.currency_exchange),
+                title: Text('Currency Exchange'),
+                onTap: con.currencyPage,
+              ),
+              //        SIGN OUT      --------------------------------------------------
+              ListTile(
                 leading: const Icon(Icons.logout),
                 title: const Text('Sign Out'),
                 onTap: con.signOut,
@@ -262,6 +269,10 @@ class _Controller {
 
   void accountsPage() async {
     navigateTo(AccountsScreen.routeName);
+  }
+
+  void currencyPage() async {
+    navigateTo(CurrencyScreen.routeName);
   }
 
   void navigateTo(String routename) async {

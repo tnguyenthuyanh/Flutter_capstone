@@ -4,6 +4,7 @@ import 'package:cap_project/viewscreen/accounts/accountdetail_screen.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/addBalance_screen.dart';
 import 'package:cap_project/viewscreen/addCard_screen.dart';
+import 'package:cap_project/viewscreen/currency_screen.dart';
 import 'package:cap_project/viewscreen/debtDetail_screen.dart';
 import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/viewscreen/addPlan_screen.dart';
@@ -81,6 +82,7 @@ class Capstone extends StatelessWidget {
           SignUpScreen.routeName: (context) => const SignUpScreen(),
           ForgotSignIn.routeName: (context) => const ForgotSignIn(),
           MoreInfoScreen.routeName: (context) => const MoreInfoScreen(),
+          CurrencyScreen.routeName: (context) => CurrencyScreen(),
           UserHomeScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {

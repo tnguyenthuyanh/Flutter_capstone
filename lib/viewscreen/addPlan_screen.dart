@@ -46,7 +46,7 @@ class _AddPlanState extends State<AddPlanScreen> {
         child: Row(
           children: [
             Container(
-              width: MediaQuery.of(context).size.width * .7,
+              width: MediaQuery.of(context).size.width * .5,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: Colors.black,
