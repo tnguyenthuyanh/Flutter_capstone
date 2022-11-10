@@ -746,12 +746,19 @@ class FirestoreController {
   static addPurchase({
     required UserProfile user,
     required Purchase purchase,
+    
   }) async {
     DocumentReference ref = await FirebaseFirestore.instance
         .collection(Constant.users)
         .doc(user.docId)
         .collection(Constant.purchases)
-        .add(purchase.toFirestoreDoc());
+        .doc()
+        ;
+        purchase.docId = ref.id;
+        await ref.set(purchase.toFirestoreDoc())
+        ;
+        
+        
     return ref.id; // doc is auto-generated.
   }
 
@@ -860,4 +867,27 @@ class FirestoreController {
         .add(savings.toFirestoreDoc());
     return ref.id; // doc id auto-generated.
   }
+
+  static updatePurchase({
+    required UserProfile user,
+    required Purchase purchase,
+
+  }) async {
+    print('hello from updatepur **************************');
+    print(purchase.docId);
+    DocumentReference ref = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .doc(user.docId)
+        .collection(Constant.purchases)
+        .doc(purchase.docId)
+        ;
+        purchase.docId = ref.id;
+        await ref.set(purchase.toFirestoreDoc())
+        ;
+        
+        
+    return ref.id; // doc is auto-generated.
+  }
+
+ 
 }

@@ -25,6 +25,7 @@ import '../model/budget.dart';
 import '../model/constant.dart';
 import '../model/wallet.dart';
 import 'view/view_util.dart';
+import 'package:oktoast/oktoast.dart';
 
 class UserHomeScreen extends StatefulWidget {
   const UserHomeScreen({
@@ -100,7 +101,10 @@ class _UserHomeState extends State<UserHomeScreen> {
               ListTile(
                 leading: const Icon(Icons.payments),
                 title: const Text('Transactions'),
-                onTap: con.purchasePage,
+                onTap: selectedBudget != null 
+                      ? con.purchasePage
+                      : con.showSelectBudgetMessage,
+                
               ),
               ListTile(
                 leading: const Icon(Icons.savings),
@@ -397,4 +401,8 @@ class _Controller {
   }
 
   void shareBudget() {}
+
+  void showSelectBudgetMessage () {
+    showToast("You need to select a buget to use");
+  }
 }//end of controller
