@@ -49,7 +49,9 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _current = Provider.of<AccountData>(context).number == 0;
+    if (Provider.of<AccountData>(context, listen: false).number == 0) {
+      _current = Provider.of<AccountData>(context).number == 0;
+    }
 
     return Scaffold(
       //        APPBAR      ----------------------------------------------------
@@ -79,7 +81,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                   ),
                   DropdownButton<String>(
                     value: _type,
-                    icon: const Icon(Icons.arrow_downward),
+                    icon: const Icon(Icons.expand_more),
                     elevation: 16,
                     underline: Container(
                       height: 2,

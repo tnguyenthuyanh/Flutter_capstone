@@ -1,6 +1,8 @@
 import 'package:cap_project/model/custom_icons_icons.dart';
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
+import 'package:cap_project/viewscreen/components/cards/debtCards.dart';
+import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -58,43 +60,41 @@ class _DebtState extends State<DebtScreen> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () => con.onTap(index),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16.0)),
-                    elevation: 8.0,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        children: [
-                          widget.userP.debts[index].category == 'Mortgage'
-                              ? const Icon(Icons.house)
-                              : widget.userP.debts[index].category == 'Car loan'
-                                  ? const Icon(CustomIcons.cab)
-                                  : widget.userP.debts[index].category ==
-                                          'Credit Card'
-                                      ? const Icon(CustomIcons.money_check)
-                                      : const Icon(Icons.medical_services),
-                          SizedBox(width: 20),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                widget.userP.debts[index].title,
-                                style: Theme.of(context).textTheme.headline6,
-                              ),
-                              Text(widget.userP.debts[index].category),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  child: con.getPercent(widget.userP.debts[index]) > 80
+                      ? RedDebtCard(debt: widget.userP.debts[index])
+                      : con.getPercent(widget.userP.debts[index]) > 60
+                          ? OrangeDebtCard(debt: widget.userP.debts[index])
+                          : con.getPercent(widget.userP.debts[index]) > 40
+                              ? YellowDebtCard(debt: widget.userP.debts[index])
+                              : con.getPercent(widget.userP.debts[index]) > 20
+                                  ? LimeGreenDebtCard(
+                                      debt: widget.userP.debts[index])
+                                  : GreenDebtCard(
+                                      debt: widget.userP.debts[index]),
                 );
               },
             ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: con.addButton,
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: GestureDetector(
+          onTap: con.colorKey,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Color Key',
+                style: TextStyle(
+                  color: Colors.blue.shade800,
+                  fontSize: 16,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -126,5 +126,23 @@ class _Controller {
           ArgKey.userProfile: state.widget.userP,
         });
     state.render(() {});
+  }
+
+  void colorKey() {
+    showSnackBar(
+        context: state.context,
+        seconds: 30,
+        message:
+            'If tile content is red balance is 100-81% of the orginal amount or limit \n'
+            'If tile content is orange balance is 80-61% of the orginal amount or limit \n'
+            'If tile content is yellow balance is 60-41% of the orginal amount or limit \n'
+            'If tile content is lime green balance is 40-21% of the orginal amount or limit \n'
+            'If tile content is green balance is less than or equal to 20% of the orginal amount or limit \n ');
+  }
+
+  double getPercent(Debt debt) {
+    double percent =
+        double.parse(debt.balance) / double.parse(debt.original) * 100;
+    return percent;
   }
 }

@@ -400,13 +400,13 @@ class _Controller {
     if (!currentState.validate()) return;
     currentState.save();
 
-    state.widget.userP.spouseEmail = state.widget.profile.email;
+    state.widget.userP.spouseUid = state.widget.profile.uid;
     state.widget.userP.hasSpouse = 'true';
 
     try {
       Map<String, dynamic> update = {};
       //update Firestore doc
-      update[DocKeyUserprof.spouseEmail.name] = state.widget.userP.spouseEmail;
+      update[DocKeyUserprof.spouseUid.name] = state.widget.userP.spouseUid;
       update[DocKeyUserprof.hasSpouse.name] = state.widget.userP.hasSpouse;
 
       if (update.isNotEmpty) {
@@ -432,13 +432,13 @@ class _Controller {
 
     state.widget.userP.shareBudget = share.toString();
 
-    UserProfile spouseProfile = await FirestoreController.getUser(
-        email: state.widget.userP.spouseEmail);
+    UserProfile spouseProfile =
+        await FirestoreController.getUser(email: state.widget.userP.spouseUid);
 
     print(spouseProfile.shareBudgetEmail);
 
     if (spouseProfile.shareBudgetEmail == '') {
-      state.widget.userP.shareBudgetEmail = state.widget.userP.spouseEmail;
+      state.widget.userP.shareBudgetEmail = state.widget.userP.spouseUid;
     } else {
       state.widget.userP.shareBudgetEmail = state.widget.userP.email;
     }

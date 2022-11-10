@@ -14,6 +14,7 @@ class AccountTextFields {
   }) {
     if (mode == true) {
       return MyTextField(
+        initialValue: account != null ? account.title : "",
         hintText: "Title",
         validator: Validator.validateAccountTitle,
         onSaved: onSaved,
@@ -33,6 +34,7 @@ class AccountTextFields {
   }) {
     if (mode == true) {
       return MyTextField(
+        initialValue: account != null ? account.accountNumber : "",
         hintText: "Account Number",
         validator: Validator.validateAccountNumber,
         onSaved: onSaved,
@@ -52,6 +54,7 @@ class AccountTextFields {
   }) {
     if (mode == true) {
       return MyTextField(
+        initialValue: account != null ? account.rate.toString() : "",
         hintText: "Rate",
         validator: Validator.validateAccountRate,
         onSaved: onSaved,
@@ -71,6 +74,7 @@ class AccountTextFields {
   }) {
     if (mode == true) {
       return MyTextField(
+        initialValue: account != null ? account.website : "",
         hintText: "Website",
         validator: Validator.validateWebsite,
         onSaved: onSaved,

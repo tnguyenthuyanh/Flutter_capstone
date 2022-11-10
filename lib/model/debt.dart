@@ -1,4 +1,12 @@
-enum DocKeyDebt { createdby, title, category, balance, interest, payment }
+enum DocKeyDebt {
+  createdby,
+  title,
+  category,
+  balance,
+  interest,
+  payment,
+  original,
+}
 
 class Debt {
   String? docId;
@@ -7,6 +15,7 @@ class Debt {
   late String category;
   late String balance;
   late String interest;
+  late String original;
 
   Debt({
     this.docId,
@@ -15,6 +24,7 @@ class Debt {
     this.category = '',
     this.balance = '',
     this.interest = '',
+    this.original = '',
   });
 
   Debt.clone(Debt d) {
@@ -24,6 +34,7 @@ class Debt {
     category = d.category;
     balance = d.balance;
     interest = d.interest;
+    original = d.original;
   }
 
   void copyFrom(Debt d) {
@@ -33,6 +44,7 @@ class Debt {
     category = d.category;
     balance = d.balance;
     interest = d.interest;
+    original = d.original;
   }
 
   //serialization
@@ -43,6 +55,7 @@ class Debt {
       DocKeyDebt.category.name: category,
       DocKeyDebt.balance.name: balance,
       DocKeyDebt.interest.name: interest,
+      DocKeyDebt.original.name: original,
     };
   }
 
@@ -56,6 +69,7 @@ class Debt {
       category: doc[DocKeyDebt.category.name] ??= 'N/A',
       balance: doc[DocKeyDebt.balance.name] ??= 'N/A',
       interest: doc[DocKeyDebt.interest.name] ??= 'N/A',
+      original: doc[DocKeyDebt.original.name] ??= 'N/A',
     );
   }
 
@@ -75,6 +89,13 @@ class Debt {
     if (value != null) {
       var bal = double.parse(value);
       return (bal < 1) ? "Balance too small" : null;
+    }
+  }
+
+  static String? validateOriginal(String? value) {
+    if (value != null) {
+      var bal = double.parse(value);
+      return (bal < 100) ? "Principal/credit max too small" : null;
     }
   }
 
@@ -98,6 +119,14 @@ class Debt {
       String tempVal = value.substring(15, value.length - 1);
       var bal = double.parse(tempVal);
       return (bal < 1) ? "Balance too small" : null;
+    }
+  }
+
+  static String? validateEditOriginal(String? value) {
+    if (value != null) {
+      String tempVal = value.substring(17, value.length - 1);
+      var bal = double.parse(tempVal);
+      return (bal < 100) ? "Balance too small" : null;
     }
   }
 }

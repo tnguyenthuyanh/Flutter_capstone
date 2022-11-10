@@ -38,6 +38,9 @@ class _SignInState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: remove or uncomment before merging
+    con.signIn();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Lets get started'),

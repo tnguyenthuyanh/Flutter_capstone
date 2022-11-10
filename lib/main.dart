@@ -1,6 +1,6 @@
-
 import 'package:cap_project/View_Model/account_data.dart';
 import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
+import 'package:cap_project/View_Model/homescreen_viewmodel.dart';
 import 'package:cap_project/viewscreen/accounts/accountdetail_screen.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/addBalance_screen.dart';
@@ -68,7 +68,9 @@ void main() async {
     ChangeNotifierProvider(create: (context) => BudgetListModeData()),
     ChangeNotifierProvider(create: (context) => BudgetCategoryViewModel()),
     ChangeNotifierProvider(create: (context) => AccountData()),
-    ChangeNotifierProvider(create: ((context) => PurchaseViewModal()),
+    ChangeNotifierProvider(create: (context) => HomeScreenViewModel()),
+    ChangeNotifierProvider(
+      create: ((context) => PurchaseViewModal()),
     ),
   ], child: const Capstone()));
 }
@@ -269,7 +271,8 @@ class Capstone extends StatelessWidget {
           TransactionHistoryScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
-              return const ErrorScreen('args is null at TransactionHistoryScreen');
+              return const ErrorScreen(
+                  'args is null at TransactionHistoryScreen');
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
@@ -335,7 +338,8 @@ class Capstone extends StatelessWidget {
           FuelCostEstimatorScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
-              return const ErrorScreen('args is null for FuelCostEstimatorScreen');
+              return const ErrorScreen(
+                  'args is null for FuelCostEstimatorScreen');
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
@@ -345,7 +349,8 @@ class Capstone extends StatelessWidget {
           PaycheckCalculatorScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
-              return const ErrorScreen('args is null for PaycheckCalculatorScreen');
+              return const ErrorScreen(
+                  'args is null for PaycheckCalculatorScreen');
             } else {
               var argument = args as Map;
               var user = argument[ArgKey.user];
@@ -366,7 +371,8 @@ class Capstone extends StatelessWidget {
           AddCategory.routeName: (context) => AddCategory(),
           AccountsScreen.routeName: (context) => const AccountsScreen(),
           AddAccountScreen.routeName: (context) => const AddAccountScreen(),
-          AccountDetailScreen.routeName: (context) => const AccountDetailScreen(),
+          AccountDetailScreen.routeName: (context) =>
+              const AccountDetailScreen(),
           PurchasesScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {

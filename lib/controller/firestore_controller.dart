@@ -1,4 +1,5 @@
 import 'package:cap_project/controller/storagecontrollers/budgetstoragecontroller.dart';
+import 'package:cap_project/controller/storagecontrollers/monthsstoragecontroller.dart';
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/fuelcostcalc.dart';
 import 'package:cap_project/model/savings.dart';
@@ -9,6 +10,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../model/account.dart';
 import '../model/budget.dart';
+import '../model/budgetmonth.dart';
 import '../model/constant.dart';
 import '../model/plan.dart';
 import '../model/purchase.dart';
@@ -113,6 +115,22 @@ class FirestoreController {
     await AccountStorageController.update(object: object);
   }
 
+  static Future<String> addBudgetMonth({required BudgetMonth object}) async {
+    return await MonthsStorageController.add(object: object);
+  }
+
+  static deleteBudgetMonth({required BudgetMonth object}) async {
+    await MonthsStorageController.delete(object: object);
+  }
+
+  static Future<List<BudgetMonth>> getMonthsList({required templateId}) async {
+    return await MonthsStorageController.getList(templateId: templateId);
+  }
+
+  static Future<void> updateBudgetMonth({required BudgetMonth object}) async {
+    await MonthsStorageController.update(object: object);
+  }
+
   static Future<List<Debt>> getDebtList({
     required UserProfile user,
   }) async {
@@ -152,6 +170,24 @@ class FirestoreController {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
         .collection(Constant.users)
         .where(DocKeyUserprof.email.name, isEqualTo: email)
+        .get();
+
+    for (var doc in querySnapshot.docs) {
+      if (doc.data() != null) {
+        var document = doc.data() as Map<String, dynamic>;
+        var u = UserProfile.fromFirestoreDoc(doc: document, docId: doc.id);
+        if (u != null) return u;
+      }
+    }
+    return UserProfile();
+  }
+
+  static Future<UserProfile> getUserWithUid({
+    required String uid,
+  }) async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection(Constant.users)
+        .where(DocKeyUserprof.uid.name, isEqualTo: uid)
         .get();
 
     for (var doc in querySnapshot.docs) {

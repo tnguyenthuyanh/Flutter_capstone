@@ -81,15 +81,19 @@ class AccountData extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateSelected(String newTitle) {
+  void updateSelected(map) {
     printer.setMethodName(methodName: "updateSelected");
 
     if (_selected != null) {
       printer.debugPrint("Updating title");
 
-      _selected!.title = newTitle;
+      _selected!.title = map["title"];
+      _selected!.accountNumber = map["accountNumber"];
+      _selected!.rate = map["rate"];
+      _selected!.website = map["website"];
+      _selected!.isCurrent = map["current"];
     } else {
-      showToast("Budget was not updated. Selected budget is null");
+      showToast("Account was not updated. Selected account is null");
       return;
     }
 
@@ -98,6 +102,8 @@ class AccountData extends ChangeNotifier {
     } catch (e) {
       printer.debugPrint(e.toString());
     }
+
+    notifyListeners();
   }
 
 // // ---- Deletion Related Methods -----------------------------------------------
@@ -208,12 +214,17 @@ class AccountData extends ChangeNotifier {
 
   void fsDelete(Account object) {
     FirestoreController.deleteAccount(object: object);
+    // notifyListeners();
   }
 
 //   // ---- Debug Methods ----------------------------------------------
   void printAll() {
     for (Account object in list) {
-      print("Object: " + object.serialize().toString());
+      print("Object: " +
+          "id: " +
+          object.docId! +
+          ", " +
+          object.serialize().toString());
     }
 
     if (_current != null) {
