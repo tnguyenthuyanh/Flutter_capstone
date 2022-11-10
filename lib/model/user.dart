@@ -116,8 +116,6 @@ class UserProfile {
   //deserialization
   static UserProfile? fromFirestoreDoc(
       {required Map<String, dynamic> doc, required String docId}) {
-    print('***************************');
-    print(docId);
     return UserProfile(
       uid: docId,
       docId: docId,
