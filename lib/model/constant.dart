@@ -68,6 +68,11 @@ enum Transfer {
   Request,
 }
 
+enum Tools {
+  stateTaxDatabase,
+  fedTaxDatabase,
+}
+
 List<DropdownMenuItem<String>> menuItems = [
   DropdownMenuItem(child: Text('Mortgage'), value: 'Mortgage'),
   DropdownMenuItem(child: Text('Car loan'), value: 'Car loan'),
@@ -89,8 +94,7 @@ class ValidationError {
   static String budgetTitleLengthError = 'Minimum 4 characters';
   static String titleLengthError = 'Title can not be empty';
   static String dateOutOfBoundsError = 'Date Due not valid';
-  static String accountNumberLengthError =
-      'Account number must be at least 8 digits';
+  static String accountNumberLengthError = 'Account number must be at least 8 digits';
   static String amountLengthError = 'Amount can not be empty';
   static String monthTooLongError = 'Must be 1 or 2 characters';
   static String monthValueError = 'Must be a valid number for a month';
