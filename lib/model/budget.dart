@@ -1,44 +1,71 @@
 class Budget {
-  String ownerUID; // the firebase user docID of the budget owner
+  List<String> ownerUIDs = []; // the firebase user docID of the budget owner
   String title; // the user assigned title of the budget
   String? docID; // the firebase docID of the budget
   bool? isCurrent; // is this budget the budget currently selected by the user
   bool dirty = false;
-  String budgetId;
+
+  dynamic get ownerUID => ownerUIDs.length == 1 ? ownerUIDs[0] : ownerUIDs;
+
+  set ownerUID(dynamic value) {
+    if (value.runtimeType == List<String>) {
+      ownerUIDs = value;
+    } else {
+      ownerUIDs.add(value);
+    }
+  }
 
   Budget({
-    required this.ownerUID,
+    required ownerUIDs,
     required this.title,
     this.docID,
     this.isCurrent,
-    this.budgetId = "",
-  });
+  }) {
+    if (ownerUID.runtimeType == String) {
+      ownerUIDs.add(ownerUID);
+    } else {
+      ownerUIDs = ownerUID;
+    }
+  }
 
   Budget copyToNew({required String title}) =>
-      Budget(ownerUID: ownerUID, title: title, isCurrent: false);
+      Budget(ownerUIDs: ownerUIDs, title: title, isCurrent: false);
 
   Map<String, dynamic> serialize() {
     return {
-      'ownerUID': ownerUID,
+      'ownerUIDs': ownerUIDs,
       'title': title,
       'isCurrent': isCurrent,
-      'budgetId': budgetId,
     };
   }
 
   static Budget? deserialize(
       {required Map<String, dynamic> doc, required docId}) {
+    List<String> ownerIds = [];
+    for (String id in doc['ownerUIDs']) {
+      ownerIds.add(id);
+    }
+
     return Budget(
         docID: docId,
-        ownerUID: doc['ownerUID'],
+        ownerUIDs: doc['ownerUIDs'],
         title: doc['title'],
-        isCurrent: doc['isCurrent'],
-        budgetId: doc['budgetId']??'',
-        );
-        
+        isCurrent: doc['isCurrent']);
   }
 
   bool equals(Budget budget) {
     return docID == budget.docID;
+  }
+
+  void addOwner({required String ownerUid}) {
+    if (!ownerUIDs.contains(ownerUid)) {
+      ownerUIDs.add(ownerUid);
+    }
+  }
+
+  void removeOwner({required String ownerUid}) {
+    if (ownerUIDs.contains(ownerUid)) {
+      ownerUIDs.remove(ownerUid);
+    }
   }
 }

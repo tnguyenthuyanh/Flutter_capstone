@@ -1,5 +1,6 @@
 import 'package:cap_project/View_Model/account_data.dart';
 import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
+import 'package:cap_project/View_Model/homescreen_viewmodel.dart';
 import 'package:cap_project/viewscreen/accounts/accountdetail_screen.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/addBalance_screen.dart';
@@ -20,7 +21,10 @@ import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/savings_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
+import 'package:cap_project/viewscreen/tools_screen/assets/fedtax.dart';
+import 'package:cap_project/viewscreen/tools_screen/assets/statetax.dart';
 import 'package:cap_project/viewscreen/tools_screen/fuelcostestimator_screen.dart';
+import 'package:cap_project/viewscreen/tools_screen/paycheckcalculator_screen.dart';
 import 'package:cap_project/viewscreen/transactionHistory_screen.dart';
 import 'package:cap_project/viewscreen/transferMoney_screen.dart';
 import 'package:cap_project/viewscreen/userlist_screen.dart';
@@ -35,6 +39,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'View_Model/budget_data.dart';
 import 'View_Model/budgetlistmode_data.dart';
+import 'View_Model/purchases_viewModal.dart';
 import 'firebase_options.dart';
 import 'package:oktoast/oktoast.dart';
 import 'model/constant.dart';
@@ -44,7 +49,9 @@ import 'viewscreen/addbudget_screen.dart';
 import 'viewscreen/budgetdetail_screen.dart';
 import 'viewscreen/budgets_screen.dart';
 import 'viewscreen/error_screen.dart';
+import 'viewscreen/moneyRequests_screen.dart';
 import 'viewscreen/payoffSchedule_screen.dart';
+import 'viewscreen/seeRequest_screen.dart';
 import 'viewscreen/signup_screen.dart';
 import 'viewscreen/userhome_screen.dart';
 
@@ -62,6 +69,10 @@ void main() async {
     ChangeNotifierProvider(create: (context) => BudgetListModeData()),
     ChangeNotifierProvider(create: (context) => BudgetCategoryViewModel()),
     ChangeNotifierProvider(create: (context) => AccountData()),
+    ChangeNotifierProvider(create: (context) => HomeScreenViewModel()),
+    ChangeNotifierProvider(
+      create: ((context) => PurchaseViewModal()),
+    ),
   ], child: const Capstone()));
 }
 
@@ -274,6 +285,38 @@ class Capstone extends StatelessWidget {
               );
             }
           },
+          MoneyRequestsScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at MoneyRequestsScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var requestList = argument[ArgKey.requestList];
+              var wallet = argument[ArgKey.wallet];
+              return MoneyRequestsScreen(
+                user: user,
+                requestList: requestList,
+                wallet: wallet,
+              );
+            }
+          },
+          SeeRequestScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen('args is null at SeeRequestScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var request = argument[ArgKey.request];
+              var wallet = argument[ArgKey.wallet];
+              return SeeRequestScreen(
+                user: user,
+                request: request,
+                wallet: wallet,
+              );
+            }
+          },
           ToolsScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
@@ -303,6 +346,24 @@ class Capstone extends StatelessWidget {
               var argument = args as Map;
               var user = argument[ArgKey.user];
               return FuelCostEstimatorScreen(user: user);
+            }
+          },
+          PaycheckCalculatorScreen.routeName: (context) {
+            Object? args = ModalRoute.of(context)?.settings.arguments;
+            if (args == null) {
+              return const ErrorScreen(
+                  'args is null for PaycheckCalculatorScreen');
+            } else {
+              var argument = args as Map;
+              var user = argument[ArgKey.user];
+              var fedTaxDatabase = argument[Tools.fedTaxDatabase];
+              var stateTaxDatabase = argument[Tools.stateTaxDatabase];
+
+              return PaycheckCalculatorScreen(
+                user: user,
+                fedTaxDatabase: fedTaxDatabase,
+                stateTaxDatabase: stateTaxDatabase,
+              );
             }
           },
           BudgetsScreen.routeName: (context) => const BudgetsScreen(),
@@ -337,10 +398,14 @@ class Capstone extends StatelessWidget {
               var argument = args as Map;
               var user = argument[ArgKey.user];
               var userP = argument[ArgKey.userProfile];
+              var transType = argument[ArgKey.transType];
+              var selected = argument[ArgKey.selected];
               return AddPurchaseScreen(
                 user: user,
                 userP: userP,
-                purchaseList: [],
+                purchaseList: argument[ArgKey.purchaseList],
+                transType: transType,
+                selected: selected,
               );
             }
           },

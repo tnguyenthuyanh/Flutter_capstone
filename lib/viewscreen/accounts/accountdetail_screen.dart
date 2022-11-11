@@ -38,6 +38,7 @@ class _AccountDetailState extends State<AccountDetailScreen> {
   String? newAccountNumber;
   String? newRate;
   String? newWebsite;
+  bool? _isCurrent;
 
   var _formKey = GlobalKey<FormState>();
 
@@ -55,6 +56,7 @@ class _AccountDetailState extends State<AccountDetailScreen> {
   Widget build(BuildContext context) {
     _selected = Provider.of<AccountData>(context).selected;
     _current = Provider.of<AccountData>(context).current;
+    _selected != null ? _isCurrent = _selected!.isCurrent : _isCurrent = false;
 
     return Scaffold(
       appBar: AppBar(
@@ -104,7 +106,7 @@ class _AccountDetailState extends State<AccountDetailScreen> {
                             account: _selected),
                         MySizedButton(
                           buttonText: "Use",
-                          onPressedCallback: _selected! == _current
+                          onPressedCallback: _selected!.isCurrent!
                               ? null
                               : _con.onUseButtonPressed,
                         ),
@@ -130,6 +132,9 @@ class _Controller {
   void onUseButtonPressed() {
     Provider.of<AccountData>(_state.context, listen: false)
         .setCurrent(_state._selected!);
+    _state.render(() {
+      _state._isCurrent = !_state._isCurrent!;
+    });
   }
 
   void save() {
@@ -145,8 +150,13 @@ class _Controller {
     currentState!.save();
 
     // save the budget, slap some good toast, and navigate to budgets list
-    Provider.of<AccountData>(_state.context, listen: false)
-        .updateSelected(_state.newTitle!);
+    Provider.of<AccountData>(_state.context, listen: false).updateSelected({
+      "title": _state.newTitle!,
+      "rate": double.tryParse(_state.newRate!),
+      "accountNumber": _state.newAccountNumber,
+      "website": _state.newWebsite,
+      "current": _state._isCurrent
+    });
 
     showToast("Account Updated");
 

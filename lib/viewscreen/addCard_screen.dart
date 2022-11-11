@@ -143,7 +143,7 @@ class _AddCardState extends State<AddCardScreen> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                backgroundColor:
+                                primary:
                                     Color.fromARGB(255, 74, 125, 193),
                               ),
                               child: Container(
@@ -179,7 +179,7 @@ class _Controller {
 
   String? validateCardNumber(String? value) {
     if (value == null || value.isEmpty || value.length != 16) {
-      return 'Please enter 12-digit card number';
+      return 'Please enter 16-digit card number';
     }
     return null;
   }

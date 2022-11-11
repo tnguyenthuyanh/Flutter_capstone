@@ -12,3 +12,11 @@ class DocKeyAccount {
   static get website => 'website';
   static get type => 'type';
 }
+
+class DocKeyMonths {
+  static get docId => "docId";
+  static get ownerUids => "ownerUids";
+  static get templateId => 'templateId';
+  static get startDate => 'startDate';
+  static get endDate => 'endDate';
+}

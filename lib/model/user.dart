@@ -7,7 +7,7 @@ enum DocKeyUserprof {
   plans,
   number,
   hasSpouse,
-  spouseEmail,
+  spouseUid,
   shareBudget,
   shareBudgetEmail,
 }
@@ -18,7 +18,7 @@ class UserProfile {
   late String email;
   late String number;
   late String hasSpouse;
-  late String spouseEmail;
+  late String spouseUid;
   late String shareBudget;
   late String shareBudgetEmail;
   late List<dynamic> debts;
@@ -34,7 +34,7 @@ class UserProfile {
     this.hasSpouse = 'false',
     this.shareBudget = 'false',
     this.shareBudgetEmail = '',
-    this.spouseEmail = '',
+    this.spouseUid = '',
     List<dynamic>? debts,
     List<dynamic>? purchases,
     List<dynamic>? plans,
@@ -55,7 +55,7 @@ class UserProfile {
     this.hasSpouse = 'false';
     this.shareBudget = 'false';
     this.shareBudgetEmail = '';
-    this.spouseEmail = '';
+    this.spouseUid = '';
     debts = [];
     purchases = [];
     plans = [];
@@ -70,7 +70,7 @@ class UserProfile {
     hasSpouse = p.hasSpouse;
     shareBudget = p.shareBudget;
     shareBudgetEmail = p.shareBudgetEmail;
-    spouseEmail = p.spouseEmail;
+    spouseUid = p.spouseUid;
     debts = debts == null ? [] : [...debts];
     purchases = purchases == null ? [] : [...purchases];
     plans = plans == null ? [] : [...plans];
@@ -86,7 +86,7 @@ class UserProfile {
     hasSpouse = p.hasSpouse;
     shareBudget = p.shareBudget;
     shareBudgetEmail = p.shareBudgetEmail;
-    spouseEmail = p.spouseEmail;
+    spouseUid = p.spouseUid;
     debts.clear();
     debts.addAll(p.debts);
     purchases.clear();
@@ -103,7 +103,7 @@ class UserProfile {
       DocKeyUserprof.number.name: number,
       DocKeyUserprof.uid.name: uid,
       DocKeyUserprof.hasSpouse.name: hasSpouse,
-      DocKeyUserprof.spouseEmail.name: spouseEmail,
+      DocKeyUserprof.spouseUid.name: spouseUid,
       DocKeyUserprof.shareBudget.name: shareBudget,
       DocKeyUserprof.shareBudgetEmail.name: shareBudgetEmail,
       DocKeyUserprof.debts.name: debts,
@@ -127,8 +127,8 @@ class UserProfile {
       purchases: doc[DocKeyUserprof.purchases.name] ??= [],
       plans: doc[DocKeyUserprof.plans.name] ??= [],
       savings: doc[DocKeyUserprof.savings.name] ??= [],
-      hasSpouse: doc[DocKeyUserprof.hasSpouse.name] ??= 'N/A',
-      spouseEmail: doc[DocKeyUserprof.spouseEmail.name] ??= 'N/A',
+      hasSpouse: doc[DocKeyUserprof.hasSpouse.name] ??= 'false',
+      spouseUid: doc[DocKeyUserprof.spouseUid.name] ??= 'N/A',
     );
   }
 }

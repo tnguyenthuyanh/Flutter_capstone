@@ -12,6 +12,7 @@ class Constant {
   static const debts = 'Debts';
   static const budgets = 'budgets';
   static const accounts = 'accounts';
+  static const months = 'months';
   static const categories = 'categories';
   static const purchases = 'Purchases';
   static const savings = "Savings";
@@ -47,7 +48,11 @@ enum ArgKey {
   singleDebt,
   isFriendAdded,
   wallet,
-  transactionList
+  transactionList,
+  transType,
+  selected,
+  request,
+  requestList
 }
 
 enum Filter {
@@ -64,6 +69,11 @@ enum SearchOption {
 enum Transfer {
   Send,
   Request,
+}
+
+enum Tools {
+  stateTaxDatabase,
+  fedTaxDatabase,
 }
 
 List<DropdownMenuItem<String>> menuItems = [
