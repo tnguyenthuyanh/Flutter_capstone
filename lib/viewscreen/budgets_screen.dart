@@ -80,9 +80,7 @@ class _BudgetsState extends State<BudgetsScreen> {
                 return Column(
                   children: <Widget>[
                     Expanded(
-                      child:
-                          // budget list
-                          ListView.builder(
+                      child: ListView.builder(
                         itemCount: budgets.budgets.length,
                         itemBuilder: (BuildContext context, int index) {
                           // get the budget at the selected index

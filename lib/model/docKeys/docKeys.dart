@@ -19,4 +19,6 @@ class DocKeyMonths {
   static get templateId => 'templateId';
   static get startDate => 'startDate';
   static get endDate => 'endDate';
+  static get totalIncome => 'totalIncome';
+  static get totalExpense => 'totalExpense';
 }

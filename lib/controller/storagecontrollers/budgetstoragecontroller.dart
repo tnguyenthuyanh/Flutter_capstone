@@ -11,7 +11,7 @@ import '../auth_controller.dart';
 
 class BudgetStorageController {
   static DebugPrinter printer =
-      DebugPrinter(className: "BudgetStorageController");
+      DebugPrinter(className: "BudgetStorageController", printOff: true);
 
   static Future<String> addBudget({required Budget budget}) async {
     printer.setMethodName(methodName: "addBudget");

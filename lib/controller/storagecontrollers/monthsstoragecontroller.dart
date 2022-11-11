@@ -32,6 +32,7 @@ class MonthsStorageController {
 
   static Future<List<BudgetMonth>> getList({required String templateId}) async {
     printer.setMethodName(methodName: "getList");
+    printer.debugPrint("Getting BudgetMonth List for template $templateId");
 
     List<BudgetMonth> result = [];
 
@@ -40,6 +41,10 @@ class MonthsStorageController {
           .collection(_collectionName)
           .where(DocKeyMonths.templateId, isEqualTo: templateId)
           .get();
+
+      if (snapshot.docs.isEmpty) {
+        printer.debugPrint("No results found");
+      }
 
       for (var doc in snapshot.docs) {
         if (doc.data() != null) {

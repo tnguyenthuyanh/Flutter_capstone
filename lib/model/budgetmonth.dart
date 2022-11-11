@@ -1,3 +1,4 @@
+import 'package:cap_project/model/catergories.dart';
 import 'package:cap_project/model/docKeys/docKeys.dart';
 import 'enhanceddatetime.dart';
 
@@ -9,12 +10,15 @@ class BudgetMonth {
   late EnhancedDateTime endDate;
   double? totalIncome;
   double? totalExpenses;
+  late List<FakeCategory> categories;
 
   BudgetMonth({
     this.docId,
     required ownerUid,
     required DateTime date,
     required this.templateId,
+    this.totalIncome = 0,
+    this.totalExpenses = 0,
   }) {
     if (ownerUid.runtimeType == List<String>) {
       ownerUids = ownerUid;
@@ -24,6 +28,7 @@ class BudgetMonth {
 
     startDate = EnhancedDateTime.getStartDate(date);
     endDate = EnhancedDateTime.getEndDate(date);
+    categories = [];
   }
 
   bool containsDate(DateTime date) {
@@ -32,6 +37,10 @@ class BudgetMonth {
 
   String getMonthString() {
     return startDate.monthString;
+  }
+
+  void addCategory(FakeCategory category) {
+    categories.add(category);
   }
 
   @override
@@ -48,6 +57,8 @@ class BudgetMonth {
       ownerUid: doc[DocKeyMonths.ownerUids],
       date: tempDate,
       templateId: doc[DocKeyMonths.templateId],
+      totalExpenses: doc[DocKeyMonths.totalExpense],
+      totalIncome: doc[DocKeyMonths.totalIncome],
     );
 
     return temp;
@@ -59,6 +70,23 @@ class BudgetMonth {
       DocKeyMonths.ownerUids: ownerUids,
       DocKeyMonths.startDate: startDate.dateTime.toIso8601String(),
       DocKeyMonths.templateId: templateId,
+      DocKeyMonths.totalExpense: totalExpenses,
+      DocKeyMonths.totalIncome: totalIncome,
     };
   }
+}
+
+class FakeCategory {
+  static const int EXPENSE_TYPE = -1;
+  static const int INCOME_TYPE = 1;
+
+  String title;
+  double amount;
+  int categoryType;
+
+  FakeCategory({
+    required this.title,
+    required this.amount,
+    required this.categoryType,
+  }) {}
 }
