@@ -54,7 +54,7 @@ class _MoneyRequestsState extends State<MoneyRequestsScreen> {
           Expanded(
             child: con.requestList.isEmpty
                 ? Text(
-                    'No request at the momment!',
+                    'No request at the moment!',
                     style: Theme.of(context).textTheme.headline6,
                   )
                 : ListView.separated(
