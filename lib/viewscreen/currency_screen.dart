@@ -221,7 +221,7 @@ class _CurrencyScreen extends State<CurrencyScreen> {
                 if (snapshot.hasData) {
                   return _currencyView(toCountry, true, res: snapshot.data);
                 }
-                return const SizedBox();
+                return const SizedBox.shrink();
               },
             ),
           ],
