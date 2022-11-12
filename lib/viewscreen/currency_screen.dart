@@ -218,8 +218,8 @@ class _CurrencyScreen extends State<CurrencyScreen> {
             FutureBuilder<double>(
               future: resFuture,
               builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return _currencyView(toCountry, false, res: snapshot.data);
+                if (!snapshot.hasData) {
+                  return _currencyView(toCountry, true, res: snapshot.data);
                 }
                 return const SizedBox.shrink();
               },
@@ -294,7 +294,7 @@ class _CurrencyScreen extends State<CurrencyScreen> {
             ),
             TextFormField(
               key: isDestination ? Key(res.toString()) : Key(value.toString()),
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
               initialValue: isDestination ? res.toString() : value.toString(),
               onFieldSubmitted: (val) {
                 if (double.parse(val) != null) {
@@ -306,7 +306,7 @@ class _CurrencyScreen extends State<CurrencyScreen> {
               },
               decoration: InputDecoration(
                 hintText: '0.0',
-                enabled: isDestination,
+                enabled: !isDestination,
                 suffixIcon: Text(
                   country.currency!,
                   style: TextStyle(fontSize: 20, color: Colors.grey),
