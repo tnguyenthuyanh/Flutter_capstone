@@ -102,9 +102,7 @@ class _UserHomeState extends State<UserHomeScreen> {
               ListTile(
                 leading: const Icon(Icons.payments),
                 title: const Text('Transactions'),
-                onTap: selectedBudget != null
-                    ? con.purchasePage
-                    : con.showSelectBudgetMessage,
+                onTap: con.purchasePage,
               ),
               ListTile(
                 leading: const Icon(Icons.savings),
