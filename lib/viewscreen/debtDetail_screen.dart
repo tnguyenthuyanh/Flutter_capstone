@@ -125,6 +125,10 @@ class _Controller {
         update[DocKeyDebt.title.name] = tempDebt.title;
       }
 
+      if (tempDebt.original != state.widget.debt.original) {
+        update[DocKeyDebt.original.name] = tempDebt.original;
+      }
+
       if (tempDebt.balance != state.widget.debt.balance) {
         update[DocKeyDebt.balance.name] = tempDebt.balance;
       }
