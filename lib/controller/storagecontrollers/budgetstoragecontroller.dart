@@ -209,7 +209,9 @@ class BudgetStorageController {
   }
 
   static Future<bool> addBudgetAmount(
-      BudgetAmount budgetAmount, String budgetId) async {
+    BudgetAmount budgetAmount,
+    String budgetId,
+  ) async {
     try {
       print("hello");
 
@@ -224,7 +226,7 @@ class BudgetStorageController {
 
       return true;
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 

@@ -205,30 +205,45 @@ class _UserHomeState extends State<UserHomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Center(child: Text(view.getCurrentMonthString())),
-                            FullWidthSizedBox(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text("Total Income:"),
-                                  Text("\$ ${view.totalIncomeString}"),
-                                ],
+                            /*--------------------------------------------------
+                                Total Income
+                            --------------------------------------------------*/
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: FullWidthSizedBox(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text("Total Income:"),
+                                    Text("\$ ${view.totalIncomeString}"),
+                                  ],
+                                ),
                               ),
                             ),
-                            FullWidthSizedBox(
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const Text("Total Expenses:"),
-                                  Text("\$ ${view.totalExpensesString}"),
-                                ],
+                            /*--------------------------------------------------
+                                Total Expenses
+                            --------------------------------------------------*/
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: FullWidthSizedBox(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text("Total Expenses:"),
+                                    Text("\$ ${view.totalExpensesString}"),
+                                  ],
+                                ),
                               ),
                             ),
-                            /*----------------------------------------------------
+                            /*--------------------------------------------------
                                 Categories Section
-                            ----------------------------------------------------*/
-                            const Text("Categories:"),
+                            --------------------------------------------------*/
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text("Categories:"),
+                            ),
                             Expanded(
                               child: ListView.builder(
                                 itemCount: view.currentMonth.categories.length,

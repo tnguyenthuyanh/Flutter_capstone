@@ -42,21 +42,29 @@ class MonthsStorageController {
           .where(DocKeyMonths.templateId, isEqualTo: templateId)
           .get();
 
+      // If no Budget Months Found
       if (snapshot.docs.isEmpty) {
         printer.debugPrint("No results found");
       }
+      // If budget Months found, deserialize and add to months list
+      else {
+        for (var doc in snapshot.docs) {
+          if (doc.data() != null) {
+            printer.debugPrint("Found objects");
 
-      for (var doc in snapshot.docs) {
-        if (doc.data() != null) {
-          printer.debugPrint("Found objects");
+            var document = doc.data() as Map<String, dynamic>;
 
-          var document = doc.data() as Map<String, dynamic>;
+            print(document);
 
-          BudgetMonth? temp =
-              BudgetMonth.deserialize(doc: document, docId: doc.id);
+            BudgetMonth? temp =
+                BudgetMonth.deserialize(doc: document, docId: doc.id);
 
-          if (temp != null) {
-            result.add(temp);
+            printer.debugPrint("Temp: ");
+            print(temp.toString());
+
+            if (temp != null) {
+              result.add(temp);
+            }
           }
         }
       }

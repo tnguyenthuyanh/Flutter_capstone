@@ -86,30 +86,34 @@ class HomeScreenViewModel extends ChangeNotifier {
     try {
       await storageGetCurrentTemplate();
 
+      // If a Budget exists and is set to current, load it's Budget Months
       if (_currentTemplate != null) {
         printer.debugPrint("current template found");
 
         await storageLoadMonthsForTemplate();
       }
-    } catch (e) {
+    }
+    // If no Budget is found
+    catch (e) {
       printer.debugPrint("Error loading current template: $e");
     }
+    injectFakeCats();
   }
 
   injectFakeCats() {
-    _currentMonth!.addCategory(FakeCategory(
+    _currentMonth!.addAmount(FakeCategory(
         title: "Paycheck",
         amount: 2.50,
         categoryType: FakeCategory.INCOME_TYPE));
-    _currentMonth!.addCategory(FakeCategory(
+    _currentMonth!.addAmount(FakeCategory(
         title: "CryptoMining",
         amount: 0.01,
         categoryType: FakeCategory.INCOME_TYPE));
-    _currentMonth!.addCategory(FakeCategory(
+    _currentMonth!.addAmount(FakeCategory(
         title: "doritos",
         amount: 600,
         categoryType: FakeCategory.EXPENSE_TYPE));
-    _currentMonth!.addCategory(FakeCategory(
+    _currentMonth!.addAmount(FakeCategory(
         title: "electricity",
         amount: 600,
         categoryType: FakeCategory.EXPENSE_TYPE));
@@ -159,8 +163,9 @@ class HomeScreenViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  //  Component Update handlers
-  //----------------------------------------------------------------------------
+  /*----------------------------------------------------------------------------
+    Component Update handlers
+  ----------------------------------------------------------------------------*/
   void newMonthSelected(String? value) {
     printer.setMethodName(methodName: "newMonthSelected");
     printer.debugPrint("New Month selected");
@@ -170,14 +175,27 @@ class HomeScreenViewModel extends ChangeNotifier {
     if (_items.contains(noBudgetsString)) {
       _items.remove(noBudgetsString);
     }
-    _items.add(monthString);
+
+    if (!_items.contains(monthString)) {
+      _items.add(monthString);
+    }
 
     notifyListeners();
   }
 
-  //  Storage methods
-  //----------------------------------------------------------------------------
+  /*----------------------------------------------------------------------------
+    Storage methods
+  ----------------------------------------------------------------------------*/
   Future storageGetCurrentTemplate() async {
+    /*
+      Attempts to load Budgets(templates) for the current User.
+      If no templates are found sets _noTemplates to true,
+      TODO: prompt to add templates
+
+      If only one template is found, if not set to current, set
+      If more than one template is found, search for current. 
+      
+    */
     printer.setMethodName(methodName: "storageGetCurrentTemplate");
     printer.debugPrint("Getting current template");
 
@@ -188,20 +206,25 @@ class HomeScreenViewModel extends ChangeNotifier {
       if (_tempTemplates.isEmpty) {
         printer.debugPrint("Temp Templates is empty: No user templates loaded");
         _noTemplates = true;
-
-        // TODO: prompt to add templates
       }
       // If the user HAS template budgets
       else {
         _noTemplates = false;
         printer.debugPrint("Found templates. Finding current");
 
-        // Look through templates for one to set to current
-        for (Budget template in _tempTemplates) {
-          if (template.isCurrent!) {
-            printer.debugPrint("${template.title} set to current");
+        // If only one template is found, set it to current
+        if (_tempTemplates.length == 1) {
+          _tempTemplates[0].isCurrent = true;
+          _currentTemplate = _tempTemplates[0];
+        }
+        // If more than one, look through templates for one to set to current
+        else {
+          for (Budget template in _tempTemplates) {
+            if (template.isCurrent!) {
+              printer.debugPrint("Using ${template.title} as current");
 
-            _currentTemplate = template;
+              _currentTemplate = template;
+            }
           }
         }
       }
@@ -212,51 +235,41 @@ class HomeScreenViewModel extends ChangeNotifier {
 
   Future<void> storageLoadMonthsForTemplate() async {
     printer.setMethodName(methodName: "storageLoadMonthsForTemplate");
-
     printer.debugPrint("Loading months for  ${_currentTemplate!.title}");
 
-    List<BudgetMonth> temp = await FirestoreController.getMonthsList(
+    List<BudgetMonth> tempMonths = await FirestoreController.getMonthsList(
         templateId: _currentTemplate!.docID);
 
-    // If budget months were found for the template
-    if (temp.isEmpty) {
+    // If no Budget Months were found for the template,
+    // create one for the current month
+    if (tempMonths.isEmpty) {
       printer.debugPrint("No month budgets found.");
-
       await createCurrentMonth();
-    } else {
+    }
+    // If Budget Months were found, find the Current Month
+    else {
       printer.debugPrint("BudgetMonths were found. Finding Current");
 
-      // Find a budget month for the current month
-      DateTime now = DateTime.now();
-
-      // If there is a current budget month, set it
-      for (BudgetMonth month in temp) {
-        if (month.containsDate(now)) {
+      // If there is a current Budget Month, set _currentMonth
+      for (BudgetMonth month in tempMonths) {
+        if (month.containsDate(DateTime.now())) {
           printer.debugPrint("Found current BudgetMonth. Setting currentMonth");
           _currentMonth = month;
-          addMonthStringToItems(month.getMonthString());
         }
+        addMonthStringToItems(month.getMonthString());
       }
 
-      // If no budget month found for this month
+      // If no Budget Month found for this month
       if (_currentMonth == null) {
-        if (_currentTemplate != null) {
-          printer.debugPrint(
-              "Current Month not found. Template exists, so creating one");
+        // If template exists, create a Budget Month for this month
+        printer.debugPrint("No Current Month- creating one");
 
-          await createCurrentMonth();
-        }
-
-        // TODO: Later: Search other user template budgets for budget months for this month
-
-        // TODO: Later: If found, ask if the user would like to copy transactions
-
-        // If none found,
-
+        await createCurrentMonth();
       }
-    }
 
-    injectFakeCats();
+      // TODO: Later: Search other user template budgets for budget months for this month
+      // TODO: Later: If found, ask if the user would like to copy transactions
+    }
     notifyListeners();
   }
 

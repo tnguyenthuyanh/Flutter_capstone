@@ -1,3 +1,4 @@
+import 'package:cap_project/model/budgetAmount.dart';
 import 'package:cap_project/model/catergories.dart';
 import 'package:cap_project/model/docKeys/docKeys.dart';
 import 'enhanceddatetime.dart';
@@ -8,8 +9,9 @@ class BudgetMonth {
   String templateId;
   late EnhancedDateTime startDate;
   late EnhancedDateTime endDate;
-  double? totalIncome;
-  double? totalExpenses;
+  double totalIncome;
+  double totalExpenses;
+  late List<BudgetAmount> amounts;
   late List<FakeCategory> categories;
 
   BudgetMonth({
@@ -29,6 +31,7 @@ class BudgetMonth {
     startDate = EnhancedDateTime.getStartDate(date);
     endDate = EnhancedDateTime.getEndDate(date);
     categories = [];
+    amounts = [];
   }
 
   bool containsDate(DateTime date) {
@@ -39,8 +42,24 @@ class BudgetMonth {
     return startDate.monthString;
   }
 
-  void addCategory(FakeCategory category) {
-    categories.add(category);
+  void addAmount(FakeCategory amount) {
+    categories.add(amount);
+    updateTotals();
+  }
+
+  void updateTotals() {
+    // TODO: Fix implementation
+
+    totalExpenses = 0;
+    totalIncome = 0;
+
+    for (FakeCategory category in categories) {
+      if (category.categoryType == FakeCategory.EXPENSE_TYPE) {
+        totalExpenses += category.amount;
+      } else {
+        totalIncome += category.amount;
+      }
+    }
   }
 
   @override
@@ -52,9 +71,14 @@ class BudgetMonth {
         DateTime.tryParse(doc[DocKeyMonths.startDate] as String);
     tempDate ??= DateTime.now();
 
+    List<String> ownerUIds = [];
+    for (String uid in doc[DocKeyMonths.ownerUids]) {
+      ownerUIds.add(uid);
+    }
+
     BudgetMonth temp = BudgetMonth(
       docId: docId,
-      ownerUid: doc[DocKeyMonths.ownerUids],
+      ownerUid: ownerUIds,
       date: tempDate,
       templateId: doc[DocKeyMonths.templateId],
       totalExpenses: doc[DocKeyMonths.totalExpense],
