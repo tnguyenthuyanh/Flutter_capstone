@@ -1,9 +1,11 @@
 import 'package:cap_project/View_Model/homescreen_viewmodel.dart';
+import 'package:cap_project/model/budgetmonth.dart';
 import 'package:cap_project/model/custom_icons_icons.dart';
 import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/budgets_screen.dart';
+import 'package:cap_project/viewscreen/components/my_listview_tile.dart';
 import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
 import 'package:cap_project/viewscreen/currency_screen.dart';
 import 'package:cap_project/viewscreen/debt_screen.dart';
@@ -37,7 +39,6 @@ class UserHomeScreen extends StatefulWidget {
     required this.userP,
     Key? key,
   }) : super(key: key);
-
   final User user;
   final UserProfile userP;
 
@@ -62,13 +63,15 @@ class _UserHomeState extends State<UserHomeScreen> {
     super.initState();
     con = _Controller(this);
     email = widget.user.email ?? 'No email';
+
+    Provider.of<HomeScreenViewModel>(context, listen: false).initialize();
   }
 
   void render(fn) => setState(fn);
 
   @override
   Widget build(BuildContext context) {
-    Budget? selectedBudget = Provider.of<BudgetData>(context).selectedBudget;
+    // Provider.of<HomeScreenViewModel>(context, listen: false).initialize();
 
     return WillPopScope(
       onWillPop: () => Future.value(false),
@@ -185,7 +188,6 @@ class _UserHomeState extends State<UserHomeScreen> {
             ],
           ),
         ),
-        //
         //  BODY
         //----------------------------------------------------------------------
         body: Consumer<HomeScreenViewModel>(
@@ -198,21 +200,28 @@ class _UserHomeState extends State<UserHomeScreen> {
             // User has templates
             else {
               return Column(
+                mainAxisSize: MainAxisSize.max,
                 children: [
+                  //------------------------------------------------------------
                   //  View Month Drop Down
-                  //---------------------------------------------------------------
+                  //------------------------------------------------------------
                   FullWidthSizedBox(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
+                      //--------------------------------------------------------
+                      // Month selection drop down row
+                      //--------------------------------------------------------
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          // label
                           const Text("View month: "),
+                          // Month selection drop down
                           DropdownButton<String>(
-                            value: _selectedMonth,
+                            value: view.getSelectedMonthString(),
                             icon: const Icon(Icons.expand_more),
                             underline: Container(
-                              height: 2,
+                              height: 1,
                             ),
                             onChanged: view.newMonthSelected,
                             items: view.getMonthsMenuItems(),
@@ -221,17 +230,77 @@ class _UserHomeState extends State<UserHomeScreen> {
                       ),
                     ),
                   ),
-                  //  Month title display
-                  //------------------------------------------------------------
-                  FullWidthSizedBox(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text("Viewing budget for "),
-                          Text(view.getCurrentMonthString()),
-                        ],
+                  /*------------------------------------------------------------
+                    Month Budget Card
+                  ------------------------------------------------------------*/
+                  Expanded(
+                    child: Card(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Center(child: Text(view.getCurrentMonthString())),
+                            /*--------------------------------------------------
+                                Total Income
+                            --------------------------------------------------*/
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: FullWidthSizedBox(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text("Total Income:"),
+                                    Text("\$ ${view.totalIncomeString}"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            /*--------------------------------------------------
+                                Total Expenses
+                            --------------------------------------------------*/
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: FullWidthSizedBox(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text("Total Expenses:"),
+                                    Text("\$ ${view.totalExpensesString}"),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            /*--------------------------------------------------
+                                Categories Section
+                            --------------------------------------------------*/
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text("Categories:"),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: view.currentMonth.categories.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  FakeCategory _temp =
+                                      view.currentMonth.categories[index];
+
+                                  return MyListViewTile(
+                                    middleValue: _temp.title,
+                                    rightValue: "\$ ${_temp.amount.toString()}",
+                                    backgroundColor: _temp.categoryType ==
+                                            FakeCategory.EXPENSE_TYPE
+                                        ? Colors.red
+                                        : Colors.green,
+                                  );
+                                },
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),

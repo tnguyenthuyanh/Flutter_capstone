@@ -32,6 +32,7 @@ class MonthsStorageController {
 
   static Future<List<BudgetMonth>> getList({required String templateId}) async {
     printer.setMethodName(methodName: "getList");
+    printer.debugPrint("Getting BudgetMonth List for template $templateId");
 
     List<BudgetMonth> result = [];
 
@@ -41,17 +42,29 @@ class MonthsStorageController {
           .where(DocKeyMonths.templateId, isEqualTo: templateId)
           .get();
 
-      for (var doc in snapshot.docs) {
-        if (doc.data() != null) {
-          printer.debugPrint("Found objects");
+      // If no Budget Months Found
+      if (snapshot.docs.isEmpty) {
+        printer.debugPrint("No results found");
+      }
+      // If budget Months found, deserialize and add to months list
+      else {
+        for (var doc in snapshot.docs) {
+          if (doc.data() != null) {
+            printer.debugPrint("Found objects");
 
-          var document = doc.data() as Map<String, dynamic>;
+            var document = doc.data() as Map<String, dynamic>;
 
-          BudgetMonth? temp =
-              BudgetMonth.deserialize(doc: document, docId: doc.id);
+            print(document);
 
-          if (temp != null) {
-            result.add(temp);
+            BudgetMonth? temp =
+                BudgetMonth.deserialize(doc: document, docId: doc.id);
+
+            printer.debugPrint("Temp: ");
+            print(temp.toString());
+
+            if (temp != null) {
+              result.add(temp);
+            }
           }
         }
       }

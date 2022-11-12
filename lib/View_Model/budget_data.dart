@@ -18,6 +18,7 @@ class BudgetData extends ChangeNotifier {
 
   BudgetData() {
     fsLoadBudgets();
+    printer.setPrintOff(printOff: true);
   }
 
 // ---- getters for encapsulated member variables ------------------------------
@@ -29,6 +30,7 @@ class BudgetData extends ChangeNotifier {
 
   /// add the budget to the local budget list, store in firebase and notify
   void add(Budget budget) async {
+    printer.setMethodName(methodName: "add");
     budget.docID = await fsAddBudget(budget);
 
     _budgetList.add(budget);
@@ -49,7 +51,6 @@ class BudgetData extends ChangeNotifier {
 
     budget.isCurrent = true;
 
-    // TODO: Remove - debug
     printer.debugPrint('Current updated to: ' + budget.title);
 
     // if there is more than one budget, set others to inactive
@@ -61,7 +62,6 @@ class BudgetData extends ChangeNotifier {
     fsUpdateAllDirty();
     _budgetList.clearDirtyFlags();
 
-    // TODO:Remove-debug
     printer
         .debugPrint(budget.title + " current: " + budget.isCurrent.toString());
 

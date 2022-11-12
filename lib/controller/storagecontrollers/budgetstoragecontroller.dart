@@ -12,7 +12,7 @@ import '../auth_controller.dart';
 
 class BudgetStorageController {
   static DebugPrinter printer =
-      DebugPrinter(className: "BudgetStorageController");
+      DebugPrinter(className: "BudgetStorageController", printOff: true);
 
   static Future<String> addBudget({required Budget budget}) async {
     printer.setMethodName(methodName: "addBudget");
@@ -218,7 +218,9 @@ class BudgetStorageController {
   }
 
   static Future<bool> addBudgetAmount(
-      BudgetAmount budgetAmount, String budgetId) async {
+    BudgetAmount budgetAmount,
+    String budgetId,
+  ) async {
     try {
       print("hello");
 
@@ -233,7 +235,7 @@ class BudgetStorageController {
 
       return true;
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 
