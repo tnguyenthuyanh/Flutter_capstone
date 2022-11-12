@@ -126,7 +126,7 @@ class _Controller {
       }
 
       if (tempDebt.original != state.widget.debt.original) {
-        update[DocKeyDebt.balance.name] = tempDebt.original;
+        update[DocKeyDebt.original.name] = tempDebt.original;
       }
 
       if (tempDebt.balance != state.widget.debt.balance) {
