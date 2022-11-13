@@ -6,36 +6,6 @@ import '../controller/firestore_controller.dart';
 import '../model/budget.dart';
 import '../model/budgetmonth.dart';
 
-/*
-Flow:
-Get Template
-- If none
--- Prompt to add templates
-
-- If the user HAS template budgets
--- Look through templates for one set to current
---- If found, load Budget Months for it
----- If months found
------ Find current month
------- If found, load
-
------- If not found
-------- Search other templates for current month, if found create a new month
-         from this template and copy all transactions over to the new budget
-         month
----- If no months are found for the template, ask the user if they want to
-       switch to a different template
-
---- If no template is set to current
----- Ask user if they want to switch to a different template.
------ If no, ask if they want to create a new one.
-
-if none, check if any months for current month with other template
- if so, ask if switching to other template or creating a new month
-if creating new ask if migrating transactions
-create one for current month
-*/
-
 class HomeScreenViewModel extends ChangeNotifier {
   DebugPrinter printer = DebugPrinter(className: "HomeScreenViewModel");
 

@@ -145,8 +145,7 @@ class _Controller {
   Future<bool> onPopScope() {
     onCancelButtonPressed();
     Navigator.pop(_state.context);
-    // TODO: fix this
-    throw "I don't know what happened";
+    return Future.value(false);
   }
   //---------------------------------------------------------------------------
 

@@ -40,11 +40,6 @@ class BudgetStorageController {
         .collection(Constant.budgets)
         .where('ownerUIDs', arrayContains: AuthController.currentUser!.uid)
         .get();
-    print(
-        '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!hello from getbudgetList');
-    print(querySnapshot.docs.length);
-    print(
-        '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%afterdoclenght');
 
     for (var doc in querySnapshot.docs) {
       if (doc.data() != null) {
@@ -59,9 +54,7 @@ class BudgetStorageController {
         }
       }
     }
-    print(
-        '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%beforereturn');
-    print(result);
+
     return result;
   }
 
