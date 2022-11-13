@@ -1,10 +1,13 @@
 import 'package:cap_project/controller/auth_controller.dart';
+import 'package:cap_project/controller/firestore_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import '../View_Model/budget_data.dart';
 import '../View_Model/validator.dart';
 import '../model/budget.dart';
+import '../model/user.dart';
 import 'components/buttons/savebutton.dart';
 import 'components/sizedboxes/fullwidth_sizedbox.dart';
 import 'components/textfields/budgettitle_textfield.dart';
@@ -103,7 +106,7 @@ class _Controller {
 
   _Controller(this._state);
 
-  void save() {
+  void save() async {
     FormState? currentState = _state._formKey.currentState;
     if (!isFormStateValid()) return;
 
@@ -111,16 +114,27 @@ class _Controller {
 
     // if current user id is null or empty, slap toast and return
     String? uid = getCurrentUserID();
+    List<String> tempIDs = [];
+    tempIDs.add(uid!);
     if (uid == null || uid.isEmpty) {
       showToast("I'm sorry, but I've made a mistake. Your Id is borked");
       return;
+    }
+
+    if (uid != null) {
+      tempIDs.add(uid);
+    }
+
+    UserProfile tempP = await FirestoreController.getUserWithUid(uid: uid);
+    if (tempP.shareBudget.compareTo('true') == 0) {
+      tempIDs.add(tempP.spouseUid);
     }
 
     // save the budget, slap some good toast, and navigate to budgets list
     Provider.of<BudgetData>(_state.context, listen: false).add(
       Budget(
         title: _state._title!,
-        ownerUID: uid,
+        ownerUID: tempIDs,
         isCurrent: _state._current,
       ),
     );
