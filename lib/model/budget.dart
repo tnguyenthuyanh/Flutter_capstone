@@ -7,7 +7,7 @@ class Budget {
   bool dirty = false;
 
   Budget({
-    required ownerUIDs,
+    required ownerUID,
     required this.title,
     this.docID,
     isCurrent,
@@ -94,7 +94,7 @@ class Budget {
 
     return Budget(
         docID: docId,
-        ownerUIDs: doc['ownerUIDs'],
+        ownerUID: ownerIds,
         title: doc['title'],
         isCurrent: doc['isCurrent']);
   }
