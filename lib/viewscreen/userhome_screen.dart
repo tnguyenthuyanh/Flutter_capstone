@@ -69,6 +69,10 @@ class _UserHomeState extends State<UserHomeScreen> {
 
   void render(fn) => setState(fn);
 
+  void update() {
+    Provider.of<HomeScreenViewModel>(context, listen: false).initialize();
+  }
+
   @override
   Widget build(BuildContext context) {
     // Provider.of<HomeScreenViewModel>(context, listen: false).initialize();
@@ -405,6 +409,7 @@ class _Controller {
         message: "An error has occured. Could not navigate to $routename",
       );
     }
+    state.update();
   }
 
   void onTap(int index) async {}
