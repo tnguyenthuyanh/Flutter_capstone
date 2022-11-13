@@ -96,6 +96,16 @@ class _AccountDetailState extends State<AccountDetailScreen> {
                             mode: _editMode,
                             onSaved: _con.onSaveAccountNumber,
                             account: _selected),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text("Account Type"),
+                              Text(_selected!.type)
+                            ],
+                          ),
+                        ),
                         AccountTextFields.rateTextField(
                             mode: _editMode,
                             onSaved: _con.onSaveRate,

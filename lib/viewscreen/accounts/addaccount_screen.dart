@@ -79,16 +79,23 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
                       mode: true,
                     ),
                   ),
-                  DropdownButton<String>(
-                    value: _type,
-                    icon: const Icon(Icons.expand_more),
-                    elevation: 16,
-                    underline: Container(
-                      height: 2,
-                    ),
-                    onChanged: _con.onTypeChanged,
-                    items: _con.getTypeItems(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text("Account Type"),
+                      DropdownButton<String>(
+                        value: _type,
+                        icon: const Icon(Icons.expand_more),
+                        elevation: 16,
+                        underline: Container(
+                          height: 2,
+                        ),
+                        onChanged: _con.onTypeChanged,
+                        items: _con.getTypeItems(),
+                      ),
+                    ],
                   ),
+
                   FullWidthSizedBox(
                     child: AccountTextFields.rateTextField(
                       onSaved: _con.onSaveRate,
