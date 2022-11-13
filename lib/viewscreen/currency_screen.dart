@@ -1,105 +1,9 @@
-import 'dart:convert';
+//Currency template from "Run It Anyways"
 
 import 'package:cap_project/model/convert_repo.dart';
 import 'package:cap_project/model/country.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-// class CurrencyScreen extends StatefulWidget {
-//   static const routeName = '/CurrencyScreen';
-
-//   const CurrencyScreen({Key? key}) : super(key: key);
-
-//   @override
-//   State<StatefulWidget> createState() {
-//     return _CurrencyScreen();
-//   }
-// }
-
-// class _CurrencyScreen extends State<CurrencyScreen> {
-//   late _Controller con;
-//   String? usdToInr;
-//   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-//   String? dropValue = null;
-
-//   @override
-//   void initState() {
-//     //use this as constructor for state
-//     super.initState();
-//     con = _Controller(this);
-//   }
-
-//   void render(fn) => setState(fn);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Currency Exchange'),
-//       ),
-//       body: Form(
-//         key: formKey,
-//         child: Container(
-//           width: double.infinity,
-//           alignment: Alignment.center,
-//           margin: const EdgeInsets.all(8.0),
-//           padding: const EdgeInsets.all(8.0),
-//           child: Column(
-//             children: [
-//               SizedBox(
-//                 width: MediaQuery.of(context).size.width * .4,
-//                 child: TextFormField(
-//                   decoration: const InputDecoration(hintText: 'USD'),
-//                   autocorrect: true,
-//                 ),
-//               ),
-//               const Divider(
-//                 color: Colors.grey,
-//                 thickness: 1,
-//                 indent: 20,
-//                 endIndent: 0,
-//               ),
-//               SizedBox(
-//                 width: MediaQuery.of(context).size.width * .4,
-//                 child: TextFormField(
-//                   decoration:
-//                       const InputDecoration(hintText: 'Foreign Currency'),
-//                   autocorrect: true,
-//                 ),
-//               ),
-//               DropdownButton(
-//                 value: dropValue,
-//                 items: Constant.currencies,
-//                 onChanged: con.saveCurrency,
-//                 hint: const Text('Select a currency'),
-//               ),
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class _Controller {
-//   _CurrencyScreen state;
-
-//   _Controller(this.state);
-
-//   void saveCurrency(String? value) {}
-
-//   void convert() async {
-//     Currency myCurrency = await CurrencyConverter.getMyCurrency();
-//     var usdConvert = await CurrencyConverter.convert(
-//       from: Currency.usd,
-//       to: myCurrency,
-//       amount: 1,
-//     );
-//     setState(() {
-//       usdToInr = usdConvert.toString();
-//     });
-//   }
-// }
 
 class CurrencyScreen extends StatefulWidget {
   static const routeName = '/CurrencyScreen';
@@ -349,4 +253,4 @@ class _CurrencyScreen extends State<CurrencyScreen> {
     }
     return listActions;
   }
-}//end
+} //end
