@@ -1,7 +1,6 @@
 import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'package:flutter/material.dart';
-
 import '../controller/firestore_controller.dart';
 import '../model/budget.dart';
 import '../model/budgetmonth.dart';
@@ -11,11 +10,20 @@ class HomeScreenViewModel extends ChangeNotifier {
 
   static const String noBudgetsString = "No budgets";
 
-  // Template related
+  /*----------------------------------------------------------------------------
+      Template related
+  ----------------------------------------------------------------------------*/
   Budget? _currentTemplate;
   bool _noTemplates = true;
 
   bool get noTemplates => _noTemplates;
+
+  /*----------------------------------------------------------------------------
+      Budget Month related
+  ----------------------------------------------------------------------------*/
+  BudgetMonth? _selectedMonth; // Month selected in drop down
+  BudgetMonth? _currentMonth; // Current month, probably the same as selected
+
   BudgetMonth get selectedMonth => _selectedMonth!;
   BudgetMonth get currentMonth => _currentMonth!;
 
@@ -35,9 +43,9 @@ class HomeScreenViewModel extends ChangeNotifier {
     }
   }
 
-  // Budget Month Related
-  BudgetMonth? _selectedMonth; // Month selected in drop down
-  BudgetMonth? _currentMonth; // Current month, probably the same as selected
+  /*----------------------------------------------------------------------------
+      Budget Months List related
+  ----------------------------------------------------------------------------*/
   List<BudgetMonth> _months = [];
 
   final List<String> _items = [
@@ -49,7 +57,7 @@ class HomeScreenViewModel extends ChangeNotifier {
     printer.debugPrint("Constructing HomeScreenViewModel");
   }
 
-  void initialize() async {
+  Future<void> initialize() async {
     printer.setMethodName(methodName: "initialize");
     printer.debugPrint("initializing");
 
@@ -62,12 +70,17 @@ class HomeScreenViewModel extends ChangeNotifier {
 
         await storageLoadMonthsForTemplate();
       }
+
+      injectFakeCats();
     }
     // If no Budget is found
     catch (e) {
       printer.debugPrint("Error loading current template: $e");
     }
-    injectFakeCats();
+  }
+
+  Future<void> update() async {
+    await initialize();
   }
 
   injectFakeCats() {
@@ -176,6 +189,7 @@ class HomeScreenViewModel extends ChangeNotifier {
       if (_tempTemplates.isEmpty) {
         printer.debugPrint("Temp Templates is empty: No user templates loaded");
         _noTemplates = true;
+        return;
       }
       // If the user HAS template budgets
       else {
@@ -246,6 +260,7 @@ class HomeScreenViewModel extends ChangeNotifier {
   Future<void> storageAddBudgetMonth(BudgetMonth month) async {
     printer.setMethodName(methodName: "storageAddBudgetMonth");
     printer.debugPrint("Sending ${month.getMonthString()} to storage");
+
     await FirestoreController.addBudgetMonth(object: month);
   }
 
