@@ -11,7 +11,7 @@
 ///      fonts:
 ///       - asset: fonts/CustomIcons.ttf
 ///
-/// 
+///
 /// * Font Awesome 4, Copyright (C) 2016 by Dave Gandy
 ///         Author:    Dave Gandy
 ///         License:   SIL ()
@@ -21,6 +21,8 @@
 ///         License:   SIL (https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt)
 ///         Homepage:  http://fortawesome.github.com/Font-Awesome/
 ///
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/widgets.dart';
 
 class CustomIcons {
@@ -29,6 +31,8 @@ class CustomIcons {
   static const _kFontFam = 'CustomIcons';
   static const String? _kFontPkg = null;
 
-  static const IconData cab = IconData(0xf1b9, fontFamily: _kFontFam, fontPackage: _kFontPkg);
-  static const IconData money_check = IconData(0xf53c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData cab =
+      IconData(0xf1b9, fontFamily: _kFontFam, fontPackage: _kFontPkg);
+  static const IconData money_check =
+      IconData(0xf53c, fontFamily: _kFontFam, fontPackage: _kFontPkg);
 }

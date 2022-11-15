@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/profile_screen.dart';
@@ -44,7 +44,7 @@ class _UserListState extends State<UserListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Users List'),
+        title: const Text('Users List'),
       ),
       body: Column(
         children: [
@@ -56,10 +56,10 @@ class _UserListState extends State<UserListScreen> {
                   key: formKey,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(15, 7, 0, 0),
-                    child: Container(
+                    child: SizedBox(
                       height: 30,
                       child: TextFormField(
-                        style: TextStyle(fontSize: 12.0, height: 1.35),
+                        style: const TextStyle(fontSize: 12.0, height: 1.35),
                         decoration: InputDecoration(
                           hintText: 'Search',
                           fillColor: Theme.of(context).backgroundColor,
@@ -76,7 +76,7 @@ class _UserListState extends State<UserListScreen> {
                 flex: 1,
                 child: IconButton(
                   onPressed: con.search,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.search,
                     size: 20,
                   ),
@@ -93,7 +93,7 @@ class _UserListState extends State<UserListScreen> {
                   child: Transform.scale(
                     scale: 0.7,
                     child: RadioListTile<SearchOption>(
-                      title: Text("email"),
+                      title: const Text("email"),
                       value: SearchOption.email,
                       groupValue: searchOption,
                       onChanged: (value) {
@@ -113,7 +113,7 @@ class _UserListState extends State<UserListScreen> {
                   child: Transform.scale(
                     scale: 0.7,
                     child: RadioListTile<SearchOption>(
-                      title: Text("name"),
+                      title: const Text("name"),
                       value: SearchOption.name,
                       groupValue: searchOption,
                       onChanged: (value) {
@@ -153,7 +153,7 @@ class _UserListState extends State<UserListScreen> {
                         DropdownMenuItem<Filter>(
                           child: Text(
                             c.toString().split('.')[1].replaceFirst('_', ' '),
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 11,
                             ),
                           ),
@@ -172,8 +172,9 @@ class _UserListState extends State<UserListScreen> {
                     style: Theme.of(context).textTheme.headline6,
                   )
                 : ListView.separated(
-                    separatorBuilder: (context, index) => SizedBox(height: 10),
-                    padding: EdgeInsets.all(10),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 10),
+                    padding: const EdgeInsets.all(10),
                     itemCount: con.userList.length,
                     itemBuilder: (context, index) {
                       return Material(
@@ -190,7 +191,7 @@ class _UserListState extends State<UserListScreen> {
                                 con.userList[index].name == ""
                                     ? "N/A"
                                     : con.userList[index].name[0].toUpperCase(),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 20.0,
                                   fontFamily: 'Satisfy-Regular',
                                   color: Colors.blueAccent,

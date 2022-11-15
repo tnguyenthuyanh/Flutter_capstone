@@ -1,11 +1,8 @@
-import 'dart:collection';
 import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
-import 'package:cap_project/viewscreen/components/texts/listviewheadertext.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import '../model/budget.dart';
-import '../model/constant.dart';
 import '../View_Model/budget_data.dart';
 import 'package:cap_project/viewscreen/budgetCategory.dart';
 import 'package:cap_project/viewscreen/components/texts/ohnoeserrortext.dart';
@@ -15,6 +12,7 @@ import 'components/buttons/mysizedbutton.dart';
 import 'components/textfields/budgettitle_textfield.dart';
 import 'components/texts/titletext.dart';
 
+// ignore: todo
 // TODO: add copy to functionality
 class BudgetDetailScreen extends StatefulWidget {
   static const routeName = '/budgetDetailScreen';
@@ -37,7 +35,7 @@ class _BudgetDetailState extends State<BudgetDetailScreen> {
   bool _editMode = false;
   String? newTitle;
 
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {

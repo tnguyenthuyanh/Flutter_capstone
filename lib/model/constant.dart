@@ -1,4 +1,5 @@
-import 'package:cap_project/model/subcategories.dart';
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class Constant {
@@ -77,10 +78,10 @@ enum Tools {
 }
 
 List<DropdownMenuItem<String>> menuItems = [
-  DropdownMenuItem(child: Text('Mortgage'), value: 'Mortgage'),
-  DropdownMenuItem(child: Text('Car loan'), value: 'Car loan'),
-  DropdownMenuItem(child: Text('Credit Card'), value: 'Credit Card'),
-  DropdownMenuItem(child: Text('Medical Bill'), value: 'Medical Bill'),
+  const DropdownMenuItem(child: Text('Mortgage'), value: 'Mortgage'),
+  const DropdownMenuItem(child: Text('Car loan'), value: 'Car loan'),
+  const DropdownMenuItem(child: Text('Credit Card'), value: 'Credit Card'),
+  const DropdownMenuItem(child: Text('Medical Bill'), value: 'Medical Bill'),
 ];
 
 List<DropdownMenuItem<String>> get dropdownItems {

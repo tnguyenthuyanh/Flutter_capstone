@@ -12,7 +12,7 @@ class StateTax {
     this.state,
     this.abbreviation,
     this.rate,
-  }) {}
+  });
 
   static const STATE = 'state';
   static const ABBREVIATION = 'abbreviation';
@@ -23,14 +23,14 @@ class StateTax {
     final _rawData = await rootBundle
         .loadString("lib/viewscreen/tools_screen/assets/statetax_data.csv");
     List<List<dynamic>> _rawList = const CsvToListConverter().convert(_rawData);
-    _rawList.forEach((rowData) {
+    for (var rowData in _rawList) {
       var oneStateTaxRow = StateTax(
         state: rowData[0].toString(),
         abbreviation: rowData[1].toString(),
         rate: rowData[2].toDouble(),
       );
       stateTaxList.add(oneStateTaxRow);
-    });
+    }
     return stateTaxList;
   }
 }

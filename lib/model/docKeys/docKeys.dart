@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 class DocKeyStorable {
   static get docId => "docId";
   static get title => "title";

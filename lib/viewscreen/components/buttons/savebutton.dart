@@ -1,11 +1,11 @@
-import 'package:cap_project/viewscreen/components/buttons/myelevatedbutton.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
+// ignore: must_be_immutable
 class SaveButton extends StatelessWidget {
   final Function()? onPressedCallback;
   double? size;
 
+  // ignore: use_key_in_widget_constructors
   SaveButton({
     required this.onPressedCallback,
     double this.size = 180,
@@ -15,7 +15,8 @@ class SaveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: size,
-      child: IconButton(icon: Icon(Icons.save), onPressed: onPressedCallback),
+      child: IconButton(
+          icon: const Icon(Icons.save), onPressed: onPressedCallback),
     );
   }
 }

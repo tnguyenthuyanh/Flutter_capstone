@@ -1,9 +1,9 @@
+// ignore_for_file: file_names
+
 /*
 Template credit: https://www.fluttertemplates.dev/widgets/must_haves/content_feed
  */
 import 'package:flutter/material.dart';
-
-import '../model/terms.dart';
 
 class MoreInfoScreen extends StatefulWidget {
   static const routeName = '/MoreInfoScreen';

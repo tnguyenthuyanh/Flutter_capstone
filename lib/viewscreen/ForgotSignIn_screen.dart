@@ -1,6 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
 import '../View_Model/auth_viewModel.dart';
@@ -35,27 +35,33 @@ class _ForgotName extends State<ForgotSignIn> {
                   decoration: const InputDecoration(
                     hintText: 'Enter email',
                   ),
-                   validator: (value) =>  authViewModel.validateEmail(value),
-                   controller: authViewModel.emailCon,
+                  validator: (value) => authViewModel.validateEmail(value),
+                  controller: authViewModel.emailCon,
                   //onSaved: con.saveEmail,
                 ),
               ),
-
-              SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               ElevatedButton(
                 onPressed: () {
                   //Navigator.pushNamed(context, ForgotSignIn.routeName);
-                  if(formKey.currentState!.validate()){
+                  if (formKey.currentState!.validate()) {
                     authViewModel.resetPassword(context);
                   }
                 },
-                child: authViewModel.load_forget_password?Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-                  child: CircularProgressIndicator(color: Colors.white,),
-                ): Text(
-                  'Submit',
-                  style: Theme.of(context).textTheme.button,
-                ),
+                child: authViewModel.load_forget_password
+                    ? const Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )
+                    : Text(
+                        'Submit',
+                        style: Theme.of(context).textTheme.button,
+                      ),
               ),
             ],
           ),

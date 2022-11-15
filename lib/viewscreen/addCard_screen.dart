@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cap_project/model/wallet.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,7 +14,8 @@ class AddCardScreen extends StatefulWidget {
   final User user;
   final Wallet wallet;
 
-  AddCardScreen({required this.user, required this.wallet});
+  // ignore: use_key_in_widget_constructors
+  const AddCardScreen({required this.user, required this.wallet});
 
   @override
   State<StatefulWidget> createState() {
@@ -37,130 +40,128 @@ class _AddCardState extends State<AddCardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add money'),
+        title: const Text('Add money'),
       ),
       resizeToAvoidBottomInset: false,
-      body: Container(
-        child: SafeArea(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 30,
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    children: [
-                      Form(
-                        key: formKey,
-                        child: Column(
-                          children: [
-                            TextFormField(
-                              maxLength: 16,
-                              validator: con.validateCardNumber,
-                              onSaved: con.saveCardNumber,
-                              keyboardType: TextInputType.number,
+      body: SafeArea(
+        child: Column(
+          children: <Widget>[
+            const SizedBox(
+              height: 30,
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    Form(
+                      key: formKey,
+                      child: Column(
+                        children: [
+                          TextFormField(
+                            maxLength: 16,
+                            validator: con.validateCardNumber,
+                            onSaved: con.saveCardNumber,
+                            keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[
+                              FilteringTextInputFormatter.digitsOnly
+                            ],
+                            decoration: const InputDecoration(
+                              hintText: "XXXX-XXXX-XXXX-XXXX",
+                              labelText: "Card number",
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            child: TextFormField(
+                              maxLength: 30,
+                              keyboardType: TextInputType.name,
                               inputFormatters: <TextInputFormatter>[
-                                FilteringTextInputFormatter.digitsOnly
+                                FilteringTextInputFormatter.allow(
+                                    RegExp(r'[a-zA-Z ]')),
                               ],
-                              decoration: InputDecoration(
-                                hintText: "XXXX-XXXX-XXXX-XXXX",
-                                labelText: "Card number",
+                              onSaved: con.saveHolderName,
+                              decoration: const InputDecoration(
+                                hintText: "Full name",
+                                labelText: "Card holder name",
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 16),
-                              child: TextFormField(
-                                maxLength: 30,
-                                keyboardType: TextInputType.name,
-                                inputFormatters: <TextInputFormatter>[
-                                  FilteringTextInputFormatter.allow(
-                                      RegExp(r'[a-zA-Z ]')),
-                                ],
-                                onSaved: con.saveHolderName,
-                                decoration: const InputDecoration(
-                                  hintText: "Full name",
-                                  labelText: "Card holder name",
-                                ),
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  flex: 3,
-                                  child: TextFormField(
-                                    maxLength: 3,
-                                    validator: con.validateCVV,
-                                    onSaved: con.saveCVV,
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
-                                    decoration: const InputDecoration(
-                                      hintText: "XXX",
-                                      labelText: "CVV",
-                                    ),
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: TextFormField(
+                                  maxLength: 3,
+                                  validator: con.validateCVV,
+                                  onSaved: con.saveCVV,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.digitsOnly
+                                  ],
+                                  decoration: const InputDecoration(
+                                    hintText: "XXX",
+                                    labelText: "CVV",
                                   ),
                                 ),
-                                SizedBox(width: 16),
-                                Expanded(
-                                  child: TextFormField(
-                                    maxLength: 2,
-                                    validator: con.validateMonth,
-                                    onSaved: con.saveMonth,
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
-                                    decoration: const InputDecoration(
-                                      hintText: "MM",
-                                      labelText: "Month",
-                                    ),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                child: TextFormField(
+                                  maxLength: 2,
+                                  validator: con.validateMonth,
+                                  onSaved: con.saveMonth,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.digitsOnly
+                                  ],
+                                  decoration: const InputDecoration(
+                                    hintText: "MM",
+                                    labelText: "Month",
                                   ),
                                 ),
-                                SizedBox(width: 10),
-                                Expanded(
-                                  flex: 2,
-                                  child: TextFormField(
-                                    maxLength: 2,
-                                    validator: con.validateYear,
-                                    onSaved: con.saveYear,
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: <TextInputFormatter>[
-                                      FilteringTextInputFormatter.digitsOnly
-                                    ],
-                                    decoration: const InputDecoration(
-                                      hintText: "YY",
-                                      labelText: "Year",
-                                    ),
+                              ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                flex: 2,
+                                child: TextFormField(
+                                  maxLength: 2,
+                                  validator: con.validateYear,
+                                  onSaved: con.saveYear,
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: <TextInputFormatter>[
+                                    FilteringTextInputFormatter.digitsOnly
+                                  ],
+                                  decoration: const InputDecoration(
+                                    hintText: "YY",
+                                    labelText: "Year",
                                   ),
                                 ),
-                              ],
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
-                                ),
-                                primary:
-                                    Color.fromARGB(255, 74, 125, 193),
                               ),
-                              child: Container(
-                                margin: const EdgeInsets.all(12),
-                                child: const Text('Save Card'),
+                            ],
+                          ),
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
-                              onPressed: con.saveCard,
+                              backgroundColor:
+                                  const Color.fromARGB(255, 74, 125, 193),
                             ),
-                          ],
-                        ),
+                            child: Container(
+                              margin: const EdgeInsets.all(12),
+                              child: const Text('Save Card'),
+                            ),
+                            onPressed: con.saveCard,
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -253,6 +254,7 @@ class _Controller {
       //Navigator.of(state.context).pop();
     } catch (e) {
       stopCircularProgress(state.context);
+      // ignore: avoid_print
       if (Constant.devMode) print('====== error: $e');
       showSnackBar(
         context: state.context,

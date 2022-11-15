@@ -1,7 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:cap_project/View_Model/homescreen_viewmodel.dart';
 import 'package:cap_project/model/budgetmonth.dart';
 import 'package:cap_project/model/custom_icons_icons.dart';
-import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/accounts/accounts_screen.dart';
 import 'package:cap_project/viewscreen/budgets_screen.dart';
@@ -23,10 +24,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import '../View_Model/budget_data.dart';
 import '../controller/auth_controller.dart';
 import '../controller/firestore_controller.dart';
-import '../model/budget.dart';
 import '../model/constant.dart';
 import 'components/sizedboxes/fullwidth_sizedbox.dart';
 import '../model/wallet.dart';
@@ -54,7 +53,6 @@ class _UserHomeState extends State<UserHomeScreen> {
   late _Controller con;
   late UserProfile userP;
   late String email;
-  String? _selectedMonth;
 
   var formKey = GlobalKey<FormState>();
 
@@ -155,20 +153,20 @@ class _UserHomeState extends State<UserHomeScreen> {
               ),
               //        USERS     --------------------------------------------
               ListTile(
-                leading: Icon(Icons.people),
-                title: Text('Users List'),
+                leading: const Icon(Icons.people),
+                title: const Text('Users List'),
                 onTap: con.seeUserList,
               ),
               //        Wallet     --------------------------------------------
               ListTile(
-                leading: Icon(Icons.wallet),
-                title: Text('My Wallet'),
+                leading: const Icon(Icons.wallet),
+                title: const Text('My Wallet'),
                 onTap: con.seeWallet,
               ),
               //        SIGN OUT      --------------------------------------------------
               ListTile(
-                leading: Icon(Icons.currency_exchange),
-                title: Text('Currency Exchange'),
+                leading: const Icon(Icons.currency_exchange),
+                title: const Text('Currency Exchange'),
                 onTap: con.currencyPage,
               ),
               //        SIGN OUT      --------------------------------------------------

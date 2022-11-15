@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cap_project/controller/storagecontrollers/budgetstoragecontroller.dart';
 import 'package:cap_project/model/catergories.dart';
 import 'package:cap_project/model/subcategories.dart';
@@ -6,9 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 
 class PurchaseViewModal extends ChangeNotifier {
-
-  TextEditingController  noteController = TextEditingController();
-  TextEditingController  amountController = TextEditingController();
+  TextEditingController noteController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
 
   List<Category> categoriess = [];
   List<SubCategory> subcategoriess = [];
@@ -36,14 +37,13 @@ class PurchaseViewModal extends ChangeNotifier {
 
   Future<void> getCategories() async {
     try {
-      print('hello from getcats');
       load = true;
       notifyListeners();
       categoriess = await BudgetStorageController.getCategories();
       selectedCategories = categoriess.first;
       notifyListeners();
       load = false;
-     await getSubCategories();
+      await getSubCategories();
     } catch (e) {
       load = false;
       notifyListeners();
@@ -51,11 +51,12 @@ class PurchaseViewModal extends ChangeNotifier {
     }
   }
 
-  Future <void> getSubCategories() async {
+  Future<void> getSubCategories() async {
     try {
       subcatLoad = true;
-      selectedsubCategories = SubCategory(subcategoryid: "", label: "Select", categoryid: "");
-      
+      selectedsubCategories =
+          SubCategory(subcategoryid: "", label: "Select", categoryid: "");
+
       subcategoriess = await BudgetStorageController.getSubCategories(
           selectedCategories.categoryid);
       subcategoriess.insert(0, selectedsubCategories);
@@ -91,7 +92,7 @@ class PurchaseViewModal extends ChangeNotifier {
     notifyListeners();
   }
 
-  void render(){
+  void render() {
     notifyListeners();
   }
 }

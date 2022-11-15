@@ -1,5 +1,4 @@
 import 'package:cap_project/controller/auth_controller.dart';
-import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,6 @@ class AddAccountScreen extends StatefulWidget {
 class _AddAccountScreenState extends State<AddAccountScreen> {
   // UI String values
   final String _screenTitle = 'Add Account';
-  final String _titleFieldHint = 'Title';
   final String _defaultText = "Using as the default account for transactions";
   final String _currentSwitchLabel = "Set as default";
 
@@ -35,7 +33,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
   String? _type;
 
   bool _current = false;
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -146,7 +144,7 @@ class _AddAccountScreenState extends State<AddAccountScreen> {
 }
 
 class _Controller {
-  _AddAccountScreenState _state;
+  final _AddAccountScreenState _state;
   _Controller(this._state);
 
   void save() {

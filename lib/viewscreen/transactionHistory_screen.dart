@@ -1,12 +1,9 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, file_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:cap_project/model/userTransaction.dart';
-import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../controller/firestore_controller.dart';
 import '../model/constant.dart';
-import 'view/view_util.dart';
 
 class TransactionHistoryScreen extends StatefulWidget {
   final List<UserTransaction> transList;
@@ -43,7 +40,7 @@ class _TransactionHistoryState extends State<TransactionHistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transaction History'),
+        title: const Text('Transaction History'),
       ),
       body: Column(
         children: [
@@ -54,15 +51,16 @@ class _TransactionHistoryState extends State<TransactionHistoryScreen> {
                     style: Theme.of(context).textTheme.headline6,
                   )
                 : ListView.separated(
-                    separatorBuilder: (context, index) => SizedBox(height: 10),
-                    padding: EdgeInsets.all(10),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 10),
+                    padding: const EdgeInsets.all(10),
                     itemCount: con.transList.length,
                     itemBuilder: (context, index) {
                       return Material(
                         elevation: 17,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 23, 76, 76),
+                            color: const Color.fromARGB(255, 23, 76, 76),
                             border: Border.all(width: 4, color: Colors.blue),
                           ),
                           child: ListTile(
@@ -100,7 +98,7 @@ class _TransactionHistoryState extends State<TransactionHistoryScreen> {
                                                         .toString() &&
                                                 con.transList[index].to_uid ==
                                                     widget.user.uid))
-                                        ? Color.fromARGB(255, 233, 78, 67)
+                                        ? const Color.fromARGB(255, 233, 78, 67)
                                         : Colors.blue,
                                   ),
                                 ),

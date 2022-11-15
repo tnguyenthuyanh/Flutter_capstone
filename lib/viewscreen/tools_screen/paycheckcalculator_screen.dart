@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:cap_project/viewscreen/tools_screen/assets/fedtax.dart';
 import 'package:cap_project/viewscreen/tools_screen/view/paycheck_widgets.dart';
 import 'package:cap_project/viewscreen/tools_screen/view/popup_dialog.dart';
@@ -45,9 +47,9 @@ class _PaycheckCalculatorState extends State<PaycheckCalculatorScreen> {
     stateName = widget.stateTaxDatabase[0].state.toString();
     con.stateTax = widget.stateTaxDatabase[0];
     filingStatus = FedTax.DEFAULT_FILING_STATUS;
-    widget.fedTaxDatabase.forEach((e) {
+    for (var e in widget.fedTaxDatabase) {
       if (e.status == filingStatus) fedTaxDatabase.add(e);
-    });
+    }
   }
 
   void render(fn) => setState(fn);
@@ -86,7 +88,8 @@ class _PaycheckCalculatorState extends State<PaycheckCalculatorScreen> {
                             validator: (value) {
                               return con.validateGrossPay(value);
                             },
-                            onChanged: (value) => {formKey.currentState!.validate()},
+                            onChanged: (value) =>
+                                {formKey.currentState!.validate()},
                             onSaved: (value) {
                               render(() {
                                 con.grossPay = double.parse(value!).abs();
@@ -101,15 +104,17 @@ class _PaycheckCalculatorState extends State<PaycheckCalculatorScreen> {
                       Colors.green.shade900,
                       'Pay Period',
                       payPeriod,
-                      FedTax.PAY_PERIOD.map((e) => e.period.toString()).toList(),
+                      FedTax.PAY_PERIOD
+                          .map((e) => e.period.toString())
+                          .toList(),
                       (value) {
                         render(() {
                           payPeriod = value;
-                          FedTax.PAY_PERIOD.forEach((element) {
+                          for (var element in FedTax.PAY_PERIOD) {
                             if (element.period == value) {
                               con.totalPayPeriod = element.total!;
                             }
-                          });
+                          }
                         });
                       },
                     ),
@@ -122,9 +127,11 @@ class _PaycheckCalculatorState extends State<PaycheckCalculatorScreen> {
                       (value) {
                         render(() {
                           stateName = value;
-                          widget.stateTaxDatabase.forEach((element) {
-                            if (element.state == stateName) con.stateTax = element;
-                          });
+                          for (var element in widget.stateTaxDatabase) {
+                            if (element.state == stateName) {
+                              con.stateTax = element;
+                            }
+                          }
                         });
                       },
                     ),
@@ -141,9 +148,11 @@ class _PaycheckCalculatorState extends State<PaycheckCalculatorScreen> {
                         render(() {
                           filingStatus = value;
                           fedTaxDatabase.clear();
-                          widget.fedTaxDatabase.forEach((element) {
-                            if (element.status == value) fedTaxDatabase.add(element);
-                          });
+                          for (var element in widget.fedTaxDatabase) {
+                            if (element.status == value) {
+                              fedTaxDatabase.add(element);
+                            }
+                          }
                         });
                       },
                     ),
@@ -216,8 +225,8 @@ class _Controller {
     double ficaMedicare = grossPay * (FedTax.FICA_MEDICARE_RATE / 100);
     double fedTaxWithheld = tentativeAnnualWithholding / totalPayPeriod;
     double stateAndLocalTaxes = grossPay * (stateTax.rate! / 100);
-    double netTakeHomePay =
-        grossPay - (ficaSSN + ficaMedicare + fedTaxWithheld + stateAndLocalTaxes);
+    double netTakeHomePay = grossPay -
+        (ficaSSN + ficaMedicare + fedTaxWithheld + stateAndLocalTaxes);
 
     PopupDialog.statefulPopUpWithoutSetState(
       context: context,
@@ -246,8 +255,8 @@ class _Controller {
               children: [
                 PaycheckWidgets.resultContent(
                     context, "Pay Period:", state.payPeriod.toString(), 12),
-                PaycheckWidgets.resultContent(
-                    context, "Periods Per Year:", totalPayPeriod.toString(), 12),
+                PaycheckWidgets.resultContent(context, "Periods Per Year:",
+                    totalPayPeriod.toString(), 12),
               ],
             ),
           ),
@@ -258,8 +267,8 @@ class _Controller {
             width: MediaQuery.of(context).size.width * 0.6,
             child: Column(
               children: [
-                PaycheckWidgets.resultContent(
-                    context, "Filing Status:", state.filingStatus.toString(), 12),
+                PaycheckWidgets.resultContent(context, "Filing Status:",
+                    state.filingStatus.toString(), 12),
               ],
             ),
           ),
@@ -284,14 +293,20 @@ class _Controller {
             width: MediaQuery.of(context).size.width * 0.6,
             child: Column(
               children: [
-                PaycheckWidgets.resultContent(context, "FICA Social Security (6.2%):",
-                    '\$ ' + ficaSSN.toStringAsFixed(2).toString(), 12),
+                PaycheckWidgets.resultContent(
+                    context,
+                    "FICA Social Security (6.2%):",
+                    '\$ ' + ficaSSN.toStringAsFixed(2).toString(),
+                    12),
                 PaycheckWidgets.resultContent(context, "FICA Medicare (1.45%):",
                     '\$ ' + ficaMedicare.toStringAsFixed(2).toString(), 12),
                 PaycheckWidgets.resultContent(context, "Federal Tax Withheld:",
                     '\$ ' + fedTaxWithheld.toStringAsFixed(2).toString(), 12),
-                PaycheckWidgets.resultContent(context, "State & Local Taxes:",
-                    '\$ ' + stateAndLocalTaxes.toStringAsFixed(2).toString(), 12),
+                PaycheckWidgets.resultContent(
+                    context,
+                    "State & Local Taxes:",
+                    '\$ ' + stateAndLocalTaxes.toStringAsFixed(2).toString(),
+                    12),
               ],
             ),
           ),

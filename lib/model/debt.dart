@@ -90,6 +90,7 @@ class Debt {
       var bal = double.parse(value);
       return (bal < 1) ? "Balance too small" : null;
     }
+    return null;
   }
 
   static String? validateOriginal(String? value) {
@@ -97,6 +98,7 @@ class Debt {
       var bal = double.parse(value);
       return (bal < 100) ? "Principal/credit max too small" : null;
     }
+    return null;
   }
 
   static String? validateEditBalance(String? value) {
@@ -105,6 +107,7 @@ class Debt {
       var bal = double.parse(tempVal);
       return (bal < 1) ? "Balance too small" : null;
     }
+    return null;
   }
 
   static String? validateInterest(String? value) {
@@ -112,6 +115,7 @@ class Debt {
       var bal = double.parse(value);
       return (bal < 1) ? "Balance too small" : null;
     }
+    return null;
   }
 
   static String? validateEditInterest(String? value) {
@@ -120,6 +124,7 @@ class Debt {
       var bal = double.parse(tempVal);
       return (bal < 1) ? "Balance too small" : null;
     }
+    return null;
   }
 
   static String? validateEditOriginal(String? value) {
@@ -128,5 +133,6 @@ class Debt {
       var bal = double.parse(tempVal);
       return (bal < 100) ? "Balance too small" : null;
     }
+    return null;
   }
 }

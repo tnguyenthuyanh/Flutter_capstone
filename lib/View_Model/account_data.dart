@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_init_to_null
+
 import 'dart:collection';
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/constant.dart';
@@ -11,7 +13,7 @@ import '../model/accountlist.dart';
 class AccountData extends ChangeNotifier {
   DebugPrinter printer = DebugPrinter(className: "AccountData");
 
-  AccountList _list = AccountList();
+  final AccountList _list = AccountList();
   Account? _selected = null; // account being VIEWED
   Account? _current = null; // account being USED for calculations etc
   ListMode _currentMode = ListMode.view;
@@ -57,6 +59,7 @@ class AccountData extends ChangeNotifier {
 
     object.isCurrent = true;
 
+    // ignore: todo
     // TODO: Remove - debug
     printer.debugPrint("Current updated to: " + object.title);
 
@@ -69,6 +72,7 @@ class AccountData extends ChangeNotifier {
     fsUpdateAllDirty();
     _list.clearDirtyFlags();
 
+    // ignore: todo
     // TODO:Remove-debug
     print("$object.title : isCurrent = " + object.isCurrent.toString());
 

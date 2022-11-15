@@ -1,5 +1,4 @@
 import 'dart:collection';
-import 'package:cap_project/viewscreen/budgetCategory.dart';
 import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
 import 'package:cap_project/viewscreen/components/texts/titletext.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +23,7 @@ class _BudgetsState extends State<BudgetsScreen> {
   late _Controller _con;
 
   // state vars
+  // ignore: todo
   // TODO: Fix this- change current mode to a provider consumer
   BudgetListMode _currentMode = BudgetListMode.view;
 
@@ -107,7 +107,6 @@ class _BudgetsState extends State<BudgetsScreen> {
 class _Controller {
   final _BudgetsState _state;
   _Controller(this._state);
-  BudgetListMode _currentMode = BudgetListMode.view;
 
   // button events
   //---------------------------------------------------------------------------
@@ -163,6 +162,7 @@ class _Controller {
   //---------------------------------------------------------------------------
 
   UnmodifiableListView<Budget> getBudgetListView() {
+    // ignore: unnecessary_null_comparison
     if (Provider.of<BudgetData>(_state.context).budgets != null) {
       return Provider.of<BudgetData>(_state.context).budgets;
     } else {

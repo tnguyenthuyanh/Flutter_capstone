@@ -1,15 +1,10 @@
 // ignore_for_file: avoid_print
 
-import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/View_Model/auth_viewModel.dart';
-import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../controller/auth_controller.dart';
-import '../model/constant.dart';
 import '../model/user.dart';
-import 'view/view_util.dart';
 
 class SignUpScreen extends StatefulWidget {
   static const routeName = '/SignUpScreen';

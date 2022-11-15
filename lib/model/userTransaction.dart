@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, constant_identifier_names, non_constant_identifier_names, unnecessary_this
+
 class UserTransaction {
   static const FROM_UID = 'from_uid';
   static const FROM_EMAIL = 'from_email';

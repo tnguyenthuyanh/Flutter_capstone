@@ -1,15 +1,13 @@
-import 'package:cap_project/View_Model/auth_viewModel.dart';
+// ignore_for_file: file_names
+
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/catergories.dart';
 import 'package:cap_project/model/purchase.dart';
 import 'package:cap_project/model/subcategories.dart';
 import 'package:cap_project/model/user.dart';
-import 'package:cap_project/viewscreen/purchases_screen.dart';
-import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_button/flutter_animated_button.dart';
 import 'package:provider/provider.dart';
 import '../View_Model/purchases_viewModal.dart';
 import '../model/constant.dart';
@@ -42,7 +40,7 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
 
   late String email;
   var formKey = GlobalKey<FormState>();
-  String? dropValue = null;
+  String? dropValue;
   late String transType;
   late PurchaseViewModal purchaseViewModel;
 
@@ -77,21 +75,10 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
           purchaseViewModel.categoriess
               .add(purchaseViewModel.selectedCategories);
         }
-        purchaseViewModel.subcategoriess.forEach((element) {
-          print(element.label);
-        });
-        print('******************************************');
         await purchaseViewModel.getSubCategories();
-        purchaseViewModel.subcategoriess.forEach((element) {
-          print(element.label);
-        });
-        print('******************************************');
+
         if (purchaseViewModel.subcategoriess
             .contains(transaction.subCategory)) {
-          purchaseViewModel.subcategoriess.forEach((element) {
-            print(element.label);
-          });
-
           purchaseViewModel.selectedsubCategories =
               purchaseViewModel.subcategoriess.firstWhere(
                   (element) => element.label == transaction.subCategory);
@@ -149,7 +136,7 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
                   ),
                   Row(
                     children: [
-                      Text('Main Categories:'),
+                      const Text('Main Categories:'),
                       const SizedBox(
                         width: 15.0,
                       ),
@@ -176,7 +163,7 @@ class _AddPurchaseState extends State<AddPurchaseScreen> {
                       ),
                       purchaseViewModel.subcatLoad == false
                           ? purchaseViewModel.subcategoriess.length <= 1
-                              ? Text('No subcategories exists')
+                              ? const Text('No subcategories exists')
                               : DropdownButton(
                                   items: purchaseViewModel.subcategoriess
                                       .map((e) => DropdownMenuItem(
@@ -239,7 +226,7 @@ class _Controller {
     try {
       tempPurchase.transactionType = state.transType;
       tempPurchase.category = state.purchaseViewModel.selectedCategories.label;
-      
+
       if (state.purchaseViewModel.selectedsubCategories !=
           state.purchaseViewModel.subcategoriess.first) {
         tempPurchase.subCategory =
@@ -254,7 +241,7 @@ class _Controller {
         state.widget.userP.purchases.insert(0, tempPurchase);
       } else {
         tempPurchase.docId =
-          state.widget.purchaseList[state.widget.selected].docId;
+            state.widget.purchaseList[state.widget.selected].docId;
         String docId = await FirestoreController.updatePurchase(
           user: state.widget.userP,
           purchase: tempPurchase,
@@ -279,6 +266,7 @@ class _Controller {
       // );
     } catch (e) {
       stopCircularProgress(state.context);
+      // ignore: avoid_print
       if (Constant.devMode) print('***************** uploadFile/Doc error: $e');
       showSnackBar(
           context: state.context,

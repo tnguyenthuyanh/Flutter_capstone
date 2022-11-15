@@ -1,4 +1,4 @@
-// ignore_for_file: constant_identifier_names
+// ignore_for_file: constant_identifier_names, non_constant_identifier_names
 
 import 'package:csv/csv.dart';
 import 'package:flutter/services.dart';
@@ -14,7 +14,7 @@ class FedTax {
     this.wageThreshold,
     this.baseWithholding,
     this.rateOverThreshold,
-  }) {}
+  });
 
   static const STATUS = 'status';
   static const WAGE_THRESHOLD = 'wageThreshold';
@@ -35,10 +35,10 @@ class FedTax {
 
   static Future<List<FedTax>> getFedTaxDatabase() async {
     var fedTaxList = <FedTax>[];
-    final _rawData =
-        await rootBundle.loadString("lib/viewscreen/tools_screen/assets/fedtax_data.csv");
+    final _rawData = await rootBundle
+        .loadString("lib/viewscreen/tools_screen/assets/fedtax_data.csv");
     List<List<dynamic>> _rawList = const CsvToListConverter().convert(_rawData);
-    _rawList.forEach((rowData) {
+    for (var rowData in _rawList) {
       var oneFedTaxRow = FedTax(
         status: rowData[0].toString(),
         wageThreshold: rowData[1].toDouble(),
@@ -46,7 +46,7 @@ class FedTax {
         rateOverThreshold: rowData[3].toDouble(),
       );
       fedTaxList.add(oneFedTaxRow);
-    });
+    }
     return fedTaxList;
   }
 }

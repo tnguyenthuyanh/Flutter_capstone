@@ -2,6 +2,8 @@
 //
 //     final BudgetAmount = BudgetAmountFromJson(jsonString);
 
+// ignore_for_file: file_names, non_constant_identifier_names, camel_case_types, constant_identifier_names
+
 import 'dart:convert';
 
 BudgetAmount BudgetAmountFromJson(String str) =>
@@ -48,7 +50,6 @@ class BudgetAmount {
   String budgetId;
 
   factory BudgetAmount.fromJson(Map<String, dynamic> json) {
-    print('hello from line 51 budgetamount');
     print(json);
     return BudgetAmount(
       ownerId: json[budgetCats.owner_id.toShortString()],
@@ -60,7 +61,6 @@ class BudgetAmount {
       budgetAmountId: json[budgetCats.BudgetAmount_id.toShortString()],
       budgetId: json[budgetCats.budgetId.toShortString()],
     );
-    
   }
 
   Map<String, dynamic> toJson() => {
@@ -74,7 +74,9 @@ class BudgetAmount {
         budgetCats.budgetId.toShortString(): budgetId,
       };
 
-  Map<String, dynamic> toJsonForUpdating(double amount1, {double oldAmount=0}) => {
+  Map<String, dynamic> toJsonForUpdating(double amount1,
+          {double oldAmount = 0}) =>
+      {
         budgetCats.owner_id.toShortString(): ownerId,
         budgetCats.CategoryId.toShortString(): CategoryId,
         budgetCats.CategoryLabel.toShortString(): CategoryLabel,

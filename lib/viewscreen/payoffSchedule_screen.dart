@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +77,7 @@ class _PayoffScheduleState extends State<PayoffScheduleScreen> {
                             validator: Debt.validatePayment,
                             onSaved: con.savePayment,
                           ),*/
-                          Divider(
+                          const Divider(
                             height: 20,
                           ),
                           SleekCircularSlider(
@@ -83,7 +85,7 @@ class _PayoffScheduleState extends State<PayoffScheduleScreen> {
                               size: 250,
                               infoProperties: InfoProperties(
                                 topLabelText: 'payment \n amount',
-                                topLabelStyle: TextStyle(
+                                topLabelStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 mainLabelStyle: TextStyle(
@@ -157,7 +159,7 @@ class _PayoffScheduleState extends State<PayoffScheduleScreen> {
                               size: 250,
                               infoProperties: InfoProperties(
                                 topLabelText: 'payment \n amount',
-                                topLabelStyle: TextStyle(
+                                topLabelStyle: const TextStyle(
                                   fontSize: 20,
                                 ),
                                 mainLabelStyle: TextStyle(
@@ -229,7 +231,6 @@ class _Controller {
   }
 
   String showDollar(double value) {
-    final roundedValue = value.ceil().toInt().toString();
     return '\$' + value.toStringAsFixed(2);
   }
 
@@ -298,15 +299,12 @@ class _Controller {
       double balance = double.parse(state.widget.debt.balance);
       double intrest = double.parse(state.widget.debt.interest) / 100;
       while (balance > 0) {
-        print('balance: ' + balance.toStringAsFixed(2));
         tempInterest = balance * (intrest / 12);
         interestPaid += tempInterest;
-        print('interest: ' + interestPaid.toStringAsFixed(2));
         principal = paymentAmount - tempInterest;
         balance = balance - principal;
         payments++;
       }
-      print(payments);
       state.render(() => state.showSchedule = true);
     }
   }

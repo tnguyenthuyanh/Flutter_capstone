@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/components/textfields/my_textfield.dart';
@@ -7,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'payoffSchedule_screen.dart';
 import '../controller/firestore_controller.dart';
 import '../model/constant.dart';
-import 'debt_screen.dart';
 
 class DebtDetailScreen extends StatefulWidget {
   const DebtDetailScreen({
@@ -33,7 +34,7 @@ class _DebtDetailState extends State<DebtDetailScreen> {
   late _Controller con;
   bool editmode = false;
   var formKey = GlobalKey<FormState>();
-  String? dropValue = null;
+  String? dropValue;
 
   @override
   void initState() {
@@ -154,6 +155,7 @@ class _Controller {
       state.render(() => state.editmode = false);
     } catch (e) {
       stopCircularProgress(state.context);
+      // ignore: avoid_print
       if (Constant.devMode) print('======== failed to get update: $e');
       showSnackBar(
           context: state.context, seconds: 20, message: 'failed to update: $e');

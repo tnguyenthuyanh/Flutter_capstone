@@ -1,7 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:cap_project/View_Model/budgetCategory_ViewModel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +21,7 @@ class _AddCategoryState extends State<AddCategory> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
 
     Future.delayed(Duration.zero, () {
@@ -44,9 +45,9 @@ class _AddCategoryState extends State<AddCategory> {
       ),
       body: Column(
         children: [
-          Text("Select a Category"),
+          const Text("Select a Category"),
           budgetCategory.isCategoriesLoading
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Wrap(
@@ -111,9 +112,9 @@ class _AddCategoryState extends State<AddCategory> {
                     ),
                   ),
                 ),
-          Text("Select a Sub Category"),
+          const Text("Select a Sub Category"),
           budgetCategory.isSubCategoriesLoading
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Wrap(
@@ -182,20 +183,21 @@ class _AddCategoryState extends State<AddCategory> {
             ),
           ),
           budgetCategory.isBudgetAdding
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : ElevatedButton(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       budgetCategory.addBudgetAmount();
                     }
                   },
-                  child: Text("Submit"))
+                  child: const Text("Submit"))
         ],
       ),
     );
   }
 }
 
+// ignore: must_be_immutable
 class MyDialog extends StatelessWidget {
   //create a text editing controller, pass it to right place and validate the text
   //late Controller con;
@@ -221,7 +223,7 @@ class MyDialog extends StatelessWidget {
                 icon: const Icon(Icons.close),
               ),
             ),
-            Text('Add a Category'),
+            const Text('Add a Category'),
           ],
         ),
         content: Form(
@@ -236,7 +238,7 @@ class MyDialog extends StatelessWidget {
           (isFromSubCategory
                   ? budgetCategory.isSubCategoriesAdding
                   : budgetCategory.isCategoriesAdding)
-              ? CircularProgressIndicator(
+              ? const CircularProgressIndicator(
                   backgroundColor: Colors.white,
                 )
               : ElevatedButton(

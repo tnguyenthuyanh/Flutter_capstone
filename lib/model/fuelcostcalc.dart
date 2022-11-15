@@ -1,7 +1,5 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:cap_project/viewscreen/tools_screen/assets/vehicles.dart';
-
 class FuelCostCalc {
   String? docId;
   String? createdBy;
@@ -69,7 +67,8 @@ class FuelCostCalc {
       createdBy: doc[CREATED_BY],
       timestamp: doc[TIMESTAMP] == null
           ? null
-          : DateTime.fromMillisecondsSinceEpoch(doc[TIMESTAMP].millisecondsSinceEpoch),
+          : DateTime.fromMillisecondsSinceEpoch(
+              doc[TIMESTAMP].millisecondsSinceEpoch),
       averageDailyDistance: doc[AVERAGE_DAILY_DISTANCE],
       numOfCommutingDays: doc[NUM_OF_COMMUTING_DAYS],
       cityOverHighway: doc[CITY_OVER_HIGHWAY],
@@ -91,18 +90,19 @@ class FuelCostCalc {
 
   void estimate() {
     // numOfDays * ((dailyMiles/combinedMpg) * fuelPrice)
-    double combinedMpgResult =
-        numOfCommutingDays! * ((averageDailyDistance! / combinedMpg!) * fuelPrice!);
+    double combinedMpgResult = numOfCommutingDays! *
+        ((averageDailyDistance! / combinedMpg!) * fuelPrice!);
 
     // numOfCommutingDays * (((dailyMiles * cityOverHighway)/cityMpg + (dailyMiles * (100-cityOverHighway))/highwayMpg) * fuelPrice)
     // number of commuting days * ((gal of fuel needed for city drive + gal of fuel needed for highway drive) * fuelPrice)
-    double galOfFuelForCity = (averageDailyDistance! * cityOverHighway! / 100) / cityMpg!;
+    double galOfFuelForCity =
+        (averageDailyDistance! * cityOverHighway! / 100) / cityMpg!;
 
     double galOfFuelForHighway =
         (averageDailyDistance! * (1 - cityOverHighway! / 100)) / highwayMpg!;
 
-    double customedMpgResult =
-        numOfCommutingDays! * ((galOfFuelForCity + galOfFuelForHighway) * fuelPrice!);
+    double customedMpgResult = numOfCommutingDays! *
+        ((galOfFuelForCity + galOfFuelForHighway) * fuelPrice!);
     if (cityOverHighway! > 55) {
       lowestEstimatedCost = combinedMpgResult;
       highestEstimateCost = customedMpgResult;

@@ -1,19 +1,16 @@
-import 'dart:collection';
 import 'package:cap_project/model/account.dart';
 import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
-import 'package:cap_project/viewscreen/components/texts/listviewheadertext.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
-import 'package:cap_project/viewscreen/budgetCategory.dart';
 import 'package:cap_project/viewscreen/components/texts/ohnoeserrortext.dart';
 import '../../View_Model/account_data.dart';
 import '../components/buttons/modebuttons/editcancelmode_button.dart';
 import '../components/buttons/mysizedbutton.dart';
 import '../components/textfields/account_textfields.dart';
-import '../components/texts/detail_text.dart';
 import '../components/texts/titletext.dart';
 
+// ignore: todo
 // TODO: add copy to functionality
 class AccountDetailScreen extends StatefulWidget {
   static const routeName = '/accountDetailScreen';
@@ -32,7 +29,6 @@ class _AccountDetailState extends State<AccountDetailScreen> {
 
   // state vars
   Account? _selected;
-  Account? _current;
   bool _editMode = false;
   String? newTitle;
   String? newAccountNumber;
@@ -40,7 +36,7 @@ class _AccountDetailState extends State<AccountDetailScreen> {
   String? newWebsite;
   bool? _isCurrent;
 
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -55,7 +51,6 @@ class _AccountDetailState extends State<AccountDetailScreen> {
   @override
   Widget build(BuildContext context) {
     _selected = Provider.of<AccountData>(context).selected;
-    _current = Provider.of<AccountData>(context).current;
     _selected != null ? _isCurrent = _selected!.isCurrent : _isCurrent = false;
 
     return Scaffold(

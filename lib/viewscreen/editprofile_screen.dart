@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
+
 import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
@@ -35,12 +37,12 @@ class _EditProfileState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Edit Profile'),
+        title: const Text('Edit Profile'),
         actions: [
           editMode
-              ? IconButton(onPressed: con.update, icon: Icon(Icons.check))
+              ? IconButton(onPressed: con.update, icon: const Icon(Icons.check))
               : IconButton(
-                  icon: Icon(Icons.edit),
+                  icon: const Icon(Icons.edit),
                   onPressed: con.edit,
                 )
         ],
@@ -52,20 +54,20 @@ class _EditProfileState extends State<EditProfileScreen> {
           key: formKey,
           child: Column(
             children: [
-              SizedBox(height: 5),
+              const SizedBox(height: 5),
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: '${widget.profile.email}',
+                  hintText: widget.profile.email,
                 ),
                 enabled: false,
               ),
-              SizedBox(height: 5),
-              Text(
+              const SizedBox(height: 5),
+              const Text(
                 'Name',
                 style: TextStyle(color: Colors.green, fontSize: 20),
               ),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Name',
                 ),
                 initialValue: con.orgName,
@@ -74,12 +76,12 @@ class _EditProfileState extends State<EditProfileScreen> {
                 maxLength: 20,
                 enabled: editMode,
               ),
-              Text(
+              const Text(
                 'Bio',
                 style: TextStyle(color: Colors.green, fontSize: 20),
               ),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Introduce yourself...',
                 ),
                 initialValue: con.orgBio,
@@ -90,7 +92,7 @@ class _EditProfileState extends State<EditProfileScreen> {
                 maxLength: 200,
                 enabled: editMode,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Expanded(
@@ -101,24 +103,25 @@ class _EditProfileState extends State<EditProfileScreen> {
                     onPressed: () => showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: Text('Confirmation'),
-                        content: Text(
+                        title: const Text('Confirmation'),
+                        content: const Text(
                             'Are you sure you want to delete this account?'),
                         actions: [
                           ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text('Cancel'),
+                            child: const Text('Cancel'),
                           ),
                           ElevatedButton(
                             onPressed: con.deleteAccount,
-                            child: Text('Yes'),
+                            child: const Text('Yes'),
                           ),
                         ],
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(primary: Colors.redAccent),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.redAccent),
                     child: Text(
                       'Delete Account',
                       style: Theme.of(context).textTheme.button,
@@ -177,6 +180,7 @@ class _Controller {
       Navigator.of(state.context).pop();
     } catch (e) {
       stopCircularProgress(state.context);
+      // ignore: avoid_print
       if (Constant.devMode) print('====== update bio error: $e');
       showSnackBar(
         context: state.context,

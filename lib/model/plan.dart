@@ -7,6 +7,8 @@
 //   timeStamp,
 // }
 
+// ignore_for_file: constant_identifier_names
+
 class Plan {
   static const CREATED_BY = 'createdBy';
   static const TITLE = 'title';

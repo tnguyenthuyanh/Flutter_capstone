@@ -1,12 +1,15 @@
+// ignore_for_file: file_names, prefer_const_constructors_in_immutables, duplicate_ignore, use_key_in_widget_constructors
+
 import 'package:cap_project/model/debt.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../model/custom_icons_icons.dart';
 
+// ignore: duplicate_ignore, duplicate_ignore
 class RedDebtCard extends StatelessWidget {
   final Debt debt;
 
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   RedDebtCard({required this.debt});
 
   @override

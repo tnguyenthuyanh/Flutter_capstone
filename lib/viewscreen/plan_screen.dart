@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/constant.dart';
 import 'package:cap_project/model/plan.dart';
@@ -102,12 +104,13 @@ class _Controller {
     state.render(() {
       //reorder so most recent appears at top
       planList.sort((a, b) {
-        if (a.timeStamp!.isBefore(b.timeStamp!))
-          return 1; //descending order
-        else if (a.timeStamp!.isAfter(b.timeStamp!))
+        if (a.timeStamp!.isBefore(b.timeStamp!)) {
+          return 1;
+        } else if (a.timeStamp!.isAfter(b.timeStamp!)) {
           return -1;
-        else
+        } else {
           return 0;
+        }
       });
     });
   }
@@ -116,10 +119,11 @@ class _Controller {
 
   void onLongPress(int index) async {
     state.render(() {
-      if (toDelete.contains(index))
+      if (toDelete.contains(index)) {
         toDelete.remove(index);
-      else
+      } else {
         toDelete.add(index);
+      }
     });
   }
 
@@ -139,7 +143,8 @@ class _Controller {
           planList.removeAt(toDelete[i]);
         });
       } catch (e) {
-        if (Constant.devMode) print('===== failed to delete photomemo: $e');
+        // ignore: avoid_print
+        if (Constant.devMode) print('===== failed to delete plan: $e');
         break; //quit further processing
       }
     }

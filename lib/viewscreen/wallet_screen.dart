@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
+
 import 'package:cap_project/model/user.dart' as usr;
 import 'package:cap_project/viewscreen/transactionHistory_screen.dart';
 import 'package:cap_project/viewscreen/transferMoney_screen.dart';
@@ -43,13 +45,13 @@ class _WalletState extends State<WalletScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Wallet'),
+        title: const Text('Wallet'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -57,7 +59,7 @@ class _WalletState extends State<WalletScreen> {
                     Colors.black,
                     Colors.blueAccent,
                   ])),
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 height: 300.0,
                 child: Center(
@@ -67,35 +69,35 @@ class _WalletState extends State<WalletScreen> {
                     children: [
                       Text(
                         widget.user.email!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 15.0,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20.0,
                       ),
                       Card(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                             horizontal: 110.0, vertical: 5.0),
                         clipBehavior: Clip.antiAlias,
                         color: Colors.green[50],
                         elevation: 7.0,
                         child: Padding(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 8.0, vertical: 22.0),
                           child: Row(
                             children: [
                               Expanded(
                                 child: Column(
                                   children: [
-                                    Text(
+                                    const Text(
                                       "Current Balance",
                                       style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 19.0,
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 5.0,
                                     ),
                                     Text(
@@ -103,7 +105,7 @@ class _WalletState extends State<WalletScreen> {
                                           ? '\$0'
                                           : '\$' +
                                               widget.wallet.balance.toString(),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 27.0,
                                         color: Colors.blueAccent,
                                       ),
@@ -115,7 +117,7 @@ class _WalletState extends State<WalletScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 30,
                       ),
                       Container(
@@ -123,19 +125,20 @@ class _WalletState extends State<WalletScreen> {
                         width: 110,
                         decoration: BoxDecoration(
                           border: Border.all(color: Colors.white),
-                          gradient: LinearGradient(colors: [
+                          gradient: const LinearGradient(colors: [
                             Color.fromARGB(255, 184, 145, 158),
                             Color.fromARGB(255, 104, 87, 176)
                           ]),
-                          borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(50.0)),
                         ),
                         child: ElevatedButton(
                           onPressed: con.addMoney,
-                          child: Text('Add Money',
+                          child: const Text('Add Money',
                               style:
                                   TextStyle(fontSize: 14, color: Colors.white)),
                           style: ElevatedButton.styleFrom(
-                              primary: Colors.transparent,
+                              backgroundColor: Colors.transparent,
                               shadowColor: Colors.transparent),
                         ),
                       ),
@@ -146,7 +149,7 @@ class _WalletState extends State<WalletScreen> {
             ),
             Container(
               height: MediaQuery.of(context).size.height * 0.45,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
@@ -160,7 +163,7 @@ class _WalletState extends State<WalletScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Divider(
+                    const Divider(
                       color: Colors.yellow,
                       height: 30.0, // space betwen top or bottom item
                     ),
@@ -172,20 +175,20 @@ class _WalletState extends State<WalletScreen> {
                           width: 157,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.white),
-                            gradient: LinearGradient(colors: [
+                            gradient: const LinearGradient(colors: [
                               Colors.green,
                               Color.fromARGB(255, 3, 65, 5),
                             ]),
                             borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
+                                const BorderRadius.all(Radius.circular(10.0)),
                           ),
                           child: ElevatedButton(
                             onPressed: con.transferMoney,
-                            child: Text('Send/Request',
+                            child: const Text('Send/Request',
                                 style: TextStyle(
                                     fontSize: 14, color: Colors.white)),
                             style: ElevatedButton.styleFrom(
-                                primary: Colors.transparent,
+                                backgroundColor: Colors.transparent,
                                 shadowColor: Colors.transparent),
                           ),
                         ),
@@ -194,42 +197,42 @@ class _WalletState extends State<WalletScreen> {
                           width: 157,
                           decoration: BoxDecoration(
                             border: Border.all(color: Colors.white),
-                            gradient: LinearGradient(colors: [
+                            gradient: const LinearGradient(colors: [
                               Colors.blue,
                               Color.fromARGB(255, 12, 22, 131)
                             ]),
                             borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
+                                const BorderRadius.all(Radius.circular(10.0)),
                           ),
                           child: ElevatedButton(
                             onPressed: con.seeHistory,
-                            child: Text('Transaction History',
+                            child: const Text('Transaction History',
                                 style: TextStyle(
                                     fontSize: 14, color: Colors.white)),
                             style: ElevatedButton.styleFrom(
-                                primary: Colors.transparent,
+                                backgroundColor: Colors.transparent,
                                 shadowColor: Colors.transparent),
                           ),
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.yellow,
                       height: 30.0, // space betwen top or bottom item
                     ),
                     Center(
                       child: OutlinedButton.icon(
                         onPressed: con.seeRequests,
-                        label: Text('Friend Requests',
+                        label: const Text('Friend Requests',
                             style: TextStyle(
                                 fontSize: 15,
                                 color: Color.fromARGB(255, 175, 229, 124))),
                         style: OutlinedButton.styleFrom(
-                          side: BorderSide(
+                          side: const BorderSide(
                             color: Colors.transparent,
                           ),
                         ),
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.info_rounded,
                           color: Colors.amber,
                         ),
@@ -272,6 +275,7 @@ class _Controller {
         state.widget.wallet.balance = newWallet.balance;
       });
     } catch (e) {
+      // ignore: avoid_print
       if (Constant.devMode) print('====== AddBalanceScreen error: $e');
       showSnackBar(
         context: state.context,
@@ -299,6 +303,7 @@ class _Controller {
         state.widget.wallet.balance = newWallet.balance;
       });
     } catch (e) {
+      // ignore: avoid_print
       if (Constant.devMode) print('====== TransferMoneyScreen error: $e');
       showSnackBar(
         context: state.context,
@@ -320,6 +325,7 @@ class _Controller {
             ArgKey.user: state.widget.user,
           });
     } catch (e) {
+      // ignore: avoid_print
       if (Constant.devMode) print('====== TransactionHistoryScreen error: $e');
       showSnackBar(
         context: state.context,
@@ -348,6 +354,7 @@ class _Controller {
         state.widget.wallet.balance = newWallet.balance;
       });
     } catch (e) {
+      // ignore: avoid_print
       if (Constant.devMode) print('====== MoneyRequestsScreen error: $e');
       showSnackBar(
         context: state.context,

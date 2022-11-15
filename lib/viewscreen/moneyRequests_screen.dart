@@ -1,7 +1,6 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, file_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
 
 import 'package:cap_project/model/userTransaction.dart';
-import 'package:cap_project/viewscreen/profile_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../controller/firestore_controller.dart';
@@ -47,7 +46,7 @@ class _MoneyRequestsState extends State<MoneyRequestsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Requests'),
+        title: const Text('Requests'),
       ),
       body: Column(
         children: [
@@ -58,15 +57,16 @@ class _MoneyRequestsState extends State<MoneyRequestsScreen> {
                     style: Theme.of(context).textTheme.headline6,
                   )
                 : ListView.separated(
-                    separatorBuilder: (context, index) => SizedBox(height: 10),
-                    padding: EdgeInsets.all(10),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 10),
+                    padding: const EdgeInsets.all(10),
                     itemCount: con.requestList.length,
                     itemBuilder: (context, index) {
                       return Material(
                         elevation: 17,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 97, 86, 3),
+                            color: const Color.fromARGB(255, 97, 86, 3),
                             border: Border.all(width: 4, color: Colors.green),
                           ),
                           child: ListTile(
@@ -74,9 +74,9 @@ class _MoneyRequestsState extends State<MoneyRequestsScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  con.requestList[index].to_email == ""
+                                  con.requestList[index].from_email == ""
                                       ? "N/A"
-                                      : con.requestList[index].to_email,
+                                      : con.requestList[index].from_email,
                                   style: TextStyle(
                                     fontSize: 20.0,
                                     color: Colors.amber[600],
@@ -84,7 +84,7 @@ class _MoneyRequestsState extends State<MoneyRequestsScreen> {
                                 ),
                                 Text(
                                   '\$${con.requestList[index].request_amount}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 19.0,
                                     color: Colors.white,
                                   ),

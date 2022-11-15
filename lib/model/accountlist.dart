@@ -1,5 +1,4 @@
 import 'dart:collection';
-import 'package:cap_project/model/constant.dart';
 import 'package:cap_project/model/storableobject.dart';
 import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'account.dart';

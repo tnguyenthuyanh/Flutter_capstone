@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/constant.dart';
 import 'package:cap_project/model/savings.dart';
@@ -30,7 +32,7 @@ class _AddSavingsState extends State<AddSavingsScreen> {
   late _Controller con;
   late String email;
   var formKey = GlobalKey<FormState>();
-  String? dropValue = null;
+  String? dropValue;
 
   @override
   void initState() {
@@ -98,8 +100,6 @@ class _Controller {
     startCircularProgress(state.context);
 
     try {
-      String docID = state.widget.userP.email;
-
       String docId = await FirestoreController.addSavings(
         user: state.widget.userP,
         savings: tempSavings,
@@ -123,6 +123,7 @@ class _Controller {
       // );
     } catch (e) {
       stopCircularProgress(state.context);
+      // ignore: avoid_print
       if (Constant.devMode) print('***************** uploadFile/Doc error: $e');
       showSnackBar(
           context: state.context,

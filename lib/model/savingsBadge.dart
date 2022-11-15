@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: file_names
 
 class SavingsBadge {
   double amount;

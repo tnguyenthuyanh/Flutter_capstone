@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
@@ -32,7 +34,7 @@ class _AddDebtState extends State<AddDebtScreen> {
   late _Controller con;
   late String email;
   var formKey = GlobalKey<FormState>();
-  String? dropValue = null;
+  String? dropValue;
 
   @override
   void initState() {
@@ -71,21 +73,21 @@ class _AddDebtState extends State<AddDebtScreen> {
                   decoration: const InputDecoration(
                       hintText: 'Original amount/Credit limit'),
                   autocorrect: true,
-                  keyboardType: TextInputType.numberWithOptions(),
+                  keyboardType: const TextInputType.numberWithOptions(),
                   validator: Debt.validateOriginal,
                   onSaved: con.saveOriginal,
                 ),
                 TextFormField(
                   decoration: const InputDecoration(hintText: 'Balance'),
                   autocorrect: true,
-                  keyboardType: TextInputType.numberWithOptions(),
+                  keyboardType: const TextInputType.numberWithOptions(),
                   validator: Debt.validateBalance,
                   onSaved: con.saveBalance,
                 ),
                 TextFormField(
                   decoration: const InputDecoration(hintText: 'Interest'),
                   autocorrect: true,
-                  keyboardType: TextInputType.numberWithOptions(),
+                  keyboardType: const TextInputType.numberWithOptions(),
                   validator: Debt.validateInterest,
                   onSaved: con.saveInterest,
                 ),
@@ -178,6 +180,7 @@ class _Controller {
       );
     } catch (e) {
       stopCircularProgress(state.context);
+      // ignore: avoid_print
       if (Constant.devMode) print('***************** uploadFile/Doc error: $e');
       showSnackBar(
           context: state.context,

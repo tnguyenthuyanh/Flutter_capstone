@@ -1,7 +1,6 @@
 import 'package:cap_project/model/docKeys/docKeys.dart';
 import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import '../../model/account.dart';
 import '../../model/constant.dart';
 import '../auth_controller.dart';
@@ -9,7 +8,7 @@ import '../auth_controller.dart';
 class AccountStorageController {
   static DebugPrinter printer =
       DebugPrinter(className: "AccountStorageController");
-  static String _collectionName = Constant.accounts;
+  static const String _collectionName = Constant.accounts;
 
   static Future<String> add({required Account object}) async {
     printer.setMethodName(methodName: "add");

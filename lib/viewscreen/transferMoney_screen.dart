@@ -1,4 +1,5 @@
-import 'package:cap_project/controller/auth_controller.dart';
+// ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
+
 import 'package:cap_project/model/userTransaction.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,7 +32,7 @@ class _TransferMoneyState extends State<TransferMoneyScreen> {
   late _Controller con;
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   bool editMode = false;
-  usr.UserInfo? eachUser = null;
+  usr.UserInfo? eachUser;
   Transfer transfer = Transfer.Send;
 
   @override
@@ -46,7 +47,7 @@ class _TransferMoneyState extends State<TransferMoneyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Send/Request'),
+        title: const Text('Send/Request'),
       ),
       resizeToAvoidBottomInset: false,
       body: widget.wallet.card_saved == 0
@@ -63,8 +64,8 @@ class _TransferMoneyState extends State<TransferMoneyScreen> {
                 key: formKey,
                 child: Column(
                   children: [
-                    SizedBox(height: 5),
-                    Align(
+                    const SizedBox(height: 5),
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'From',
@@ -77,19 +78,19 @@ class _TransferMoneyState extends State<TransferMoneyScreen> {
                           InputDecoration(hintText: '${widget.user.email}'),
                       enabled: false,
                     ),
-                    SizedBox(height: 14),
-                    Align(
+                    const SizedBox(height: 14),
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'To',
                         style: TextStyle(color: Colors.blue, fontSize: 15),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Container(
                       height: 40,
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(8),
+                      decoration: const BoxDecoration(
                         color: Color.fromARGB(255, 83, 101, 116),
                       ),
                       child: DropdownButtonHideUnderline(
@@ -102,7 +103,7 @@ class _TransferMoneyState extends State<TransferMoneyScreen> {
                               DropdownMenuItem<usr.UserInfo>(
                                 child: Text(
                                   c.email,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                   ),
                                 ),
@@ -112,19 +113,19 @@ class _TransferMoneyState extends State<TransferMoneyScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 14),
-                    Align(
+                    const SizedBox(height: 14),
+                    const Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Send/Request',
                         style: TextStyle(color: Colors.blue, fontSize: 15),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Container(
                       height: 40,
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
+                      padding: const EdgeInsets.all(8),
+                      decoration: const BoxDecoration(
                         color: Color.fromARGB(255, 83, 101, 116),
                       ),
                       child: DropdownButtonHideUnderline(
@@ -140,7 +141,7 @@ class _TransferMoneyState extends State<TransferMoneyScreen> {
                                       .toString()
                                       .split('.')[1]
                                       .replaceFirst('_', ' '),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 15,
                                   ),
                                 ),
@@ -171,7 +172,8 @@ class _TransferMoneyState extends State<TransferMoneyScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        primary: Color.fromARGB(255, 74, 125, 193),
+                        backgroundColor:
+                            const Color.fromARGB(255, 74, 125, 193),
                       ),
                       child: Container(
                         margin: const EdgeInsets.all(12),
@@ -201,7 +203,7 @@ class _Controller {
         double.parse(value) <= 0) {
       return 'Please enter value greater than 0';
     }
-    if (value != null && value.indexOf('.') != -1) {
+    if (value.contains('.')) {
       int a = value.indexOf('.');
       if (value.length - 1 - a > 2) {
         return 'Please enter value in correct format ###.##';
@@ -232,7 +234,7 @@ class _Controller {
   }
 
   Future<void> submit() async {
-    if (state.eachUser == null || state.transfer == null) {
+    if (state.eachUser == null) {
       return;
     }
     FormState? currentState = state.formKey.currentState;
@@ -240,7 +242,7 @@ class _Controller {
     currentState.save();
 
     try {
-      UserTransaction tran = new UserTransaction(
+      UserTransaction tran = UserTransaction(
           from_email: state.widget.user.email!,
           from_uid: state.widget.user.uid,
           to_email: state.eachUser!.email,
@@ -267,6 +269,7 @@ class _Controller {
       );
       Navigator.of(state.context).pop();
     } catch (e) {
+      // ignore: avoid_print
       if (Constant.devMode) print('====== error: $e');
       showSnackBar(
         context: state.context,

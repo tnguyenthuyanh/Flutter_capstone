@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PaycheckWidgets {
@@ -31,7 +30,8 @@ class PaycheckWidgets {
                   height: 2,
                   color: Colors.cyan,
                 ),
-                items: setDatabase.map<DropdownMenuItem<String>>((String value) {
+                items:
+                    setDatabase.map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Padding(
@@ -58,10 +58,10 @@ class PaycheckWidgets {
     Widget sample,
   ) {
     return Container(
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(10), color: backgroundColor),
-      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-      margin: EdgeInsets.only(top: 10, bottom: 10),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10), color: backgroundColor),
+      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+      margin: const EdgeInsets.only(top: 10, bottom: 10),
       child: sample,
     );
   }

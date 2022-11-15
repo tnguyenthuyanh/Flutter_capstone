@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:cap_project/model/constant.dart';
 import 'package:cap_project/model/savings.dart';
 import 'package:cap_project/model/savingsBadge.dart';
@@ -87,9 +89,7 @@ class _Controller {
   _SavingsState state;
   late List<dynamic> savings;
 
-  _Controller(this.state) {
-    List<dynamic> savings = state.widget.userP.savings;
-  }
+  _Controller(this.state);
 
   void savingsPage() async {
     await Navigator.pushNamed(state.context, AddSavingsScreen.routeName,

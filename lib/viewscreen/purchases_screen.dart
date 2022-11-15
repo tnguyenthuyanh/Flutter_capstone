@@ -3,7 +3,6 @@ import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/addPurchase_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../model/constant.dart';
@@ -50,7 +49,6 @@ class _PurchasesState extends State<PurchasesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("$email's Transaction List"),
-      
       ),
       body: widget.userP.purchases.isEmpty
           ? Text(
@@ -92,7 +90,9 @@ class _PurchasesState extends State<PurchasesScreen> {
                       ],
                     ),
                     //onLongPress: () => con.delete(index),
-                    onTap: () => con.addButton(widget.userP.purchases[index].transactionType, index: index),
+                    onTap: () => con.addButton(
+                        widget.userP.purchases[index].transactionType,
+                        index: index),
                   ),
                 );
               },
@@ -136,9 +136,7 @@ class _Controller {
   final selectedColor = Colors.black12;
   final unselectedColor = Colors.black87;
 
-  _Controller(this.state) {
-    List<dynamic> purchaseList = state.widget.userP.purchases;
-  }
+  _Controller(this.state);
 
   void onTap(int index) {
     selected = index;
@@ -149,7 +147,7 @@ class _Controller {
     selected = -1;
   }
 
-  void addButton(String transType, {int index= -1}) async {
+  void addButton(String transType, {int index = -1}) async {
     await Navigator.pushNamed(state.context, AddPurchaseScreen.routeName,
         arguments: {
           ArgKey.purchaseList: state.widget.userP.purchases,

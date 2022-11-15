@@ -1,7 +1,6 @@
 import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/model/constant.dart';
 import 'package:cap_project/viewscreen/ForgotSignIn_screen.dart';
-import 'package:cap_project/viewscreen/components/buttons/myelevatedbutton.dart';
 import 'package:cap_project/viewscreen/signup_screen.dart';
 import 'package:cap_project/viewscreen/userhome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -38,6 +37,7 @@ class _SignInState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: todo
     // TODO: remove or uncomment before merging
     con.signIn();
 
@@ -182,6 +182,7 @@ class _Controller {
         },
       );
     } catch (e) {
+      // ignore: avoid_print
       if (Constant.devMode) print('=== signIn error: $e');
     }
   }

@@ -17,7 +17,6 @@ import '../model/purchase.dart';
 import '../model/user.dart' as usr;
 import '../viewscreen/tools_screen/assets/vehicles.dart';
 import '../model/wallet.dart';
-import 'auth_controller.dart';
 import 'storagecontrollers/accountstoragecontroller.dart';
 
 class FirestoreController {
@@ -782,19 +781,15 @@ class FirestoreController {
   static addPurchase({
     required UserProfile user,
     required Purchase purchase,
-    
   }) async {
     DocumentReference ref = await FirebaseFirestore.instance
         .collection(Constant.users)
         .doc(user.docId)
         .collection(Constant.purchases)
-        .doc()
-        ;
-        purchase.docId = ref.id;
-        await ref.set(purchase.toFirestoreDoc())
-        ;
-        
-        
+        .doc();
+    purchase.docId = ref.id;
+    await ref.set(purchase.toFirestoreDoc());
+
     return ref.id; // doc is auto-generated.
   }
 
@@ -907,7 +902,6 @@ class FirestoreController {
   static updatePurchase({
     required UserProfile user,
     required Purchase purchase,
-
   }) async {
     print('hello from updatepur **************************');
     print(purchase.docId);
@@ -915,15 +909,10 @@ class FirestoreController {
         .collection(Constant.users)
         .doc(user.docId)
         .collection(Constant.purchases)
-        .doc(purchase.docId)
-        ;
-        purchase.docId = ref.id;
-        await ref.set(purchase.toFirestoreDoc())
-        ;
-        
-        
+        .doc(purchase.docId);
+    purchase.docId = ref.id;
+    await ref.set(purchase.toFirestoreDoc());
+
     return ref.id; // doc is auto-generated.
   }
-
- 
 }

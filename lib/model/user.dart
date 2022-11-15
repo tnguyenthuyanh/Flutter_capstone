@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_this, unnecessary_null_comparison, constant_identifier_names, non_constant_identifier_names
+
 enum DocKeyUserprof {
   uid,
   email,
@@ -46,10 +48,7 @@ class UserProfile {
     this.savings = savings == null ? [] : [...savings];
   }
 
-  UserProfile.set(String email, String number) {
-    this.email = email;
-    this.number = number;
-
+  UserProfile.set(this.email, this.number) {
     this.uid;
     this.docId;
     this.hasSpouse = 'false';

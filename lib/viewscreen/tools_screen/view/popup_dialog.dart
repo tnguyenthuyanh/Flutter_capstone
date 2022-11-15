@@ -5,7 +5,7 @@ class PopupDialog {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => Center(
+      builder: (context) => const Center(
         child: CircularProgressIndicator(
           strokeWidth: 10.0,
         ),
@@ -56,9 +56,9 @@ class PopupDialog {
         return StatefulBuilder(
           builder: ((context, setState) {
             return AlertDialog(
-              contentPadding: EdgeInsets.fromLTRB(10, 15, 10, 15),
+              contentPadding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
               title: Center(child: Text(title)),
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20.0))),
               content: Column(
                 mainAxisSize: MainAxisSize.min,

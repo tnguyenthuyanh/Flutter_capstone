@@ -7,7 +7,6 @@ import 'package:cap_project/viewscreen/addBalance_screen.dart';
 import 'package:cap_project/viewscreen/addCard_screen.dart';
 import 'package:cap_project/viewscreen/currency_screen.dart';
 import 'package:cap_project/viewscreen/debtDetail_screen.dart';
-import 'package:cap_project/model/savingsBadge.dart';
 import 'package:cap_project/viewscreen/addPlan_screen.dart';
 import 'package:cap_project/viewscreen/addPurchase_screen.dart';
 import 'package:cap_project/viewscreen/addSavings_screen.dart';
@@ -21,8 +20,6 @@ import 'package:cap_project/viewscreen/debt_screen.dart';
 import 'package:cap_project/viewscreen/purchases_screen.dart';
 import 'package:cap_project/viewscreen/savings_screen.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
-import 'package:cap_project/viewscreen/tools_screen/assets/fedtax.dart';
-import 'package:cap_project/viewscreen/tools_screen/assets/statetax.dart';
 import 'package:cap_project/viewscreen/tools_screen/fuelcostestimator_screen.dart';
 import 'package:cap_project/viewscreen/tools_screen/paycheckcalculator_screen.dart';
 import 'package:cap_project/viewscreen/transactionHistory_screen.dart';
@@ -43,7 +40,6 @@ import 'View_Model/purchases_viewModal.dart';
 import 'firebase_options.dart';
 import 'package:oktoast/oktoast.dart';
 import 'model/constant.dart';
-import 'model/terms.dart';
 import 'viewscreen/accounts/addaccount_screen.dart';
 import 'viewscreen/addbudget_screen.dart';
 import 'viewscreen/budgetdetail_screen.dart';
@@ -93,7 +89,7 @@ class Capstone extends StatelessWidget {
           SignUpScreen.routeName: (context) => const SignUpScreen(),
           ForgotSignIn.routeName: (context) => const ForgotSignIn(),
           MoreInfoScreen.routeName: (context) => const MoreInfoScreen(),
-          CurrencyScreen.routeName: (context) => CurrencyScreen(),
+          CurrencyScreen.routeName: (context) => const CurrencyScreen(),
           UserHomeScreen.routeName: (context) {
             Object? args = ModalRoute.of(context)?.settings.arguments;
             if (args == null) {
@@ -119,7 +115,7 @@ class Capstone extends StatelessWidget {
               return DebtScreen(
                 user: user,
                 userP: userP,
-                debtList: [],
+                debtList: const [],
               );
             }
           },
@@ -150,7 +146,7 @@ class Capstone extends StatelessWidget {
               return AddDebtScreen(
                 user: user,
                 userP: userP,
-                debtList: [],
+                debtList: const [],
               );
             }
           },
@@ -386,7 +382,7 @@ class Capstone extends StatelessWidget {
               return PurchasesScreen(
                 user: user,
                 userP: userP,
-                purchaseList: [],
+                purchaseList: const [],
               );
             }
           },
@@ -420,7 +416,7 @@ class Capstone extends StatelessWidget {
               return SavingsScreen(
                 user: user,
                 userP: userP,
-                savings: [],
+                savings: const [],
               );
             }
           },
@@ -435,7 +431,7 @@ class Capstone extends StatelessWidget {
               return AddSavingsScreen(
                 user: user,
                 userP: userP,
-                savings: [],
+                savings: const [],
               );
             }
           },

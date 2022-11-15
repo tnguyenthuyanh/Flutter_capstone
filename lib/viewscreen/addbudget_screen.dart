@@ -1,11 +1,9 @@
 import 'package:cap_project/controller/auth_controller.dart';
 import 'package:cap_project/controller/firestore_controller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import '../View_Model/budget_data.dart';
-import '../View_Model/validator.dart';
 import '../model/budget.dart';
 import '../model/user.dart';
 import 'components/buttons/savebutton.dart';
@@ -23,7 +21,6 @@ class AddBudgetScreen extends StatefulWidget {
 class _AddBudgetScreenState extends State<AddBudgetScreen> {
   // UI String values
   final String _screenTitle = 'Add Budget';
-  final String _titleFieldHint = 'Title';
   final String _useBudgetText =
       "We'll use this template to create your monthly budgets";
   final String _currentSwitchLabel = "Set as default";
@@ -32,7 +29,7 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
   late _Controller _con;
   String? _title;
   bool _current = false;
-  var _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -102,7 +99,7 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
 }
 
 class _Controller {
-  _AddBudgetScreenState _state;
+  final _AddBudgetScreenState _state;
 
   _Controller(this._state);
 
@@ -116,14 +113,12 @@ class _Controller {
     String? uid = getCurrentUserID();
     List<String> tempIDs = [];
     tempIDs.add(uid!);
-    if (uid == null || uid.isEmpty) {
+    if (uid.isEmpty) {
       showToast("I'm sorry, but I've made a mistake. Your Id is borked");
       return;
     }
 
-    if (uid != null) {
-      tempIDs.add(uid);
-    }
+    tempIDs.add(uid);
 
     UserProfile tempP = await FirestoreController.getUserWithUid(uid: uid);
     if (tempP.shareBudget.compareTo('true') == 0) {

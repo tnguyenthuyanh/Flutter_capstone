@@ -1,5 +1,5 @@
-import 'package:cap_project/viewscreen/tools_screen/assets/vehicles.dart';
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class FuelCostWidgets {
@@ -10,8 +10,8 @@ class FuelCostWidgets {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: Colors.cyan.shade700),
-      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-      margin: EdgeInsets.only(top: 10, bottom: 10),
+      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+      margin: const EdgeInsets.only(top: 10, bottom: 10),
       child: sample,
     );
   }
@@ -29,7 +29,7 @@ class FuelCostWidgets {
             icon,
             color: textColor,
           ),
-          SizedBox(width: 10.0),
+          const SizedBox(width: 10.0),
           Text(
             value,
             style: TextStyle(
@@ -88,7 +88,7 @@ class FuelCostWidgets {
           flex: 1,
           child: Text(
             title,
-            style: TextStyle(fontSize: 10),
+            style: const TextStyle(fontSize: 10),
           ),
         ),
         Expanded(
@@ -96,7 +96,7 @@ class FuelCostWidgets {
           child: SliderTheme(
             data: SliderThemeData(
               valueIndicatorColor: Colors.grey.shade700,
-              trackShape: RectangularSliderTrackShape(),
+              trackShape: const RectangularSliderTrackShape(),
             ),
             child: Slider(
               thumbColor: mpgValue <= 15
@@ -121,7 +121,7 @@ class FuelCostWidgets {
           ),
         ),
         Container(
-            padding: EdgeInsets.all(3),
+            padding: const EdgeInsets.all(3),
             alignment: Alignment.center,
             decoration: BoxDecoration(
                 color: mpgValue <= 15
@@ -131,7 +131,8 @@ class FuelCostWidgets {
                         : Colors.green,
                 borderRadius: BorderRadius.circular(5)),
             child: SizedBox(
-                width: 25, child: Center(child: Text(mpgValue.round().toString())))),
+                width: 25,
+                child: Center(child: Text(mpgValue.round().toString())))),
       ],
     );
   }
@@ -152,7 +153,7 @@ class FuelCostWidgets {
             children: [
               Text(
                 title,
-                style: TextStyle(fontSize: 10),
+                style: const TextStyle(fontSize: 10),
               ),
               Expanded(
                 flex: 1,
@@ -168,14 +169,15 @@ class FuelCostWidgets {
                       height: 2,
                       color: Colors.cyan,
                     ),
-                    items: setDatabase.map<DropdownMenuItem<String>>((String value) {
+                    items: setDatabase
+                        .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             value.toString(),
-                            style: TextStyle(fontSize: 10),
+                            style: const TextStyle(fontSize: 10),
                           ),
                         ),
                       );
@@ -203,8 +205,8 @@ class FuelCostWidgets {
         borderRadius: BorderRadius.circular(10),
         color: color,
       ),
-      padding: EdgeInsets.all(5),
-      margin: EdgeInsets.only(right: 10),
+      padding: const EdgeInsets.all(5),
+      margin: const EdgeInsets.only(right: 10),
       child: value.length <= 25
           ? Text(
               value,
@@ -233,7 +235,7 @@ class FuelCostWidgets {
     return Row(
       children: [
         Container(
-            padding: EdgeInsets.all(3),
+            padding: const EdgeInsets.all(3),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: activeColor,
@@ -245,7 +247,7 @@ class FuelCostWidgets {
           child: SliderTheme(
             data: SliderThemeData(
               valueIndicatorColor: indicatorColor,
-              trackShape: RectangularSliderTrackShape(),
+              trackShape: const RectangularSliderTrackShape(),
             ),
             child: Slider(
               activeColor: activeColor,
@@ -254,8 +256,9 @@ class FuelCostWidgets {
               min: minValue,
               max: maxValue,
               divisions: divisions,
-              label:
-                  value.round().toString() + " / " + ((100 - value).round().toString()),
+              label: value.round().toString() +
+                  " / " +
+                  ((100 - value).round().toString()),
               value: value,
               onChanged: (value) {
                 f(value);
@@ -264,7 +267,7 @@ class FuelCostWidgets {
           ),
         ),
         Container(
-            padding: EdgeInsets.all(3),
+            padding: const EdgeInsets.all(3),
             alignment: Alignment.center,
             decoration: BoxDecoration(
               color: inactiveColor,
@@ -318,7 +321,7 @@ class FuelCostWidgets {
                           color: offColor,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         secondLabel,
                         style: TextStyle(
@@ -335,7 +338,7 @@ class FuelCostWidgets {
                           color: secondColor,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         secondLabel,
                         style: TextStyle(
@@ -352,7 +355,7 @@ class FuelCostWidgets {
             inactiveTrackColor: inactiveTrackColor,
           ),
           Container(
-            padding: EdgeInsets.only(top: 10, bottom: 10),
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
             child: isSwitched ? firstWidget : secondWidget,
           ),
         ],

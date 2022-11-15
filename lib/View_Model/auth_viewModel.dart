@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:cap_project/controller/auth_controller.dart' as auth;
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/signin_screen.dart';
@@ -14,7 +16,6 @@ class AuthViewModel extends ChangeNotifier {
   bool load_forget_password = false;
   UserProfile userprof = UserProfile();
   String? validateEmail(String? input) {
-    print("in validate email");
     if (input == null || input.isEmpty) {
       return "No Email provided";
     }

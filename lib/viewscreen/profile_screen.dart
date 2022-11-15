@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:cap_project/model/constant.dart';
 import 'package:cap_project/model/savings.dart';
 import 'package:cap_project/model/savingsBadge.dart';
@@ -7,7 +5,6 @@ import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animated_button/flutter_animated_button.dart';
 
 import '../controller/firestore_controller.dart';
 import 'editprofile_screen.dart';
@@ -53,9 +50,9 @@ class _ProfileState extends State<ProfileScreen> {
         title: const Text(
           'Profile',
         ),
-        backgroundColor: Color.fromARGB(255, 80, 123, 210),
+        backgroundColor: const Color.fromARGB(255, 80, 123, 210),
         actions: widget.profile.uid == widget.currentUID
-            ? [IconButton(onPressed: con.edit, icon: Icon(Icons.edit))]
+            ? [IconButton(onPressed: con.edit, icon: const Icon(Icons.edit))]
             : null,
       ),
       body: Form(
@@ -70,15 +67,15 @@ class _ProfileState extends State<ProfileScreen> {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomLeft,
                         colors: [
-                      Color.fromARGB(255, 217, 139, 165),
-                      Color.fromARGB(255, 56, 103, 156),
+                      const Color.fromARGB(255, 217, 139, 165),
+                      const Color.fromARGB(255, 56, 103, 156),
                       Colors.orange[200]!,
                     ])),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20.0,
                     ),
                     CircleAvatar(
@@ -87,7 +84,7 @@ class _ProfileState extends State<ProfileScreen> {
                         widget.profile.name == ""
                             ? "N/A"
                             : widget.profile.name[0].toUpperCase(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 20.0,
                           fontFamily: 'Satisfy-Regular',
                           color: Colors.blueAccent,
@@ -95,29 +92,29 @@ class _ProfileState extends State<ProfileScreen> {
                       ),
                       radius: 50,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10.0,
                     ),
                     Text(
                       widget.profile.name == "" ? "N/A" : widget.profile.name,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 25.0,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10.0,
                     ),
                     Text(
                       widget.profile.email,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 15.0,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15.0,
                     ),
                     widget.profile.uid == widget.currentUID
-                        ? SizedBox()
+                        ? const SizedBox()
                         : con.isFriendAdded == 'canAdd'
                             ? Padding(
                                 padding: const EdgeInsets.all(12.0),
@@ -126,20 +123,20 @@ class _ProfileState extends State<ProfileScreen> {
                                   width: 110,
                                   decoration: BoxDecoration(
                                     border: Border.all(color: Colors.white),
-                                    gradient: LinearGradient(colors: [
+                                    gradient: const LinearGradient(colors: [
                                       Color.fromARGB(255, 205, 91, 129),
                                       Color.fromARGB(255, 102, 192, 94)
                                     ]),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(50.0)),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(50.0)),
                                   ),
                                   child: ElevatedButton(
                                     onPressed: con.addFriend,
-                                    child: Text('Add Friend',
+                                    child: const Text('Add Friend',
                                         style: TextStyle(
                                             fontSize: 14, color: Colors.white)),
                                     style: ElevatedButton.styleFrom(
-                                        primary: Colors.transparent,
+                                        backgroundColor: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                   ),
                                 ),
@@ -152,7 +149,7 @@ class _ProfileState extends State<ProfileScreen> {
                                       width: 110,
                                       child: ElevatedButton(
                                         onPressed: null,
-                                        child: Text('Pending',
+                                        child: const Text('Pending',
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 color: Colors.white)),
@@ -162,7 +159,7 @@ class _ProfileState extends State<ProfileScreen> {
                                             RoundedRectangleBorder(
                                                 borderRadius:
                                                     BorderRadius.circular(50.0),
-                                                side: BorderSide(
+                                                side: const BorderSide(
                                                     color: Colors.white)),
                                           ),
                                         ),
@@ -177,7 +174,7 @@ class _ProfileState extends State<ProfileScreen> {
                                           width: 110,
                                           child: ElevatedButton(
                                             onPressed: con.acceptFriend,
-                                            child: Text('Accept',
+                                            child: const Text('Accept',
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     color: Colors.white)),
@@ -188,7 +185,7 @@ class _ProfileState extends State<ProfileScreen> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             50.0),
-                                                    side: BorderSide(
+                                                    side: const BorderSide(
                                                         color: Colors.green)),
                                               ),
                                             ),
@@ -203,7 +200,7 @@ class _ProfileState extends State<ProfileScreen> {
                                               width: 110,
                                               child: ElevatedButton.icon(
                                                 onPressed: null,
-                                                label: Text('Friend',
+                                                label: const Text('Friend',
                                                     style: TextStyle(
                                                         fontSize: 14,
                                                         color: Colors.black)),
@@ -218,17 +215,17 @@ class _ProfileState extends State<ProfileScreen> {
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(50.0),
-                                                        side: BorderSide(
+                                                        side: const BorderSide(
                                                             color:
                                                                 Colors.white)),
                                                   ),
                                                 ),
-                                                icon: Icon(
+                                                icon: const Icon(
                                                     Icons.people_alt_outlined),
                                               ),
                                             ),
                                           )
-                                        : SizedBox(),
+                                        : const SizedBox(),
                     widget.userP.hasSpouse.compareTo('false') == 0 &&
                             widget.profile.uid != widget.currentUID
                         ? Padding(
@@ -238,40 +235,40 @@ class _ProfileState extends State<ProfileScreen> {
                               width: 110,
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.white),
-                                gradient: LinearGradient(colors: [
+                                gradient: const LinearGradient(colors: [
                                   Color.fromARGB(255, 205, 91, 129),
                                   Color.fromARGB(255, 102, 192, 94)
                                 ]),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(50.0)),
+                                borderRadius: const BorderRadius.all(
+                                    Radius.circular(50.0)),
                               ),
                               child: ElevatedButton(
                                 onPressed: con.addSpouse,
-                                child: Text('Add Spouse',
+                                child: const Text('Add Spouse',
                                     style: TextStyle(
                                         fontSize: 14, color: Colors.white)),
                                 style: ElevatedButton.styleFrom(
-                                    primary: Colors.transparent,
+                                    backgroundColor: Colors.transparent,
                                     shadowColor: Colors.transparent),
                               ),
                             ),
                           )
-                        : SizedBox(),
-                    Divider(
+                        : const SizedBox(),
+                    const Divider(
                       color: Colors.yellow,
                       height: 30.0, // space betwen top or bottom item
                     ),
-                    Container(
+                    SizedBox(
                       height: 150,
                       child: Card(
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                             horizontal: 15.0, vertical: 2.0),
                         clipBehavior: Clip.antiAlias,
                         color: Colors.green[50],
                         elevation: 14.0,
                         child: SingleChildScrollView(
                           child: Padding(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 15.0, vertical: 15.0),
                             child: Row(
                               children: [
@@ -281,7 +278,7 @@ class _ProfileState extends State<ProfileScreen> {
                                       alignment: Alignment.topLeft,
                                       child: Text(
                                         widget.profile.bio,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color:
                                               Color.fromARGB(255, 60, 98, 169),
                                           fontSize: 15.0,
@@ -296,14 +293,14 @@ class _ProfileState extends State<ProfileScreen> {
                         ),
                       ),
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.yellow,
                       height: 30.0, // space betwen top or bottom item
                     ),
                     widget.profile.uid == widget.currentUID
                         ? Column(
                             children: [
-                              Text('Share budget with spouse?',
+                              const Text('Share budget with spouse?',
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.white)),
                               Checkbox(
@@ -360,6 +357,7 @@ class _Controller {
             ArgKey.profile: profile,
           });
     } catch (e) {
+      // ignore: avoid_print
       if (Constant.devMode) print('====== editProfile error: $e');
       showSnackBar(
         context: state.context,
@@ -418,6 +416,7 @@ class _Controller {
       stopCircularProgress(state.context);
     } catch (e) {
       stopCircularProgress(state.context);
+      // ignore: avoid_print
       if (Constant.devMode) print('======== failed to get update: $e');
       showSnackBar(
           context: state.context, seconds: 20, message: 'failed to update: $e');
@@ -434,8 +433,6 @@ class _Controller {
 
     UserProfile spouseProfile =
         await FirestoreController.getUser(email: state.widget.userP.spouseUid);
-
-    print(spouseProfile.shareBudgetEmail);
 
     if (spouseProfile.shareBudgetEmail == '') {
       state.widget.userP.shareBudgetEmail = state.widget.userP.spouseUid;
@@ -467,6 +464,7 @@ class _Controller {
       stopCircularProgress(state.context);
     } catch (e) {
       stopCircularProgress(state.context);
+      // ignore: avoid_print
       if (Constant.devMode) print('======== failed to get update: $e');
       showSnackBar(
           context: state.context, seconds: 20, message: 'failed to update: $e');
@@ -486,14 +484,14 @@ class _Controller {
     String tmp = '  ';
     Map<String, dynamic> data = {};
 
-    querySnapshot.docs.forEach((e) {
+    for (var e in querySnapshot.docs) {
       data = e.data() as Map<String, dynamic>;
 
       data.forEach((key, value) {
         tmp = value.toString();
         valueList.add(tmp.toString());
       });
-    });
+    }
 
     for (int i = 0; i < valueList.length; i++) {
       if (savingsAmt < double.parse(valueList[i])) {
@@ -511,17 +509,15 @@ class _Controller {
       getBadgeNumber();
       //print(savingsAmt);
       double target = 0;
-      badgeList.forEach(
-        (element) {
-          if (element.amount <= savingsAmt) {
-            target = element.amount;
-            //print(target);
-            if (element.amount == target) {
-              url = element.badgeUrl;
-            }
+      for (var element in badgeList) {
+        if (element.amount <= savingsAmt) {
+          target = element.amount;
+          //print(target);
+          if (element.amount == target) {
+            url = element.badgeUrl;
           }
-        },
-      );
+        }
+      }
     });
 
     return url;

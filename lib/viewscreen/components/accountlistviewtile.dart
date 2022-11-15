@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import '../../View_Model/account_data.dart';
 import '../../model/account.dart';
@@ -13,6 +12,7 @@ class AccountListViewTile extends StatelessWidget {
   final Color _normalColor = Colors.grey[400]!;
   final Color _selectedForDeleteColor = Colors.red[400]!;
 
+  // ignore: use_key_in_widget_constructors
   AccountListViewTile({required this.object, required this.currentMode});
 
   @override

@@ -50,7 +50,7 @@ class Validator {
       return ValidationError.requiredFieldError;
     }
     // if account rate is less than 1 character
-    else if (value.length < 1) {
+    else if (value.isEmpty) {
       return ValidationError.accountRateError;
     } else if (double.tryParse(value) == null) {
       return ValidationError.accountRateNANError;

@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 class MyListViewTile extends StatelessWidget {
@@ -7,8 +9,6 @@ class MyListViewTile extends StatelessWidget {
   final bool isSelected;
   final Function()? onTapCallback;
   final Color _textColor = Colors.black;
-  final double _leftSize = 38.0;
-  final double _middleSize = 24.0;
   final double _rightSize = 24.0;
 
   const MyListViewTile({

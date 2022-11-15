@@ -1,4 +1,3 @@
-import 'package:cap_project/model/custom_icons_icons.dart';
 import 'package:cap_project/model/debt.dart';
 import 'package:cap_project/model/user.dart';
 import 'package:cap_project/viewscreen/components/cards/debtCards.dart';
@@ -104,9 +103,7 @@ class _Controller {
   _DebtState state;
   // late List<dynamic> debtList;
 
-  _Controller(this.state) {
-    List<dynamic> debtList = state.widget.userP.debts;
-  }
+  _Controller(this.state);
 
   void addButton() async {
     await Navigator.pushNamed(state.context, AddDebtScreen.routeName,

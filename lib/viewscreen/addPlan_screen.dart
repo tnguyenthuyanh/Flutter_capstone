@@ -1,14 +1,15 @@
+// ignore_for_file: file_names
+
 import 'package:cap_project/controller/firestore_controller.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:cap_project/View_Model/auth_viewModel.dart';
 //import 'package:cap_project/viewscreen/components/my_textfield.dart';
 
 import '../model/constant.dart';
 import '../model/plan.dart';
-import '../model/user.dart';
 
+// ignore: must_be_immutable
 class AddPlanScreen extends StatefulWidget {
   static const routeName = 'addPlanScreen';
   final User user;
@@ -144,6 +145,7 @@ class _Controller {
       Navigator.pop(state.context);
     } catch (e) {
       stopCircularProgress(state.context);
+      // ignore: avoid_print
       if (Constant.devMode) print('Error uploading Plan doc to Firestore: $e');
     }
   }

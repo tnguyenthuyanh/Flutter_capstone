@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:cap_project/model/wallet.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,6 +17,7 @@ class AddBalanceScreen extends StatefulWidget {
   final User user;
   final Wallet wallet;
 
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   AddBalanceScreen({required this.user, required this.wallet});
 
   @override
@@ -39,7 +42,7 @@ class _AddBalanceState extends State<AddBalanceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add Balance'),
+        title: const Text('Add Balance'),
       ),
       resizeToAvoidBottomInset: true,
       body: Padding(
@@ -59,12 +62,12 @@ class _AddBalanceState extends State<AddBalanceScreen> {
                     showBackView: false,
                     obscureCardCvv: true,
                     isHolderNameVisible: true,
-                    cardBgColor: Color.fromARGB(255, 7, 71, 123),
+                    cardBgColor: const Color.fromARGB(255, 7, 71, 123),
                     isSwipeGestureEnabled: true,
                     onCreditCardWidgetChange:
                         (CreditCardBrand creditCardBrand) {},
                   )
-                : Align(
+                : const Align(
                     alignment: Alignment.center,
                     child: Text('No card is added')),
             widget.wallet.card_saved == 1
@@ -82,7 +85,7 @@ class _AddBalanceState extends State<AddBalanceScreen> {
                                     enabled: false,
                                     initialValue:
                                         '\$' + widget.wallet.balance.toString(),
-                                    decoration: InputDecoration(
+                                    decoration: const InputDecoration(
                                       labelText: "Wallet Balance",
                                     ),
                                   ),
@@ -110,8 +113,8 @@ class _AddBalanceState extends State<AddBalanceScreen> {
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                       ),
-                                      primary:
-                                          Color.fromARGB(255, 74, 125, 193),
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 74, 125, 193),
                                     ),
                                     child: Container(
                                       margin: const EdgeInsets.all(12),
@@ -132,7 +135,7 @@ class _AddBalanceState extends State<AddBalanceScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8.0),
                       ),
-                      primary: Color.fromARGB(255, 74, 125, 193),
+                      backgroundColor: const Color.fromARGB(255, 74, 125, 193),
                     ),
                     child: Container(
                       margin: const EdgeInsets.all(12),
@@ -161,7 +164,7 @@ class _Controller {
         double.tryParse(value) == null ||
         double.parse(value) <= 0) {
       return 'Please enter value greater than 0';
-    } else if (value != null && value.indexOf('.') != -1) {
+    } else if (value.contains('.')) {
       int n = value.indexOf('.');
       if (value.length - 1 - n > 2) {
         return 'Please enter value in correct format ###.##';
@@ -188,6 +191,7 @@ class _Controller {
       Navigator.of(state.context).pop();
     } catch (e) {
       stopCircularProgress(state.context);
+      // ignore: avoid_print
       if (Constant.devMode) print('====== error: $e');
       showSnackBar(
         context: state.context,
@@ -206,6 +210,7 @@ class _Controller {
       Navigator.of(state.context).pop();
       Navigator.of(state.context).pop();
     } catch (e) {
+      // ignore: avoid_print
       if (Constant.devMode) print('====== AddCardScreen error: $e');
       showSnackBar(
         context: state.context,

@@ -32,7 +32,7 @@ class Vehicle {
     this.displ,
     this.drive,
     this.fuelType,
-  }) {}
+  });
 
   static const CREATED_BY = 'createdBy';
   static const YEAR = 'year';
@@ -84,10 +84,10 @@ class Vehicle {
 
   static Future<List<Vehicle>> getVehicleDatabase() async {
     var vehicleList = <Vehicle>[];
-    final _rawData =
-        await rootBundle.loadString("lib/viewscreen/tools_screen/assets/vehicles.csv");
+    final _rawData = await rootBundle
+        .loadString("lib/viewscreen/tools_screen/assets/vehicles.csv");
     List<List<dynamic>> _rawList = const CsvToListConverter().convert(_rawData);
-    _rawList.forEach((rowData) {
+    for (var rowData in _rawList) {
       var oneVehicle = Vehicle(
         year: rowData[0].toString(),
         make: rowData[1].toString(),
@@ -101,7 +101,7 @@ class Vehicle {
         fuelType: rowData[9].toString(),
       );
       vehicleList.add(oneVehicle);
-    });
+    }
     return vehicleList;
   }
 

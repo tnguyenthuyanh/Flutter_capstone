@@ -1,5 +1,6 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:cap_project/model/budgetAmount.dart';
-import 'package:cap_project/model/catergories.dart';
 import 'package:cap_project/model/docKeys/docKeys.dart';
 import 'enhanceddatetime.dart';
 
@@ -112,5 +113,5 @@ class FakeCategory {
     required this.title,
     required this.amount,
     required this.categoryType,
-  }) {}
+  });
 }

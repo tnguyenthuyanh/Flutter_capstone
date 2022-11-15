@@ -67,7 +67,7 @@ class _CurrencyScreen extends State<CurrencyScreen> {
                           color: Colors.white.withOpacity(0.5),
                           spreadRadius: 10,
                           blurRadius: 10,
-                          offset: Offset(0, 3),
+                          offset: const Offset(0, 3),
                         ),
                       ]),
                   child: const Center(
@@ -145,7 +145,7 @@ class _CurrencyScreen extends State<CurrencyScreen> {
               color: Colors.white.withOpacity(0.5),
               spreadRadius: 10,
               blurRadius: 10,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ]),
       child: Padding(
@@ -174,14 +174,14 @@ class _CurrencyScreen extends State<CurrencyScreen> {
                       children: [
                         Text(
                           country.name!,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 25,
                               fontWeight: FontWeight.w600),
                         ),
                         Text(
                           country.currency!,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white,
                               fontSize: 25,
                               fontWeight: FontWeight.w600),
@@ -201,22 +201,20 @@ class _CurrencyScreen extends State<CurrencyScreen> {
               style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
               initialValue: isDestination ? res.toString() : value.toString(),
               onFieldSubmitted: (val) {
-                if (double.parse(val) != null) {
-                  setState((() {
-                    value = double.parse(val);
-                    _requestConvert();
-                  }));
-                }
+                setState((() {
+                  value = double.parse(val);
+                  _requestConvert();
+                }));
               },
               decoration: InputDecoration(
                 hintText: '0.0',
                 enabled: !isDestination,
                 suffixIcon: Text(
                   country.currency!,
-                  style: TextStyle(fontSize: 20, color: Colors.grey),
+                  style: const TextStyle(fontSize: 20, color: Colors.grey),
                 ),
                 suffixIconConstraints:
-                    BoxConstraints(minWidth: 0, minHeight: 0),
+                    const BoxConstraints(minWidth: 0, minHeight: 0),
               ),
             )
           ],

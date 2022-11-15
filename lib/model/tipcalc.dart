@@ -25,7 +25,7 @@ class TipCalc {
     this.totalPay,
     this.tipPerPerson,
     this.amountPerPerson,
-  }) {}
+  });
 
   static const CREATE_BY = 'createdBy';
   static const TIMESTAMP = 'timestamp';
@@ -62,7 +62,8 @@ class TipCalc {
       createBy: doc[CREATE_BY],
       timestamp: doc[TIMESTAMP] == null
           ? null
-          : DateTime.fromMillisecondsSinceEpoch(doc[TIMESTAMP].millisecondsSinceEpoch),
+          : DateTime.fromMillisecondsSinceEpoch(
+              doc[TIMESTAMP].millisecondsSinceEpoch),
       purchaseAmount: doc[PURCHASE_AMOUNT],
       star: doc[STAR],
       numOfPeople: doc[NUM_OF_PEOPLE],

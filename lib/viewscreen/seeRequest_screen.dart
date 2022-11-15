@@ -1,10 +1,9 @@
-import 'package:cap_project/controller/auth_controller.dart';
+// ignore_for_file: file_names, use_key_in_widget_constructors, prefer_const_constructors_in_immutables
+
 import 'package:cap_project/model/userTransaction.dart';
 import 'package:cap_project/viewscreen/view/view_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:cap_project/model/user.dart' as usr;
 
 import '../controller/firestore_controller.dart';
 import '../model/constant.dart';
@@ -43,14 +42,14 @@ class _SeeRequestState extends State<SeeRequestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Request Info'),
+        title: const Text('Request Info'),
       ),
       resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Align(
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Wallet balance',
@@ -62,8 +61,8 @@ class _SeeRequestState extends State<SeeRequestScreen> {
               decoration: InputDecoration(hintText: '${widget.wallet.balance}'),
               enabled: false,
             ),
-            SizedBox(height: 14),
-            Align(
+            const SizedBox(height: 14),
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Request From',
@@ -72,12 +71,11 @@ class _SeeRequestState extends State<SeeRequestScreen> {
             ),
             TextFormField(
               initialValue: widget.request.from_email,
-              decoration:
-                  InputDecoration(hintText: '${widget.request.from_email}'),
+              decoration: InputDecoration(hintText: widget.request.from_email),
               enabled: false,
             ),
-            SizedBox(height: 14),
-            Align(
+            const SizedBox(height: 14),
+            const Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 'Amount',
@@ -87,23 +85,23 @@ class _SeeRequestState extends State<SeeRequestScreen> {
             TextFormField(
               initialValue: '\$${widget.request.request_amount.toString()}',
               decoration: InputDecoration(
-                  hintText: '${widget.request.request_amount.toString()}'),
+                  hintText: widget.request.request_amount.toString()),
               enabled: false,
             ),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 '${widget.request.timestamp}',
-                style: TextStyle(color: Colors.green, fontSize: 15),
+                style: const TextStyle(color: Colors.green, fontSize: 15),
               ),
             ),
-            SizedBox(height: 14),
+            const SizedBox(height: 14),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                backgroundColor: Color.fromARGB(255, 74, 125, 193),
+                backgroundColor: const Color.fromARGB(255, 74, 125, 193),
               ),
               child: Container(
                 margin: const EdgeInsets.all(12),
@@ -153,6 +151,7 @@ class _Controller {
         Navigator.of(state.context).pop();
       }
     } catch (e) {
+      // ignore: avoid_print
       if (Constant.devMode) print('====== error: $e');
       showSnackBar(
         context: state.context,

@@ -10,7 +10,8 @@ import '../../controller/firestore_controller.dart';
 class FuelCostEstimatorScreen extends StatefulWidget {
   static const routeName = '/fuelCostEstimatorScreen';
 
-  const FuelCostEstimatorScreen({required this.user, Key? key}) : super(key: key);
+  const FuelCostEstimatorScreen({required this.user, Key? key})
+      : super(key: key);
   final User user;
 
   @override
@@ -61,8 +62,9 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
           title: const Text("Fuel Cost Estimator"),
           actions: [
             PopupMenuButton<String>(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-              icon: Icon(Icons.list),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0)),
+              icon: const Icon(Icons.list),
               color: Colors.cyan.shade800,
               onSelected: con.setSelected,
               itemBuilder: (context) => <PopupMenuEntry<String>>[
@@ -104,9 +106,11 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                           keyboardType: TextInputType.number,
                           maxLines: 1,
                           validator: (value) {
-                            return FuelCostCalc.validateAverageDailyDistance(value);
+                            return FuelCostCalc.validateAverageDailyDistance(
+                                value);
                           },
-                          onChanged: (value) => {formKey.currentState!.validate()},
+                          onChanged: (value) =>
+                              {formKey.currentState!.validate()},
                           onSaved: (value) {
                             con.saveAverageDailyDistance(value);
                           },
@@ -119,8 +123,8 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                     padding: const EdgeInsets.fromLTRB(30, 15, 30, 10),
                     child: Row(
                       children: [
-                        Text("Commute Days Per Month: "),
-                        SizedBox(width: 20),
+                        const Text("Commute Days Per Month: "),
+                        const SizedBox(width: 20),
                         Expanded(
                           flex: 1,
                           child: SizedBox(
@@ -128,7 +132,8 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                             height: 50,
                             child: DropdownButtonHideUnderline(
                               child: DropdownButton<int>(
-                                menuMaxHeight: MediaQuery.of(context).size.width * 0.6,
+                                menuMaxHeight:
+                                    MediaQuery.of(context).size.width * 0.6,
                                 value: con.numOfCommutingDays,
                                 icon: const Icon(Icons.arrow_drop_down),
                                 elevation: 16,
@@ -137,7 +142,8 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                                   height: 2,
                                   color: Colors.cyan,
                                 ),
-                                items: days.map<DropdownMenuItem<int>>((int value) {
+                                items: days
+                                    .map<DropdownMenuItem<int>>((int value) {
                                   return DropdownMenuItem<int>(
                                     value: value,
                                     child: Text(value.toString()),
@@ -157,8 +163,8 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                   ),
                   Container(
                     color: con.cityDriveOverHighway <= 50
-                        ? Colors.green.shade900
-                            .withAlpha(100 - (con.cityDriveOverHighway * 2).toInt())
+                        ? Colors.green.shade900.withAlpha(
+                            100 - (con.cityDriveOverHighway * 2).toInt())
                         : Colors.cyan.shade900
                             .withAlpha((con.cityDriveOverHighway - 50).toInt()),
                     padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
@@ -166,7 +172,7 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: const [
                             Icon(Icons.location_city),
                             SizedBox(width: 20),
                             Text("Estimated City Drive / Highway Drive"),
@@ -254,7 +260,8 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                               children: [
                                 Row(
                                   children: [
-                                    Expanded(flex: 2, child: Text("Browse: ... ")),
+                                    const Expanded(
+                                        flex: 2, child: Text("Browse: ... ")),
                                     Expanded(
                                       flex: 4,
                                       child: SizedBox(
@@ -263,19 +270,24 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                                           child: DropdownButtonHideUnderline(
                                             child: DropdownButton<Vehicle>(
                                               isExpanded: true,
-                                              icon: const Icon(Icons.arrow_drop_down),
+                                              icon: const Icon(
+                                                  Icons.arrow_drop_down),
                                               elevation: 16,
-                                              style: const TextStyle(color: Colors.white),
+                                              style: const TextStyle(
+                                                  color: Colors.white),
                                               underline: Container(
                                                 height: 2,
                                                 color: Colors.cyan,
                                               ),
-                                              items: savedPersonalVehicle
-                                                  .map<DropdownMenuItem<Vehicle>>(
-                                                      (Vehicle value) {
-                                                return DropdownMenuItem<Vehicle>(
+                                              items: savedPersonalVehicle.map<
+                                                      DropdownMenuItem<
+                                                          Vehicle>>(
+                                                  (Vehicle value) {
+                                                return DropdownMenuItem<
+                                                    Vehicle>(
                                                   value: value,
-                                                  child: Text(value.year.toString() +
+                                                  child: Text(value.year
+                                                          .toString() +
                                                       " " +
                                                       value.make.toString() +
                                                       " " +
@@ -285,9 +297,11 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                                               onChanged: (Vehicle? value) {
                                                 setState(() {
                                                   con.pickedVehicle = value!;
-                                                  con.highwayMpg =
-                                                      value.highwayMpg!.toDouble();
-                                                  con.cityMpg = value.cityMpg!.toDouble();
+                                                  con.highwayMpg = value
+                                                      .highwayMpg!
+                                                      .toDouble();
+                                                  con.cityMpg =
+                                                      value.cityMpg!.toDouble();
                                                 });
                                               },
                                             ),
@@ -301,18 +315,22 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                                         ? Text(
                                             con.pickedVehicle.year.toString() +
                                                 " " +
-                                                con.pickedVehicle.make.toString() +
+                                                con.pickedVehicle.make
+                                                    .toString() +
                                                 " " +
-                                                con.pickedVehicle.model.toString(),
-                                            style: TextStyle(fontSize: 14),
+                                                con.pickedVehicle.model
+                                                    .toString(),
+                                            style:
+                                                const TextStyle(fontSize: 14),
                                           )
-                                        : Text("Default", style: TextStyle(fontSize: 14)),
+                                        : const Text("Default",
+                                            style: TextStyle(fontSize: 14)),
                                     Text(
                                       con.cityMpg.toInt().toString() +
                                           " City - " +
                                           con.highwayMpg.toInt().toString() +
                                           " Hwy ",
-                                      style: TextStyle(fontSize: 10),
+                                      style: const TextStyle(fontSize: 10),
                                     ),
                                   ],
                                 ),
@@ -329,9 +347,9 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                                   height: 50,
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const Text("Manage Your Vehicles "),
-                                      const Icon(Icons.directions_car_outlined),
+                                    children: const [
+                                      Text("Manage Your Vehicles "),
+                                      Icon(Icons.directions_car_outlined),
                                     ],
                                   ),
                                 ),
@@ -347,7 +365,7 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                          children: const [
                             Icon(Icons.local_gas_station),
                             SizedBox(width: 10),
                             Text("Fuel Price (\$/gal)"),
@@ -358,13 +376,15 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                             Expanded(
                               flex: 6,
                               child: SliderTheme(
-                                data: SliderThemeData(
+                                data: const SliderThemeData(
                                   trackShape: RectangularSliderTrackShape(),
                                 ),
                                 child: Slider(
                                   min: 0.01,
                                   max: 15,
-                                  label: con.fuelPrice.toStringAsFixed(2).toString(),
+                                  label: con.fuelPrice
+                                      .toStringAsFixed(2)
+                                      .toString(),
                                   value: con.fuelPrice,
                                   onChanged: (value) {
                                     setState(() {
@@ -377,7 +397,9 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                             Expanded(
                                 flex: 2,
                                 child: Text("\$ " +
-                                    con.fuelPrice.toStringAsFixed(2).toString() +
+                                    con.fuelPrice
+                                        .toStringAsFixed(2)
+                                        .toString() +
                                     "/gal")),
                           ],
                         ),
@@ -385,8 +407,11 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.3,
-                        20, MediaQuery.of(context).size.width * 0.3, 20),
+                    padding: EdgeInsets.fromLTRB(
+                        MediaQuery.of(context).size.width * 0.3,
+                        20,
+                        MediaQuery.of(context).size.width * 0.3,
+                        20),
                     child: Card(
                       color: Colors.green.shade900,
                       child: InkWell(
@@ -398,9 +423,9 @@ class _FuelCostEstimatorState extends State<FuelCostEstimatorScreen> {
                           height: 50,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text("Estimate "),
-                              const Icon(Icons.sync),
+                            children: const [
+                              Text("Estimate "),
+                              Icon(Icons.sync),
                             ],
                           ),
                         ),
@@ -443,6 +468,7 @@ class _Controller {
       String id = await FirestoreController.saveFuelCostCalc(fuelCostCalc);
       fuelCostCalc.docId = id;
       state.savedFCC.insert(0, fuelCostCalc);
+      // ignore: invalid_use_of_protected_member
       state.setState(() {
         averageDailyDistance = 0;
         numOfCommutingDays = 1;
@@ -521,18 +547,23 @@ class _Controller {
             children: [
               FuelCostWidgets.resultContent(
                   context, "City Mpg:", fuelCostCalc.cityMpg.toString(), 10),
-              FuelCostWidgets.resultContent(
-                  context, "Highway Mpg:", fuelCostCalc.highwayMpg.toString(), 10),
-              FuelCostWidgets.resultContent(
-                  context, "Combined Mpg:", fuelCostCalc.combinedMpg.toString(), 10),
+              FuelCostWidgets.resultContent(context, "Highway Mpg:",
+                  fuelCostCalc.highwayMpg.toString(), 10),
+              FuelCostWidgets.resultContent(context, "Combined Mpg:",
+                  fuelCostCalc.combinedMpg.toString(), 10),
             ],
           ),
         ),
       ),
       FuelCostWidgets.resultContentsContainer(SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
-        child: FuelCostWidgets.resultContent(context, "Fuel Price:",
-            "\$" + fuelCostCalc.fuelPrice!.toStringAsFixed(2).toString() + "/gal", 10),
+        child: FuelCostWidgets.resultContent(
+            context,
+            "Fuel Price:",
+            "\$" +
+                fuelCostCalc.fuelPrice!.toStringAsFixed(2).toString() +
+                "/gal",
+            10),
       )),
       FuelCostWidgets.resultContentsContainer(
         SizedBox(
@@ -543,14 +574,18 @@ class _Controller {
                   context,
                   "Lowest Fuel Cost:",
                   "\$" +
-                      fuelCostCalc.lowestEstimatedCost!.toStringAsFixed(2).toString() +
+                      fuelCostCalc.lowestEstimatedCost!
+                          .toStringAsFixed(2)
+                          .toString() +
                       "/mo",
                   10),
               FuelCostWidgets.resultContent(
                   context,
                   "Highest Fuel Cost:",
                   "\$" +
-                      fuelCostCalc.highestEstimateCost!.toStringAsFixed(2).toString() +
+                      fuelCostCalc.highestEstimateCost!
+                          .toStringAsFixed(2)
+                          .toString() +
                       "/mo",
                   10),
             ],
@@ -590,7 +625,7 @@ class _Controller {
         child: InkWell(
           splashColor: Colors.red.shade500.withAlpha(50),
           onTap: () => Navigator.of(context).pop(),
-          child: SizedBox(
+          child: const SizedBox(
             child: Icon(Icons.close),
           ),
         ),
@@ -609,15 +644,15 @@ class _Controller {
     return StatefulBuilder(
       builder: ((context, setState) {
         return AlertDialog(
-          contentPadding: EdgeInsets.fromLTRB(10, 15, 10, 15),
-          title: Center(child: Text("Saved Fuel Cost Est.")),
-          shape: RoundedRectangleBorder(
+          contentPadding: const EdgeInsets.fromLTRB(10, 15, 10, 15),
+          title: const Center(child: Text("Saved Fuel Cost Est.")),
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20.0))),
           content: Column(mainAxisSize: MainAxisSize.min, children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.75,
               width: MediaQuery.of(context).size.height * 0.9,
-              margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+              margin: const EdgeInsets.fromLTRB(10, 20, 10, 20),
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: state.savedFCC.length,
@@ -633,7 +668,9 @@ class _Controller {
                               .toString()
                               .substring(7, 10) + // dd
                           '-' +
-                          state.savedFCC[index].timestamp!.toString().substring(0, 4)),
+                          state.savedFCC[index].timestamp!
+                              .toString()
+                              .substring(0, 4)),
                       subtitle: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -641,21 +678,29 @@ class _Controller {
                             FuelCostWidgets.resultContent(
                                 context,
                                 "Avg. Daily Distance:",
-                                state.savedFCC[index].averageDailyDistance!.toString() +
+                                state.savedFCC[index].averageDailyDistance!
+                                        .toString() +
                                     " miles",
                                 10),
                             FuelCostWidgets.resultContent(
                                 context,
                                 "Commute Per Month:",
-                                state.savedFCC[index].numOfCommutingDays!.toString() +
+                                state.savedFCC[index].numOfCommutingDays!
+                                        .toString() +
                                     " day(s)",
                                 10),
                             FuelCostWidgets.resultContent(context, "City Mpg:",
                                 state.savedFCC[index].cityMpg!.toString(), 10),
-                            FuelCostWidgets.resultContent(context, "Highway Mpg:",
-                                state.savedFCC[index].highwayMpg!.toString(), 10),
-                            FuelCostWidgets.resultContent(context, "Combined Mpg:",
-                                state.savedFCC[index].combinedMpg!.toString(), 10),
+                            FuelCostWidgets.resultContent(
+                                context,
+                                "Highway Mpg:",
+                                state.savedFCC[index].highwayMpg!.toString(),
+                                10),
+                            FuelCostWidgets.resultContent(
+                                context,
+                                "Combined Mpg:",
+                                state.savedFCC[index].combinedMpg!.toString(),
+                                10),
                             FuelCostWidgets.resultContent(
                                 context,
                                 "Fuel Price:",
@@ -691,11 +736,12 @@ class _Controller {
                               child: InkWell(
                                 splashColor: Colors.red.shade500.withAlpha(50),
                                 onTap: () {
-                                  deleteSavedFCC(
-                                      context, state.savedFCC[index].docId.toString());
-                                  setState(() => state.savedFCC.removeAt(index));
+                                  deleteSavedFCC(context,
+                                      state.savedFCC[index].docId.toString());
+                                  setState(
+                                      () => state.savedFCC.removeAt(index));
                                 },
-                                child: SizedBox(
+                                child: const SizedBox(
                                   child: Icon(Icons.close),
                                 ),
                               ),
@@ -719,10 +765,13 @@ class _Controller {
     try {
       await FirestoreController.deleteSavedFCCItem(docId);
       PopupDialog.circularProgressStop(context);
-      PopupDialog.info(context: context, title: "YAY!", content: "Removed successfully!");
+      PopupDialog.info(
+          context: context, title: "YAY!", content: "Removed successfully!");
     } catch (e) {
       PopupDialog.info(
-          context: context, title: "Oops!", content: "Something went wrong! $e");
+          context: context,
+          title: "Oops!",
+          content: "Something went wrong! $e");
     }
   }
 
@@ -749,10 +798,10 @@ class _Controller {
     late String selectedModel = "";
     late Vehicle picked;
 
-    state.vehicleCSVDatabase.forEach((vehicle) {
+    for (var vehicle in state.vehicleCSVDatabase) {
       yearSet.add(int.parse(vehicle.year!));
       makeSet.add(vehicle.make!);
-    });
+    }
     yearSet = ({...yearSet}.toList());
     yearSet.sort((b, a) => a.compareTo(b));
     makeSet = ({...makeSet}).toList();
@@ -761,9 +810,9 @@ class _Controller {
     return StatefulBuilder(
       builder: ((context, setState) {
         return AlertDialog(
-          contentPadding: EdgeInsets.all(20),
-          title: Center(child: Text("Manage Your Vehicles")),
-          shape: RoundedRectangleBorder(
+          contentPadding: const EdgeInsets.all(20),
+          title: const Center(child: Text("Manage Your Vehicles")),
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(20.0))),
           content: Column(
             mainAxisSize: MainAxisSize.min,
@@ -784,7 +833,8 @@ class _Controller {
                             modelSet.clear();
                             selectedYear = value.toString();
                             if (selectedYear != "" && selectedMake != "") {
-                              modelSet = getModelSet(selectedYear, selectedMake);
+                              modelSet =
+                                  getModelSet(selectedYear, selectedMake);
                             }
                           },
                         );
@@ -804,7 +854,8 @@ class _Controller {
                             modelSet.clear();
                             selectedMake = value.toString();
                             if (selectedYear != "" && selectedMake != "") {
-                              modelSet = getModelSet(selectedYear, selectedMake);
+                              modelSet =
+                                  getModelSet(selectedYear, selectedMake);
                             }
                           },
                         );
@@ -830,14 +881,14 @@ class _Controller {
                           setState(() {
                             selectedModel = value.toString();
                             var el = selectedModel.split(",");
-                            modelSet.forEach((vehicle) {
+                            for (var vehicle in modelSet) {
                               if (vehicle.model == el[0] &&
                                   vehicle.displ == el[1] &&
                                   vehicle.drive == el[2] &&
                                   vehicle.trany == el[3]) {
                                 picked = vehicle;
                               }
-                            });
+                            }
                           });
                         },
                       ),
@@ -851,11 +902,14 @@ class _Controller {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         if (selectedYear != "")
-                          FuelCostWidgets.vehicleLabel(yearColor, selectedYear, 10),
+                          FuelCostWidgets.vehicleLabel(
+                              yearColor, selectedYear, 10),
                         if (selectedMake != "")
-                          FuelCostWidgets.vehicleLabel(makeColor, selectedMake, 10),
+                          FuelCostWidgets.vehicleLabel(
+                              makeColor, selectedMake, 10),
                         if (selectedModel != "")
-                          FuelCostWidgets.vehicleLabel(modelColor, selectedModel, 10),
+                          FuelCostWidgets.vehicleLabel(
+                              modelColor, selectedModel, 10),
                       ],
                     ),
                     selectedModel != ""
@@ -870,7 +924,8 @@ class _Controller {
                                 onTap: () {
                                   saveVehicle(context, picked);
                                   setState(() {
-                                    state.savedPersonalVehicle.insert(0, picked);
+                                    state.savedPersonalVehicle
+                                        .insert(0, picked);
                                     selectedYear = "";
                                     selectedMake = "";
                                     selectedModel = "";
@@ -890,7 +945,7 @@ class _Controller {
                               ),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                   ],
                 ),
               ),
@@ -898,7 +953,7 @@ class _Controller {
                 Container(
                   height: MediaQuery.of(context).size.height * 0.4,
                   width: MediaQuery.of(context).size.width * 0.9,
-                  margin: EdgeInsets.fromLTRB(0, 10, 0, 20),
+                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
                   child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: state.savedPersonalVehicle.length,
@@ -906,9 +961,11 @@ class _Controller {
                       return FuelCostWidgets.resultContentsContainer(
                         ListTile(
                           // Each item
-                          title: Text(state.savedPersonalVehicle[index].year.toString() +
+                          title: Text(state.savedPersonalVehicle[index].year
+                                  .toString() +
                               " " +
-                              state.savedPersonalVehicle[index].make.toString()),
+                              state.savedPersonalVehicle[index].make
+                                  .toString()),
                           subtitle: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Column(
@@ -916,27 +973,32 @@ class _Controller {
                                 FuelCostWidgets.resultContent(
                                     context,
                                     "Model: ",
-                                    state.savedPersonalVehicle[index].model.toString(),
+                                    state.savedPersonalVehicle[index].model
+                                        .toString(),
                                     10),
                                 FuelCostWidgets.resultContent(
                                     context,
                                     "Displacement: ",
-                                    state.savedPersonalVehicle[index].displ.toString(),
+                                    state.savedPersonalVehicle[index].displ
+                                        .toString(),
                                     10),
                                 FuelCostWidgets.resultContent(
                                     context,
                                     "Transmission: ",
-                                    state.savedPersonalVehicle[index].trany.toString(),
+                                    state.savedPersonalVehicle[index].trany
+                                        .toString(),
                                     10),
                                 FuelCostWidgets.resultContent(
                                     context,
                                     "Drive: ",
-                                    state.savedPersonalVehicle[index].drive.toString(),
+                                    state.savedPersonalVehicle[index].drive
+                                        .toString(),
                                     10),
                                 FuelCostWidgets.resultContent(
                                     context,
                                     "Fuel Type: ",
-                                    state.savedPersonalVehicle[index].fuelType.toString(),
+                                    state.savedPersonalVehicle[index].fuelType
+                                        .toString(),
                                     10),
                                 Card(
                                   shape: RoundedRectangleBorder(
@@ -944,17 +1006,20 @@ class _Controller {
                                   ),
                                   color: Colors.red.shade900.withAlpha(90),
                                   child: InkWell(
-                                    splashColor: Colors.red.shade500.withAlpha(50),
+                                    splashColor:
+                                        Colors.red.shade500.withAlpha(50),
                                     onTap: () {
                                       setState(() {
                                         deleteSavedVehicle(
                                             context,
-                                            state.savedPersonalVehicle[index].docId
+                                            state.savedPersonalVehicle[index]
+                                                .docId
                                                 .toString());
-                                        state.savedPersonalVehicle.removeAt(index);
+                                        state.savedPersonalVehicle
+                                            .removeAt(index);
                                       });
                                     },
-                                    child: SizedBox(
+                                    child: const SizedBox(
                                       child: Icon(Icons.close),
                                     ),
                                   ),
@@ -975,7 +1040,7 @@ class _Controller {
                 child: InkWell(
                   splashColor: Colors.red.shade500.withAlpha(50),
                   onTap: () => Navigator.of(context).pop(),
-                  child: SizedBox(
+                  child: const SizedBox(
                     child: Icon(Icons.arrow_back),
                   ),
                 ),
@@ -989,11 +1054,11 @@ class _Controller {
 
   List<Vehicle> getModelSet(String selectedYear, String selectedMake) {
     var result = <Vehicle>[];
-    state.vehicleCSVDatabase.forEach((vehicle) {
+    for (var vehicle in state.vehicleCSVDatabase) {
       if (vehicle.year == selectedYear && vehicle.make == selectedMake) {
         result.add(vehicle);
       }
-    });
+    }
     return result;
   }
 
@@ -1003,6 +1068,7 @@ class _Controller {
       vehicle.createdBy = state.widget.user.email;
       String id = await FirestoreController.saveVehicle(vehicle);
       fuelCostCalc.docId = id;
+      // ignore: invalid_use_of_protected_member
       state.setState(() {});
       PopupDialog.circularProgressStop(context);
     } catch (e) {
@@ -1018,6 +1084,7 @@ class _Controller {
   void deleteSavedVehicle(BuildContext context, String docId) async {
     try {
       await FirestoreController.deleteSavedVehicle(docId);
+      // ignore: invalid_use_of_protected_member
       state.setState(() {
         cityMpg = 1;
         highwayMpg = 1;
@@ -1025,7 +1092,9 @@ class _Controller {
       });
     } catch (e) {
       PopupDialog.info(
-          context: context, title: "Oops!", content: "Something went wrong! $e");
+          context: context,
+          title: "Oops!",
+          content: "Something went wrong! $e");
     }
   }
 }

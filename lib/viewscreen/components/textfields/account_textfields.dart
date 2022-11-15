@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../../../View_Model/validator.dart';
 import '../../../model/account.dart';
-import '../../../model/constant.dart';
 
 class AccountTextFields {
   static Widget titleTextField({

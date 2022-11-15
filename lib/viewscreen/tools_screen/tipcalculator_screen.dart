@@ -39,7 +39,8 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
 
   void asyncInitState() async {
     try {
-      await FirestoreController.getSavedTipCalcList(email: widget.user.email.toString())
+      await FirestoreController.getSavedTipCalcList(
+              email: widget.user.email.toString())
           .then((value) {
         tcList = value;
       });
@@ -61,7 +62,7 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
           title: const Text("Tip Calculator"),
           actions: [
             IconButton(
-              icon: Icon(Icons.list),
+              icon: const Icon(Icons.list),
               onPressed: () => con.getSavedTipCalcList(context),
             )
           ],
@@ -92,7 +93,8 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
                           validator: (value) {
                             return TipCalc.validatePurchaseAmount(value);
                           },
-                          onChanged: (value) => {formKey.currentState!.validate()},
+                          onChanged: (value) =>
+                              {formKey.currentState!.validate()},
                           onSaved: (value) {
                             con.savePurchaseAmount(value);
                           },
@@ -117,7 +119,7 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
                         ),
                         con.star == 0
                             ? Container(
-                                padding: EdgeInsets.all(5),
+                                padding: const EdgeInsets.all(5),
                                 decoration: BoxDecoration(
                                   color: Colors.black.withAlpha(90),
                                 ),
@@ -125,15 +127,17 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
                             : Row(
                                 children: [
                                   Container(
-                                      padding: EdgeInsets.all(5),
+                                      padding: const EdgeInsets.all(5),
                                       decoration: BoxDecoration(
                                         color: Colors.black.withAlpha(90),
                                       ),
-                                      child: Text((con.star * 5).toString() + "%")),
+                                      child: Text(
+                                          (con.star * 5).toString() + "%")),
                                   Card(
                                     // color: Colors.red.shade900,
                                     child: InkWell(
-                                      splashColor: Colors.red.shade500.withAlpha(90),
+                                      splashColor:
+                                          Colors.red.shade500.withAlpha(90),
                                       onTap: () => setState(() {
                                         con.star = 0;
                                       }),
@@ -201,8 +205,11 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.3,
-                        20, MediaQuery.of(context).size.width * 0.3, 20),
+                    padding: EdgeInsets.fromLTRB(
+                        MediaQuery.of(context).size.width * 0.3,
+                        20,
+                        MediaQuery.of(context).size.width * 0.3,
+                        20),
                     child: Card(
                       color: Colors.green.shade900,
                       child: InkWell(
@@ -212,9 +219,9 @@ class _TipCalculatorState extends State<TipCalculatorScreen> {
                           height: 50,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text("Calculate "),
-                              const Icon(Icons.sync),
+                            children: const [
+                              Text("Calculate "),
+                              Icon(Icons.sync),
                             ],
                           ),
                         ),
@@ -283,7 +290,8 @@ class _Controller {
       barrierLabel: "Barrier",
       barrierDismissible: true,
       barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: const Duration(milliseconds: animationTransitionDelay),
+      transitionDuration:
+          const Duration(milliseconds: animationTransitionDelay),
       pageBuilder: (_, __, ___) {
         return Center(
           child: Container(
@@ -301,14 +309,15 @@ class _Controller {
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.grey.shade600,
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+                      borderRadius: const BorderRadius.vertical(
+                          top: Radius.circular(20.0)),
                     ),
                     padding: const EdgeInsets.all(10),
                     child: Row(
                       children: [
-                        Text(
+                        const Text(
                           "Total Pay: ",
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 12,
                             color: Colors.white,
                             decoration: TextDecoration.none,
@@ -319,9 +328,10 @@ class _Controller {
                             color: Colors.black.withAlpha(50),
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           child: Text(
-                            "\$ " + tipcalc.totalPay!.toStringAsFixed(2).toString(),
+                            "\$ " +
+                                tipcalc.totalPay!.toStringAsFixed(2).toString(),
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.white,
@@ -341,9 +351,9 @@ class _Controller {
                       children: [
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               "Total Tip: ",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.white,
                                 decoration: TextDecoration.none,
@@ -354,9 +364,12 @@ class _Controller {
                                 color: Colors.black.withAlpha(50),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              padding: EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(5),
                               child: Text(
-                                "\$ " + tipcalc.totalTip!.toStringAsFixed(2).toString(),
+                                "\$ " +
+                                    tipcalc.totalTip!
+                                        .toStringAsFixed(2)
+                                        .toString(),
                                 style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.white,
@@ -368,9 +381,9 @@ class _Controller {
                         ),
                         Row(
                           children: [
-                            Text(
+                            const Text(
                               "Tip Per Person: ",
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.white,
                                 decoration: TextDecoration.none,
@@ -381,10 +394,12 @@ class _Controller {
                                 color: Colors.black.withAlpha(50),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              padding: EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(5),
                               child: Text(
                                 "\$ " +
-                                    tipcalc.tipPerPerson!.toStringAsFixed(2).toString(),
+                                    tipcalc.tipPerPerson!
+                                        .toStringAsFixed(2)
+                                        .toString(),
                                 style: const TextStyle(
                                   fontSize: 14,
                                   color: Colors.white,
@@ -405,9 +420,9 @@ class _Controller {
                     padding: const EdgeInsets.fromLTRB(10, 30, 10, 30),
                     child: Row(
                       children: [
-                        Text(
+                        const Text(
                           "Amount Per Person: ",
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 12,
                             color: Colors.white,
                             decoration: TextDecoration.none,
@@ -418,10 +433,12 @@ class _Controller {
                             color: Colors.black.withAlpha(50),
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           child: Text(
                             "\$ " +
-                                tipcalc.amountPerPerson!.toStringAsFixed(2).toString(),
+                                tipcalc.amountPerPerson!
+                                    .toStringAsFixed(2)
+                                    .toString(),
                             style: const TextStyle(
                               fontSize: 14,
                               color: Colors.white,
@@ -429,16 +446,16 @@ class _Controller {
                             ),
                           ),
                         ),
-                        SizedBox(width: 20),
+                        const SizedBox(width: 20),
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.green.withAlpha(90),
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                           child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.person,
                                 size: 14,
                               ),
@@ -457,10 +474,14 @@ class _Controller {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.3,
-                        20, MediaQuery.of(context).size.width * 0.3, 20),
+                    padding: EdgeInsets.fromLTRB(
+                        MediaQuery.of(context).size.width * 0.3,
+                        20,
+                        MediaQuery.of(context).size.width * 0.3,
+                        20),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0)),
+                      borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(20.0)),
                       color: Colors.cyan.shade900,
                     ),
                     child: Card(
@@ -515,6 +536,7 @@ class _Controller {
       String id = await FirestoreController.saveTipCalc(tipcalc);
       tipcalc.docId = id;
       state.tcList.insert(0, tipcalc);
+      // ignore: invalid_use_of_protected_member
       state.setState(() {
         numOfPeople = 1;
         star = 0;
@@ -552,14 +574,15 @@ class _Controller {
       barrierLabel: "Barrier",
       barrierDismissible: true,
       barrierColor: Colors.black.withOpacity(0.5),
-      transitionDuration: const Duration(milliseconds: animationTransitionDelay),
+      transitionDuration:
+          const Duration(milliseconds: animationTransitionDelay),
       pageBuilder: (_, __, ___) {
         return StatefulBuilder(
           builder: ((context, setState) {
             return AlertDialog(
-              contentPadding: EdgeInsets.only(left: 10, right: 10),
-              title: Center(child: Text("Saved Results")),
-              shape: RoundedRectangleBorder(
+              contentPadding: const EdgeInsets.only(left: 10, right: 10),
+              title: const Center(child: Text("Saved Results")),
+              shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(20.0))),
               content: Column(
                 children: [
@@ -569,7 +592,7 @@ class _Controller {
                     decoration: BoxDecoration(
                         color: Colors.black.withAlpha(90),
                         borderRadius: BorderRadius.circular(20)),
-                    margin: EdgeInsets.fromLTRB(10, 20, 10, 20),
+                    margin: const EdgeInsets.fromLTRB(10, 20, 10, 20),
                     child: ListView.builder(
                       shrinkWrap: true,
                       itemCount: state.tcList.length,
@@ -577,55 +600,63 @@ class _Controller {
                         return ListTile(
                           // Each item
                           title: state.tcList[index].note == ""
-                              ? Text("Unknown",
+                              ? const Text("Unknown",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 25.0,
                                   ))
                               : Text(state.tcList[index].note.toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 25.0,
                                   )),
                           subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 10.0, bottom: 10),
+                            padding:
+                                const EdgeInsets.only(top: 10.0, bottom: 10),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
                                   children: [
                                     StarRating(
-                                        rating: double.parse(
-                                            state.tcList[index].star.toString()),
+                                        rating: double.parse(state
+                                            .tcList[index].star
+                                            .toString()),
                                         onRatingChanged: (value) {},
                                         color: Colors.yellow),
-                                    SizedBox(width: 10),
-                                    Icon(
+                                    const SizedBox(width: 10),
+                                    const Icon(
                                       Icons.person,
                                       size: 14,
                                     ),
                                     Text(
-                                      state.tcList[index].numOfPeople!.toString(),
+                                      state.tcList[index].numOfPeople!
+                                          .toString(),
                                       style: const TextStyle(
                                         fontSize: 14,
                                         color: Colors.white,
                                         decoration: TextDecoration.none,
                                       ),
                                     ),
-                                    SizedBox(width: 10),
+                                    const SizedBox(width: 10),
                                     Card(
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(40.0),
+                                        borderRadius:
+                                            BorderRadius.circular(40.0),
                                       ),
                                       color: Colors.red.shade900.withAlpha(90),
                                       child: InkWell(
-                                        splashColor: Colors.red.shade500.withAlpha(50),
+                                        splashColor:
+                                            Colors.red.shade500.withAlpha(50),
                                         onTap: () {
-                                          deleteSavedCalcTip(context,
-                                              state.tcList[index].docId.toString());
-                                          setState(() => state.tcList.removeAt(index));
+                                          deleteSavedCalcTip(
+                                              context,
+                                              state.tcList[index].docId
+                                                  .toString());
+                                          setState(() =>
+                                              state.tcList.removeAt(index));
                                         },
-                                        child: SizedBox(
+                                        child: const SizedBox(
                                           child: Icon(Icons.close),
                                         ),
                                       ),
@@ -674,7 +705,7 @@ class _Controller {
                     child: InkWell(
                       splashColor: Colors.red.shade500.withAlpha(50),
                       onTap: () => Navigator.of(context).pop(),
-                      child: SizedBox(
+                      child: const SizedBox(
                         child: Icon(Icons.arrow_back),
                       ),
                     ),
@@ -709,10 +740,13 @@ class _Controller {
     try {
       await FirestoreController.deleteSavedTipCalcItem(docId);
       PopupDialog.circularProgressStop(context);
-      PopupDialog.info(context: context, title: "YAY!", content: "Removed successfully!");
+      PopupDialog.info(
+          context: context, title: "YAY!", content: "Removed successfully!");
     } catch (e) {
       PopupDialog.info(
-          context: context, title: "Oops!", content: "Something went wrong! $e");
+          context: context,
+          title: "Oops!",
+          content: "Something went wrong! $e");
     }
   }
 }
