@@ -145,7 +145,7 @@ class _ProfileState extends State<ProfileScreen> {
                                 ? Padding(
                                     padding: const EdgeInsets.all(12.0),
                                     child: SizedBox(
-                                      height: 40,
+                                      height: 30,
                                       width: 110,
                                       child: ElevatedButton(
                                         onPressed: null,
@@ -170,7 +170,7 @@ class _ProfileState extends State<ProfileScreen> {
                                     ? Padding(
                                         padding: const EdgeInsets.all(12.0),
                                         child: SizedBox(
-                                          height: 40,
+                                          height: 30,
                                           width: 110,
                                           child: ElevatedButton(
                                             onPressed: con.acceptFriend,
@@ -196,7 +196,7 @@ class _ProfileState extends State<ProfileScreen> {
                                         ? Padding(
                                             padding: const EdgeInsets.all(12.0),
                                             child: SizedBox(
-                                              height: 40,
+                                              height: 30,
                                               width: 110,
                                               child: ElevatedButton.icon(
                                                 onPressed: null,
@@ -231,7 +231,7 @@ class _ProfileState extends State<ProfileScreen> {
                         ? Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Container(
-                              height: 40,
+                              height: 30,
                               width: 110,
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.white),
@@ -256,7 +256,7 @@ class _ProfileState extends State<ProfileScreen> {
                         : const SizedBox(),
                     const Divider(
                       color: Colors.yellow,
-                      height: 30.0, // space betwen top or bottom item
+                      height: 20.0, // space betwen top or bottom item
                     ),
                     SizedBox(
                       height: 150,
