@@ -2,7 +2,6 @@ import 'package:cap_project/model/budgetAmount.dart';
 import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:oktoast/oktoast.dart';
 
 import '../../model/budget.dart';
 import '../../model/catergories.dart';
@@ -101,7 +100,7 @@ class BudgetStorageController {
       }).toList());
       return categories;
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 
@@ -123,7 +122,7 @@ class BudgetStorageController {
 
       return subcategories;
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 
@@ -138,7 +137,7 @@ class BudgetStorageController {
 
       return true;
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 
@@ -166,7 +165,7 @@ class BudgetStorageController {
 
       return true;
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 
@@ -197,7 +196,7 @@ class BudgetStorageController {
 
       return true;
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 
@@ -222,7 +221,6 @@ class BudgetStorageController {
   }
 
   static Future<bool> deleteCategory(String categoryid) async {
-    print(categoryid);
     try {
       await FirebaseFirestore.instance
           .collection(Constant.categories)
@@ -231,7 +229,7 @@ class BudgetStorageController {
 
       return true;
     } catch (e) {
-      throw (e);
+      rethrow;
     }
   }
 }

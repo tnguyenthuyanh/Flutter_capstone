@@ -52,8 +52,7 @@ class AccountStorageController {
         if (temp != null) {
           result.add(temp);
 
-          printer.debugPrint("added " +
-              "id: " +
+          printer.debugPrint("added " "id: " +
               temp.docId! +
               ", " +
               temp.serialize().toString() +

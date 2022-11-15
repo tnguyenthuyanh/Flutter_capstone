@@ -38,7 +38,6 @@ class BudgetCategoryViewModel extends ChangeNotifier {
     for (Category i in categoriess) {
       i.isSelected = false;
     }
-    print(value);
     categoriess[value].isSelected = true;
     getSubCategories();
     notifyListeners();
@@ -87,7 +86,6 @@ class BudgetCategoryViewModel extends ChangeNotifier {
     for (SubCategory i in subCategoriess) {
       i.isSelected = false;
     }
-    print(value);
     subCategoriess[value].isSelected = true;
     notifyListeners();
   }

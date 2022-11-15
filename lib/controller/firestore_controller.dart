@@ -70,7 +70,7 @@ class FirestoreController {
         .orderBy(Plan.TIMESTAMP, descending: true)
         .get();
     var result = <Plan>[];
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       if (doc.data() != null) {
         var document = doc.data() as Map<String, dynamic>;
         var p = Plan.fromFirestoreDoc(doc: document, docId: doc.id);
@@ -78,7 +78,7 @@ class FirestoreController {
           result.add(p);
         }
       }
-    });
+    }
     return result;
   }
 
@@ -284,7 +284,7 @@ class FirestoreController {
 
     var result = <usr.UserInfo>[];
 
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       if (doc.data() != null) {
         var document = doc.data() as Map<String, dynamic>;
         var p = usr.UserInfo.fromFirestoreDoc(
@@ -295,7 +295,7 @@ class FirestoreController {
           if (p.uid != currentUID) result.add(p);
         }
       }
-    });
+    }
     return result;
   }
 
@@ -360,22 +360,26 @@ class FirestoreController {
         .where('uid_send', isEqualTo: currentUID)
         .where('uid_receive', isEqualTo: friendUID)
         .get();
-    for (int i = 0; i < querySnapshot.size; i++)
-      if (querySnapshot.docs[i]['accept'] == 0)
+    for (int i = 0; i < querySnapshot.size; i++) {
+      if (querySnapshot.docs[i]['accept'] == 0) {
         return 'Pending';
-      else
+      } else {
         return 'isFriend';
+      }
+    }
 
     QuerySnapshot querySnapshot1 = await FirebaseFirestore.instance
         .collection(Constant.USERFRIENDS_COLLECTION)
         .where('uid_send', isEqualTo: friendUID)
         .where('uid_receive', isEqualTo: currentUID)
         .get();
-    for (int i = 0; i < querySnapshot1.size; i++)
-      if (querySnapshot1.docs[i]['accept'] == 0)
+    for (int i = 0; i < querySnapshot1.size; i++) {
+      if (querySnapshot1.docs[i]['accept'] == 0) {
         return 'Accept';
-      else
+      } else {
         return 'isFriend';
+      }
+    }
 
     return 'canAdd';
   }
@@ -480,7 +484,7 @@ class FirestoreController {
         .where(Wallet.UID, isEqualTo: user.uid)
         .get();
     if (querySnapshot.size == 0) {
-      Wallet newWallet = new Wallet();
+      Wallet newWallet = Wallet();
       newWallet.uid = user.uid;
       newWallet.email = user.email!;
       await FirebaseFirestore.instance
@@ -516,8 +520,9 @@ class FirestoreController {
       if (p != null) {
         result.add(p);
       }
-    } else
-      return new Wallet();
+    } else {
+      return Wallet();
+    }
 
     return result[0];
   }
@@ -613,12 +618,13 @@ class FirestoreController {
     }
 
     result.sort((a, b) {
-      if (a.timestamp!.isBefore(b.timestamp!))
-        return 1; // descending order
-      else if (a.timestamp!.isAfter(b.timestamp!))
+      if (a.timestamp!.isBefore(b.timestamp!)) {
+        return 1;
+      } else if (a.timestamp!.isAfter(b.timestamp!)) {
         return -1;
-      else
+      } else {
         return 0;
+      }
     });
 
     return result;
@@ -677,10 +683,10 @@ class FirestoreController {
         .orderBy(TipCalc.TIMESTAMP, descending: true)
         .get();
     var result = <TipCalc>[];
-    querySnapshot.docs.forEach((m) {
+    for (var m in querySnapshot.docs) {
       var data = m.data() as Map<String, dynamic>;
       result.add(TipCalc.fromFirestoreDoc(docId: m.id, doc: data));
-    });
+    }
     return result;
   }
 
@@ -732,10 +738,10 @@ class FirestoreController {
         .orderBy(FuelCostCalc.TIMESTAMP, descending: true)
         .get();
     var result = <FuelCostCalc>[];
-    querySnapshot.docs.forEach((m) {
+    for (var m in querySnapshot.docs) {
       var data = m.data() as Map<String, dynamic>;
       result.add(FuelCostCalc.fromFirestoreDoc(docId: m.id, doc: data));
-    });
+    }
     return result;
   }
 
@@ -763,10 +769,10 @@ class FirestoreController {
         .where(Vehicle.CREATED_BY, isEqualTo: email)
         .get();
     var result = <Vehicle>[];
-    querySnapshot.docs.forEach((m) {
+    for (var m in querySnapshot.docs) {
       var data = m.data() as Map<String, dynamic>;
       result.add(Vehicle.fromFirestoreDoc(docId: m.id, doc: data));
-    });
+    }
     return result;
   }
 
@@ -782,7 +788,7 @@ class FirestoreController {
     required UserProfile user,
     required Purchase purchase,
   }) async {
-    DocumentReference ref = await FirebaseFirestore.instance
+    DocumentReference ref = FirebaseFirestore.instance
         .collection(Constant.users)
         .doc(user.docId)
         .collection(Constant.purchases)
@@ -834,13 +840,13 @@ class FirestoreController {
         .where(usr.UserInfo.SEARCH_EMAIL, arrayContains: searchKey)
         .get();
 
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       var p = usr.UserInfo.fromFirestoreDoc(
         doc: doc.data() as Map<String, dynamic>,
         docId: doc.id,
       );
       if (p != null) results.add(p);
-    });
+    }
 
     return results;
   }
@@ -855,13 +861,13 @@ class FirestoreController {
         .where(usr.UserInfo.SEARCH_NAME, arrayContains: searchKey)
         .get();
 
-    querySnapshot.docs.forEach((doc) {
+    for (var doc in querySnapshot.docs) {
       var p = usr.UserInfo.fromFirestoreDoc(
         doc: doc.data() as Map<String, dynamic>,
         docId: doc.id,
       );
       if (p != null) results.add(p);
-    });
+    }
 
     return results;
   }
@@ -903,9 +909,7 @@ class FirestoreController {
     required UserProfile user,
     required Purchase purchase,
   }) async {
-    print('hello from updatepur **************************');
-    print(purchase.docId);
-    DocumentReference ref = await FirebaseFirestore.instance
+    DocumentReference ref = FirebaseFirestore.instance
         .collection(Constant.users)
         .doc(user.docId)
         .collection(Constant.purchases)
