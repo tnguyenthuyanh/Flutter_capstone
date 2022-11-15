@@ -79,7 +79,7 @@ class _ProfileState extends State<ProfileScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     SizedBox(
-                      height: 20.0,
+                      height: 10.0,
                     ),
                     CircleAvatar(
                       backgroundColor: Colors.brown.shade100,
@@ -96,7 +96,7 @@ class _ProfileState extends State<ProfileScreen> {
                       radius: 50,
                     ),
                     SizedBox(
-                      height: 10.0,
+                      height: 5.0,
                     ),
                     Text(
                       widget.profile.name == "" ? "N/A" : widget.profile.name,
@@ -105,7 +105,7 @@ class _ProfileState extends State<ProfileScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 10.0,
+                      height: 5.0,
                     ),
                     Text(
                       widget.profile.email,
@@ -114,7 +114,7 @@ class _ProfileState extends State<ProfileScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: 15.0,
+                      height: 10.0,
                     ),
                     widget.profile.uid == widget.currentUID
                         ? SizedBox()
@@ -148,7 +148,7 @@ class _ProfileState extends State<ProfileScreen> {
                                 ? Padding(
                                     padding: const EdgeInsets.all(12.0),
                                     child: SizedBox(
-                                      height: 40,
+                                      height: 30,
                                       width: 110,
                                       child: ElevatedButton(
                                         onPressed: null,
@@ -173,7 +173,7 @@ class _ProfileState extends State<ProfileScreen> {
                                     ? Padding(
                                         padding: const EdgeInsets.all(12.0),
                                         child: SizedBox(
-                                          height: 40,
+                                          height: 30,
                                           width: 110,
                                           child: ElevatedButton(
                                             onPressed: con.acceptFriend,
@@ -199,7 +199,7 @@ class _ProfileState extends State<ProfileScreen> {
                                         ? Padding(
                                             padding: const EdgeInsets.all(12.0),
                                             child: SizedBox(
-                                              height: 40,
+                                              height: 30,
                                               width: 110,
                                               child: ElevatedButton.icon(
                                                 onPressed: null,
@@ -234,7 +234,7 @@ class _ProfileState extends State<ProfileScreen> {
                         ? Padding(
                             padding: const EdgeInsets.all(12.0),
                             child: Container(
-                              height: 40,
+                              height: 30,
                               width: 110,
                               decoration: BoxDecoration(
                                 border: Border.all(color: Colors.white),
@@ -259,10 +259,10 @@ class _ProfileState extends State<ProfileScreen> {
                         : SizedBox(),
                     Divider(
                       color: Colors.yellow,
-                      height: 30.0, // space betwen top or bottom item
+                      height: 20.0, // space betwen top or bottom item
                     ),
                     Container(
-                      height: 150,
+                      height: 120,
                       child: Card(
                         margin: EdgeInsets.symmetric(
                             horizontal: 15.0, vertical: 2.0),
