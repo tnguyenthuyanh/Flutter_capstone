@@ -12,8 +12,6 @@ import 'components/buttons/mysizedbutton.dart';
 import 'components/textfields/budgettitle_textfield.dart';
 import 'components/texts/titletext.dart';
 
-// ignore: todo
-// TODO: add copy to functionality
 class BudgetDetailScreen extends StatefulWidget {
   static const routeName = '/budgetDetailScreen';
   static const _screenName = "Budget Detail";
@@ -25,7 +23,8 @@ class BudgetDetailScreen extends StatefulWidget {
 }
 
 class _BudgetDetailState extends State<BudgetDetailScreen> {
-  DebugPrinter printer = DebugPrinter(className: "BudgetDetailState");
+  DebugPrinter printer =
+      DebugPrinter(className: "BudgetDetailState", printOff: true);
 
   late _Controller _con;
 

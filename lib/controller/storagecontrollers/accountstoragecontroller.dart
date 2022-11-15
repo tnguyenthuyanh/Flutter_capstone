@@ -7,8 +7,8 @@ import '../auth_controller.dart';
 
 class AccountStorageController {
   static DebugPrinter printer =
-      DebugPrinter(className: "AccountStorageController");
-  static const String _collectionName = Constant.accounts;
+      DebugPrinter(className: "AccountStorageController", printOff: true);
+  static String _collectionName = Constant.accounts;
 
   static Future<String> add({required Account object}) async {
     printer.setMethodName(methodName: "add");

@@ -4,7 +4,8 @@ import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'account.dart';
 
 class AccountList {
-  final DebugPrinter printer = DebugPrinter(className: "AccountList");
+  final DebugPrinter printer =
+      DebugPrinter(className: "AccountList", printOff: true);
 
   late List<Account> _objectList; // all objects
   late List<Account> _deletionList; // objects staged for deletion
@@ -33,7 +34,6 @@ class AccountList {
     if (_objectList.length > 1) {
       for (StorableInterface object in _objectList) {
         if (!identical(newCurrent, object)) {
-          // TODO:Remove-debug
           printer.debugPrint(
               "Comparing: " + newCurrent.title + " to " + object.title);
 
@@ -41,7 +41,6 @@ class AccountList {
             object.isCurrent = false;
             object.setDirty(true);
 
-            // TODO: Remove- debug
             printer.debugPrint("object " + object.title + " set dirty");
           }
         }
@@ -59,7 +58,6 @@ class AccountList {
       if (object.isDirty()) {
         temp.add(object);
 
-        // TODO: Remove-debug
         printer.debugPrint("Adding to dirtyList: ");
         printer.debugPrint(object.serialize());
       }

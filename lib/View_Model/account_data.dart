@@ -11,7 +11,7 @@ import '../model/account.dart';
 import '../model/accountlist.dart';
 
 class AccountData extends ChangeNotifier {
-  DebugPrinter printer = DebugPrinter(className: "AccountData");
+  DebugPrinter printer = DebugPrinter(className: "AccountData", printOff: true);
 
   final AccountList _list = AccountList();
   Account? _selected = null; // account being VIEWED
@@ -59,8 +59,6 @@ class AccountData extends ChangeNotifier {
 
     object.isCurrent = true;
 
-    // ignore: todo
-    // TODO: Remove - debug
     printer.debugPrint("Current updated to: " + object.title);
 
     // if there is more than one budget, set others to inactive
@@ -71,10 +69,6 @@ class AccountData extends ChangeNotifier {
     // update firestore, if needed
     fsUpdateAllDirty();
     _list.clearDirtyFlags();
-
-    // ignore: todo
-    // TODO:Remove-debug
-    print("$object.title : isCurrent = " + object.isCurrent.toString());
 
     notifyListeners();
   }
@@ -124,9 +118,7 @@ class AccountData extends ChangeNotifier {
   void confirmDeletion() {
     printer.setMethodName(methodName: "confirmDeletion");
 
-    // TODO: Remove-debug
     printer.debugPrint("Before deletion:");
-    printAll();
 
     for (Account object in _list.deletionList) {
       fsDelete(object);
@@ -141,9 +133,7 @@ class AccountData extends ChangeNotifier {
 
     _list.commitDeletion();
 
-    // TODO: Remove-Debug
     printer.debugPrint("After deletion: ");
-    printAll();
 
     notifyListeners();
   }
@@ -190,10 +180,6 @@ class AccountData extends ChangeNotifier {
     var docId = await FirestoreController.addAccount(object: object);
     // object.docId = docId;
 
-    // TODO: Remove - debug
-    // printer.debugPrint(
-    //     "Added " + object.title + " to FireStore with docid " + object.docId!);
-
     notifyListeners();
 
     return docId;
@@ -205,7 +191,6 @@ class AccountData extends ChangeNotifier {
     for (StorableInterface dirtyBoi in _list.getDirtyList()) {
       await FirestoreController.updateAccount(object: dirtyBoi as Account);
 
-      // TODO: Remove-debug
       printer.debugPrint(
           "Sending to FS to update: " + dirtyBoi.serialize().toString());
     }
@@ -222,25 +207,5 @@ class AccountData extends ChangeNotifier {
   }
 
 //   // ---- Debug Methods ----------------------------------------------
-  void printAll() {
-    for (Account object in list) {
-      print("Object: " +
-          "id: " +
-          object.docId! +
-          ", " +
-          object.serialize().toString());
-    }
 
-    if (_current != null) {
-      print("Current: " + current!.serialize().toString());
-    } else {
-      print("Current is null");
-    }
-
-    if (_selected != null) {
-      print("Selected: " + selected!.serialize().toString());
-    } else {
-      print("Selected is null");
-    }
-  }
 }

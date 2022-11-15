@@ -7,7 +7,7 @@ import '../../model/constant.dart';
 
 class MonthsStorageController {
   static DebugPrinter printer =
-      DebugPrinter(className: "MonthsStorageController");
+      DebugPrinter(className: "MonthsStorageController", printOff: true);
 
   static String _collectionName = Constant.months;
 
@@ -25,7 +25,6 @@ class MonthsStorageController {
       printer.debugPrint("returning " + ref.id);
       return ref.id;
     } catch (e) {
-      print(e.toString());
       return "errawr";
     }
   }
@@ -54,13 +53,10 @@ class MonthsStorageController {
 
             var document = doc.data() as Map<String, dynamic>;
 
-            print(document);
-
             BudgetMonth? temp =
                 BudgetMonth.deserialize(doc: document, docId: doc.id);
 
             printer.debugPrint("Temp: ");
-            print(temp.toString());
 
             if (temp != null) {
               result.add(temp);

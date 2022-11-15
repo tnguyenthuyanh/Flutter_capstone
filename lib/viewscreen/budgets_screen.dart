@@ -23,8 +23,6 @@ class _BudgetsState extends State<BudgetsScreen> {
   late _Controller _con;
 
   // state vars
-  // ignore: todo
-  // TODO: Fix this- change current mode to a provider consumer
   BudgetListMode _currentMode = BudgetListMode.view;
 
   @override

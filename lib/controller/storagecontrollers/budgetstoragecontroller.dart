@@ -12,7 +12,7 @@ import '../auth_controller.dart';
 
 class BudgetStorageController {
   static DebugPrinter printer =
-      DebugPrinter(className: "BudgetStorageController", printOff: false);
+      DebugPrinter(className: "BudgetStorageController", printOff: true);
 
   static Future<String> addBudget({required Budget budget}) async {
     printer.setMethodName(methodName: "addBudget");
@@ -107,8 +107,6 @@ class BudgetStorageController {
 
   static Future<List<SubCategory>> getSubCategories(String categoryid) async {
     try {
-      print("error1");
-
       QuerySnapshot<Map<String, dynamic>> data = await FirebaseFirestore
           .instance
           .collection(Constant.categories)
@@ -125,9 +123,6 @@ class BudgetStorageController {
 
       return subcategories;
     } catch (e) {
-      print("error");
-      print(e);
-
       throw (e);
     }
   }
@@ -143,8 +138,6 @@ class BudgetStorageController {
 
       return true;
     } catch (e) {
-      print(e);
-
       throw (e);
     }
   }
@@ -179,7 +172,6 @@ class BudgetStorageController {
 
   static Future<bool> addCategory(Category category) async {
     try {
-      print("hello");
       QuerySnapshot<Map<String, dynamic>> data = await FirebaseFirestore
           .instance
           .collection(Constant.categories)
@@ -202,7 +194,6 @@ class BudgetStorageController {
           FirebaseFirestore.instance.collection(Constant.categories).doc();
       category.categoryid = documentReference.id;
       await documentReference.set(category.toJson());
-      print("hello1");
 
       return true;
     } catch (e) {
@@ -215,8 +206,6 @@ class BudgetStorageController {
     String budgetId,
   ) async {
     try {
-      print("hello");
-
       DocumentReference documentReference = FirebaseFirestore.instance
           .collection(Constant.budgets)
           .doc(budgetId)

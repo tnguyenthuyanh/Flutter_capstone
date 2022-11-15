@@ -10,8 +10,6 @@ import '../components/buttons/mysizedbutton.dart';
 import '../components/textfields/account_textfields.dart';
 import '../components/texts/titletext.dart';
 
-// ignore: todo
-// TODO: add copy to functionality
 class AccountDetailScreen extends StatefulWidget {
   static const routeName = '/accountDetailScreen';
   static const _screenName = "Account Detail";
@@ -23,7 +21,8 @@ class AccountDetailScreen extends StatefulWidget {
 }
 
 class _AccountDetailState extends State<AccountDetailScreen> {
-  DebugPrinter printer = DebugPrinter(className: "BudgetDetailState");
+  DebugPrinter printer =
+      DebugPrinter(className: "BudgetDetailState", printOff: true);
 
   late _Controller _con;
 
@@ -127,7 +126,7 @@ class _AccountDetailState extends State<AccountDetailScreen> {
 
 class _Controller {
   DebugPrinter printer =
-      DebugPrinter(className: "AccountDetailScreen Controller");
+      DebugPrinter(className: "AccountDetailScreen Controller", printOff: true);
 
   final _AccountDetailState _state;
   _Controller(this._state);

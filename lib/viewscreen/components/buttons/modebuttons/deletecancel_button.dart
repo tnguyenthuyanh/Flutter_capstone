@@ -10,9 +10,6 @@ class DeleteCancelModeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_print, unnecessary_this
-    print(this.mode.toString());
-
     return IconButton(
       icon: mode == ListMode.delete
           ? const Icon(Icons.cancel)

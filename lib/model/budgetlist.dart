@@ -32,7 +32,6 @@ class BudgetList {
           if (budget.isCurrent!) {
             budget.isCurrent = false;
             budget.dirty = true;
-            print("BudgetList: budget " + budget.title + " set dirty");
           }
         }
       }
