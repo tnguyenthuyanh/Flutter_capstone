@@ -9,8 +9,6 @@ class DeleteCancelModeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(this.mode.toString());
-
     return IconButton(
       icon: mode == ListMode.delete ? Icon(Icons.cancel) : Icon(Icons.delete),
       onPressed: onPressedCallback,

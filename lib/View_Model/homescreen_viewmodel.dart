@@ -6,7 +6,8 @@ import '../model/budget.dart';
 import '../model/budgetmonth.dart';
 
 class HomeScreenViewModel extends ChangeNotifier {
-  DebugPrinter printer = DebugPrinter(className: "HomeScreenViewModel");
+  DebugPrinter printer =
+      DebugPrinter(className: "HomeScreenViewModel", printOff: true);
 
   static const String noBudgetsString = "No budgets";
 

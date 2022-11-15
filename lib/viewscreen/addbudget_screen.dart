@@ -3,7 +3,6 @@ import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import '../View_Model/budget_data.dart';
-import '../View_Model/validator.dart';
 import '../model/budget.dart';
 import 'components/buttons/savebutton.dart';
 import 'components/sizedboxes/fullwidth_sizedbox.dart';

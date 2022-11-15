@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
 import 'package:cap_project/viewscreen/components/texts/titletext.dart';
 import 'package:flutter/material.dart';

@@ -25,8 +25,6 @@ class CategoryListViewTile extends StatelessWidget {
           // _stagedForDeletion ? _selectedForDeleteColor : _normalColor,
           _normalColor,
       onTapCallback: () {
-        print("Category " + category.type + " selected");
-
         // if (currentMode == BudgetListMode.delete) {
         //   if (_stagedForDeletion) {
         //     Provider.of<BudgetData>(context, listen: false)

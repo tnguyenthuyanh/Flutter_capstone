@@ -1,20 +1,15 @@
-import 'dart:collection';
 import 'package:cap_project/model/account.dart';
 import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
-import 'package:cap_project/viewscreen/components/texts/listviewheadertext.dart';
 import 'package:flutter/material.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
-import 'package:cap_project/viewscreen/budgetCategory.dart';
 import 'package:cap_project/viewscreen/components/texts/ohnoeserrortext.dart';
 import '../../View_Model/account_data.dart';
 import '../components/buttons/modebuttons/editcancelmode_button.dart';
 import '../components/buttons/mysizedbutton.dart';
 import '../components/textfields/account_textfields.dart';
-import '../components/texts/detail_text.dart';
 import '../components/texts/titletext.dart';
 
-// TODO: add copy to functionality
 class AccountDetailScreen extends StatefulWidget {
   static const routeName = '/accountDetailScreen';
   static const _screenName = "Account Detail";
@@ -26,7 +21,8 @@ class AccountDetailScreen extends StatefulWidget {
 }
 
 class _AccountDetailState extends State<AccountDetailScreen> {
-  DebugPrinter printer = DebugPrinter(className: "BudgetDetailState");
+  DebugPrinter printer =
+      DebugPrinter(className: "BudgetDetailState", printOff: true);
 
   late _Controller _con;
 
@@ -132,7 +128,7 @@ class _AccountDetailState extends State<AccountDetailScreen> {
 
 class _Controller {
   DebugPrinter printer =
-      DebugPrinter(className: "AccountDetailScreen Controller");
+      DebugPrinter(className: "AccountDetailScreen Controller", printOff: true);
 
   final _AccountDetailState _state;
   _Controller(this._state);

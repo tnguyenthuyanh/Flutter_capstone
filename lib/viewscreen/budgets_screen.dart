@@ -1,5 +1,4 @@
 import 'dart:collection';
-import 'package:cap_project/viewscreen/budgetCategory.dart';
 import 'package:cap_project/viewscreen/components/texts/emptycontenttext.dart';
 import 'package:cap_project/viewscreen/components/texts/titletext.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,6 @@ class _BudgetsState extends State<BudgetsScreen> {
   late _Controller _con;
 
   // state vars
-  // TODO: Fix this- change current mode to a provider consumer
   BudgetListMode _currentMode = BudgetListMode.view;
 
   @override

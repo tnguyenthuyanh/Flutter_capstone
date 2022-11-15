@@ -10,7 +10,8 @@ import '../model/budgetlist.dart';
 import '/model/budget.dart';
 
 class BudgetController {
-  DebugPrinter printer = DebugPrinter(className: "BudgetController");
+  DebugPrinter printer =
+      DebugPrinter(className: "BudgetController", printOff: true);
 
   BudgetList _list = BudgetList();
   Budget? _selected = null; // budget being VIEWED
@@ -148,9 +149,6 @@ class BudgetController {
   Future<void> fsUpdateAllDirty() async {
     for (Budget dirtyBoi in _list.getDirtyList()) {
       await FirestoreController.updateBudget(budget: dirtyBoi);
-
-      print("Sending to FS to update: ");
-      print(dirtyBoi.serialize());
     }
   }
 

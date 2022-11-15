@@ -1,5 +1,4 @@
 import 'package:cap_project/controller/auth_controller.dart';
-import 'package:cap_project/viewscreen/components/debug/debugprinter.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
