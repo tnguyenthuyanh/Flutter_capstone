@@ -138,7 +138,7 @@ class _WalletState extends State<WalletScreen> {
                               style:
                                   TextStyle(fontSize: 14, color: Colors.white)),
                           style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent,
+                              // backgroundColor: Colors.transparent,
                               shadowColor: Colors.transparent),
                         ),
                       ),
@@ -188,7 +188,7 @@ class _WalletState extends State<WalletScreen> {
                                 style: TextStyle(
                                     fontSize: 14, color: Colors.white)),
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.transparent,
+                                // backgroundColor: Colors.transparent,
                                 shadowColor: Colors.transparent),
                           ),
                         ),
@@ -210,7 +210,7 @@ class _WalletState extends State<WalletScreen> {
                                 style: TextStyle(
                                     fontSize: 14, color: Colors.white)),
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.transparent,
+                                // backgroundColor: Colors.transparent,
                                 shadowColor: Colors.transparent),
                           ),
                         ),

@@ -120,8 +120,8 @@ class _EditProfileState extends State<EditProfileScreen> {
                         ],
                       ),
                     ),
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.redAccent),
+                    // style: ElevatedButton.styleFrom(
+                    //     // backgroundColor: Colors.redAccent),
                     child: Text(
                       'Delete Account',
                       style: Theme.of(context).textTheme.button,

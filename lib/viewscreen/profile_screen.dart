@@ -136,7 +136,7 @@ class _ProfileState extends State<ProfileScreen> {
                                         style: TextStyle(
                                             fontSize: 14, color: Colors.white)),
                                     style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.transparent,
+                                        // backgroundColor: Colors.transparent,
                                         shadowColor: Colors.transparent),
                                   ),
                                 ),
@@ -248,7 +248,7 @@ class _ProfileState extends State<ProfileScreen> {
                                     style: TextStyle(
                                         fontSize: 14, color: Colors.white)),
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.transparent,
+                                    // backgroundColor: Colors.transparent,
                                     shadowColor: Colors.transparent),
                               ),
                             ),

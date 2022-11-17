@@ -73,7 +73,12 @@ class _AddCategoryState extends State<AddCategory> {
                                 child: Icon(Icons.add),
                               )
                             : Chip(
-                                deleteIcon: Icon(Icons.clear,
+                                deleteIcon: Icon(
+                                    budgetCategory.categoriess[counter].type
+                                                .toLowerCase() ==
+                                            "global"
+                                        ? Icons.info_outline
+                                        : Icons.clear,
                                     color: budgetCategory
                                             .categoriess[counter].isSelected
                                         ? Colors.black

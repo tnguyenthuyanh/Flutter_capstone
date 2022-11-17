@@ -172,8 +172,8 @@ class _TransferMoneyState extends State<TransferMoneyScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        backgroundColor:
-                            const Color.fromARGB(255, 74, 125, 193),
+                        // backgroundColor:
+                        //     const Color.fromARGB(255, 74, 125, 193),
                       ),
                       child: Container(
                         margin: const EdgeInsets.all(12),
