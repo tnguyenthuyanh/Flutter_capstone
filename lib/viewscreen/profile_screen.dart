@@ -127,14 +127,14 @@ class _ProfileState extends State<ProfileScreen> {
                                       Color.fromARGB(255, 205, 91, 129),
                                       Color.fromARGB(255, 102, 192, 94)
                                     ]),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(50.0)),
+                                    borderRadius:
+                                        const BorderRadius.all(Radius.circular(50.0)),
                                   ),
                                   child: ElevatedButton(
                                     onPressed: con.addFriend,
                                     child: const Text('Add Friend',
-                                        style: TextStyle(
-                                            fontSize: 14, color: Colors.white)),
+                                        style:
+                                            TextStyle(fontSize: 14, color: Colors.white)),
                                     style: ElevatedButton.styleFrom(
                                         // backgroundColor: Colors.transparent,
                                         shadowColor: Colors.transparent),
@@ -151,14 +151,12 @@ class _ProfileState extends State<ProfileScreen> {
                                         onPressed: null,
                                         child: const Text('Pending',
                                             style: TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.white)),
+                                                fontSize: 14, color: Colors.white)),
                                         style: ButtonStyle(
                                           shape: MaterialStateProperty.all<
                                               RoundedRectangleBorder>(
                                             RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(50.0),
+                                                borderRadius: BorderRadius.circular(50.0),
                                                 side: const BorderSide(
                                                     color: Colors.white)),
                                           ),
@@ -176,15 +174,13 @@ class _ProfileState extends State<ProfileScreen> {
                                             onPressed: con.acceptFriend,
                                             child: const Text('Accept',
                                                 style: TextStyle(
-                                                    fontSize: 14,
-                                                    color: Colors.white)),
+                                                    fontSize: 14, color: Colors.white)),
                                             style: ButtonStyle(
                                               shape: MaterialStateProperty.all<
                                                   RoundedRectangleBorder>(
                                                 RoundedRectangleBorder(
                                                     borderRadius:
-                                                        BorderRadius.circular(
-                                                            50.0),
+                                                        BorderRadius.circular(50.0),
                                                     side: const BorderSide(
                                                         color: Colors.green)),
                                               ),
@@ -208,20 +204,17 @@ class _ProfileState extends State<ProfileScreen> {
                                                   backgroundColor:
                                                       MaterialStateProperty.all(
                                                           Colors.lightGreen),
-                                                  shape:
-                                                      MaterialStateProperty.all<
-                                                          RoundedRectangleBorder>(
+                                                  shape: MaterialStateProperty.all<
+                                                      RoundedRectangleBorder>(
                                                     RoundedRectangleBorder(
                                                         borderRadius:
-                                                            BorderRadius
-                                                                .circular(50.0),
+                                                            BorderRadius.circular(50.0),
                                                         side: const BorderSide(
-                                                            color:
-                                                                Colors.white)),
+                                                            color: Colors.white)),
                                                   ),
                                                 ),
-                                                icon: const Icon(
-                                                    Icons.people_alt_outlined),
+                                                icon:
+                                                    const Icon(Icons.people_alt_outlined),
                                               ),
                                             ),
                                           )
@@ -239,14 +232,13 @@ class _ProfileState extends State<ProfileScreen> {
                                   Color.fromARGB(255, 205, 91, 129),
                                   Color.fromARGB(255, 102, 192, 94)
                                 ]),
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(50.0)),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(50.0)),
                               ),
                               child: ElevatedButton(
                                 onPressed: con.addSpouse,
                                 child: const Text('Add Spouse',
-                                    style: TextStyle(
-                                        fontSize: 14, color: Colors.white)),
+                                    style: TextStyle(fontSize: 14, color: Colors.white)),
                                 style: ElevatedButton.styleFrom(
                                     // backgroundColor: Colors.transparent,
                                     shadowColor: Colors.transparent),
@@ -259,10 +251,10 @@ class _ProfileState extends State<ProfileScreen> {
                       height: 20.0, // space betwen top or bottom item
                     ),
                     SizedBox(
-                      height: 150,
+                      height: 100,
                       child: Card(
-                        margin: const EdgeInsets.symmetric(
-                            horizontal: 15.0, vertical: 2.0),
+                        margin:
+                            const EdgeInsets.symmetric(horizontal: 15.0, vertical: 2.0),
                         clipBehavior: Clip.antiAlias,
                         color: Colors.green[50],
                         elevation: 14.0,
@@ -279,8 +271,7 @@ class _ProfileState extends State<ProfileScreen> {
                                       child: Text(
                                         widget.profile.bio,
                                         style: const TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 60, 98, 169),
+                                          color: Color.fromARGB(255, 60, 98, 169),
                                           fontSize: 15.0,
                                         ),
                                       ),
@@ -301,12 +292,9 @@ class _ProfileState extends State<ProfileScreen> {
                         ? Column(
                             children: [
                               const Text('Share budget with spouse?',
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.white)),
+                                  style: TextStyle(fontSize: 14, color: Colors.white)),
                               Checkbox(
-                                value: widget.userP.shareBudget
-                                            .compareTo('true') ==
-                                        0
+                                value: widget.userP.shareBudget.compareTo('true') == 0
                                     ? true
                                     : false,
                                 onChanged: con.updateShare,
@@ -352,10 +340,9 @@ class _Controller {
     try {
       UserInfo profile =
           await FirestoreController.getProfile(uid: state.widget.currentUID);
-      await Navigator.pushNamed(state.context, EditProfileScreen.routeName,
-          arguments: {
-            ArgKey.profile: profile,
-          });
+      await Navigator.pushNamed(state.context, EditProfileScreen.routeName, arguments: {
+        ArgKey.profile: profile,
+      });
     } catch (e) {
       // ignore: avoid_print
       if (Constant.devMode) print('====== editProfile error: $e');
@@ -384,8 +371,7 @@ class _Controller {
 
   void acceptFriend() async {
     await FirestoreController.acceptFriend(
-        friendUID: state.widget.profile.uid,
-        currentUID: state.widget.currentUID);
+        friendUID: state.widget.profile.uid, currentUID: state.widget.currentUID);
 
     state.render(() {
       isFriendAdded = 'isFriend';
@@ -418,8 +404,7 @@ class _Controller {
       stopCircularProgress(state.context);
       // ignore: avoid_print
       if (Constant.devMode) print('======== failed to get update: $e');
-      showSnackBar(
-          context: state.context, seconds: 20, message: 'failed to update: $e');
+      showSnackBar(context: state.context, seconds: 20, message: 'failed to update: $e');
     }
   }
 
@@ -444,8 +429,7 @@ class _Controller {
       Map<String, dynamic> update = {};
       //update Firestore doc
       update[DocKeyUserprof.shareBudget.name] = state.widget.userP.shareBudget;
-      update[DocKeyUserprof.shareBudgetEmail.name] =
-          state.widget.userP.shareBudgetEmail;
+      update[DocKeyUserprof.shareBudgetEmail.name] = state.widget.userP.shareBudgetEmail;
 
       if (update.isNotEmpty) {
         //change has been made
@@ -453,21 +437,19 @@ class _Controller {
             docId: state.widget.userP.docId!, update: update);
       }
 
-      await Navigator.pushNamed(state.context, ProfileScreen.routeName,
-          arguments: {
-            ArgKey.profile: state.widget.profile,
-            ArgKey.currentUID: state.widget.currentUID,
-            ArgKey.isFriendAdded: 'N/A',
-            ArgKey.userProfile: state.widget.userP,
-          });
+      await Navigator.pushNamed(state.context, ProfileScreen.routeName, arguments: {
+        ArgKey.profile: state.widget.profile,
+        ArgKey.currentUID: state.widget.currentUID,
+        ArgKey.isFriendAdded: 'N/A',
+        ArgKey.userProfile: state.widget.userP,
+      });
 
       stopCircularProgress(state.context);
     } catch (e) {
       stopCircularProgress(state.context);
       // ignore: avoid_print
       if (Constant.devMode) print('======== failed to get update: $e');
-      showSnackBar(
-          context: state.context, seconds: 20, message: 'failed to update: $e');
+      showSnackBar(context: state.context, seconds: 20, message: 'failed to update: $e');
     }
   }
 
