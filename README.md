@@ -6,9 +6,9 @@ A Budget App to create a budget template that the user can make reusable month t
 The template is broad and contains several aspects including, a planner, social network, 
 various tools, and a mechanism for tracking credits and debits applied to the budget.
 
-<img src="https://user-images.githubusercontent.com/53841240/203653643-43bcb3ed-e5cb-4f10-ac4c-d41834908233.png" width=400> <img src="https://user-images.githubusercontent.com/53841240/203653779-c0b048b9-8734-4d29-bc58-b8282b4984b7.png" width=400>
+<img src="https://user-images.githubusercontent.com/53841240/203653914-0c805709-28a0-458a-8f88-334e0bd903f5.png" width=300> <img src="https://user-images.githubusercontent.com/53841240/203653779-c0b048b9-8734-4d29-bc58-b8282b4984b7.png" width=300>
 
-<img src="https://user-images.githubusercontent.com/53841240/203653914-0c805709-28a0-458a-8f88-334e0bd903f5.png" width=400> <img src="https://user-images.githubusercontent.com/53841240/203653779-c0b048b9-8734-4d29-bc58-b8282b4984b7.png" width=400>
+<img src="https://user-images.githubusercontent.com/53841240/203653643-43bcb3ed-e5cb-4f10-ac4c-d41834908233.png" width=300> <img src="https://user-images.githubusercontent.com/53841240/203654838-0034feb6-af04-4718-b8a9-ee72ff14181d.png" width=300>
 
 
 ## Getting Started
